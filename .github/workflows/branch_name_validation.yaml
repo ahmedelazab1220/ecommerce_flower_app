@@ -1,0 +1,41 @@
+name: Validate Branch Name
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+jobs:
+  validate-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "Branch name: $BRANCH_NAME"
+
+          # Allowed prefixes
+          PREFIXES="feature|fix|hotfix|refactor|bugfix|release|docs|perf|test|chore"
+
+          # Allowed special branch names
+          ALLOWED_BRANCHES="main|developement"
+
+          # Check if branch is explicitly allowed
+          if [[ "$BRANCH_NAME" =~ ^($ALLOWED_BRANCHES)$ ]]; then
+            echo "✅ Allowed branch name: $BRANCH_NAME"
+            exit 0
+          fi
+
+          # Validate branch name format
+          if [[ ! "$BRANCH_NAME" =~ ^($PREFIXES)/[a-z0-9\-]+$ ]]; then
+            echo "❌ Invalid branch name: $BRANCH_NAME"
+            echo "Branch names must follow the pattern: feature/meaningful-name, fix/issue-description, etc."
+            echo "Allowed special branches: main, develop"
+            echo "Example: feature/authentication-module, fix/user-login-bug, bugfix/api-timeout-issue"
+            exit 1
+          fi
+
+          echo "✅ Branch name is valid!"

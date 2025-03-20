@@ -1,0 +1,39 @@
+name: Flutter Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test:
+    name: Run Flutter Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Java (for Android builds)
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: 🛠 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: ✅ Verify Flutter Installation
+        run: flutter --version
+
+      - name: 🔄 Run Build Runner (if necessary)
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 🚀 Run Flutter Unit Tests
+        run: flutter test
