@@ -1,7 +1,28 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'core/utils/bloc_observer/bloc_observer_service.dart';
+import 'core/utils/di/di.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await configureDependencies();
+  await EasyLocalization.ensureInitialized();
+  Bloc.observer = BlocObserverService(getIt<Logger>());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale(Constants.ar), Locale(Constants.en)],
+      path: Constants.assetsTranslations,
+      fallbackLocale: const Locale(Constants.en),
+      startLocale: const Locale(Constants.en),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

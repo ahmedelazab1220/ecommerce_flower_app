@@ -175,4 +175,5 @@ abstract class LocaleKeys {
   static const Pending = 'Pending';
   static const Processing = 'Processing';
   static const Cancelled = 'Cancelled';
+  static const Error = 'Error';
 }

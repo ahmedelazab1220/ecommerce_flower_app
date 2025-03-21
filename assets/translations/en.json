@@ -163,5 +163,6 @@
     "Retry": "Retry",
     "Pending": "Pending",
     "Processing": "Processing",
-    "Cancelled": "Cancelled"
+    "Cancelled": "Cancelled",
+    "Error": "Error"
 }
