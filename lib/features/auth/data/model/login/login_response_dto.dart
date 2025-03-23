@@ -1,4 +1,3 @@
-import 'package:ecommerce_flower_app/features/auth/domain/entity/login_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'login_response_dto.g.dart';
@@ -24,13 +23,6 @@ class LoginResponseDto {
 
   Map<String, dynamic> toJson() {
     return _$LoginResponseDtoToJson(this);
-  }
-
-  LoginEntity toEntity() {
-    return LoginEntity(
-      message: message,
-      token: token,
-    );
   }
 }
 

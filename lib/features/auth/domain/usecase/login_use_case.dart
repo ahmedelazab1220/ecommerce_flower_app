@@ -1,0 +1,14 @@
+import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
+
+import '../../data/model/login/login_response_dto.dart';
+import '../repo/auth_repo.dart';
+
+class LoginUseCase {
+  final AuthRepo _authRep;
+
+  LoginUseCase(this._authRep);
+
+  Future<Result<LoginResponseDto>> login(String email, String password) {
+    return _authRep.login(email, password);
+  }
+}
