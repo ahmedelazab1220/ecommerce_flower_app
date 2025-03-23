@@ -164,5 +164,13 @@
     "Pending": "Pending",
     "Processing": "Processing",
     "Cancelled": "Cancelled",
-    "Error": "Error"
+    "Error": "Error",
+    "EnterAValidEmail": "Enter a valid email",
+    "EmailCannotBeEmpty": "Email cannot be empty",
+    "PasswordCannotBeEmpty": "Password cannot be empty",
+    "ConfirmPasswordMustMatch": "Confirm password must match with password",
+    "NameCannotBeEmpty": "Name cann't be empty",
+    "InvalidName": "Please enter a valid name without special characters.",
+    "PhoneNumberCannotBeEmpty": "Phone number cannot be empty",
+    "InvalidPhoneNumber": "Invalid number format. Ensure it starts with 010, 011, 012, or 015 and has 11 digits."
 }

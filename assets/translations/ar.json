@@ -164,5 +164,13 @@
     "Pending": "قيد الانتظار",
     "Processing": "جاري المعالجة",
     "Cancelled": "تم الالغاء",
-    "Error": "خطأ"
+    "Error": "خطأ",
+    "EnterAValidEmail": "ادخل بريد الكتروني صالح",
+    "EmailCannotBeEmpty": "لا يمكن ان يكون البريد الالكتروني فارغ",
+    "PasswordCannotBeEmpty": "لا يمكن ان تكون كلمة المرور فارغة",
+    "ConfirmPasswordMustMatch": "يجب ان تتطابق كلمة المرور مع تاكيد كلمة المرور",
+    "NameCannotBeEmpty": "لا يمكن ان يكون الاسم فارغ",
+    "InvalidName": ".يرجى ادخال اسم صحيح بدون حروف خاصة",
+    "PhoneNumberCannotBeEmpty": "لا يمكن ان يكون رقم الهاتف فارغ",
+    "InvalidPhoneNumber": ".صيغة رقم غير صالحة. يرجى التأكد من أنها تبدأ بـ 010 أو 011 أو 012 أو 015 ويحتوي على 11 رقمًا"
 }
