@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import '../l10n/locale_keys.g.dart';
 
 class AppDialogs {
+  // Private constructor to prevent instantiation
+  AppDialogs._();
+
   // Show a loading dialog
   static void showLoadingDialog(BuildContext context, {String? message}) {
     showDialog(
