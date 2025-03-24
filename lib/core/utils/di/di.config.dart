@@ -22,6 +22,7 @@ import '../../../features/auth/data/data_source/remote/auth_remote_data_source_i
     as _i212;
 import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
+import '../../../features/auth/domain/usecase/login_use_case.dart' as _i919;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -60,6 +61,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i28.ApiManager>(),
         ));
+    gh.factory<_i919.LoginUseCase>(
+        () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
     return this;
   }
 }

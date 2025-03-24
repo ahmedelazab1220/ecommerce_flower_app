@@ -6,10 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logger/logger.dart';
 
+import 'core/theme/app_theme.dart';
 import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/routes.dart';
-import 'features/auth/presentation/view/login_screen.dart';
+import 'features/auth/presentation/view/screens/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,12 +39,10 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 910),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
+      builder: (context, child) => MaterialApp(
         title: 'Flutter Demo',
         routes: AppRoutes.routes,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+        theme: AppTheme.appTheme,
         home: const LoginScreen(),
       ),
     );
