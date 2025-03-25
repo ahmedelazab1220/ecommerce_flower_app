@@ -36,7 +36,6 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        minimumSize: WidgetStatePropertyAll(Size(343.w, 48.h)),
         backgroundColor: WidgetStateProperty.all(AppColors.pink),
         foregroundColor: WidgetStateProperty.all(AppColors.white),
         shape: WidgetStateProperty.all(
@@ -44,13 +43,13 @@ class AppTheme {
         ),
         elevation: WidgetStateProperty.all(0),
         textStyle: WidgetStateProperty.all(
-           TextStyle(
+          TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
+        padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 14.h)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
