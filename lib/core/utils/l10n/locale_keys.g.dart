@@ -176,4 +176,12 @@ abstract class LocaleKeys {
   static const Processing = 'Processing';
   static const Cancelled = 'Cancelled';
   static const Error = 'Error';
+  static const EnterAValidEmail = 'EnterAValidEmail';
+  static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
+  static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const ConfirmPasswordMustMatch = 'ConfirmPasswordMustMatch';
+  static const NameCannotBeEmpty = 'NameCannotBeEmpty';
+  static const InvalidName = 'InvalidName';
+  static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
+  static const InvalidPhoneNumber = 'InvalidPhoneNumber';
 }
