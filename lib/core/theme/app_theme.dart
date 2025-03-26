@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../assets/app_colors.dart';
 
@@ -11,16 +12,24 @@ class AppTheme {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: AppColors.white,
     ),
-    textTheme: const TextTheme(
-      titleLarge: TextStyle(color: AppColors.black),
-      titleMedium: TextStyle(color: AppColors.black),
-      titleSmall: TextStyle(color: AppColors.black),
-      labelLarge: TextStyle(color: AppColors.black),
-      labelMedium: TextStyle(color: AppColors.black),
-      labelSmall: TextStyle(color: AppColors.black),
-      bodyLarge: TextStyle(color: AppColors.black),
-      bodyMedium: TextStyle(color: AppColors.black),
-      bodySmall: TextStyle(color: AppColors.black),
+    textTheme: TextTheme(
+      titleLarge: const TextStyle(color: AppColors.black),
+      titleMedium: const TextStyle(color: AppColors.black),
+      titleSmall: const TextStyle(color: AppColors.black),
+      labelLarge: const TextStyle(color: AppColors.black),
+      labelMedium: const TextStyle(color: AppColors.black),
+      labelSmall: const TextStyle(color: AppColors.black),
+      bodyLarge: TextStyle(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.black,
+      ),
+      bodyMedium: const TextStyle(color: AppColors.black),
+      bodySmall: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.black,
+      ),
     ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: AppColors.pink,
@@ -34,16 +43,17 @@ class AppTheme {
         ),
         elevation: WidgetStateProperty.all(0),
         textStyle: WidgetStateProperty.all(
-          const TextStyle(
+          TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 16.sp,
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
+        padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 14.h)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       errorStyle: const TextStyle(color: AppColors.red, fontSize: 12),
       contentPadding: const EdgeInsets.all(16),
       iconColor: AppColors.pink,
@@ -54,7 +64,7 @@ class AppTheme {
       prefixIconColor: AppColors.black,
       suffixIconColor: AppColors.black,
       labelStyle: TextStyle(
-        fontSize: 12,
+        fontSize: 14,
         color: AppColors.black[AppColors.colorCode40],
       ),
       border: OutlineInputBorder(
