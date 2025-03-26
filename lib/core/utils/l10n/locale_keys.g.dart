@@ -24,23 +24,21 @@ abstract class LocaleKeys {
   static const Gender = 'Gender';
   static const Male = 'Male';
   static const Female = 'Female';
-  static const CreatingAnAccountYouAgreeToOur =
-      'CreatingAnAccountYouAgreeToOur';
+  static const CreatingAnAccountYouAgreeToOur = 'CreatingAnAccountYouAgreeToOur';
   static const TermsAndConditions = 'TermsAndConditions';
   static const AlreadyHaveAnAccount = 'AlreadyHaveAnAccount';
-  static const ConfirmPasswordDoesNotMatchWithPassword =
-      'ConfirmPasswordDoesNotMatchWithPassword';
+  static const ConfirmPasswordDoesNotMatchWithPassword = 'ConfirmPasswordDoesNotMatchWithPassword';
   static const ForgetPassword = 'ForgetPassword';
-  static const PleaseEnterYourEmailAssociatedWithToYourAccount =
-      'PleaseEnterYourEmailAssociatedWithToYourAccount';
+  static const PleaseEnterYourEmailAssociatedWithToYourAccount = 'PleaseEnterYourEmailAssociatedWithToYourAccount';
   static const Confirm = 'Confirm';
   static const EmailVerification = 'EmailVerification';
-  static const PleaseEnterYourCodeThatSendToYourEmailAddress =
-      'PleaseEnterYourCodeThatSendToYourEmailAddress';
+  static const PleaseEnterYourCodeThatSendToYourEmailAddress = 'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const Resend = 'Resend';
   static const DidNotReceiveTheCode = 'DidNotReceiveTheCode';
   static const InvalidCode = 'InvalidCode';
   static const NewPassword = 'NewPassword';
+  static const EnterYourNewPassword = 'EnterYourNewPassword';
+  static const ConfirmYourPassword = 'ConfirmYourPassword';
   static const ResetPassword = 'ResetPassword';
   static const PasswordRequirements = 'PasswordRequirements';
   static const Search = 'Search';
@@ -57,15 +55,13 @@ abstract class LocaleKeys {
   static const Occasion = 'Occasion';
   static const Wedding = 'Wedding';
   static const Birthday = 'Birthday';
-  static const BloomWithOurExquisiteBestSellers =
-      'BloomWithOurExquisiteBestSellers';
+  static const BloomWithOurExquisiteBestSellers = 'BloomWithOurExquisiteBestSellers';
   static const EGP = 'EGP';
   static const AddToCart = 'AddToCart';
   static const Status = 'Status';
   static const InStock = 'InStock';
   static const AllPricesIncludeTax = 'AllPricesIncludeTax';
-  static const LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa =
-      'LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa';
+  static const LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa = 'LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa';
   static const Description = 'Description';
   static const BouquetInclude = 'BouquetInclude';
   static const WhiteWrap = 'WhiteWrap';
@@ -125,8 +121,7 @@ abstract class LocaleKeys {
   static const Active = 'Active';
   static const NewOffer = 'NewOffer';
   static const Remember = 'Remember';
-  static const LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum =
-      'LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum';
+  static const LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum = 'LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum';
   static const Cancel = 'Cancel';
   static const ConfirmLogout = 'ConfirmLogout';
   static const LOGOUT = 'LOGOUT';
@@ -184,4 +179,5 @@ abstract class LocaleKeys {
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
+
 }
