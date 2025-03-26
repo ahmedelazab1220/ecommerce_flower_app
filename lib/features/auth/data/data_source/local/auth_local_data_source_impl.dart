@@ -6,7 +6,8 @@ import '../contract/auth_local_data_source.dart';
 
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
-  const flutterSecureStorage = FlutterSecureStorage();
+  final flutterSecureStorage = FlutterSecureStorage();
+
   @override
   Future<void> deleteToken(String key) async {
     return await flutterSecureStorage.delete(key: key);
