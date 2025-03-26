@@ -12,9 +12,9 @@ class AppRoutes {
   static const String register = "/register";
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    home: (context) => HomeScreen(),
+    home: (context) => const HomeScreen(),
     login: (context) => LoginScreen(),
-    forgetPassword: (context) => ForgetPasswordScreen(),
-    register: (context) => RegisterScreen(),
+    forgetPassword: (context) => const ForgetPasswordScreen(),
+    register: (context) => const RegisterScreen(),
   };
 }

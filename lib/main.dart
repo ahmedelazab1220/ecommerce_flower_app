@@ -11,7 +11,6 @@ import 'core/theme/app_theme.dart';
 import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/routes.dart';
-import 'features/auth/presentation/view/screens/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
