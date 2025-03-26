@@ -67,7 +67,7 @@ class _ResendCodeState extends State<ResendCode> {
                   )
                   : Text(
                     'Resend in ${countdown}s',
-                    style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                    style: TextStyle(color: AppColors.gray, fontSize: 14.sp),
                   ),
         ),
       ],

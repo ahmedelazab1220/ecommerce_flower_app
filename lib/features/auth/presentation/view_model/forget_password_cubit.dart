@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/utils/validator/validator.dart';
-import '../../data/model/forget_password/forget_password_response_dto.dart';
 import 'forget_password_state.dart';
 
 @injectable

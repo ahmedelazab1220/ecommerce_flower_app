@@ -6,7 +6,6 @@ import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../../core/utils/di/di.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
@@ -43,7 +42,7 @@ class EmailVerification extends StatelessWidget {
           },
           builder: (context, state) {
             return Padding(
-              padding: EdgeInsets.all(16.0).w,
+              padding: const EdgeInsets.all(16.0).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

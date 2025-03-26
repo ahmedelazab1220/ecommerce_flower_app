@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/theme/app_theme.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification_state.dart';
 import 'package:flutter/material.dart';
@@ -50,16 +51,13 @@ class VerificationCodeInput extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.error_outline,
-                      color: const Color(0xFFCC1010),
+                      color: AppColors.red,
                       size: 16.sp,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       errorText!,
-                      style: TextStyle(
-                        color: const Color(0xFFCC1010),
-                        fontSize: 13.sp,
-                      ),
+                      style: TextStyle(color: AppColors.red, fontSize: 13.sp),
                     ),
                   ],
                 ),
