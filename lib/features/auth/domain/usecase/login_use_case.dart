@@ -10,7 +10,7 @@ class LoginUseCase {
 
   LoginUseCase(this._authRep);
 
-  Future<Result<LoginResponseDto>> call(String email, String password) {
+  Future<Result<void>> call(String email, String password) {
     return _authRep.login(email, password);
   }
 }

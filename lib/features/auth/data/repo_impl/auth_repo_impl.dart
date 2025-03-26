@@ -9,33 +9,18 @@ import '../data_source/contract/auth_remote_data_source.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
-  final ApiManager _apiManager;
+  final ApiManager _apiManager = ApiManager();
   final AuthRemoteDataSource _authRemoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
 
-  AuthRepoImpl(
-      this._authRemoteDataSource, this._apiManager, this._authLocalDataSource);
+  AuthRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
 
   @override
-  Future<void> saveToken(String key, String value) async {
-    return await _authLocalDataSource.saveToken(key, value);
-  }
-
-  @override
-  Future<String?> getToken(String key) async {
-    return await _authLocalDataSource.getToken(key);
-  }
-
-  @override
-  Future<void> deleteToken(String key) async {
-    return await _authLocalDataSource.deleteToken(key);
-  }
-
-  @override
-  Future<Result<LoginResponseDto>> login(String email, String password) {
+  Future<Result<void>> login(String email, String password) {
     var response = _apiManager.execute<LoginResponseDto>(
       () async {
         final response = await _authRemoteDataSource.login(email, password);
+        _authLocalDataSource.saveToken("token", response.token ?? "");
         return response;
       },
     );
