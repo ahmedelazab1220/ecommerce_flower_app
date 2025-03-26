@@ -1,190 +1,209 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
+import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RegisterForm extends StatefulWidget {
+class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
 
   @override
-  State<RegisterForm> createState() => _RegisterFormState();
-}
-
-class _RegisterFormState extends State<RegisterForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final Validator _validator = getIt<Validator>();
-
-  String _selectedGender = "female";
-
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              /// First Name & Last Name
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: _buildTextField(
-                      LocaleKeys.FirstName,
-                      LocaleKeys.EnterFirstName,
-                      _firstNameController,
-                      _validator.validateName,
-                    ),
-                  ),
-                  SizedBox(width: 17.w),
-                  Expanded(
-                    child: _buildTextField(
-                      LocaleKeys.LastName,
-                      LocaleKeys.EnterLastName,
-                      _lastNameController,
-                      _validator.validateName,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 24.h),
-      
-              /// Email
-              _buildTextField(
-                LocaleKeys.Email,
-                LocaleKeys.EnterYourEmail,
-                _emailController,
-                _validator.validateEmail,
-              ),
-              SizedBox(height: 24.h),
-      
-              /// Password & Confirm Password
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: _buildTextField(
-                      LocaleKeys.Password,
-                      LocaleKeys.EnterYourPassword,
-                      _passwordController,
-                      _validator.validatePassword,
-                    ),
-                  ),
-                  SizedBox(width: 17.w),
-                  Expanded(
-                    child: _buildTextField(
-                      LocaleKeys.ConfirmPassword,
-                      LocaleKeys.ConfirmPassword,
-                      _confirmPasswordController,
-                      (value) => _validator.validateConfirmPassword(
-                        value,
-                        _passwordController.text,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 24.h),
-      
-              /// Phone Number
-              _buildTextField(
-                LocaleKeys.PhoneNumber,
-                LocaleKeys.PhoneNumber,
-                _phoneController,
-                _validator.validatePhoneNumber,
-              ),
-              SizedBox(height: 24.h),
-      
-              /// Gender Selection
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.h),
-                child: Row(
+    return BlocListener<RegisterCubit, RegisterStates>(
+      listener: (context, state) {
+        final registerState = state.registerState;
+        if (registerState is BaseLoadingState) {
+          AppDialogs.showLoadingDialog(context);
+        } else if (registerState is BaseSuccessState) {
+          AppDialogs.hideLoading(context);
+          context.read<RegisterCubit>().navigateToLogin();
+        } else if (registerState is BaseErrorState) {
+          AppDialogs.hideLoading(context);
+          AppDialogs.showFailureDialog(
+            context,
+            message: registerState.errorMessage,
+          );
+        }
+      },
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: Form(
+            key: context.read<RegisterCubit>().formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                /// First Name & Last Name
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      LocaleKeys.Gender.tr(),
-                      style: Theme.of(
+                    Expanded(
+                      child: _buildTextField(
                         context,
-                      ).textTheme.bodyLarge!.copyWith(color: AppColors.gray),
+                        LocaleKeys.FirstName,
+                        LocaleKeys.EnterFirstName,
+                        context.read<RegisterCubit>().firstNameController,
+                        context.read<RegisterCubit>().validator.validateName,
+                      ),
                     ),
-                    SizedBox(width: 40.w),
-                    Expanded(child: _buildRadioTile("female", LocaleKeys.Female)),
-                    Expanded(child: _buildRadioTile("male", LocaleKeys.Male)),
-                  ],
-                ),
-              ),
-      
-              /// Terms & Conditions
-              Text.rich(
-                textAlign: TextAlign.center,
-                TextSpan(
-                  text: "${LocaleKeys.CreatingAnAccountYouAgreeToOur.tr()}, ",
-                  style: Theme.of(context).textTheme.bodySmall,
-                  children: [
-                    TextSpan(
-                      text: LocaleKeys.TermsAndConditions.tr(),
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.black,
+                    SizedBox(width: 17.w),
+                    Expanded(
+                      child: _buildTextField(
+                        context,
+                        LocaleKeys.LastName,
+                        LocaleKeys.EnterLastName,
+                        context.read<RegisterCubit>().lastNameController,
+                        context.read<RegisterCubit>().validator.validateName,
                       ),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 48.h),
-      
-              /// Sign-Up Button
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Implement registration functionality.
-                  }
-                },
-                child: Text(LocaleKeys.Signup.tr()),
-              ),
-              SizedBox(height: 16.h),
-      
-              /// Already have an account? Login
-              Text.rich(
-                textAlign: TextAlign.center,
-                TextSpan(
-                  text: LocaleKeys.AlreadyHaveAnAccount.tr(),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                SizedBox(height: 24.h),
+
+                /// Email
+                _buildTextField(
+                  context,
+                  LocaleKeys.Email,
+                  LocaleKeys.EnterYourEmail,
+                  context.read<RegisterCubit>().emailController,
+                  context.read<RegisterCubit>().validator.validateEmail,
+                ),
+                SizedBox(height: 24.h),
+
+                /// Password & Confirm Password
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextSpan(
-                      text: " ${LocaleKeys.Login.tr()}",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontSize: 16.sp,
-                        color: AppColors.pink,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.pink,
+                    Expanded(
+                      child: _buildTextField(
+                        context,
+                        LocaleKeys.Password,
+                        LocaleKeys.EnterYourPassword,
+                        context.read<RegisterCubit>().passwordController,
+                        context.read<RegisterCubit>().validator.validatePassword,
                       ),
-                      recognizer:
-                          TapGestureRecognizer()
-                            ..onTap = () {
-                              // Navigate to login screen
-                            },
+                    ),
+                    SizedBox(width: 17.w),
+                    Expanded(
+                      child: _buildTextField(
+                        context,
+                        LocaleKeys.ConfirmPassword,
+                        LocaleKeys.ConfirmPassword,
+                        context.read<RegisterCubit>().confirmPasswordController,
+                        (value) => context.read<RegisterCubit>().validator.validateConfirmPassword(
+                          value,
+                          context.read<RegisterCubit>().passwordController.text,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                SizedBox(height: 24.h),
+
+                /// Phone Number
+                _buildTextField(
+                  context,
+                  LocaleKeys.PhoneNumber,
+                  LocaleKeys.PhoneNumber,
+                  context.read<RegisterCubit>().phoneController,
+                  context.read<RegisterCubit>().validator.validatePhoneNumber,
+                ),
+                SizedBox(height: 24.h),
+
+                /// Gender Selection
+                BlocBuilder<RegisterCubit, RegisterStates>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      child: Row(
+                        children: [
+                          Text(
+                            LocaleKeys.Gender.tr(),
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(color: AppColors.gray),
+                          ),
+                          SizedBox(width: 40.w),
+                          Expanded(
+                            child: _buildRadioTile(
+                              context,
+                              "female",
+                              LocaleKeys.Female,
+                            ),
+                          ),
+                          Expanded(
+                            child: _buildRadioTile(
+                              context,
+                              "male",
+                              LocaleKeys.Male,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+
+                /// Terms & Conditions
+                Text.rich(
+                  textAlign: TextAlign.center,
+                  TextSpan(
+                    text: "${LocaleKeys.CreatingAnAccountYouAgreeToOur.tr()}, ",
+                    style: Theme.of(context).textTheme.bodySmall,
+                    children: [
+                      TextSpan(
+                        text: LocaleKeys.TermsAndConditions.tr(),
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 48.h),
+
+                /// Sign-Up Button
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<RegisterCubit>().registerButtonPressed();
+                  },
+                  child: Text(LocaleKeys.Signup.tr()),
+                ),
+                SizedBox(height: 16.h),
+
+                /// Already have an account? Login
+                Text.rich(
+                  textAlign: TextAlign.center,
+                  TextSpan(
+                    text: LocaleKeys.AlreadyHaveAnAccount.tr(),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                    children: [
+                      TextSpan(
+                        text: " ${LocaleKeys.Login.tr()}",
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 16.sp,
+                          color: AppColors.pink,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.pink,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // Navigate to login screen
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -193,8 +212,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
   //************************** Reusable Widgets ************************** */
 
-  /// Reusable Text Field Builder
   Widget _buildTextField(
+    BuildContext context,
     String label,
     String hint,
     TextEditingController controller,
@@ -212,22 +231,22 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  /// Reusable Radio Tile Builder
-  Widget _buildRadioTile(String value, String labelKey) {
+  Widget _buildRadioTile(BuildContext context, String value, String labelKey) {
+    final registerCubit = context.watch<RegisterCubit>();
+
     return RadioListTile<String>(
       title: Text(
         labelKey.tr(),
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
           fontSize: 14.sp,
-          color: _selectedGender == value ? AppColors.black : AppColors.gray,
+          color: registerCubit.selectedGender == value ? AppColors.black : AppColors.gray,
         ),
       ),
       value: value,
-      groupValue: _selectedGender,
+      groupValue: registerCubit.selectedGender,
       activeColor: AppColors.pink,
       contentPadding: EdgeInsets.zero,
-      visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-      onChanged: (newValue) => setState(() => _selectedGender = newValue!),
+      onChanged: (newValue) => registerCubit.changeGender(newValue!),
     );
   }
 }

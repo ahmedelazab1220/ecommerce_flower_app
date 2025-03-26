@@ -23,6 +23,8 @@ import '../../../features/auth/data/data_source/remote/auth_remote_data_source_i
 import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/domain/use_case/register_use_case.dart' as _i336;
+import '../../../features/auth/presentation/view_model/register/register_cubit.dart'
+    as _i316;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -66,6 +68,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i822.AuthRepoImpl(gh<_i305.AuthRemoteDataSource>()));
     gh.singleton<_i336.RegisterUseCase>(
         () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
+    gh.singleton<_i316.RegisterCubit>(
+        () => _i316.RegisterCubit(gh<_i336.RegisterUseCase>()));
     return this;
   }
 }
