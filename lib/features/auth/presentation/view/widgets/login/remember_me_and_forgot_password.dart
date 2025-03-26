@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
+import '../../../../../../core/utils/routes/routes.dart';
 
 class RememberMeAndForgotPassword extends StatelessWidget {
   const RememberMeAndForgotPassword({super.key});
@@ -21,15 +24,17 @@ class RememberMeAndForgotPassword extends StatelessWidget {
                   activeColor: AppColors.pink,
                 ),
                 Text(
-                  "Remember me",
+                  LocaleKeys.RememberMe.tr(),
                   style: TextStyle(color: Colors.black, fontSize: 13.sp),
                 ),
               ],
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.forgetPassword);
+              },
               child: Text(
-                'Forget Password?',
+                LocaleKeys.Forget_Password.tr(),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.black,
                     decoration: TextDecoration.underline,

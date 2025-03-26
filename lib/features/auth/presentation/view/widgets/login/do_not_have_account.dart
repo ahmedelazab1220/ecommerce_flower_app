@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../../core/utils/routes/routes.dart';
 
 class DonotHaveAccount extends StatelessWidget {
   const DonotHaveAccount({super.key});
@@ -13,13 +16,15 @@ class DonotHaveAccount extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don\'t have an account?',
+              LocaleKeys.DonotHaveAnAccount.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.register);
+              },
               child: Text(
-                'Sign Up',
+                LocaleKeys.Signup.tr(),
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.pink,
                       decoration: TextDecoration.underline,

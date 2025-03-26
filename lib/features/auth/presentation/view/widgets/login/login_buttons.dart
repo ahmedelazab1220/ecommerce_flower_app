@@ -1,7 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../../core/utils/routes/routes.dart';
+import '../../../view_model/login_cubit.dart';
 
 class LoginButtons extends StatelessWidget {
   const LoginButtons({super.key});
@@ -14,8 +19,10 @@ class LoginButtons extends StatelessWidget {
           width: double.infinity,
           height: 48.h,
           child: ElevatedButton(
-            onPressed: () {},
-            child: const Text("Login"),
+            onPressed: () {
+              context.read<LoginCubit>().login();
+            },
+            child: Text(LocaleKeys.Login.tr()),
           ),
         ),
         SizedBox(
@@ -29,12 +36,14 @@ class LoginButtons extends StatelessWidget {
             borderRadius: BorderRadius.circular(10000),
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, AppRoutes.home);
+            },
             style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                   backgroundColor: WidgetStateProperty.all(AppColors.white),
                   foregroundColor: WidgetStateProperty.all(AppColors.gray),
                 ),
-            child: const Text("Continue as guest"),
+            child: Text(LocaleKeys.ContinueAsGuest.tr()),
           ),
         ),
         SizedBox(
