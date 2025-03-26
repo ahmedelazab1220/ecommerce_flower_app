@@ -31,7 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (formKey.currentState!.validate()) {
       emit(LoginLoading());
       final result = await _loginUseCase.call(
-          emailController.text, passwordController.text);
+          emailController.text, passwordController.text, isRememberMe);
       switch (result) {
         case SuccessResult<void>():
           emit(LoginSuccess());

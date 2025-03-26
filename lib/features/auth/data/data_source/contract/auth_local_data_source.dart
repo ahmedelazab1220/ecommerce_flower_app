@@ -4,4 +4,8 @@ abstract class AuthLocalDataSource {
   Future<String?> getToken(String key);
 
   Future<void> deleteToken(String key);
+
+  Future<void> setRememberMe(bool value);
+
+  Future<bool> isRememberMe();
 }

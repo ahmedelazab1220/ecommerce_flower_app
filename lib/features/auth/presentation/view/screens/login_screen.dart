@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
           builder: (context, state) {
             return SingleChildScrollView(
               child: Form(
-                key: loginViewModel.formKey,
+                key: context.read<LoginCubit>().formKey,
                 child: Padding(
                   padding: EdgeInsets.all(16.w),
                   child: const Column(

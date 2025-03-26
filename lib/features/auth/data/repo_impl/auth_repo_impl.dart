@@ -16,11 +16,12 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
 
   @override
-  Future<Result<void>> login(String email, String password) {
+  Future<Result<void>> login(String email, String password, bool isRememberMe) {
     var response = _apiManager.execute<LoginResponseDto>(
       () async {
         final response = await _authRemoteDataSource.login(email, password);
         _authLocalDataSource.saveToken("token", response.token ?? "");
+        _authLocalDataSource.setRememberMe(isRememberMe);
         return response;
       },
     );
