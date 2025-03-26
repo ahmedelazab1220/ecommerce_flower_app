@@ -7,9 +7,7 @@ class ForgetPasswordRequestDto {
   @JsonKey(name: "email")
   final String? email;
 
-  ForgetPasswordRequestDto ({
-    this.email,
-  });
+  ForgetPasswordRequestDto({this.email});
 
   factory ForgetPasswordRequestDto.fromJson(Map<String, dynamic> json) {
     return _$ForgetPasswordRequestDtoFromJson(json);
@@ -19,5 +17,3 @@ class ForgetPasswordRequestDto {
     return _$ForgetPasswordRequestDtoToJson(this);
   }
 }
-
-

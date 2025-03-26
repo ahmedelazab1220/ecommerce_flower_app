@@ -9,10 +9,7 @@ class ResetPasswordResponseDto {
   @JsonKey(name: "token")
   final String? token;
 
-  ResetPasswordResponseDto ({
-    this.message,
-    this.token,
-  });
+  ResetPasswordResponseDto({this.message, this.token});
 
   factory ResetPasswordResponseDto.fromJson(Map<String, dynamic> json) {
     return _$ResetPasswordResponseDtoFromJson(json);
@@ -22,5 +19,3 @@ class ResetPasswordResponseDto {
     return _$ResetPasswordResponseDtoToJson(this);
   }
 }
-
-

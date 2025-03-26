@@ -19,12 +19,17 @@ abstract class AuthRetrofitClient {
   factory AuthRetrofitClient(Dio dio) = _AuthRetrofitClient;
 
   @POST(ApiConstants.forgetPasswordRoute)
-  Future<ForgetPasswordResponseDto> forgetPassword(@Body() ForgetPasswordRequestDto forgetPasswordRequestDto);
+  Future<ForgetPasswordResponseDto> forgetPassword(
+    @Body() ForgetPasswordRequestDto forgetPasswordRequestDto,
+  );
 
   @POST(ApiConstants.verifyRestCodeRoute)
-  Future<VerifyResetCodeResponseDto> verifyResetCode(@Body() VerifyResetCodeRequestDto verifyResetCodeRequestDto);
+  Future<VerifyResetCodeResponseDto> verifyResetCode(
+    @Body() VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  );
 
   @PUT(ApiConstants.resetPasswordRoute)
-  Future<ResetPasswordResponseDto> resetPassword(@Body() ResetPasswordRequestDto resetPasswordRequestDto);
-
+  Future<ResetPasswordResponseDto> resetPassword(
+    @Body() ResetPasswordRequestDto resetPasswordRequestDto,
+  );
 }

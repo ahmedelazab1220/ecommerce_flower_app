@@ -15,17 +15,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this.authRetrofitClient);
 
   @override
-  Future<ForgetPasswordResponseDto> forgetPassword(ForgetPasswordRequestDto forgetPasswordRequestDto) async {
+  Future<ForgetPasswordResponseDto> forgetPassword(
+    ForgetPasswordRequestDto forgetPasswordRequestDto,
+  ) async {
     return await authRetrofitClient.forgetPassword(forgetPasswordRequestDto);
   }
 
   @override
-  Future<ResetPasswordResponseDto> resetPassword(ResetPasswordRequestDto resetPasswordRequestDto) async {
+  Future<ResetPasswordResponseDto> resetPassword(
+    ResetPasswordRequestDto resetPasswordRequestDto,
+  ) async {
     return await authRetrofitClient.resetPassword(resetPasswordRequestDto);
   }
 
   @override
-  Future<VerifyResetCodeResponseDto> verifyResetCode(VerifyResetCodeRequestDto verifyResetCodeRequestDto) async {
+  Future<VerifyResetCodeResponseDto> verifyResetCode(
+    VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  ) async {
     return await authRetrofitClient.verifyResetCode(verifyResetCodeRequestDto);
   }
 }

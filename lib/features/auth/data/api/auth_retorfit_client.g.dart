@@ -9,11 +9,7 @@ part of 'auth_retorfit_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _AuthRetrofitClient implements AuthRetrofitClient {
-  _AuthRetrofitClient(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  }) {
+  _AuthRetrofitClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
   }
 
@@ -25,28 +21,23 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
 
   @override
   Future<ForgetPasswordResponseDto> forgetPassword(
-      ForgetPasswordRequestDto forgetPasswordRequestDto) async {
+    ForgetPasswordRequestDto forgetPasswordRequestDto,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(forgetPasswordRequestDto.toJson());
-    final _options = _setStreamType<ForgetPasswordResponseDto>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'auth/forgotPassword',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<ForgetPasswordResponseDto>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'auth/forgotPassword',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late ForgetPasswordResponseDto _value;
     try {
@@ -60,28 +51,23 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
 
   @override
   Future<VerifyResetCodeResponseDto> verifyResetCode(
-      VerifyResetCodeRequestDto verifyResetCodeRequestDto) async {
+    VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(verifyResetCodeRequestDto.toJson());
-    final _options = _setStreamType<VerifyResetCodeResponseDto>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'auth/verifyResetCode',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<VerifyResetCodeResponseDto>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'auth/verifyResetCode',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late VerifyResetCodeResponseDto _value;
     try {
@@ -95,28 +81,23 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
 
   @override
   Future<ResetPasswordResponseDto> resetPassword(
-      ResetPasswordRequestDto resetPasswordRequestDto) async {
+    ResetPasswordRequestDto resetPasswordRequestDto,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(resetPasswordRequestDto.toJson());
-    final _options = _setStreamType<ResetPasswordResponseDto>(Options(
-      method: 'PUT',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'auth/resetPassword',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<ResetPasswordResponseDto>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'auth/resetPassword',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late ResetPasswordResponseDto _value;
     try {
@@ -141,10 +122,7 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }

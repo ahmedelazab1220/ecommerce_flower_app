@@ -9,10 +9,7 @@ class ForgetPasswordResponseDto {
   @JsonKey(name: "info")
   final String? info;
 
-  ForgetPasswordResponseDto ({
-    this.message,
-    this.info,
-  });
+  ForgetPasswordResponseDto({this.message, this.info});
 
   factory ForgetPasswordResponseDto.fromJson(Map<String, dynamic> json) {
     return _$ForgetPasswordResponseDtoFromJson(json);
@@ -22,5 +19,3 @@ class ForgetPasswordResponseDto {
     return _$ForgetPasswordResponseDtoToJson(this);
   }
 }
-
-

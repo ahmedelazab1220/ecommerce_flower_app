@@ -7,9 +7,7 @@ class VerifyResetCodeRequestDto {
   @JsonKey(name: "resetCode")
   final String? resetCode;
 
-  VerifyResetCodeRequestDto ({
-    this.resetCode,
-  });
+  VerifyResetCodeRequestDto({this.resetCode});
 
   factory VerifyResetCodeRequestDto.fromJson(Map<String, dynamic> json) {
     return _$VerifyResetCodeRequestDtoFromJson(json);
@@ -19,5 +17,3 @@ class VerifyResetCodeRequestDto {
     return _$VerifyResetCodeRequestDtoToJson(this);
   }
 }
-
-

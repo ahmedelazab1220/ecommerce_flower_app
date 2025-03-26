@@ -9,10 +9,7 @@ class ResetPasswordRequestDto {
   @JsonKey(name: "newPassword")
   final String? newPassword;
 
-  ResetPasswordRequestDto ({
-    this.email,
-    this.newPassword,
-  });
+  ResetPasswordRequestDto({this.email, this.newPassword});
 
   factory ResetPasswordRequestDto.fromJson(Map<String, dynamic> json) {
     return _$ResetPasswordRequestDtoFromJson(json);
@@ -22,5 +19,3 @@ class ResetPasswordRequestDto {
     return _$ResetPasswordRequestDtoToJson(this);
   }
 }
-
-

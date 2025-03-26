@@ -6,10 +6,15 @@ import '../../model/verify_reset_code/verify_reset_code_request_dto.dart';
 import '../../model/verify_reset_code/verify_reset_code_response_dto.dart';
 
 abstract interface class AuthRemoteDataSource {
+  Future<ForgetPasswordResponseDto> forgetPassword(
+    ForgetPasswordRequestDto forgetPasswordRequestDto,
+  );
 
-  Future<ForgetPasswordResponseDto> forgetPassword(ForgetPasswordRequestDto forgetPasswordRequestDto);
+  Future<ResetPasswordResponseDto> resetPassword(
+    ResetPasswordRequestDto resetPasswordRequestDto,
+  );
 
-  Future<ResetPasswordResponseDto> resetPassword(ResetPasswordRequestDto resetPasswordRequestDto);
-
-  Future<VerifyResetCodeResponseDto> verifyResetCode(VerifyResetCodeRequestDto verifyResetCodeRequestDto);
+  Future<VerifyResetCodeResponseDto> verifyResetCode(
+    VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  );
 }

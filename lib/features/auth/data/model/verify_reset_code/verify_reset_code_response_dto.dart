@@ -7,9 +7,7 @@ class VerifyResetCodeResponseDto {
   @JsonKey(name: "status")
   final String? status;
 
-  VerifyResetCodeResponseDto ({
-    this.status,
-  });
+  VerifyResetCodeResponseDto({this.status});
 
   factory VerifyResetCodeResponseDto.fromJson(Map<String, dynamic> json) {
     return _$VerifyResetCodeResponseDtoFromJson(json);
@@ -19,5 +17,3 @@ class VerifyResetCodeResponseDto {
     return _$VerifyResetCodeResponseDtoToJson(this);
   }
 }
-
-
