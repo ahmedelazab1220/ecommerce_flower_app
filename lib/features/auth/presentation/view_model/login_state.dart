@@ -14,3 +14,9 @@ final class LoginFailure extends LoginState {
 
   LoginFailure(this.message);
 }
+
+final class LoginRememberMe extends LoginState {
+  final bool isRememberMe;
+
+  LoginRememberMe(this.isRememberMe);
+}

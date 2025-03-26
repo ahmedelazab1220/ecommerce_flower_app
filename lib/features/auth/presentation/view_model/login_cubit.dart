@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/validator/validator.dart';
@@ -22,6 +25,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  bool isRememberMe = false;
+
   Future<void> login() async {
     if (formKey.currentState!.validate()) {
       emit(LoginLoading());
@@ -42,5 +47,10 @@ class LoginCubit extends Cubit<LoginState> {
 
   String? validatePassword(String value) {
     return _validator.validatePassword(value);
+  }
+
+  void rememberMe(bool value) {
+    isRememberMe = value;
+    emit(LoginRememberMe(isRememberMe));
   }
 }

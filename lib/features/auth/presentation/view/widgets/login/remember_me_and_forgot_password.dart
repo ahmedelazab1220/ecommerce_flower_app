@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/routes/routes.dart';
+import '../../../view_model/login_cubit.dart';
 
 class RememberMeAndForgotPassword extends StatelessWidget {
   const RememberMeAndForgotPassword({super.key});
@@ -19,8 +21,10 @@ class RememberMeAndForgotPassword extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: true,
-                  onChanged: (v) {},
+                  value: context.watch<LoginCubit>().isRememberMe,
+                  onChanged: (value) {
+                    context.read<LoginCubit>().rememberMe(value!);
+                  },
                   activeColor: AppColors.pink,
                 ),
                 Text(
