@@ -59,16 +59,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
     gh.singleton<_i257.AuthRetrofitClient>(
         () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(
-              gh<_i257.AuthRetrofitClient>(),
-              gh<_i28.ApiManager>(),
-            ));
-    gh.singleton<_i913.AuthRepo>(
-        () => _i822.AuthRepoImpl(gh<_i305.AuthRemoteDataSource>()));
-    gh.singleton<_i336.RegisterUseCase>(
+    gh.factory<_i305.AuthRemoteDataSource>(
+        () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
+    gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
+          gh<_i305.AuthRemoteDataSource>(),
+          gh<_i28.ApiManager>(),
+        ));
+    gh.factory<_i336.RegisterUseCase>(
         () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
-    gh.singleton<_i316.RegisterCubit>(
+    gh.factory<_i316.RegisterCubit>(
         () => _i316.RegisterCubit(gh<_i336.RegisterUseCase>()));
     return this;
   }

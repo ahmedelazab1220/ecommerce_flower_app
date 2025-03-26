@@ -4,7 +4,7 @@ import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class RegisterUseCase {
   final AuthRepo repository;
   RegisterUseCase(this.repository);

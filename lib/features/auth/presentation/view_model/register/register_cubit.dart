@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/register/register_request_dto/register_request_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
@@ -10,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class RegisterCubit extends Cubit<RegisterStates> {
   final RegisterUseCase registerUseCase;
 
@@ -33,7 +35,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   final Validator validator = getIt<Validator>();
 
   /// Gender Selection
-  String selectedGender = "female";
+  String selectedGender = LocaleKeys.Female.tr();
 
   /// Prevent multiple requests
   bool _isRegistering = false;

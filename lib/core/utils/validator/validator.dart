@@ -53,7 +53,7 @@ class Validator {
     if (phoneNumber.isEmpty) {
       return LocaleKeys.PhoneNumberCannotBeEmpty.tr();
     }
-    
+
     final egyptianInternationalRegex = RegExp(r'^\+201[0125][0-9]{8}$');
 
     if (egyptianInternationalRegex.hasMatch(phoneNumber)) {

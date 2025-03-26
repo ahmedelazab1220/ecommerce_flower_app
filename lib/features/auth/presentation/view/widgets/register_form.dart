@@ -3,6 +3,8 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_radio_buttons.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_text_field_section.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/gestures.dart';
@@ -39,81 +41,7 @@ class RegisterForm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                /// First Name & Last Name
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: _buildTextField(
-                        context,
-                        LocaleKeys.FirstName,
-                        LocaleKeys.EnterFirstName,
-                        context.read<RegisterCubit>().firstNameController,
-                        context.read<RegisterCubit>().validator.validateName,
-                      ),
-                    ),
-                    SizedBox(width: 17.w),
-                    Expanded(
-                      child: _buildTextField(
-                        context,
-                        LocaleKeys.LastName,
-                        LocaleKeys.EnterLastName,
-                        context.read<RegisterCubit>().lastNameController,
-                        context.read<RegisterCubit>().validator.validateName,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 24.h),
-
-                /// Email
-                _buildTextField(
-                  context,
-                  LocaleKeys.Email,
-                  LocaleKeys.EnterYourEmail,
-                  context.read<RegisterCubit>().emailController,
-                  context.read<RegisterCubit>().validator.validateEmail,
-                ),
-                SizedBox(height: 24.h),
-
-                /// Password & Confirm Password
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: _buildTextField(
-                        context,
-                        LocaleKeys.Password,
-                        LocaleKeys.EnterYourPassword,
-                        context.read<RegisterCubit>().passwordController,
-                        context.read<RegisterCubit>().validator.validatePassword,
-                      ),
-                    ),
-                    SizedBox(width: 17.w),
-                    Expanded(
-                      child: _buildTextField(
-                        context,
-                        LocaleKeys.ConfirmPassword,
-                        LocaleKeys.ConfirmPassword,
-                        context.read<RegisterCubit>().confirmPasswordController,
-                        (value) => context.read<RegisterCubit>().validator.validateConfirmPassword(
-                          value,
-                          context.read<RegisterCubit>().passwordController.text,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 24.h),
-
-                /// Phone Number
-                _buildTextField(
-                  context,
-                  LocaleKeys.PhoneNumber,
-                  LocaleKeys.PhoneNumber,
-                  context.read<RegisterCubit>().phoneController,
-                  context.read<RegisterCubit>().validator.validatePhoneNumber,
-                ),
+                const RegisterTextFieldSection(),
                 SizedBox(height: 24.h),
 
                 /// Gender Selection
@@ -130,17 +58,15 @@ class RegisterForm extends StatelessWidget {
                           ),
                           SizedBox(width: 40.w),
                           Expanded(
-                            child: _buildRadioTile(
-                              context,
-                              "female",
-                              LocaleKeys.Female,
+                            child: RegisterRadioTile(
+                              labelKey: LocaleKeys.Female.tr(),
+                              value: LocaleKeys.Female.tr(),
                             ),
                           ),
                           Expanded(
-                            child: _buildRadioTile(
-                              context,
-                              "male",
-                              LocaleKeys.Male,
+                            child: RegisterRadioTile(
+                              labelKey: LocaleKeys.Male.tr(),
+                              value: LocaleKeys.Male.tr(),
                             ),
                           ),
                         ],
@@ -183,7 +109,9 @@ class RegisterForm extends StatelessWidget {
                   textAlign: TextAlign.center,
                   TextSpan(
                     text: LocaleKeys.AlreadyHaveAnAccount.tr(),
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall!.copyWith(fontSize: 16.sp),
                     children: [
                       TextSpan(
                         text: " ${LocaleKeys.Login.tr()}",
@@ -194,10 +122,11 @@ class RegisterForm extends StatelessWidget {
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.pink,
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // Navigate to login screen
-                          },
+                        recognizer:
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                // Navigate to login screen
+                              },
                       ),
                     ],
                   ),
@@ -207,46 +136,6 @@ class RegisterForm extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  //************************** Reusable Widgets ************************** */
-
-  Widget _buildTextField(
-    BuildContext context,
-    String label,
-    String hint,
-    TextEditingController controller,
-    String? Function(String) validator,
-  ) {
-    return TextFormField(
-      validator: (value) => validator(value ?? ''),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label.tr(),
-        hintText: hint.tr(),
-        errorMaxLines: 2,
-      ),
-    );
-  }
-
-  Widget _buildRadioTile(BuildContext context, String value, String labelKey) {
-    final registerCubit = context.watch<RegisterCubit>();
-
-    return RadioListTile<String>(
-      title: Text(
-        labelKey.tr(),
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-          fontSize: 14.sp,
-          color: registerCubit.selectedGender == value ? AppColors.black : AppColors.gray,
-        ),
-      ),
-      value: value,
-      groupValue: registerCubit.selectedGender,
-      activeColor: AppColors.pink,
-      contentPadding: EdgeInsets.zero,
-      onChanged: (newValue) => registerCubit.changeGender(newValue!),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_manager.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/auth_remote_data_source.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/register/register_request_dto/register_request_dto.dart';
@@ -6,15 +7,18 @@ import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: AuthRepo)
+@Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _authRemoteDataSource;
+  final ApiManager apiManager;
 
-  AuthRepoImpl(this._authRemoteDataSource);
+  AuthRepoImpl(this._authRemoteDataSource, this.apiManager);
 
   @override
   Future<Result<UserEntity>> signUp(RegisterRequestDto request) async {
-    final result = await _authRemoteDataSource.signUp(request);
+    final result = await apiManager.execute<RegisterResponseDto>(
+      () => _authRemoteDataSource.signUp(request),
+    );
 
     if (result is SuccessResult<RegisterResponseDto>) {
       return SuccessResult(result.data.user.toEntity());
