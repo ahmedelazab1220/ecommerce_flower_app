@@ -9,10 +9,7 @@ class Validator {
     if (input.isEmpty) {
       return LocaleKeys.EmailCannotBeEmpty.tr();
     } else if (!RegExp(
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+"
-      r"@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?)*$",
+      r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(input)) {
       return LocaleKeys.EnterAValidEmail.tr();
     }
@@ -25,7 +22,7 @@ class Validator {
     } else if (!RegExp(
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
     ).hasMatch(input)) {
-      return LocaleKeys.PasswordRequirements.tr();
+      return LocaleKeys.InvalidPassword.tr();
     }
     return null;
   }
