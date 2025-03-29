@@ -25,10 +25,14 @@ class _MainLayoutState extends State<MainLayout> {
       child: BlocBuilder<MainLayoutCubit, MainLayoutState>(
         builder: (context, state) {
           return Scaffold(
-            body: viewModel.tabs[viewModel.currentIndex],
+            body: viewModel.tabs[viewModel.currentTab],
             bottomNavigationBar: BottomNavigationBar(
-              currentIndex: viewModel.currentIndex,
-              onTap: (value) => viewModel.doIntent(ChangeSelectedIndex(value)),
+              currentIndex: viewModel.currentTab.index,
+              onTap: (value) {
+                viewModel.doIntent(
+                  ChangeSelectedTab(MainLayoutTabs.values[value]),
+                );
+              },
               items: [
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(AppIcons.homeSvg),

@@ -13,26 +13,28 @@ part 'main_layout_state.dart';
 class MainLayoutCubit extends Cubit<MainLayoutState> {
   MainLayoutCubit() : super(MainLayoutInitial());
 
-  int currentIndex = 0;
+  MainLayoutTabs currentTab = MainLayoutTabs.home;
 
-  List<Widget> tabs = [
-    const HomeScreen(),
-    const CategoriesScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
-  ];
+  final Map<MainLayoutTabs, Widget> tabs = {
+    MainLayoutTabs.home: const HomeScreen(),
+    MainLayoutTabs.categories: const CategoriesScreen(),
+    MainLayoutTabs.cart: const CartScreen(),
+    MainLayoutTabs.profile: const ProfileScreen(),
+  };
 
   void doIntent(MainLayoutActions action) {
     switch (action) {
-      case ChangeSelectedIndex():
+      case ChangeSelectedTab():
         {
-          _changeSelectedIndex(action.selectedIndex);
+          _changeSelectedTab(action.selectedTab);
         }
     }
   }
 
-  void _changeSelectedIndex(int selectedIndex) {
-    currentIndex = selectedIndex;
-    emit(ScreenChangedState());
+  void _changeSelectedTab(MainLayoutTabs selectedTab) {
+    if (currentTab != selectedTab) {
+      currentTab = selectedTab;
+      emit(ScreenChangedState());
+    }
   }
 }
