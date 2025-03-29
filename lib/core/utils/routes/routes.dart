@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AppRoutes {
-  static const String initialRoute = '/';
+import '../../../features/main_layout/presentation/view/main_layout.dart';
 
-  static Map<String, Widget Function(dynamic)> routes = {};
+class AppRoutes {
+  AppRoutes._();
+
+  static const String initialRoute = '/';
+  static const String mainLayoutRoute = '/main-layout';
+
+  static Map<String, Widget Function(BuildContext context)> routes = {
+    mainLayoutRoute: (context) => const MainLayout(),
+  };
 }
