@@ -16,6 +16,21 @@ import 'package:logger/logger.dart' as _i974;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
 import '../../../features/auth/data/api/auth_retorfit_client.dart' as _i257;
+import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
+import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
+    as _i493;
+import '../../../features/home/data/data_source/contract/home_remote_data_source.dart'
+    as _i1043;
+import '../../../features/home/data/data_source/local/home_local_data_source_impl.dart'
+    as _i640;
+import '../../../features/home/data/data_source/remote/home_remote_data_source_impl.dart'
+    as _i859;
+import '../../../features/home/data/repo_impl/home_repo_impl.dart' as _i801;
+import '../../../features/home/domain/repo/home_repo.dart' as _i242;
+import '../../../features/home/domain/use_case/get_home_data_use_case.dart'
+    as _i1065;
+import '../../../features/home/presentation/view_model/home_cubit.dart'
+    as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
@@ -35,6 +50,8 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
+    gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit());
+    gh.factory<_i1065.GetHomeDataUseCase>(() => _i1065.GetHomeDataUseCase());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
@@ -47,11 +64,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
+    gh.factory<_i493.HomeLocalDataSource>(
+      () => _i640.HomeLocalDataSourceImpl(),
+    );
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
+    gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl());
+    gh.singleton<_i1043.HomeRemoteDataSource>(
+      () => _i859.HomeRemoteDataSourceImpl(),
+    );
     gh.singleton<_i257.AuthRetrofitClient>(
       () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i945.HomeRetrofitClient>(
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
     );
     return this;
   }
