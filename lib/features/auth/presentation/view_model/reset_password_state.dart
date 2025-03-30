@@ -1,13 +1,18 @@
+import 'package:equatable/equatable.dart';
+
 import '../../../../core/base/base_state.dart';
 
-class ResetPasswordState {
+class ResetPasswordState extends Equatable {
   final BaseState? baseState;
 
-  ResetPasswordState({this.baseState});
+  const ResetPasswordState({this.baseState});
 
   ResetPasswordState copyWith({BaseState? baseState}) {
     return ResetPasswordState(baseState: baseState ?? this.baseState);
   }
+
+  @override
+  List<Object?> get props => [baseState];
 }
 
 sealed class ResetPasswordAction {}

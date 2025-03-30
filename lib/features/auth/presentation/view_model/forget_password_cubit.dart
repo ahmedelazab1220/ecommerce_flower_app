@@ -12,9 +12,9 @@ import 'forget_password_state.dart';
 @injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final ForgetPasswordUsecase forgetPasswordUsecase;
-  final Validator validator = Validator();
+  final Validator validator;
 
-  ForgetPasswordCubit(this.forgetPasswordUsecase)
+  ForgetPasswordCubit(this.forgetPasswordUsecase, this.validator)
     : super(ForgetPasswordState(baseState: BaseInitialState()));
 
   void doIntent(ForgetPasswordAction action) {

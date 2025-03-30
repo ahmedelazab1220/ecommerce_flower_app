@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/core/theme/app_theme.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,19 +15,11 @@ import '../../view_model/email_verification_cubit.dart';
 class VerificationCodeInput extends StatelessWidget {
   const VerificationCodeInput({super.key});
 
-  static PinTheme defaultPinTheme = PinTheme(
-    width: 74.w,
-    height: 68.h,
-    textStyle: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10).r),
-  );
-
-  static PinTheme errorPinTheme = defaultPinTheme.copyWith(
-    decoration: BoxDecoration(border: Border.all(color: AppColors.red)),
-  );
-
   @override
   Widget build(BuildContext context) {
+    final EmailVerificationCubit emailVerificationCubit =
+        context.read<EmailVerificationCubit>();
+
     return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
       builder: (context, state) {
         return Column(
@@ -37,9 +28,8 @@ class VerificationCodeInput extends StatelessWidget {
               textDirection: ui.TextDirection.ltr,
               child: Pinput(
                 keyboardType: TextInputType.number,
-                controller:
-                    context.read<EmailVerificationCubit>().pinController,
-                key: context.read<EmailVerificationCubit>().formKey,
+                controller: emailVerificationCubit.pinController,
+                key: emailVerificationCubit.formKey,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
@@ -47,32 +37,47 @@ class VerificationCodeInput extends StatelessWidget {
                 length: 6,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 onCompleted: (pin) {
-                  context.read<EmailVerificationCubit>().doIntent(
+                  emailVerificationCubit.doIntent(
                     EmailVerificationRequestAction(),
                   );
                 },
                 forceErrorState: (state.baseState is BaseErrorState),
                 errorText: LocaleKeys.InvalidCode.tr(),
-                defaultPinTheme: AppTheme.defaultPinTheme,
-                errorPinTheme: AppTheme.errorPinTheme,
+                defaultPinTheme: PinTheme(
+                  width: 74.w,
+                  height: 68.h,
+                  textStyle: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.white[60],
+                    borderRadius: BorderRadius.circular(10).r,
+                  ),
+                ),
+                errorPinTheme: PinTheme(
+                  width: 74.w,
+                  height: 68.h,
+                  textStyle: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: const Color(0xFFCC1010)),
+                    borderRadius: BorderRadius.circular(10).r,
+                  ),
+                ),
                 errorBuilder: (errorText, pin) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 4.h),
+                    padding: const EdgeInsets.only(top: 4),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(
-                          Icons.error_outline,
-                          color: AppColors.red,
-                          size: 16.sp,
-                        ),
+                        const Icon(Icons.error_outline, color: AppColors.red),
                         const SizedBox(width: 4),
                         Text(
                           errorText!,
-                          style: TextStyle(
-                            color: AppColors.red,
-                            fontSize: 13.sp,
-                          ),
+                          style: const TextStyle(color: AppColors.red),
                         ),
                       ],
                     ),
@@ -80,7 +85,7 @@ class VerificationCodeInput extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 24.h),
+            const SizedBox(height: 24),
           ],
         );
       },

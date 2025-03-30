@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/forget_password_header.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/header.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/reset_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/dialogs/app_dialogs.dart';
@@ -42,7 +41,7 @@ class ResetPassword extends StatelessWidget {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.all(16).w,
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 ForgetPasswordHeader(

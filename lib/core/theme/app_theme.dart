@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pinput/pinput.dart';
 
 import '../assets/app_colors.dart';
 
@@ -125,23 +123,6 @@ class AppTheme {
       unselectedItemColor: AppColors.white[AppColors.colorCode80],
       showUnselectedLabels: true,
       showSelectedLabels: true,
-    ),
-  );
-
-  static PinTheme defaultPinTheme = PinTheme(
-    width: 74.w,
-    height: 68.h,
-    textStyle: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
-    decoration: BoxDecoration(
-      color: const Color(0xFFDFE7F7),
-      borderRadius: BorderRadius.circular(10).r,
-    ),
-  );
-
-  static PinTheme errorPinTheme = defaultPinTheme.copyWith(
-    decoration: BoxDecoration(
-      border: Border.all(color: const Color(0xFFCC1010)),
-      borderRadius: BorderRadius.circular(10).r,
     ),
   );
 }

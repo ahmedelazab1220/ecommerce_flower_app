@@ -83,17 +83,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i967.VerifyResetCodeUsecase>(
       () => _i967.VerifyResetCodeUsecase(gh<_i913.AuthRepo>()),
     );
+    gh.factory<_i504.ForgetPasswordCubit>(
+      () => _i504.ForgetPasswordCubit(
+        gh<_i1030.ForgetPasswordUsecase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i332.ResetPasswordCubit>(
+      () => _i332.ResetPasswordCubit(
+        gh<_i280.ResetPasswordUsecase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
     gh.factory<_i596.EmailVerificationCubit>(
       () => _i596.EmailVerificationCubit(
         gh<_i967.VerifyResetCodeUsecase>(),
         gh<_i1030.ForgetPasswordUsecase>(),
+        gh<_i468.Validator>(),
       ),
-    );
-    gh.factory<_i332.ResetPasswordCubit>(
-      () => _i332.ResetPasswordCubit(gh<_i280.ResetPasswordUsecase>()),
-    );
-    gh.factory<_i504.ForgetPasswordCubit>(
-      () => _i504.ForgetPasswordCubit(gh<_i1030.ForgetPasswordUsecase>()),
     );
     return this;
   }

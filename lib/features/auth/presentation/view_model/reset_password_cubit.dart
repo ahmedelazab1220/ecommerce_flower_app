@@ -11,9 +11,9 @@ import 'reset_password_state.dart';
 @injectable
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   final ResetPasswordUsecase _resetPasswordUsecase;
-  final Validator validator = Validator();
+  final Validator validator;
 
-  ResetPasswordCubit(this._resetPasswordUsecase)
+  ResetPasswordCubit(this._resetPasswordUsecase, this.validator)
     : super(ResetPasswordState(baseState: BaseInitialState()));
 
   final TextEditingController passwordController = TextEditingController();
@@ -51,5 +51,12 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
           );
       }
     }
+  }
+
+  @override
+  Future<void> close() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
   }
 }

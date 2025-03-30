@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/forget_password_header.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/header.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/di/di.dart';
@@ -45,7 +44,7 @@ class EmailVerification extends StatelessWidget {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.all(16.0).w,
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

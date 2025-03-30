@@ -14,56 +14,48 @@ class ResetPasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ResetPasswordCubit resetPasswordCubit =
+        context.read<ResetPasswordCubit>();
     return Column(
       children: [
         Form(
-          key: context.read<ResetPasswordCubit>().formKey,
+          key: resetPasswordCubit.formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
-                controller:
-                    context.read<ResetPasswordCubit>().passwordController,
+                controller: resetPasswordCubit.passwordController,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.NewPassword.tr(),
                   hintText: LocaleKeys.EnterYourNewPassword.tr(),
                 ),
                 validator:
-                    (value) => context
-                        .read<ResetPasswordCubit>()
-                        .validator
-                        .validatePassword(value ?? ''),
+                    (value) => resetPasswordCubit.validator.validatePassword(
+                      value ?? '',
+                    ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               SizedBox(height: 24.h),
               TextFormField(
-                controller:
-                    context
-                        .read<ResetPasswordCubit>()
-                        .confirmPasswordController,
+                controller: resetPasswordCubit.confirmPasswordController,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.ConfirmPassword.tr(),
                   hintText: LocaleKeys.ConfirmPassword.tr(),
                 ),
                 validator:
-                    (value) => context
-                        .read<ResetPasswordCubit>()
-                        .validator
-                        .validateConfirmPassword(
+                    (value) =>
+                        resetPasswordCubit.validator.validateConfirmPassword(
                           value!,
-                          context
-                              .read<ResetPasswordCubit>()
-                              .passwordController
-                              .text,
+                          resetPasswordCubit.passwordController.text,
                         ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
-              SizedBox(height: 48.h),
+              const SizedBox(height: 48),
               SizedBox(
-                width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.read<ResetPasswordCubit>().doIntent(
+                    resetPasswordCubit.doIntent(
                       ResetPasswordRequestAction(email),
                     );
                   },
