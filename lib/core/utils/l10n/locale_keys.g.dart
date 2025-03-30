@@ -41,6 +41,7 @@ abstract class LocaleKeys {
   static const DidNotReceiveTheCode = 'DidNotReceiveTheCode';
   static const InvalidCode = 'InvalidCode';
   static const NewPassword = 'NewPassword';
+  static const EnterYourNewPassword = 'EnterYourNewPassword';
   static const ResetPassword = 'ResetPassword';
   static const PasswordRequirements = 'PasswordRequirements';
   static const Search = 'Search';
