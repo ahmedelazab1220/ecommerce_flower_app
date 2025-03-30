@@ -8,7 +8,7 @@ part of 'verify_reset_code_request_dto.dart';
 
 VerifyResetCodeRequestDto _$VerifyResetCodeRequestDtoFromJson(
   Map<String, dynamic> json,
-) => VerifyResetCodeRequestDto(resetCode: json['resetCode'] as String?);
+) => VerifyResetCodeRequestDto(resetCode: json['resetCode'] as String);
 
 Map<String, dynamic> _$VerifyResetCodeRequestDtoToJson(
   VerifyResetCodeRequestDto instance,

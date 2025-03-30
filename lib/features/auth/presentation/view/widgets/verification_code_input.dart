@@ -9,64 +9,81 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'dart:ui' as ui;
 
+import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/email_verification_cubit.dart';
 
 class VerificationCodeInput extends StatelessWidget {
-  final EmailVerificationState state;
+  const VerificationCodeInput({super.key});
 
-  const VerificationCodeInput({super.key, required this.state});
+  static PinTheme defaultPinTheme = PinTheme(
+    width: 74.w,
+    height: 68.h,
+    textStyle: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10).r),
+  );
+
+  static PinTheme errorPinTheme = defaultPinTheme.copyWith(
+    decoration: BoxDecoration(border: Border.all(color: AppColors.red)),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Directionality(
-          textDirection: ui.TextDirection.ltr,
-          child: Pinput(
-            keyboardType: TextInputType.number,
-            controller: context.read<EmailVerificationCubit>().pinController,
-            key: context.read<EmailVerificationCubit>().formKey,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            ],
-            separatorBuilder: (index) => SizedBox(width: 4.w),
-            length: 6,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            onCompleted: (pin) {
-              context.read<EmailVerificationCubit>().verifyResetCode();
-            },
-            forceErrorState: (state is EmailVerificationFailure),
-            errorText:
-                (state is EmailVerificationFailure)
-                    ? LocaleKeys.InvalidCode.tr()
-                    : null,
-            defaultPinTheme: AppTheme.defaultPinTheme,
-            errorPinTheme: AppTheme.errorPinTheme,
-            errorBuilder: (errorText, pin) {
-              return Padding(
-                padding: EdgeInsets.only(top: 4.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.error_outline,
-                      color: AppColors.red,
-                      size: 16.sp,
+    return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Directionality(
+              textDirection: ui.TextDirection.ltr,
+              child: Pinput(
+                keyboardType: TextInputType.number,
+                controller:
+                    context.read<EmailVerificationCubit>().pinController,
+                key: context.read<EmailVerificationCubit>().formKey,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                ],
+                separatorBuilder: (index) => SizedBox(width: 4.w),
+                length: 6,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                onCompleted: (pin) {
+                  context.read<EmailVerificationCubit>().doIntent(
+                    EmailVerificationRequestAction(),
+                  );
+                },
+                forceErrorState: (state.baseState is BaseErrorState),
+                errorText: LocaleKeys.InvalidCode.tr(),
+                defaultPinTheme: AppTheme.defaultPinTheme,
+                errorPinTheme: AppTheme.errorPinTheme,
+                errorBuilder: (errorText, pin) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: 4.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          color: AppColors.red,
+                          size: 16.sp,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          errorText!,
+                          style: TextStyle(
+                            color: AppColors.red,
+                            fontSize: 13.sp,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      errorText!,
-                      style: TextStyle(color: AppColors.red, fontSize: 13.sp),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-        SizedBox(height: 24.h),
-      ],
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 24.h),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,13 +1,15 @@
-sealed class ForgetPasswordState {}
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 
-final class ForgetPasswordInitial extends ForgetPasswordState {}
+class ForgetPasswordState {
+  final BaseState? baseState;
 
-final class ForgetPasswordLoading extends ForgetPasswordState {}
+  ForgetPasswordState({this.baseState});
 
-final class ForgetPasswordSuccess extends ForgetPasswordState {}
-
-final class ForgetPasswordFailure extends ForgetPasswordState {
-  final String message;
-
-  ForgetPasswordFailure({required this.message});
+  ForgetPasswordState copyWith({BaseState? baseState}) {
+    return ForgetPasswordState(baseState: baseState ?? this.baseState);
+  }
 }
+
+sealed class ForgetPasswordAction {}
+
+class ForgetPasswordRequestAction extends ForgetPasswordAction {}

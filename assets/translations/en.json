@@ -34,7 +34,6 @@
   "InvalidCode": "Invalid code",
   "NewPassword": "New password",
   "EnterYourNewPassword": "Enter your new password",
-  "ConfirmYourPassword": "Confirm your password",
   "ResetPassword": "Reset password",
   "PasswordRequirements": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
   "Search": "Search",

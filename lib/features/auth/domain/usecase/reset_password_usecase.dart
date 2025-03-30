@@ -9,7 +9,9 @@ class ResetPasswordUsecase {
 
   ResetPasswordUsecase(this._authRepo);
 
-  Future<Result<void>> call(ResetPasswordRequestDto resetPasswordRequest) {
-    return _authRepo.resetPassword(resetPasswordRequest);
+  Future<Result<void>> call(
+    ResetPasswordRequestDto resetPasswordRequest,
+  ) async {
+    return await _authRepo.resetPassword(resetPasswordRequest);
   }
 }

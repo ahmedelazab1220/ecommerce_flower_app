@@ -34,7 +34,6 @@
   "InvalidCode": "رمز غير صالح",
   "NewPassword": "كلمة المرور الجديدة",
   "EnterYourNewPassword": "ادخل كلمة المرور الجديدة",
-  "ConfirmYourPassword": "تاكيد كلمة المرور",
   "ResetPassword": "اعادة تعيين كلمة المرور",
   "PasswordRequirements": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف مع حرف كبير ورقم واحد على الأقل",
   "Search": "بحث",

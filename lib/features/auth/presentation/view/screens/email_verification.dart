@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/di/di.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/email_verification_cubit.dart';
@@ -26,38 +27,39 @@ class EmailVerification extends StatelessWidget {
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
         create: (context) => emailVerificationCubit,
-        child: BlocConsumer<EmailVerificationCubit, EmailVerificationState>(
+        child: BlocListener<EmailVerificationCubit, EmailVerificationState>(
           listener: (context, state) {
-            if (state is EmailVerificationLoading) {
+            if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
-            } else if (state is EmailVerificationSuccess) {
+            } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
               Navigator.of(
                 context,
               ).pushNamed(AppRoutes.resetPassword, arguments: email);
-            } else if (state is EmailVerificationFailure) {
+            } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context, message: state.message);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0).w,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ForgetPasswordHeader(
-                    title: LocaleKeys.EmailVerification.tr(),
-                    subtitle:
-                        LocaleKeys
-                            .PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
-                  ),
-                  VerificationCodeInput(state: state),
-                  ResendCode(email: email),
-                ],
-              ),
-            );
-          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0).w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ForgetPasswordHeader(
+                  title: LocaleKeys.EmailVerification.tr(),
+                  subtitle:
+                      LocaleKeys
+                          .PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
+                ),
+                const VerificationCodeInput(),
+                ResendCode(email: email),
+              ],
+            ),
+          ),
         ),
       ),
     );

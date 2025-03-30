@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +36,9 @@ class ForgetPasswordForm extends StatelessWidget {
             height: 48.h,
             child: ElevatedButton(
               onPressed: () {
-                context.read<ForgetPasswordCubit>().forgetPassword();
+                context.read<ForgetPasswordCubit>().doIntent(
+                  ForgetPasswordRequestAction(),
+                );
               },
               child: Text(LocaleKeys.Confirm.tr()),
             ),

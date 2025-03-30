@@ -17,39 +17,27 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Result<void>> forgetPassword(
     ForgetPasswordRequestDto forgetPasswordRequestDto,
-  ) {
-    var response = _apiManager.execute(() async {
-      final response = await _authRemoteDataSource.forgetPassword(
-        forgetPasswordRequestDto,
-      );
-      return response;
+  ) async {
+    return await _apiManager.execute(() async {
+      await _authRemoteDataSource.forgetPassword(forgetPasswordRequestDto);
     });
-    return response;
   }
 
   @override
   Future<Result<void>> resetPassword(
     ResetPasswordRequestDto resetPasswordRequestDto,
-  ) {
-    var response = _apiManager.execute(() async {
-      final response = await _authRemoteDataSource.resetPassword(
-        resetPasswordRequestDto,
-      );
-      return response;
+  ) async {
+    return await _apiManager.execute(() async {
+      await _authRemoteDataSource.resetPassword(resetPasswordRequestDto);
     });
-    return response;
   }
 
   @override
   Future<Result<void>> verifyResetCode(
     VerifyResetCodeRequestDto verifyResetCodeRequestDto,
-  ) {
-    var response = _apiManager.execute(() async {
-      final response = await _authRemoteDataSource.verifyResetCode(
-        verifyResetCodeRequestDto,
-      );
-      return response;
+  ) async {
+    return await _apiManager.execute(() async {
+      await _authRemoteDataSource.verifyResetCode(verifyResetCodeRequestDto);
     });
-    return response;
   }
 }

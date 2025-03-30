@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/reset_password_cubit.dart';
@@ -24,33 +25,34 @@ class ResetPassword extends StatelessWidget {
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
         create: (context) => resetPasswordCubit,
-        child: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
+        child: BlocListener<ResetPasswordCubit, ResetPasswordState>(
           listener: (context, state) {
-            if (state is ResetPasswordLoading) {
+            if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
-            } else if (state is ResetPasswordSuccess) {
+            } else if (state.baseState is BaseSuccessState) {
               // Logger().d('ResetPasswordSuccess -> ${email}');
               AppDialogs.hideLoading(context);
               // Navigate To Login
-            } else if (state is ResetPasswordFailure) {
+            } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context, message: state.message);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16).w,
-              child: Column(
-                children: [
-                  ForgetPasswordHeader(
-                    title: LocaleKeys.ResetPassword.tr(),
-                    subtitle: LocaleKeys.PasswordRequirements.tr(),
-                  ),
-                  ResetPasswordForm(email: email),
-                ],
-              ),
-            );
-          },
+          child: Padding(
+            padding: const EdgeInsets.all(16).w,
+            child: Column(
+              children: [
+                ForgetPasswordHeader(
+                  title: LocaleKeys.ResetPassword.tr(),
+                  subtitle: LocaleKeys.PasswordRequirements.tr(),
+                ),
+                ResetPasswordForm(email: email),
+              ],
+            ),
+          ),
         ),
       ),
     );

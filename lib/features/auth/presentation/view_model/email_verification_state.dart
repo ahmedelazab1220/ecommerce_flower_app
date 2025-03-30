@@ -1,23 +1,28 @@
-sealed class EmailVerificationState {}
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 
-final class EmailVerificationInitial extends EmailVerificationState {}
+class EmailVerificationState {
+  final BaseState? baseState;
+  final BaseState? resendState;
 
-final class EmailVerificationLoading extends EmailVerificationState {}
+  EmailVerificationState({this.baseState, this.resendState});
 
-final class EmailVerificationSuccess extends EmailVerificationState {}
-
-final class EmailVerificationFailure extends EmailVerificationState {
-  final String message;
-
-  EmailVerificationFailure(this.message);
+  EmailVerificationState copyWith({
+    BaseState? baseState,
+    BaseState? resendState,
+  }) {
+    return EmailVerificationState(
+      baseState: baseState ?? this.baseState,
+      resendState: resendState ?? this.resendState,
+    );
+  }
 }
 
-final class ResendEmailVerificationLoading extends EmailVerificationState {}
+sealed class EmailVerificationAction {}
 
-final class ResendEmailVerificationSuccess extends EmailVerificationState {}
+class EmailVerificationRequestAction extends EmailVerificationAction {}
 
-final class ResendEmailVerificationFailure extends EmailVerificationState {
-  final String message;
+class ResendEmailVerificationRequestAction extends EmailVerificationAction {
+  final String email;
 
-  ResendEmailVerificationFailure(this.message);
+  ResendEmailVerificationRequestAction(this.email);
 }

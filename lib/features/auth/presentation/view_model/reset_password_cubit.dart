@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/usecase/reset_password_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,16 +14,24 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   final Validator validator = Validator();
 
   ResetPasswordCubit(this._resetPasswordUsecase)
-    : super(ResetPasswordInitial());
+    : super(ResetPasswordState(baseState: BaseInitialState()));
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Future<void> resetPassword(String email) async {
+  void doIntent(ResetPasswordAction action) {
+    switch (action) {
+      case ResetPasswordRequestAction():
+        _resetPassword(action.email);
+        break;
+    }
+  }
+
+  Future<void> _resetPassword(String email) async {
     if (formKey.currentState!.validate()) {
-      emit(ResetPasswordLoading());
+      emit(state.copyWith(baseState: BaseLoadingState()));
       final result = await _resetPasswordUsecase(
         ResetPasswordRequestDto(
           email: email,
@@ -31,9 +40,15 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       );
       switch (result) {
         case SuccessResult<void>():
-          emit(ResetPasswordSuccess());
+          emit(state.copyWith(baseState: BaseSuccessState()));
         case FailureResult<void>():
-          emit(ResetPasswordFailure(result.exception.toString()));
+          emit(
+            state.copyWith(
+              baseState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
       }
     }
   }

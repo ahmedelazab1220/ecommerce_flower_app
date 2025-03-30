@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +24,12 @@ class _ResendCodeState extends State<ResendCode> {
   int countdown = 0;
   Timer? _timer;
 
+  @override
+  void initState() {
+    super.initState();
+    startCountdown();
+  }
+
   void startCountdown() {
     setState(() {
       canResend = false;
@@ -41,8 +48,8 @@ class _ResendCodeState extends State<ResendCode> {
   }
 
   void onResend() {
-    context.read<EmailVerificationCubit>().resendEmailVerification(
-      widget.email,
+    context.read<EmailVerificationCubit>().doIntent(
+      ResendEmailVerificationRequestAction(widget.email),
     );
     startCountdown();
   }

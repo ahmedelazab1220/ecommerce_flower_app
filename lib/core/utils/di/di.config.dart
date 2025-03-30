@@ -18,8 +18,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 import '../../../features/auth/data/api/auth_retorfit_client.dart' as _i257;
 import '../../../features/auth/data/data_source/contract/auth_remote_data_source.dart'
     as _i305;
-import '../../../features/auth/data/data_source/implementation/auth_remote_data_source_impl.dart'
-    as _i507;
+import '../../../features/auth/data/data_source/remote/auth_remote_data_source_impl.dart'
+    as _i212;
 import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/domain/usecase/forget_password_usecase.dart'
@@ -69,7 +69,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i305.AuthRemoteDataSource>(
-      () => _i507.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()),
+      () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()),
     );
     gh.factory<_i913.AuthRepo>(
       () => _i822.AuthRepoImpl(gh<_i305.AuthRemoteDataSource>()),

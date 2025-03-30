@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
 import '../l10n/locale_keys.g.dart';
 import 'api_result.dart';
-import 'api_exception.dart';
+import 'app_exception.dart';
 
 @singleton
 class ApiManager {
@@ -110,7 +110,8 @@ class ApiManager {
 
   String _extractErrorMessage(dynamic data) {
     if (data is Map<String, dynamic>) {
-      return data['error']?.toString() ??
+      return data['message']?.toString() ??
+          data['error']?.toString() ??
           LocaleKeys.Unexpected_server_error.tr();
     }
     return data.toString();

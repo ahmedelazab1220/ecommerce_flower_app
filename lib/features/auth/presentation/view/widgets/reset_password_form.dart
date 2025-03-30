@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/reset_password_cubit.dart';
+import '../../view_model/reset_password_state.dart';
 
 class ResetPasswordForm extends StatelessWidget {
   final String email;
@@ -41,7 +42,7 @@ class ResetPasswordForm extends StatelessWidget {
                         .confirmPasswordController,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.ConfirmPassword.tr(),
-                  hintText: LocaleKeys.ConfirmYourPassword.tr(),
+                  hintText: LocaleKeys.ConfirmPassword.tr(),
                 ),
                 validator:
                     (value) => context
@@ -62,7 +63,9 @@ class ResetPasswordForm extends StatelessWidget {
                 height: 48.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.read<ResetPasswordCubit>().resetPassword(email);
+                    context.read<ResetPasswordCubit>().doIntent(
+                      ResetPasswordRequestAction(email),
+                    );
                   },
                   child: Text(LocaleKeys.Confirm.tr()),
                 ),

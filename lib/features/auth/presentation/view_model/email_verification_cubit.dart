@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/verify_reset_code/verify_reset_code_request_dto.dart';
@@ -20,34 +21,62 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   EmailVerificationCubit(
     this.verifyResetCodeUsecase,
     this.forgetPasswordUsecase,
-  ) : super(EmailVerificationInitial());
+  ) : super(EmailVerificationState(baseState: BaseInitialState()));
 
   final TextEditingController pinController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Future<void> verifyResetCode() async {
-    emit(EmailVerificationLoading());
+  void doIntent(EmailVerificationAction action) {
+    switch (action) {
+      case EmailVerificationRequestAction():
+        _verifyResetCode();
+        break;
+      case ResendEmailVerificationRequestAction():
+        _resendEmailVerification(action.email);
+        break;
+    }
+  }
+
+  Future<void> _verifyResetCode() async {
+    emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await verifyResetCodeUsecase(
       VerifyResetCodeRequestDto(resetCode: pinController.text),
     );
     switch (result) {
       case SuccessResult<void>():
-        emit(EmailVerificationSuccess());
+        emit(state.copyWith(baseState: BaseSuccessState()));
       case FailureResult<void>():
-        emit(EmailVerificationFailure(result.exception.toString()));
+        emit(
+          state.copyWith(
+            baseState: BaseErrorState(
+              errorMessage: result.exception.toString(),
+            ),
+          ),
+        );
     }
   }
 
-  Future<void> resendEmailVerification(String email) async {
-    emit(ResendEmailVerificationLoading());
+  Future<void> _resendEmailVerification(String email) async {
+    emit(
+      state.copyWith(
+        baseState: BaseInitialState(),
+        resendState: BaseLoadingState(),
+      ),
+    );
     final result = await forgetPasswordUsecase(
       ForgetPasswordRequestDto(email: email),
     );
     switch (result) {
       case SuccessResult<void>():
-        emit(ResendEmailVerificationSuccess());
+        emit(state.copyWith(resendState: BaseSuccessState()));
       case FailureResult<void>():
-        emit(ResendEmailVerificationFailure(result.exception.toString()));
+        emit(
+          state.copyWith(
+            resendState: BaseErrorState(
+              errorMessage: result.exception.toString(),
+            ),
+          ),
+        );
     }
   }
 }

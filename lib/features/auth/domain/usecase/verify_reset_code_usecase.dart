@@ -9,7 +9,9 @@ class VerifyResetCodeUsecase {
 
   VerifyResetCodeUsecase(this._authRepo);
 
-  Future<Result<void>> call(VerifyResetCodeRequestDto verifyResetCodeRequest) {
-    return _authRepo.verifyResetCode(verifyResetCodeRequest);
+  Future<Result<void>> call(
+    VerifyResetCodeRequestDto verifyResetCodeRequest,
+  ) async {
+    return await _authRepo.verifyResetCode(verifyResetCodeRequest);
   }
 }

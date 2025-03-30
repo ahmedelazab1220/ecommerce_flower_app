@@ -9,7 +9,9 @@ class ForgetPasswordUsecase {
 
   ForgetPasswordUsecase(this._authRepo);
 
-  Future<Result<void>> call(ForgetPasswordRequestDto forgetPasswordRequest) {
-    return _authRepo.forgetPassword(forgetPasswordRequest);
+  Future<Result<void>> call(
+    ForgetPasswordRequestDto forgetPasswordRequest,
+  ) async {
+    return await _authRepo.forgetPassword(forgetPasswordRequest);
   }
 }

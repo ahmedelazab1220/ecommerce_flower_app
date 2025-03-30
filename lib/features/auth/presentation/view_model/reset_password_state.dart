@@ -1,13 +1,19 @@
-sealed class ResetPasswordState {}
+import '../../../../core/base/base_state.dart';
 
-final class ResetPasswordInitial extends ResetPasswordState {}
+class ResetPasswordState {
+  final BaseState? baseState;
 
-final class ResetPasswordLoading extends ResetPasswordState {}
+  ResetPasswordState({this.baseState});
 
-final class ResetPasswordSuccess extends ResetPasswordState {}
+  ResetPasswordState copyWith({BaseState? baseState}) {
+    return ResetPasswordState(baseState: baseState ?? this.baseState);
+  }
+}
 
-final class ResetPasswordFailure extends ResetPasswordState {
-  final String message;
+sealed class ResetPasswordAction {}
 
-  ResetPasswordFailure(this.message);
+class ResetPasswordRequestAction extends ResetPasswordAction {
+  final String email;
+
+  ResetPasswordRequestAction(this.email);
 }

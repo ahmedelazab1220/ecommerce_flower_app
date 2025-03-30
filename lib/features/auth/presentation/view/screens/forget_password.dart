@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
@@ -23,11 +24,11 @@ class ForgetPassword extends StatelessWidget {
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
         create: (context) => forgetPasswordCubit,
-        child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+        child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
-            if (state is ForgetPasswordLoading) {
+            if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
-            } else if (state is ForgetPasswordSuccess) {
+            } else if (state.baseState is BaseSuccessState) {
               // Logger().d(
               //   'ForgetPasswordSuccess -> ${context.read<ForgetPasswordCubit>().emailController.text}',
               // );
@@ -38,27 +39,28 @@ class ForgetPassword extends StatelessWidget {
                 arguments:
                     context.read<ForgetPasswordCubit>().emailController.text,
               );
-            } else if (state is ForgetPasswordFailure) {
+            } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context, message: state.message);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16).w,
-              child: Column(
-                children: [
-                  ForgetPasswordHeader(
-                    title: LocaleKeys.ForgetPassword.tr(),
-                    subtitle:
-                        LocaleKeys
-                            .PleaseEnterYourEmailAssociatedWithToYourAccount.tr(),
-                  ),
-                  const ForgetPasswordForm(),
-                ],
-              ),
-            );
-          },
+          child: Padding(
+            padding: const EdgeInsets.all(16).w,
+            child: Column(
+              children: [
+                ForgetPasswordHeader(
+                  title: LocaleKeys.ForgetPassword.tr(),
+                  subtitle:
+                      LocaleKeys
+                          .PleaseEnterYourEmailAssociatedWithToYourAccount.tr(),
+                ),
+                const ForgetPasswordForm(),
+              ],
+            ),
+          ),
         ),
       ),
     );
