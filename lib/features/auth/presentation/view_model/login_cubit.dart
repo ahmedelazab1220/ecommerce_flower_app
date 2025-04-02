@@ -1,9 +1,11 @@
-
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/validator/validator.dart';
+import '../../domain/entity/login_request.dart';
 import '../../domain/usecase/login_use_case.dart';
 
 part 'login_state.dart';
@@ -12,9 +14,13 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
 
-  final Validator _validator = Validator();
+  final Validator _validator;
 
-  LoginCubit(this._loginUseCase) : super(LoginInitial());
+  LoginCubit(this._loginUseCase, this._validator)
+      : super(LoginState(
+          baseState: BaseInitialState(),
+          isRememberMe: false,
+        ));
 
   final TextEditingController emailController = TextEditingController();
 
@@ -24,17 +30,40 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isRememberMe = false;
 
-  Future<void> login() async {
+  Future<void> _login() async {
     if (formKey.currentState!.validate()) {
-      emit(LoginLoading());
-      final result = await _loginUseCase.call(
-          emailController.text, passwordController.text, isRememberMe);
+      emit(state.copyWith(
+        baseState: BaseLoadingState(),
+      ));
+      final result = await _loginUseCase.call(LoginRequest(
+        email: emailController.text,
+        password: passwordController.text,
+        isRememberMe: isRememberMe,
+      ));
       switch (result) {
         case SuccessResult<void>():
-          emit(LoginSuccess());
+          emit(state.copyWith(
+            baseState: BaseSuccessState(),
+          ));
         case FailureResult<void>():
-          emit(LoginFailure(result.exception.toString()));
+          emit(state.copyWith(
+            baseState:
+                BaseErrorState(errorMessage: result.exception.toString()),
+          ));
       }
+    }
+  }
+
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.close();
+  }
+
+  void doIntent(LoginAction action) async {
+    switch (action) {
+      case LoginRequestAction():
+        _login();
     }
   }
 
@@ -48,6 +77,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   void rememberMe(bool value) {
     isRememberMe = value;
-    emit(LoginRememberMe(isRememberMe));
+    emit(state.copyWith(
+      isRememberMe: isRememberMe,
+    ));
   }
 }

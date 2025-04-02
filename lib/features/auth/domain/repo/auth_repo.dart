@@ -1,5 +1,6 @@
 import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../entity/login_request.dart';
 
 abstract class AuthRepo {
-  Future<Result<void>> login(String email, String password, bool isRememberMe);
+  Future<Result<void>> login(LoginRequest request);
 }

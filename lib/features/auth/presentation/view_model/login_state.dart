@@ -1,22 +1,49 @@
 part of 'login_cubit.dart';
 
-@immutable
-sealed class LoginState {}
+// @immutable
+// sealed class LoginState {}
+//
+// final class LoginInitial extends LoginState {}
+//
+// final class LoginLoading extends LoginState {}
+//
+// final class LoginSuccess extends LoginState {}
+//
+// final class LoginFailure extends LoginState {
+//   final String message;
+//
+//   LoginFailure(this.message);
+// }
+//
+// final class LoginRememberMe extends LoginState {
+//   final bool isRememberMe;
+//
+//   LoginRememberMe(this.isRememberMe);
+// }
 
-final class LoginInitial extends LoginState {}
+class LoginState extends Equatable {
+  final BaseState? baseState;
+  final bool? isRememberMe;
 
-final class LoginLoading extends LoginState {}
+  const LoginState({this.baseState, this.isRememberMe});
 
-final class LoginSuccess extends LoginState {}
+  LoginState copyWith({
+    BaseState? baseState,
+    bool? isRememberMe,
+  }) {
+    return LoginState(
+      baseState: baseState ?? this.baseState,
+      isRememberMe: isRememberMe ?? this.isRememberMe,
+    );
+  }
 
-final class LoginFailure extends LoginState {
-  final String message;
-
-  LoginFailure(this.message);
+  @override
+  List<Object?> get props => [
+        baseState,
+        isRememberMe,
+      ];
 }
 
-final class LoginRememberMe extends LoginState {
-  final bool isRememberMe;
+sealed class LoginAction {}
 
-  LoginRememberMe(this.isRememberMe);
-}
+class LoginRequestAction extends LoginAction {}

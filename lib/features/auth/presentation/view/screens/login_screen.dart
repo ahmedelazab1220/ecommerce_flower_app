@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
@@ -28,16 +29,17 @@ class LoginScreen extends StatelessWidget {
         create: (context) => loginViewModel,
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
-            if (state is LoginLoading) {
+            if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
             }
-            if (state is LoginSuccess) {
+            if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
               Navigator.pushReplacementNamed(context, AppRoutes.home);
             }
-            if (state is LoginFailure) {
+            if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context, message: state.message);
+              AppDialogs.showFailureDialog(context,
+                  message: (state.baseState as BaseErrorState).errorMessage);
             }
           },
           builder: (context, state) {

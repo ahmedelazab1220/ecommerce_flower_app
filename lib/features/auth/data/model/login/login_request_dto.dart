@@ -5,13 +5,13 @@ part 'login_request_dto.g.dart';
 @JsonSerializable()
 class LoginRequestDto {
   @JsonKey(name: "email")
-  final String? email;
+  final String email;
   @JsonKey(name: "password")
-  final String? password;
+  final String password;
 
   LoginRequestDto({
-    this.email,
-    this.password,
+    required this.email,
+    required this.password,
   });
 
   factory LoginRequestDto.fromJson(Map<String, dynamic> json) {

@@ -20,7 +20,7 @@ class LoginButtons extends StatelessWidget {
           height: 48.h,
           child: ElevatedButton(
             onPressed: () {
-              context.read<LoginCubit>().login();
+              context.read<LoginCubit>().doIntent(LoginRequestAction());
             },
             child: Text(LocaleKeys.Login.tr()),
           ),

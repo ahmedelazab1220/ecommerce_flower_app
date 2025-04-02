@@ -12,8 +12,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._authRetrofitClient);
 
   @override
-  Future<LoginResponseDto> login(String email, String password) async {
-    return await _authRetrofitClient
-        .login(LoginRequestDto(email: email, password: password));
+  Future<LoginResponseDto> login(LoginRequestDto request) async {
+    return await _authRetrofitClient.login(request);
   }
 }

@@ -5,23 +5,29 @@ import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_manager.dart';
+import '../../domain/entity/login_request.dart';
 import '../data_source/contract/auth_remote_data_source.dart';
+import '../model/login/login_request_dto.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
-  final ApiManager _apiManager = ApiManager();
+  final ApiManager _apiManager;
   final AuthRemoteDataSource _authRemoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
 
-  AuthRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
+  AuthRepoImpl(
+      this._authRemoteDataSource, this._authLocalDataSource, this._apiManager);
 
   @override
-  Future<Result<void>> login(String email, String password, bool isRememberMe) {
+  Future<Result<void>> login(LoginRequest request) {
     var response = _apiManager.execute<LoginResponseDto>(
       () async {
-        final response = await _authRemoteDataSource.login(email, password);
+        final response = await _authRemoteDataSource.login(LoginRequestDto(
+          email: request.email,
+          password: request.password,
+        ));
         _authLocalDataSource.saveToken("token", response.token ?? "");
-        _authLocalDataSource.setRememberMe(isRememberMe);
+        _authLocalDataSource.setRememberMe(request.isRememberMe);
         return response;
       },
     );

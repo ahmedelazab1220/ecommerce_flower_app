@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
@@ -15,21 +16,29 @@ class DonotHaveAccount extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              LocaleKeys.DonotHaveAnAccount.tr(),
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.register);
-              },
-              child: Text(
-                LocaleKeys.Signup.tr(),
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.pink,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.pink,
-                    ),
+            RichText(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyLarge,
+                children: [
+                  TextSpan(
+                    text: LocaleKeys.DonotHaveAnAccount.tr(),
+                  ),
+                  const TextSpan(
+                    text: ' ',
+                  ),
+                  TextSpan(
+                    text: LocaleKeys.Signup.tr(),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppColors.pink,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.pink,
+                        ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, AppRoutes.register);
+                      },
+                  ),
+                ],
               ),
             ),
           ],

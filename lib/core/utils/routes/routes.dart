@@ -6,6 +6,7 @@ import '../../../features/home_screen.dart';
 import '../../../features/register_screen.dart';
 
 class AppRoutes {
+  AppRoutes._();
   static const String home = "/home";
   static const String forgetPassword = "/forgetPassword";
   static const String login = "/login";

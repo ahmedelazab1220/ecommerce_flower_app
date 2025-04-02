@@ -25,13 +25,15 @@ Future<void> main() async {
       path: Constants.assetsTranslations,
       fallbackLocale: const Locale(Constants.en),
       startLocale: const Locale(Constants.en),
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final routeInitializer = getIt<RouteInitializer>();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         routes: AppRoutes.routes,
         theme: AppTheme.appTheme,
-        initialRoute: computeInitialRoute(),
+        initialRoute: routeInitializer.computeInitialRoute(),
       ),
     );
   }

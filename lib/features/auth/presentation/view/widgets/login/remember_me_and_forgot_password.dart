@@ -13,6 +13,7 @@ class RememberMeAndForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var loginViewModel = context.read<LoginCubit>();
     return Column(
       children: [
         Row(
@@ -21,12 +22,13 @@ class RememberMeAndForgotPassword extends StatelessWidget {
             Row(
               children: [
                 BlocBuilder<LoginCubit, LoginState>(
-                  buildWhen: (previous, current) => current is LoginRememberMe,
+                  buildWhen: (previous, current) =>
+                      previous.isRememberMe != current.isRememberMe,
                   builder: (context, state) {
                     return Checkbox(
-                      value: context.read<LoginCubit>().isRememberMe,
+                      value: loginViewModel.isRememberMe,
                       onChanged: (value) {
-                        context.read<LoginCubit>().rememberMe(value!);
+                        loginViewModel.rememberMe(value!);
                       },
                       activeColor: AppColors.pink,
                     );
