@@ -20,12 +20,17 @@ class RememberMeAndForgotPassword extends StatelessWidget {
           children: [
             Row(
               children: [
-                Checkbox(
-                  value: context.watch<LoginCubit>().isRememberMe,
-                  onChanged: (value) {
-                    context.read<LoginCubit>().rememberMe(value!);
+                BlocBuilder<LoginCubit, LoginState>(
+                  buildWhen: (previous, current) => current is LoginRememberMe,
+                  builder: (context, state) {
+                    return Checkbox(
+                      value: context.read<LoginCubit>().isRememberMe,
+                      onChanged: (value) {
+                        context.read<LoginCubit>().rememberMe(value!);
+                      },
+                      activeColor: AppColors.pink,
+                    );
                   },
-                  activeColor: AppColors.pink,
                 ),
                 Text(
                   LocaleKeys.RememberMe.tr(),
