@@ -9,7 +9,7 @@ part of 'register_response_dto.dart';
 RegisterResponseDto _$RegisterResponseDtoFromJson(Map<String, dynamic> json) =>
     RegisterResponseDto(
       message: json['message'] as String,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
       token: json['token'] as String,
     );
 

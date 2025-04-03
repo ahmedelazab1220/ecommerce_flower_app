@@ -108,15 +108,14 @@ class ApiManager {
     }
   }
 
-String _extractErrorMessage(dynamic data) {
-  if (data is Map<String, dynamic>) {
-    return data['error']?.toString() 
-        ?? data['message']?.toString() 
-        ?? LocaleKeys.Unexpected_server_error.tr();
+  String _extractErrorMessage(dynamic data) {
+    if (data is Map<String, dynamic>) {
+      return data['error']?.toString() ??
+          data['message']?.toString() ??
+          LocaleKeys.Unexpected_server_error.tr();
+    }
+    return data.toString();
   }
-  return data.toString();
-}
-
 
   String _getTimeoutMessage(DioExceptionType type) {
     switch (type) {

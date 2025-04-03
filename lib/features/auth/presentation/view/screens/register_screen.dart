@@ -1,11 +1,14 @@
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_form.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_intent.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -19,10 +22,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text(LocaleKeys.Signup.tr()), titleSpacing: 16.w),
+      appBar: AppBar(title: Text(LocaleKeys.Signup.tr())),
       body: BlocProvider(
         create: (context) => getIt<RegisterCubit>(),
-        child: const RegisterForm(),
+        child: BlocListener<RegisterCubit, RegisterStates>(
+          listener: (context, state) {
+            final registerState = state.registerState;
+            if (registerState is BaseLoadingState) {
+              AppDialogs.showLoadingDialog(context);
+            } else if (registerState is BaseSuccessState) {
+              AppDialogs.hideLoading(context);
+              context.read<RegisterCubit>().doIntent(NavigateToLoginIntent());
+            } else if (registerState is BaseErrorState) {
+              AppDialogs.hideLoading(context);
+              AppDialogs.showFailureDialog(
+                context,
+                message: registerState.errorMessage,
+              );
+            }
+          },
+          child: const RegisterForm(),
+        ),
       ),
     );
   }

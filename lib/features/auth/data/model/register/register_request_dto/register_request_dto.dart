@@ -22,8 +22,8 @@ class RegisterRequestDto {
     required this.gender,
   });
 
-  factory RegisterRequestDto.fromJson(Map<String, dynamic> json) => _$RegisterRequestDtoFromJson(json);
+  factory RegisterRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$RegisterRequestDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$RegisterRequestDtoToJson(this);
-
 }

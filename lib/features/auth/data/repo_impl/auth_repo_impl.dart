@@ -1,8 +1,8 @@
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_manager.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/auth_remote_data_source.dart';
-import 'package:ecommerce_flower_app/features/auth/data/model/register/register_request_dto/register_request_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/register/register_response_dto/register_response_dto.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -15,17 +15,16 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this._authRemoteDataSource, this.apiManager);
 
   @override
-  Future<Result<UserEntity>> signUp(RegisterRequestDto request) async {
+  Future<Result<UserEntity>> signUp(RegisterRequestEntity request) async {
     final result = await apiManager.execute<RegisterResponseDto>(
-      () => _authRemoteDataSource.signUp(request),
+      () => _authRemoteDataSource.signUp(request.toDto(request)),
     );
 
-    if (result is SuccessResult<RegisterResponseDto>) {
-      return SuccessResult(result.data.user.toEntity());
-    } else if (result is FailureResult<RegisterResponseDto>) {
-      return FailureResult(result.exception);
-    } else {
-      return FailureResult(Exception("Unknown error occurred"));
+    switch (result) {
+      case SuccessResult<RegisterResponseDto>():
+        return SuccessResult<UserEntity>(result.data.toEntity().user);
+      case FailureResult<RegisterResponseDto>():
+        return FailureResult<UserEntity>(result.exception);
     }
   }
 }

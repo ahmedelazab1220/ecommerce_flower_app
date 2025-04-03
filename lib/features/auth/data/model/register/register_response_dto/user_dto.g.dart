@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'user_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      email: json['email'] as String,
-      gender: json['gender'] as String,
-      phone: json['phone'] as String,
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      email: json['email'] as String?,
+      gender: json['gender'] as String?,
+      phone: json['phone'] as String?,
       photo: json['photo'] as String?,
       role: json['role'] as String?,
       wishlist: json['wishlist'] as List<dynamic>?,
@@ -22,7 +22,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           : DateTime.parse(json['createdAt'] as String),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'email': instance.email,

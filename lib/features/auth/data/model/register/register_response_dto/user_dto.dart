@@ -1,15 +1,15 @@
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user.g.dart';
+part 'user_dto.g.dart';
 
 @JsonSerializable()
-class User {
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String gender;
-  final String phone;
+class UserDto {
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? gender;
+  final String? phone;
   final String? photo;
   final String? role;
   final List<dynamic>? wishlist;
@@ -18,12 +18,12 @@ class User {
   final List<dynamic>? addresses;
   final DateTime? createdAt;
 
-  const User({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.gender,
-    required this.phone,
+  const UserDto({
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.gender,
+    this.phone,
     this.photo,
     this.role,
     this.wishlist,
@@ -32,9 +32,10 @@ class User {
     this.createdAt,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserDto.fromJson(Map<String, dynamic> json) =>
+      _$UserDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 
   UserEntity toEntity() {
     return UserEntity(

@@ -3,7 +3,6 @@ import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterTextFieldSection extends StatelessWidget {
   const RegisterTextFieldSection({super.key});
@@ -32,7 +31,7 @@ class RegisterTextFieldSection extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 17.w),
+            const SizedBox(width: 17),
             Expanded(
               child: TextFormField(
                 controller: registerCubit.lastNameController,
@@ -49,7 +48,7 @@ class RegisterTextFieldSection extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 24.h),
+        const SizedBox(height: 24),
 
         /// Email
         TextFormField(
@@ -63,7 +62,7 @@ class RegisterTextFieldSection extends StatelessWidget {
             errorMaxLines: 2,
           ),
         ),
-        SizedBox(height: 24.h),
+        const SizedBox(height: 24),
 
         /// Password & Confirm Password
         Row(
@@ -85,7 +84,7 @@ class RegisterTextFieldSection extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 17.w),
+            const SizedBox(width: 17),
             Expanded(
               child: TextFormField(
                 controller: registerCubit.confirmPasswordController,
@@ -105,7 +104,7 @@ class RegisterTextFieldSection extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 24.h),
+        const SizedBox(height: 24),
 
         /// Phone Number
         TextFormField(
