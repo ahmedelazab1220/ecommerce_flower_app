@@ -46,6 +46,7 @@ dependencies:
   injectable: ^2.5.0
   json_annotation: ^4.9.0
   logger: ^2.5.0
+  lottie: ^3.3.1
   mockito: ^5.4.5
   pretty_dio_logger: ^1.4.0
   provider: ^6.1.2
@@ -83,6 +84,7 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/translations/
+    - assets/lotties/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

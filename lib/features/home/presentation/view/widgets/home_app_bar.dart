@@ -18,54 +18,57 @@ class HomeAppBar extends StatefulWidget {
 class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: SvgPicture.asset(AppIcons.logoSvg, height: 40.spMin),
-            ),
-          ),
-          const SizedBox(width: 16.0),
-          Expanded(
-            flex: 3,
-            child: TextFormField(
-              onTapOutside: (_) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              decoration: InputDecoration(
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.searchSvg,
-                  fit: BoxFit.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(
-                    color: AppColors.white[AppColors.colorCode70]!,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(
-                    color: AppColors.white[AppColors.colorCode70]!,
-                  ),
-                ),
-                hintText: LocaleKeys.Search.tr(),
-                contentPadding: const EdgeInsets.all(8.0),
+    return SliverPadding(
+      padding: const EdgeInsets.only(top: 10.0),
+      sliver: SliverAppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: SvgPicture.asset(AppIcons.logoSvg, height: 40.spMin),
               ),
             ),
-          ),
-        ],
-      ),
-      floating: true,
-      pinned: false,
-      snap: true,
-      elevation: 0,
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
-        child: LocationContainer(),
+            const SizedBox(width: 16.0),
+            Expanded(
+              flex: 3,
+              child: TextFormField(
+                onTapOutside: (_) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                decoration: InputDecoration(
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.searchSvg,
+                    fit: BoxFit.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(
+                      color: AppColors.white[AppColors.colorCode70]!,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(
+                      color: AppColors.white[AppColors.colorCode70]!,
+                    ),
+                  ),
+                  hintText: LocaleKeys.Search.tr(),
+                  contentPadding: const EdgeInsets.all(8.0),
+                ),
+              ),
+            ),
+          ],
+        ),
+        floating: true,
+        pinned: false,
+        snap: true,
+        elevation: 0,
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(45),
+          child: LocationContainer(),
+        ),
       ),
     );
   }

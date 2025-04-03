@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/font_responsive/font_responsive.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
+import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,15 @@ class _LocationContainerState extends State<LocationContainer> {
       child: Row(
         spacing: 8.0,
         children: [
-          SvgPicture.asset(AppIcons.locationSvg, height: 30.r),
+          SvgPicture.asset(
+            AppIcons.locationSvg,
+            height: ResponsiveUtil.getResponsiveAspectRatioValue(
+              context,
+              tallAspectRatio: 55,
+              standardAspectRatio: 30,
+              wideAspectRatio: 15,
+            ),
+          ),
           Expanded(
             child: Row(
               children: [
@@ -49,7 +58,7 @@ class _LocationContainerState extends State<LocationContainer> {
                           color: AppColors.black[AppColors.colorCode50],
                           fontSize: FontResponsive.getResponsiveFontSize(
                             context: context,
-                            fontSize: 18.0,
+                            fontSize: 21,
                           ),
                         ),
                         children: [
@@ -60,13 +69,13 @@ class _LocationContainerState extends State<LocationContainer> {
                             ).textTheme.titleSmall!.copyWith(
                               fontSize: FontResponsive.getResponsiveFontSize(
                                 context: context,
-                                fontSize: 20,
+                                fontSize: 24,
                               ),
                             ),
                           ),
                           WidgetSpan(
                             alignment: PlaceholderAlignment.middle,
-                            child: Icon(Icons.arrow_drop_down, size: 30.r),
+                            child: Icon(Icons.arrow_drop_down, size: 32.r),
                           ),
                         ],
                       ),

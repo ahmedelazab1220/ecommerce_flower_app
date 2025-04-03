@@ -22,3 +22,7 @@ class HomeState extends Equatable {
   @override
   List<Object?> get props => [categories, occasions, bestSellers];
 }
+
+sealed class HomeAction {}
+
+final class GetHomeDataAction extends HomeAction {}

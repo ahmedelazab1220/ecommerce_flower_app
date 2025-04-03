@@ -1,37 +1,54 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/responsive_util/responsive_util.dart';
+import '../../../domain/entity/best_seller_entity.dart';
 import 'best_seller_item.dart';
 import 'home_shared_title_widget.dart';
 
 class BestSellerListItems extends StatelessWidget {
-  const BestSellerListItems({super.key});
+  const BestSellerListItems({super.key, required this.bestSellers});
+
+  final List<BestSellerEntity> bestSellers;
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-        child: Column(
-          children: [
-            HomeSharedTitleWidget(
-              title: LocaleKeys.BestSeller.tr(),
-              onPressed: () {},
-            ),
-            const SizedBox(height: 16.0),
-            SizedBox(
-              height: 240,
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: 16.0);
-                },
-                scrollDirection: Axis.horizontal,
-                itemCount: 40,
-                itemBuilder: (context, index) => const BestSellerItem(),
+        child: Skeletonizer(
+          enabled: bestSellers.isEmpty,
+          child: Column(
+            children: [
+              HomeSharedTitleWidget(
+                title: LocaleKeys.BestSeller.tr(),
+                onPressed: () {},
               ),
-            ),
-          ],
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: ResponsiveUtil.getResponsiveHeightValue(
+                  context,
+                  tablet: 0.26,
+                  largeMobile: 0.31,
+                  mobile: 0.28,
+                ),
+                child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(width: 16.0);
+                  },
+                  scrollDirection: Axis.horizontal,
+                  itemCount: bestSellers.isEmpty ? 5 : bestSellers.length,
+                  itemBuilder:
+                      (context, index) => BestSellerItem(
+                        bestSellerEntity:
+                            bestSellers.isEmpty ? null : bestSellers[index],
+                      ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

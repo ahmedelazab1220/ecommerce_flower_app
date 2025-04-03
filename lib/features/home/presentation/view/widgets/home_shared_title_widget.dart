@@ -25,7 +25,7 @@ class HomeSharedTitleWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
               fontSize: FontResponsive.getResponsiveFontSize(
                 context: context,
-                fontSize: 25,
+                fontSize: 27,
               ),
             ),
           ),

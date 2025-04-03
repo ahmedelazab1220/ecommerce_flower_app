@@ -14,5 +14,5 @@ abstract class HomeRetrofitClient {
   factory HomeRetrofitClient(Dio dio) = _HomeRetrofitClient;
 
   @GET(ApiConstants.homeTabRoute)
-  Future<HomeResponseDto> getHome();
+  Future<HomeResponseDto> getHomeData();
 }

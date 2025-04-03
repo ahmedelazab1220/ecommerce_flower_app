@@ -50,8 +50,6 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
-    gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit());
-    gh.factory<_i1065.GetHomeDataUseCase>(() => _i1065.GetHomeDataUseCase());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
@@ -70,15 +68,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
-    gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl());
-    gh.singleton<_i1043.HomeRemoteDataSource>(
-      () => _i859.HomeRemoteDataSourceImpl(),
-    );
     gh.singleton<_i257.AuthRetrofitClient>(
       () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i945.HomeRetrofitClient>(
       () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i1043.HomeRemoteDataSource>(
+      () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()),
+    );
+    gh.factory<_i242.HomeRepo>(
+      () => _i801.HomeRepoImpl(
+        gh<_i1043.HomeRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i1065.GetHomeDataUseCase>(
+      () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
+    );
+    gh.factory<_i595.HomeCubit>(
+      () => _i595.HomeCubit(gh<_i1065.GetHomeDataUseCase>()),
     );
     return this;
   }

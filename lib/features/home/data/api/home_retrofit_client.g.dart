@@ -20,7 +20,7 @@ class _HomeRetrofitClient implements HomeRetrofitClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<HomeResponseDto> getHome() async {
+  Future<HomeResponseDto> getHomeData() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
