@@ -15,16 +15,13 @@ import '../widgets/login/login_form.dart';
 import '../widgets/login/remember_me_and_forgot_password.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-
-  final loginViewModel = getIt<LoginCubit>();
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final loginViewModel = getIt<LoginCubit>();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.Login.tr()),
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.Login.tr())),
       body: BlocProvider(
         create: (context) => loginViewModel,
         child: BlocConsumer<LoginCubit, LoginState>(
@@ -38,8 +35,10 @@ class LoginScreen extends StatelessWidget {
             }
             if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context,
-                  message: (state.baseState as BaseErrorState).errorMessage);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
           builder: (context, state) {
