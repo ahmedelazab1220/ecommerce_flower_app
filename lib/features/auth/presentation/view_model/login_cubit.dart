@@ -14,9 +14,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
 
-  final Validator _validator;
-
-  LoginCubit(this._loginUseCase, this._validator)
+  LoginCubit(this._loginUseCase)
       : super(LoginState(
           baseState: BaseInitialState(),
           isRememberMe: false,
@@ -54,10 +52,11 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.close();
+  void rememberMe(bool value) {
+    isRememberMe = value;
+    emit(state.copyWith(
+      isRememberMe: isRememberMe,
+    ));
   }
 
   void doIntent(LoginAction action) async {
@@ -67,18 +66,9 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  String? validateEmail(String value) {
-    return _validator.validateEmail(value);
-  }
-
-  String? validatePassword(String value) {
-    return _validator.validatePassword(value);
-  }
-
-  void rememberMe(bool value) {
-    isRememberMe = value;
-    emit(state.copyWith(
-      isRememberMe: isRememberMe,
-    ));
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.close();
   }
 }
