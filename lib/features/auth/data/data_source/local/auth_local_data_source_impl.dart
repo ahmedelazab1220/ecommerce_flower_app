@@ -6,7 +6,7 @@ import '../contract/auth_local_data_source.dart';
 
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
-  final flutterSecureStorage;
+  final FlutterSecureStorage flutterSecureStorage;
 
   AuthLocalDataSourceImpl(this.flutterSecureStorage);
 
