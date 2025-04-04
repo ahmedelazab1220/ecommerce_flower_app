@@ -13,33 +13,31 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Validator validator = getIt<Validator>();
     var viewModel = context.read<LoginCubit>();
     return Column(
       children: [
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: viewModel.emailController,
-          validator: (value) => validator.validateEmail(value ?? ""),
+          validator: (value) => viewModel.validator.validateEmail(value ?? ""),
           decoration: InputDecoration(
             labelText: LocaleKeys.Email.tr(),
             hintText: LocaleKeys.EnterYourEmail.tr(),
           ),
         ),
-        SizedBox(height: 24.h),
+        const SizedBox(height: 24),
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: viewModel.passwordController,
-          validator: (value) => validator.validatePassword(value ?? ""),
+          validator:
+              (value) => viewModel.validator.validatePassword(value ?? ""),
           obscureText: true,
           decoration: InputDecoration(
             labelText: LocaleKeys.Password.tr(),
             hintText: LocaleKeys.EnterYourPassword.tr(),
           ),
         ),
-        SizedBox(
-          height: 16.h,
-        ),
+        const SizedBox(height: 16),
       ],
     );
   }

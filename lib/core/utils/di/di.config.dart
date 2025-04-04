@@ -89,8 +89,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i919.LoginUseCase>(
         () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i646.LoginCubit>(
-        () => _i646.LoginCubit(gh<_i919.LoginUseCase>()));
+    gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
+          gh<_i919.LoginUseCase>(),
+          gh<_i468.Validator>(),
+        ));
     return this;
   }
 }

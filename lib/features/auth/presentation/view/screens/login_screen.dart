@@ -45,8 +45,8 @@ class LoginScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Form(
                 key: context.read<LoginCubit>().formKey,
-                child: Padding(
-                  padding: EdgeInsets.all(16.w),
+                child: const Padding(
+                  padding: EdgeInsets.all(16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
