@@ -78,8 +78,10 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPreferences: gh<_i460.SharedPreferences>()));
     gh.factory<_i305.AuthRemoteDataSource>(
         () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
-    gh.factory<_i1015.AuthLocalDataSource>(
-        () => _i241.AuthLocalDataSourceImpl(gh<_i460.SharedPreferences>()));
+    gh.factory<_i1015.AuthLocalDataSource>(() => _i241.AuthLocalDataSourceImpl(
+          gh<_i558.FlutterSecureStorage>(),
+          gh<_i460.SharedPreferences>(),
+        ));
     gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i1015.AuthLocalDataSource>(),
