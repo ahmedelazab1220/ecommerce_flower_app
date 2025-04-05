@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/utils/datasource_excution/api_constants.dart';
 
-part 'auth_retorfit_client.g.dart';
+part 'auth_retrofit_client.g.dart';
 
 @singleton
 @RestApi(baseUrl: ApiConstants.baseUrl)
