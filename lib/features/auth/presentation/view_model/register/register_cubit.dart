@@ -18,7 +18,12 @@ class RegisterCubit extends Cubit<RegisterStates> {
   final Validator validator;
 
   RegisterCubit(this.registerUseCase, this.validator)
-    : super(RegisterStates(registerState: BaseInitialState()));
+    : super(
+        RegisterStates(
+          registerState: BaseInitialState(),
+          selectedGender: LocaleKeys.Female.tr(),
+        ),
+      );
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -29,8 +34,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-
-  String selectedGender = LocaleKeys.Female.tr();
 
   /// Prevent multiple requests
   bool _isRegistering = false;
@@ -60,7 +63,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
         firstName: firstNameController.text,
         lastName: lastNameController.text,
         phone: phoneController.text,
-        gender: selectedGender == LocaleKeys.Male.tr() ? 'male' : 'female',
+        gender:
+            state.selectedGender == LocaleKeys.Male.tr() ? 'male' : 'female',
         rePassword: confirmPasswordController.text,
       );
       _userRegistration(request);
@@ -68,9 +72,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
   }
 
   void _changeGender(String gender) {
-    if (selectedGender == gender) return;
-    selectedGender = gender;
-    emit(state.copyWith(registerState: BaseGenderChangedState()));
+    if (state.selectedGender == gender) return;
+
+    emit(state.copyWith(selectedGender: gender));
   }
 
   void _navigateToLogin() {

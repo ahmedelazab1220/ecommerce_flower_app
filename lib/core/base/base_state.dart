@@ -25,7 +25,3 @@ class BaseErrorState extends BaseState {
 
   BaseErrorState({required this.errorMessage, this.exception});
 }
-
-class BaseGenderChangedState extends BaseState {
-  BaseGenderChangedState();
-}
