@@ -15,9 +15,18 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
-import '../../../features/auth/data/api/auth_retorfit_client.dart' as _i257;
+import '../../../features/auth/data/api/auth_retrofit_client.dart' as _i1048;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
+import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
+    as _i1061;
+import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
+    as _i73;
+import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
+    as _i835;
+import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
+import '../../../features/occasions/domain/usecase/get_all_occasions_usecase.dart'
+    as _i1056;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -26,12 +35,16 @@ import '../logging/logger_module.dart' as _i470;
 import '../validator/validator.dart' as _i468;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final dioModule = _$DioModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
@@ -39,20 +52,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
-      () => dioModule.providerInterceptor(),
-    );
+        () => dioModule.providerInterceptor());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
-      () => secureStorageModule.storage,
-    );
+        () => secureStorageModule.storage);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.singleton<_i649.BlocObserverService>(
-      () => _i649.BlocObserverService(gh<_i974.Logger>()),
-    );
-    gh.singleton<_i257.AuthRetrofitClient>(
-      () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
-    );
+        () => _i649.BlocObserverService(gh<_i974.Logger>()));
+    gh.singleton<_i1048.AuthRetrofitClient>(
+        () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i1061.OccasionRetrofitClient>(
+        () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()));
+    gh.factory<_i73.OccasionRemoteDataSource>(() =>
+        _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()));
+    gh.factory<_i72.OccasionRepo>(() => _i835.OccasionRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i73.OccasionRemoteDataSource>(),
+        ));
+    gh.factory<_i1056.GetAllOccasionsUsecase>(
+        () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()));
     return this;
   }
 }
