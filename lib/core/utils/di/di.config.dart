@@ -16,6 +16,8 @@ import 'package:logger/logger.dart' as _i974;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
 import '../../../features/auth/data/api/auth_retorfit_client.dart' as _i257;
+import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
+    as _i393;
 import '../../../features/auth/data/data_source/contract/auth_remote_data_source.dart'
     as _i305;
 import '../../../features/auth/data/data_source/remote/auth_remote_data_source_impl.dart'
@@ -43,6 +45,7 @@ extension GetItInjectableX on _i174.GetIt {
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
+    gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
       () => dioModule.providerInterceptor(),
