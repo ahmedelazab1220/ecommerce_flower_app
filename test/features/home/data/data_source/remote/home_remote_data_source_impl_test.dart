@@ -9,6 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../../constants_test.dart';
+import '../../models/home_model_test.dart';
 import 'home_remote_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([HomeRetrofitClient])
@@ -17,16 +19,7 @@ void main() async {
   late HomeRemoteDataSourceImpl dataSource;
   late MockHomeRetrofitClient mockHomeRetrofitClient;
 
-  const String successMessage = "Success";
-  const String networkError = "Network error";
   const String type = 'type';
-  const String forbidden = 'Forbidden';
-  const String notFound = 'Not Found';
-  const String statusCode = 'statusCode';
-  const String unauthorized = 'Unauthorized';
-  const int unauthorizedStatusCode = 401;
-  const int forbiddenStatusCode = 403;
-  const int clientErrorStatusCode = 404;
 
   setUp(() {
     mockHomeRetrofitClient = MockHomeRetrofitClient();
@@ -38,13 +31,7 @@ void main() async {
       'should return HomeResponseDto when the call to the remote data source is successful',
       () async {
         // Arrange
-        final dummyHomeResponseDto = HomeResponseDto(
-          message: successMessage,
-          products: [],
-          categories: [],
-          bestSeller: [],
-          occasions: [],
-        );
+        final dummyHomeResponseDto = HomeModelTest.success();
 
         // Provide a dummy instance of HomeResponseDto
         provideDummy<HomeResponseDto>(dummyHomeResponseDto);
@@ -58,17 +45,17 @@ void main() async {
 
         // Assert
         expect(result, equals(dummyHomeResponseDto));
-        expect(result.message, equals(successMessage));
+        expect(result.message, equals(ConstantsTest.successMessage));
         verify(mockHomeRetrofitClient.getHomeData()).called(1);
         verifyNoMoreInteractions(mockHomeRetrofitClient);
       },
     );
 
     test('should throw an exception when the API call fails', () async {
-      // Arrange: Simulate API failure
+      // Arrange
       when(mockHomeRetrofitClient.getHomeData()).thenThrow(Exception());
 
-      // Act & Assert: Ensure an exception is thrown
+      // Act & Assert
       expect(() => dataSource.getHomeData(), throwsException);
       verify(mockHomeRetrofitClient.getHomeData()).called(1);
       verifyNoMoreInteractions(mockHomeRetrofitClient);
@@ -77,12 +64,12 @@ void main() async {
     test(
       'should throw a network error when there is a network failure (SocketException)',
       () async {
-        // Arrange: Simulate network failure
+        // Arrange
         when(
           mockHomeRetrofitClient.getHomeData(),
-        ).thenThrow(const SocketException(networkError));
+        ).thenThrow(const SocketException(ConstantsTest.networkError));
 
-        // Act & Assert: Ensure a SocketException is thrown
+        // Act & Assert
         expect(() => dataSource.getHomeData(), throwsA(isA<SocketException>()));
         verify(mockHomeRetrofitClient.getHomeData()).called(1);
         verifyNoMoreInteractions(mockHomeRetrofitClient);
@@ -92,7 +79,7 @@ void main() async {
     test(
       'should throw a timeout error when the API call takes longer than the timeout',
       () async {
-        // Arrange: Simulate network failure (connection timeout)
+        // Arrange
         when(mockHomeRetrofitClient.getHomeData()).thenThrow(
           DioException(
             requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
@@ -100,7 +87,7 @@ void main() async {
           ),
         );
 
-        // Act & Assert: Ensure a DioError is thrown with the expected type
+        // Act & Assert
         expect(
           () => dataSource.getHomeData(),
           throwsA(
@@ -121,20 +108,20 @@ void main() async {
     test(
       'should throw an error when the API call returns a forbidden error (403)',
       () async {
-        // Arrange: Simulate a forbidden error (403)
+        // Arrange
         when(mockHomeRetrofitClient.getHomeData()).thenThrow(
           DioException(
             requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
             response: Response(
               requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
-              statusCode: forbiddenStatusCode,
-              data: forbidden,
+              statusCode: ConstantsTest.forbiddenStatusCode,
+              data: ConstantsTest.forbidden,
             ),
             type: DioExceptionType.badResponse,
           ),
         );
 
-        // Act & Assert: Ensure a DioError is thrown with the expected type
+        // Act & Assert
         expect(
           () => dataSource.getHomeData(),
           throwsA(
@@ -161,8 +148,8 @@ void main() async {
             requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
             response: Response(
               requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
-              statusCode: clientErrorStatusCode,
-              data: notFound,
+              statusCode: ConstantsTest.clientErrorStatusCode,
+              data: ConstantsTest.notFound,
             ),
             type: DioExceptionType.badResponse,
           ),
@@ -174,8 +161,8 @@ void main() async {
           throwsA(
             isA<DioException>().having(
               (e) => e.response?.statusCode,
-              statusCode,
-              clientErrorStatusCode,
+              ConstantsTest.statusCode,
+              ConstantsTest.clientErrorStatusCode,
             ),
           ),
         );
@@ -195,8 +182,8 @@ void main() async {
             requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
             response: Response(
               requestOptions: RequestOptions(path: ApiConstants.homeTabRoute),
-              statusCode: unauthorizedStatusCode,
-              data: unauthorized,
+              statusCode: ConstantsTest.unauthorizedStatusCode,
+              data: ConstantsTest.unauthorized,
             ),
             type: DioExceptionType.badResponse,
           ),
@@ -208,8 +195,8 @@ void main() async {
           throwsA(
             isA<DioException>().having(
               (e) => e.response?.statusCode,
-              statusCode,
-              unauthorizedStatusCode,
+              ConstantsTest.statusCode,
+              ConstantsTest.unauthorizedStatusCode,
             ),
           ),
         );
@@ -223,23 +210,17 @@ void main() async {
     test(
       'should handle missing fields in the API response gracefully',
       () async {
-        // Arrange: Simulate an API response with missing fields (e.g., message)
-        final incompleteResponse = HomeResponseDto(
-          message: "",
-          products: [],
-          categories: [],
-          bestSeller: [],
-          occasions: [],
-        );
+        // Arrange
+        final incompleteResponse = HomeModelTest.empty();
 
-        when(mockHomeRetrofitClient.getHomeData()).thenAnswer(
-          (_) async => incompleteResponse, // Simulate incomplete response
-        );
+        when(
+          mockHomeRetrofitClient.getHomeData(),
+        ).thenAnswer((_) async => incompleteResponse);
 
         // Act
         final result = await dataSource.getHomeData();
 
-        // Assert: Ensure the result handles missing fields correctly
+        // Assert
         expect(result.message, isEmpty);
         expect(result.products, isEmpty);
         expect(result.categories, isEmpty);
