@@ -9,6 +9,7 @@ on:
     branches:
       - development
       - main
+  workflow_dispatch:
 
 jobs:
   lint:
