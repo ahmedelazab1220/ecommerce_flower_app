@@ -22,6 +22,13 @@ import '../../../features/categories/data/data_source/contract/categories_remote
     as _i691;
 import '../../../features/categories/data/data_source/remote/categories_remote_data_source_impl.dart'
     as _i939;
+import '../../../features/categories/data/repo_impl/categories_repo_impl.dart'
+    as _i427;
+import '../../../features/categories/domain/repo/categories_repo.dart' as _i781;
+import '../../../features/categories/domain/use_cases/get_categories_use_case.dart'
+    as _i1027;
+import '../../../features/categories/domain/use_cases/get_products_use_case.dart'
+    as _i752;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
@@ -67,6 +74,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i691.CategoriesRemoteDataSource>(() =>
         _i939.CategoriesRemoteDataSourceImpl(
             gh<_i619.CategoriesRetrofitClient>()));
+    gh.singleton<_i781.CategoriesRepo>(() => _i427.CategoriesRepoImpl(
+          gh<_i691.CategoriesRemoteDataSource>(),
+          gh<_i28.ApiManager>(),
+        ));
+    gh.singleton<_i1027.GetCategoriesUseCase>(
+        () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()));
+    gh.singleton<_i752.GetProductsUseCase>(
+        () => _i752.GetProductsUseCase(gh<_i781.CategoriesRepo>()));
     return this;
   }
 }
