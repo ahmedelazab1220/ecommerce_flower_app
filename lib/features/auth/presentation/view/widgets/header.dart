@@ -1,15 +1,12 @@
+import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ForgetPasswordHeader extends StatelessWidget {
+class Header extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const ForgetPasswordHeader({
-    super.key,
-    required this.title,
-    required this.subtitle,
-  });
+  const Header({super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class ForgetPasswordHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: Theme.of(
             context,
-          ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+          ).textTheme.bodyMedium?.copyWith(color: AppColors.gray),
         ),
         SizedBox(height: 32.h),
       ],

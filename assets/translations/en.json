@@ -30,6 +30,7 @@
   "EmailVerification": "Email verification",
   "PleaseEnterYourCodeThatSendToYourEmailAddress": "Please enter your code that send to your email address",
   "Resend": "Resend",
+  "ResendIn": "Resend in",
   "DidNotReceiveTheCode": "Didn't receive the code?",
   "InvalidCode": "Invalid code",
   "NewPassword": "New password",

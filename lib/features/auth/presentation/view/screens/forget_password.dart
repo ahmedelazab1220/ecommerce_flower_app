@@ -50,7 +50,7 @@ class ForgetPassword extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                ForgetPasswordHeader(
+                Header(
                   title: LocaleKeys.ForgetPassword.tr(),
                   subtitle:
                       LocaleKeys

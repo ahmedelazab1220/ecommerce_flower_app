@@ -48,7 +48,7 @@ class EmailVerification extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ForgetPasswordHeader(
+                Header(
                   title: LocaleKeys.EmailVerification.tr(),
                   subtitle:
                       LocaleKeys

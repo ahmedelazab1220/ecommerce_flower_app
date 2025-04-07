@@ -38,6 +38,7 @@ abstract class LocaleKeys {
   static const PleaseEnterYourCodeThatSendToYourEmailAddress =
       'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const Resend = 'Resend';
+  static const ResendIn = 'ResendIn';
   static const DidNotReceiveTheCode = 'DidNotReceiveTheCode';
   static const InvalidCode = 'InvalidCode';
   static const NewPassword = 'NewPassword';

@@ -34,6 +34,8 @@ import '../../../features/auth/presentation/view_model/forget_password_cubit.dar
     as _i504;
 import '../../../features/auth/presentation/view_model/reset_password_cubit.dart'
     as _i332;
+import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
+    as _i393;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -52,6 +54,7 @@ extension GetItInjectableX on _i174.GetIt {
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
+    gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
       () => dioModule.providerInterceptor(),

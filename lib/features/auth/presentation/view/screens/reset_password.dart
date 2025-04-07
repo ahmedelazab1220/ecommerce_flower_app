@@ -44,7 +44,7 @@ class ResetPassword extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                ForgetPasswordHeader(
+                Header(
                   title: LocaleKeys.ResetPassword.tr(),
                   subtitle: LocaleKeys.PasswordRequirements.tr(),
                 ),

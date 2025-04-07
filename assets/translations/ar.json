@@ -30,6 +30,7 @@
   "EmailVerification": "تحقق من البريد الالكتروني",
   "PleaseEnterYourCodeThatSendToYourEmailAddress": "يرجى ادخال الرمز الذي تم ارساله الى عنوان البريد الالكتروني الخاص بك",
   "Resend": "اعادة ارسال",
+  "ResendIn": "اعادة الارسال في",
   "DidNotReceiveTheCode": "لم تستلم الرمز؟",
   "InvalidCode": "رمز غير صالح",
   "NewPassword": "كلمة المرور الجديدة",

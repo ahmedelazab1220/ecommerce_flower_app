@@ -51,7 +51,7 @@ class VerificationCodeInput extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.white[60],
+                    color: AppColors.white[AppColors.colorCode60],
                     borderRadius: BorderRadius.circular(10).r,
                   ),
                 ),
@@ -63,7 +63,7 @@ class VerificationCodeInput extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFCC1010)),
+                    border: Border.all(color: AppColors.red),
                     borderRadius: BorderRadius.circular(10).r,
                   ),
                 ),

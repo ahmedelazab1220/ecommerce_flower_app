@@ -73,7 +73,7 @@ class _ResendCodeState extends State<ResendCode> {
                     ),
                   )
                   : Text(
-                    'Resend in ${countdown}s',
+                    '${LocaleKeys.ResendIn} ${countdown}s',
                     style: TextStyle(color: AppColors.gray, fontSize: 14.sp),
                   ),
         ),
