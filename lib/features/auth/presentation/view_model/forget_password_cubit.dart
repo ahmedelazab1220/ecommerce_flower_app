@@ -11,10 +11,10 @@ import 'forget_password_state.dart';
 
 @injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
-  final ForgetPasswordUsecase forgetPasswordUsecase;
+  final ForgetPasswordUsecase _forgetPasswordUsecase;
   final Validator validator;
 
-  ForgetPasswordCubit(this.forgetPasswordUsecase, this.validator)
+  ForgetPasswordCubit(this._forgetPasswordUsecase, this.validator)
     : super(ForgetPasswordState(baseState: BaseInitialState()));
 
   void doIntent(ForgetPasswordAction action) {
@@ -32,7 +32,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   Future<void> _forgetPassword() async {
     if (formKey.currentState!.validate()) {
       emit(state.copyWith(baseState: BaseLoadingState()));
-      final result = await forgetPasswordUsecase(
+      final result = await _forgetPasswordUsecase(
         ForgetPasswordRequestDto(email: emailController.text),
       );
       switch (result) {

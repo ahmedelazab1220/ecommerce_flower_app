@@ -14,13 +14,13 @@ import 'email_verification_state.dart';
 
 @injectable
 class EmailVerificationCubit extends Cubit<EmailVerificationState> {
-  final VerifyResetCodeUsecase verifyResetCodeUsecase;
-  final ForgetPasswordUsecase forgetPasswordUsecase;
+  final VerifyResetCodeUsecase _verifyResetCodeUsecase;
+  final ForgetPasswordUsecase _forgetPasswordUsecase;
   final Validator validator;
 
   EmailVerificationCubit(
-    this.verifyResetCodeUsecase,
-    this.forgetPasswordUsecase,
+    this._verifyResetCodeUsecase,
+    this._forgetPasswordUsecase,
     this.validator,
   ) : super(EmailVerificationState(baseState: BaseInitialState()));
 
@@ -40,7 +40,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
 
   Future<void> _verifyResetCode() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await verifyResetCodeUsecase(
+    final result = await _verifyResetCodeUsecase(
       VerifyResetCodeRequestDto(resetCode: pinController.text),
     );
     switch (result) {
@@ -65,7 +65,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       ),
     );
     pinController.clear();
-    final result = await forgetPasswordUsecase(
+    final result = await _forgetPasswordUsecase(
       ForgetPasswordRequestDto(email: email),
     );
     switch (result) {

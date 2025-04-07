@@ -10,28 +10,28 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  final AuthRetrofitClient authRetrofitClient;
+  final AuthRetrofitClient _authRetrofitClient;
 
-  AuthRemoteDataSourceImpl(this.authRetrofitClient);
+  AuthRemoteDataSourceImpl(this._authRetrofitClient);
 
   @override
   Future<ForgetPasswordResponseDto> forgetPassword(
     ForgetPasswordRequestDto forgetPasswordRequestDto,
   ) async {
-    return await authRetrofitClient.forgetPassword(forgetPasswordRequestDto);
+    return await _authRetrofitClient.forgetPassword(forgetPasswordRequestDto);
   }
 
   @override
   Future<ResetPasswordResponseDto> resetPassword(
     ResetPasswordRequestDto resetPasswordRequestDto,
   ) async {
-    return await authRetrofitClient.resetPassword(resetPasswordRequestDto);
+    return await _authRetrofitClient.resetPassword(resetPasswordRequestDto);
   }
 
   @override
   Future<VerifyResetCodeResponseDto> verifyResetCode(
     VerifyResetCodeRequestDto verifyResetCodeRequestDto,
   ) async {
-    return await authRetrofitClient.verifyResetCode(verifyResetCodeRequestDto);
+    return await _authRetrofitClient.verifyResetCode(verifyResetCodeRequestDto);
   }
 }
