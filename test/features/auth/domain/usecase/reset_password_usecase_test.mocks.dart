@@ -42,55 +42,48 @@ class MockAuthRepo extends _i1.Mock implements _i2.AuthRepo {
 
   @override
   _i3.Future<_i4.Result<void>> forgetPassword(
-          _i5.ForgetPasswordRequestDto? forgetPasswordRequestDto) =>
+    _i5.ForgetPasswordRequestDto? forgetPasswordRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #forgetPassword,
-          [forgetPasswordRequestDto],
-        ),
-        returnValue:
-            _i3.Future<_i4.Result<void>>.value(_i6.dummyValue<_i4.Result<void>>(
-          this,
-          Invocation.method(
-            #forgetPassword,
-            [forgetPasswordRequestDto],
-          ),
-        )),
-      ) as _i3.Future<_i4.Result<void>>);
+            Invocation.method(#forgetPassword, [forgetPasswordRequestDto]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#forgetPassword, [forgetPasswordRequestDto]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
 
   @override
   _i3.Future<_i4.Result<void>> verifyResetCode(
-          _i7.VerifyResetCodeRequestDto? verifyResetCodeRequestDto) =>
+    _i7.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #verifyResetCode,
-          [verifyResetCodeRequestDto],
-        ),
-        returnValue:
-            _i3.Future<_i4.Result<void>>.value(_i6.dummyValue<_i4.Result<void>>(
-          this,
-          Invocation.method(
-            #verifyResetCode,
-            [verifyResetCodeRequestDto],
-          ),
-        )),
-      ) as _i3.Future<_i4.Result<void>>);
+            Invocation.method(#verifyResetCode, [verifyResetCodeRequestDto]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#verifyResetCode, [
+                  verifyResetCodeRequestDto,
+                ]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
 
   @override
   _i3.Future<_i4.Result<void>> resetPassword(
-          _i8.ResetPasswordRequestDto? resetPasswordRequestDto) =>
+    _i8.ResetPasswordRequestDto? resetPasswordRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #resetPassword,
-          [resetPasswordRequestDto],
-        ),
-        returnValue:
-            _i3.Future<_i4.Result<void>>.value(_i6.dummyValue<_i4.Result<void>>(
-          this,
-          Invocation.method(
-            #resetPassword,
-            [resetPasswordRequestDto],
-          ),
-        )),
-      ) as _i3.Future<_i4.Result<void>>);
+            Invocation.method(#resetPassword, [resetPasswordRequestDto]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#resetPassword, [resetPasswordRequestDto]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
 }

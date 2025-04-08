@@ -15,7 +15,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final Validator validator;
 
   ForgetPasswordCubit(this._forgetPasswordUsecase, this.validator)
-    : super(ForgetPasswordState(baseState: BaseInitialState()));
+      : super(ForgetPasswordState(baseState: BaseInitialState()));
 
   void doIntent(ForgetPasswordAction action) {
     switch (action) {
