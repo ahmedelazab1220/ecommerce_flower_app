@@ -27,6 +27,10 @@ import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
 import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
 import '../../../features/occasions/domain/usecase/get_all_occasions_usecase.dart'
     as _i1056;
+import '../../../features/occasions/domain/usecase/get_products_by_id_usecase.dart'
+    as _i619;
+import '../../../features/occasions/presentation/view_model/occasion_cubit.dart'
+    as _i41;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -72,6 +76,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1056.GetAllOccasionsUsecase>(
         () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()));
+    gh.factory<_i619.GetProductsByIdUsecase>(
+        () => _i619.GetProductsByIdUsecase(gh<_i72.OccasionRepo>()));
+    gh.factory<_i41.OccasionCubit>(() => _i41.OccasionCubit(
+          gh<_i1056.GetAllOccasionsUsecase>(),
+          gh<_i619.GetProductsByIdUsecase>(),
+        ));
     return this;
   }
 }

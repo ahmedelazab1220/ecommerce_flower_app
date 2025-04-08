@@ -88,6 +88,6 @@ class Occasions {
   }
 
   OccasionEntity toEntity() {
-    return OccasionEntity(name: name);
+    return OccasionEntity(id: Id, name: name);
   }
 }

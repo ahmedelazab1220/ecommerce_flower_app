@@ -6,7 +6,8 @@ class OccasionsEntity {
 }
 
 class OccasionEntity {
+  String? id;
   String? name;
 
-  OccasionEntity({this.name});
+  OccasionEntity({this.id, this.name});
 }

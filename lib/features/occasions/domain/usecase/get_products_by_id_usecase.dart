@@ -1,8 +1,10 @@
 import 'package:ecommerce_flower_app/features/occasions/domain/repo/occasion_repo.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../entity/products_entity.dart';
 
+@injectable
 class GetProductsByIdUsecase {
   final OccasionRepo _occasionRepo;
 
