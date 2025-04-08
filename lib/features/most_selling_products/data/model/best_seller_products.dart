@@ -24,7 +24,7 @@ class BestSellerProducts {
 @JsonSerializable()
 class BestSellerProduct {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "title")
   final String? title;
   @JsonKey(name: "slug")
@@ -60,10 +60,10 @@ class BestSellerProduct {
   @JsonKey(name: "rateCount")
   final int? rateCount;
   @JsonKey(name: "id")
-  final String? id;
+  final String? productId;
 
   BestSellerProduct({
-    this.Id,
+    this.id,
     this.title,
     this.slug,
     this.description,
@@ -81,7 +81,7 @@ class BestSellerProduct {
     this.sold,
     this.rateAvg,
     this.rateCount,
-    this.id,
+    this.productId,
   });
 
   factory BestSellerProduct.fromJson(Map<String, dynamic> json) {

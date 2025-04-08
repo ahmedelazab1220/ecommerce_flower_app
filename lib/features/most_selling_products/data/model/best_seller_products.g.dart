@@ -9,9 +9,12 @@ part of 'best_seller_products.dart';
 BestSellerProducts _$BestSellerProductsFromJson(Map<String, dynamic> json) =>
     BestSellerProducts(
       message: json['message'] as String?,
-      bestSeller: (json['bestSeller'] as List<dynamic>?)
-          ?.map((e) => BestSellerProduct.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      bestSeller:
+          (json['bestSeller'] as List<dynamic>?)
+              ?.map(
+                (e) => BestSellerProduct.fromJson(e as Map<String, dynamic>),
+              )
+              .toList(),
     );
 
 Map<String, dynamic> _$BestSellerProductsToJson(BestSellerProducts instance) =>
@@ -22,7 +25,7 @@ Map<String, dynamic> _$BestSellerProductsToJson(BestSellerProducts instance) =>
 
 BestSellerProduct _$BestSellerProductFromJson(Map<String, dynamic> json) =>
     BestSellerProduct(
-      Id: json['_id'] as String?,
+      id: json['_id'] as String?,
       title: json['title'] as String?,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
@@ -41,12 +44,12 @@ BestSellerProduct _$BestSellerProductFromJson(Map<String, dynamic> json) =>
       sold: (json['sold'] as num?)?.toInt(),
       rateAvg: (json['rateAvg'] as num?)?.toDouble(),
       rateCount: (json['rateCount'] as num?)?.toInt(),
-      id: json['id'] as String?,
+      productId: json['id'] as String?,
     );
 
 Map<String, dynamic> _$BestSellerProductToJson(BestSellerProduct instance) =>
     <String, dynamic>{
-      '_id': instance.Id,
+      '_id': instance.id,
       'title': instance.title,
       'slug': instance.slug,
       'description': instance.description,
@@ -64,5 +67,5 @@ Map<String, dynamic> _$BestSellerProductToJson(BestSellerProduct instance) =>
       'sold': instance.sold,
       'rateAvg': instance.rateAvg,
       'rateCount': instance.rateCount,
-      'id': instance.id,
+      'id': instance.productId,
     };

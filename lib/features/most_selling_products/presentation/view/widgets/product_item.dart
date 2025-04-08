@@ -10,7 +10,7 @@ import '../../../../../core/utils/l10n/locale_keys.g.dart';
 class ProductItem extends StatelessWidget {
   final BestSellerProductEntity productEntity;
 
-  const ProductItem({Key? key, required this.productEntity}) : super(key: key);
+  const ProductItem({super.key, required this.productEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class ProductItem extends StatelessWidget {
             Container(
               height: 130,
               width: double.infinity,
-              decoration: BoxDecoration(color: AppColors.lightPink),
+              decoration: const BoxDecoration(color: AppColors.lightPink),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.5),
+                padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
                   child: Image.network(
                     productEntity.imgCover,
@@ -38,9 +38,9 @@ class ProductItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 21.5),
+              padding: const EdgeInsets.symmetric(horizontal: 21.5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +65,6 @@ class ProductItem extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      // Discount percentage
                       Text(
                         '${productEntity.discount}%',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -77,13 +76,15 @@ class ProductItem extends StatelessWidget {
                 ],
               ),
             ),
-
             ElevatedButton.icon(
               onPressed: () {},
               label: Text(LocaleKeys.AddToCart.tr()),
               icon: SvgPicture.asset(
                 AppIcons.shoppingCartSvg,
-                colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                colorFilter: const ColorFilter.mode(
+                  AppColors.white,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ],

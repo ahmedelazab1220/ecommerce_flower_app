@@ -30,14 +30,14 @@ class BestSellers extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: BlocProvider(
           create:
               (context) => bestSellerCubit..doIntent(BestSellerRequestAction()),
           child: BlocBuilder<BestSellerCubit, BestSellerState>(
             builder: (context, state) {
               if (state.baseState is BaseLoadingState) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
               if (state.baseState
                   is BaseSuccessState<List<BestSellerProductEntity>>) {
