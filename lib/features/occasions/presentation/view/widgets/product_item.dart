@@ -8,7 +8,7 @@ import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../domain/entity/products_entity.dart';
 
 class ProductItem extends StatelessWidget {
-  final ProductsEntity productEntity;
+  final ProductEntity? productEntity;
 
   const ProductItem({Key? key, required this.productEntity}) : super(key: key);
 
@@ -32,7 +32,7 @@ class ProductItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
                   child: Image.network(
-                    productEntity.products?[0].imgCover ?? "",
+                    productEntity!.imgCover ?? "",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,7 +45,7 @@ class ProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productEntity.products?[0].title ?? "",
+                    productEntity!.title ?? "",
                     style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -53,12 +53,12 @@ class ProductItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'EGP ${productEntity.products?[0].priceAfterDiscount ?? ""}',
+                        'EGP ${productEntity!.priceAfterDiscount ?? ""}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        '${productEntity.products?[0].price ?? ""}',
+                        '${productEntity!.price ?? ""}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.gray,
                           decoration: TextDecoration.lineThrough,
@@ -67,7 +67,7 @@ class ProductItem extends StatelessWidget {
                       const SizedBox(width: 6),
                       // Discount percentage
                       Text(
-                        '${productEntity.products?[0].discount ?? ""}%',
+                        '${productEntity!.discount ?? ""}%',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.successGreen,
                         ),

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flower_app/features/occasions/domain/entity/products_entity.dart';
 import 'package:ecommerce_flower_app/features/occasions/domain/usecase/get_products_by_id_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
@@ -18,12 +19,14 @@ class OccasionCubit extends Cubit<OccasionState> {
   final GetProductsByIdUsecase _getProductsByIdUsecase;
 
   List<OccasionEntity>? occasions;
-  List<ProductEntity>? products;
+  List<ProductEntity>? products = [];
+
+  List<Tab>? myTabs = [];
 
   OccasionCubit(this._getAllOccasionsUsecase, this._getProductsByIdUsecase)
     : super(OccasionState(baseState: BaseInitialState()));
 
-  Future<void> getAllOccasions() async {
+  Future<void> _getAllOccasions() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _getAllOccasionsUsecase.call();
     switch (result) {
@@ -31,6 +34,11 @@ class OccasionCubit extends Cubit<OccasionState> {
         emit(state.copyWith(baseState: BaseSuccessState()));
         occasions = result.data.occasions;
         Logger().f("Occasions: $occasions");
+        myTabs =
+            occasions?.map((occasion) {
+              return Tab(text: occasion.name);
+            }).toList();
+        Logger().f("Tabs: $myTabs");
       case FailureResult<OccasionsEntity>():
         emit(
           state.copyWith(
@@ -42,7 +50,7 @@ class OccasionCubit extends Cubit<OccasionState> {
     }
   }
 
-  Future<void> getProductsById(String occasionId) async {
+  Future<void> _getProductsById(String occasionId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _getProductsByIdUsecase.call(occasionId);
     switch (result) {
@@ -64,7 +72,9 @@ class OccasionCubit extends Cubit<OccasionState> {
   void doIntent(OccasionAction action) async {
     switch (action) {
       case OccasionRequestAction():
-        getAllOccasions();
+        _getAllOccasions();
+      case ProductsRequestAction():
+        _getProductsById(action.occasionId);
     }
   }
 }

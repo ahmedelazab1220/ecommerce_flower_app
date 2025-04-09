@@ -16,3 +16,9 @@ class OccasionState extends Equatable {
 sealed class OccasionAction {}
 
 class OccasionRequestAction extends OccasionAction {}
+
+class ProductsRequestAction extends OccasionAction {
+  final String occasionId;
+
+  ProductsRequestAction(this.occasionId);
+}
