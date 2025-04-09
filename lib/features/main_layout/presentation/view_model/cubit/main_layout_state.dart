@@ -8,8 +8,10 @@ final class ScreenChangedState extends MainLayoutState {}
 
 sealed class MainLayoutActions {}
 
-final class ChangeSelectedIndex extends MainLayoutActions {
-  final int selectedIndex;
+final class ChangeSelectedTab extends MainLayoutActions {
+  final MainLayoutTabs selectedTab;
 
-  ChangeSelectedIndex(this.selectedIndex);
+  ChangeSelectedTab(this.selectedTab);
 }
+
+enum MainLayoutTabs { home, categories, cart, profile }
