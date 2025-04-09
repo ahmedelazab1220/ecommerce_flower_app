@@ -129,7 +129,7 @@ class _LocationContainerState extends State<LocationContainer>
                               color: AppColors.black[AppColors.colorCode50],
                               fontSize: FontResponsive.getResponsiveFontSize(
                                 context: context,
-                                fontSize: 21,
+                                fontSize: 20,
                               ),
                             ),
                             children: [
@@ -141,7 +141,7 @@ class _LocationContainerState extends State<LocationContainer>
                                   fontSize:
                                       FontResponsive.getResponsiveFontSize(
                                         context: context,
-                                        fontSize: 24,
+                                        fontSize: 21,
                                       ),
                                 ),
                               ),
