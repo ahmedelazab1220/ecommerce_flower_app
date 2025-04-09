@@ -19,6 +19,11 @@ class OccasionListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = BlocProvider.of<HomeCubit>(context);
+    var occasionNames =
+        occasions
+            .takeWhile((element) => element.name != null)
+            .map((element) => element.name)
+            .toList();
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -32,6 +37,7 @@ class OccasionListItems extends StatelessWidget {
                   viewModel.doIntent(
                     NavigateToOccasionsScreenAction(
                       routeName: AppRoutes.occasionRoute,
+                      arguments: occasionNames,
                     ),
                   );
                 },
@@ -54,6 +60,7 @@ class OccasionListItems extends StatelessWidget {
                       (context, index) => OccasionItem(
                         occasionEntity:
                             occasions.isEmpty ? null : occasions[index],
+                        occasionNames: occasionNames,
                       ),
                 ),
               ),

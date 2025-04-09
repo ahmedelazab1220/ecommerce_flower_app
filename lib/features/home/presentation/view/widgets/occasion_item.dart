@@ -15,9 +15,14 @@ import '../../../domain/entity/occasion_entity.dart';
 import '../../view_model/home_cubit.dart';
 
 class OccasionItem extends StatelessWidget {
-  const OccasionItem({super.key, required this.occasionEntity});
+  const OccasionItem({
+    super.key,
+    required this.occasionEntity,
+    required this.occasionNames,
+  });
 
   final OccasionEntity? occasionEntity;
+  final List<String?> occasionNames;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,10 @@ class OccasionItem extends StatelessWidget {
           viewModel.doIntent(
             NavigateToOccasionsScreenAction(
               routeName: AppRoutes.occasionRoute,
-              arguments: occasionEntity?.id,
+              arguments: {
+                'occasionId': occasionEntity?.id,
+                'occasionFilters': occasionNames,
+              },
             ),
           );
         },

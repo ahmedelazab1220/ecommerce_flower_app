@@ -19,6 +19,11 @@ class CategoryListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = BlocProvider.of<HomeCubit>(context);
+    var categoryNames =
+        categories
+            .takeWhile((element) => element.name != null)
+            .map((element) => element.name)
+            .toList();
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,6 +37,7 @@ class CategoryListItems extends StatelessWidget {
                   viewModel.doIntent(
                     NavigateToCategoriesScreenAction(
                       routeName: AppRoutes.categoriesRoute,
+                      arguments: categoryNames,
                     ),
                   );
                 },
@@ -54,6 +60,7 @@ class CategoryListItems extends StatelessWidget {
                       (context, index) => CategoryItem(
                         categoryEntity:
                             categories.isEmpty ? null : categories[index],
+                        categoryNames: categoryNames,
                       ),
                 ),
               ),

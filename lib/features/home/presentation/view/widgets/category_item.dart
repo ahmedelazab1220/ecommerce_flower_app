@@ -14,9 +14,14 @@ import '../../../domain/entity/category_entity.dart';
 import '../../view_model/home_cubit.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key, required this.categoryEntity});
+  const CategoryItem({
+    super.key,
+    required this.categoryEntity,
+    required this.categoryNames,
+  });
 
   final CategoryEntity? categoryEntity;
+  final List<String?> categoryNames;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,10 @@ class CategoryItem extends StatelessWidget {
           viewModel.doIntent(
             NavigateToCategoriesScreenAction(
               routeName: AppRoutes.categoriesRoute,
-              arguments: categoryEntity!.id,
+              arguments: {
+                'categoryId': categoryEntity!.id,
+                'categoryFilters': categoryNames,
+              },
             ),
           );
         },
