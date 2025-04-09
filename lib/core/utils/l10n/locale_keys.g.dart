@@ -177,6 +177,14 @@ abstract class  LocaleKeys {
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
+  static const FetchingYourLocation = 'FetchingYourLocation';
+  static const RequestingPermission = 'RequestingPermission';
+  static const PleaseEnableLocation = 'PleaseEnableLocation';
+  static const LocationTurnOff = 'LocationTurnOff';
+  static const GettingYourCurrentAddress = 'GettingYourCurrentAddress';
+  static const UnableToGetLocation = 'UnableToGetLocation';
+  static const Long = 'Long';
+  static const Lat = 'Lat';
   static const NoProductsAvailable = 'NoProductsAvailable';
   static const Egp = 'Egp';
   static const all = 'all';
