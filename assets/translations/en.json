@@ -41,7 +41,7 @@
     "Cart": "Cart",
     "Profile": "Profile",
     "DiscoverSomethingNow": "Discover something now",
-    "ViewAll": "view All",
+    "ViewAll": "View All",
     "Sunny": "Sunny",
     "RedRose": "Red roses",
     "Flowers": "Flowers",
@@ -172,5 +172,13 @@
     "NameCannotBeEmpty": "Name cann't be empty",
     "InvalidName": "Please enter a valid name without special characters.",
     "PhoneNumberCannotBeEmpty": "Phone number cannot be empty",
-    "InvalidPhoneNumber": "Invalid number format. Ensure it starts with 010, 011, 012, or 015 and has 11 digits."
+    "InvalidPhoneNumber": "Invalid number format. Ensure it starts with 010, 011, 012, or 015 and has 11 digits.",
+    "FetchingYourLocation": "🔍 Fetching your location...",
+    "RequestingPermission": "⚠️ Location permission is needed. Please allow access.",
+    "PleaseEnableLocation": "⚙️ Please enable location services to continue.",
+    "LocationTurnOff": "📍 Location is off. Turn it on and try again.",
+    "GettingYourCurrentAddress": "🔄 Getting your current address...",
+    "UnableToGetLocation": "❌ Unable to get location. Please try again.",
+    "Long": "Long",
+    "Lat": "Lat"
 }

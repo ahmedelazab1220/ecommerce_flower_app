@@ -7,6 +7,10 @@ class AppRoutes {
 
   static const String initialRoute = '/';
   static const String mainLayoutRoute = '/main-layout';
+  static const String productDetailsRoute = '/product-details';
+  static const String bestSellerRoute = '/best-seller';
+  static const String categoriesRoute = '/categories';
+  static const String occasionRoute = '/occasion';
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     mainLayoutRoute: (context) => const MainLayout(),
