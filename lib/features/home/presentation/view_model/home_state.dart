@@ -26,3 +26,31 @@ class HomeState extends Equatable {
 sealed class HomeAction {}
 
 final class GetHomeDataAction extends HomeAction {}
+
+final class GetLocation extends HomeAction {}
+
+final class NavigateToBestSellerScreenAction extends HomeAction {
+  final String routeName;
+  NavigateToBestSellerScreenAction({required this.routeName});
+}
+
+final class NavigateToProductDetailsScreenAction extends HomeAction {
+  final String routeName;
+  final dynamic arguments;
+  NavigateToProductDetailsScreenAction({
+    required this.routeName,
+    this.arguments,
+  });
+}
+
+final class NavigateToCategoriesScreenAction extends HomeAction {
+  final String routeName;
+  final dynamic arguments;
+  NavigateToCategoriesScreenAction({required this.routeName, this.arguments});
+}
+
+final class NavigateToOccasionsScreenAction extends HomeAction {
+  final String routeName;
+  final dynamic arguments;
+  NavigateToOccasionsScreenAction({required this.routeName, this.arguments});
+}
