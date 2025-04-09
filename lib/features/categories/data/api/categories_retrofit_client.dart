@@ -11,8 +11,7 @@ part 'categories_retrofit_client.g.dart';
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class CategoriesRetrofitClient {
   @factoryMethod
-  factory CategoriesRetrofitClient(Dio dio, {String baseUrl}) =
-      _CategoriesRetrofitClient;
+  factory CategoriesRetrofitClient(Dio dio) = _CategoriesRetrofitClient;
 
   @GET(ApiConstants.categoriesRoute)
   Future<CategoriesResponse> getCategories();
