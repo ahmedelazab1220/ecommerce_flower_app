@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../cart/presentation/view/cart_screen.dart';
-import '../../../../categories/presentation/view/categories_screen.dart';
+import '../../../../categories/presentation/view/screens/categories_screen.dart';
 import '../../../../home/presentation/view/home_screen.dart';
 import '../../../../profile/presentation/view/profile_screen.dart';
 
