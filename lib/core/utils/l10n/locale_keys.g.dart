@@ -177,6 +177,8 @@ abstract class  LocaleKeys {
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
-  static const NoAvailableProducts = 'NoAvailableProducts';
+  static const NoProductsAvailable = 'NoProductsAvailable';
+  static const Egp = 'Egp';
+  static const all = 'all';
 
 }

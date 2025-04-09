@@ -3,7 +3,7 @@ import 'package:ecommerce_flower_app/features/categories/domain/entities/categor
 import 'package:ecommerce_flower_app/features/categories/domain/repo/categories_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class GetCategoriesUseCase {
   final CategoriesRepo _repository;
 

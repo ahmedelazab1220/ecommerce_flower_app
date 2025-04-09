@@ -6,8 +6,8 @@ part 'products_response.g.dart';
 
 @JsonSerializable()
 class ProductsResponse {
-  final String message;
-  final List<Product> products;
+  final String? message;
+  final List<Product>? products;
 
   const ProductsResponse({required this.message, required this.products});
 

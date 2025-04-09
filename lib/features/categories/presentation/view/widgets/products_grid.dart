@@ -22,7 +22,7 @@ class ProductsGrid extends StatelessWidget {
         } else if (productState is BaseSuccessState<List<ProductEntity>>) {
           final products = productState.data;
           return products!.isEmpty
-              ? Center(child: Text(LocaleKeys.NoAvailableProducts.tr()))
+              ? Center(child: Text(LocaleKeys.NoProductsAvailable.tr()))
               : GridView.builder(
                 itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

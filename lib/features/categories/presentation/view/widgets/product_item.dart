@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
                   children: [
                     Center(
                       child: Text(
-                        'EGP ${product.priceAfterDiscount}',
+                        '${LocaleKeys.EGP.tr()} ${product.priceAfterDiscount}',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ),

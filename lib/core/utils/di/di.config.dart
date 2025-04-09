@@ -77,11 +77,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i691.CategoriesRemoteDataSource>(),
           gh<_i28.ApiManager>(),
         ));
-    gh.singleton<_i1027.GetCategoriesUseCase>(
+    gh.factory<_i1027.GetCategoriesUseCase>(
         () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()));
-    gh.singleton<_i752.GetProductsUseCase>(
+    gh.factory<_i752.GetProductsUseCase>(
         () => _i752.GetProductsUseCase(gh<_i781.CategoriesRepo>()));
-    gh.singleton<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
+    gh.factory<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
           gh<_i1027.GetCategoriesUseCase>(),
           gh<_i752.GetProductsUseCase>(),
         ));

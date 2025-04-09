@@ -13,7 +13,7 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   @override
   Future<List<Category>> getCategories() async {
     final response = await _categoriesRetrofitClient.getCategories();
-    return response.categories;
+    return response.categories ?? [];
   }
 
   @override
@@ -21,6 +21,6 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
     final response = await _categoriesRetrofitClient.getProductsByCategory(
       categoryId: categoryId,
     );
-    return response.products;
+    return response.products ?? [];
   }
 }

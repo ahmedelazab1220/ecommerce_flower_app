@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
+import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/entities/category_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/entities/product_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
@@ -9,11 +11,12 @@ import 'package:ecommerce_flower_app/features/categories/presentation/view_model
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class CategoriesCubit extends Cubit<CategoriesState> {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetProductsUseCase _getProductsUseCase;
-
+  final String all = LocaleKeys.all.tr();
+  late List<CategoryEntity> categories;
   CategoriesCubit(this._getCategoriesUseCase, this._getProductsUseCase)
     : super(
         CategoriesState(
@@ -21,12 +24,14 @@ class CategoriesCubit extends Cubit<CategoriesState> {
           getProductsState: BaseInitialState(),
           selectedTabIndex: 0,
         ),
-      );
-  List<CategoryEntity> categories = [CategoryEntity(name: "All")];
+      ) {
+    categories = [CategoryEntity(name: all)];
+  }
 
   void _changeCategory(int index) {
-    emit(state.copyWith(selectedTabIndex: index));
+    if (index < 0 || index >= categories.length) return;
 
+    emit(state.copyWith(selectedTabIndex: index));
     final selectedCategoryId = index == 0 ? null : categories[index].id;
     doIntent(GetProductsIntent(categoryId: selectedCategoryId));
   }
