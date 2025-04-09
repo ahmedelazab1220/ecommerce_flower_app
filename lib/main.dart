@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         routes: AppRoutes.routes,
         theme: AppTheme.appTheme,
         // initialRoute: AppRoutes.mainLayoutRoute,
-        home: OccasionScreen(),
+        home: const OccasionScreen(),
       ),
     );
   }

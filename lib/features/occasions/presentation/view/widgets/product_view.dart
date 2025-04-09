@@ -1,4 +1,3 @@
-import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/features/occasions/presentation/view/widgets/product_item.dart';
 import 'package:ecommerce_flower_app/features/occasions/presentation/view_model/occasion_cubit.dart';
 import 'package:flutter/material.dart';
