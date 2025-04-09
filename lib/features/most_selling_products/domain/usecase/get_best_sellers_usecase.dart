@@ -6,11 +6,11 @@ import '../repo/best_seller_repo.dart';
 
 @injectable
 class GetBestSellersUsecase {
-  final BestSellerRepo bestSellerRepo;
+  final BestSellerRepo _bestSellerRepo;
 
-  GetBestSellersUsecase({required this.bestSellerRepo});
+  GetBestSellersUsecase(this._bestSellerRepo);
 
   Future<Result<List<BestSellerProductEntity>>> call() async {
-    return await bestSellerRepo.getBestSellers();
+    return await _bestSellerRepo.getBestSellers();
   }
 }

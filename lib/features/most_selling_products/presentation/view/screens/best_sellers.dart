@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/features/most_selling_products/presentation/view/widgets/product_item.dart';
 import 'package:ecommerce_flower_app/features/most_selling_products/presentation/view_model/best_seller_cubit.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,14 @@ class BestSellers extends StatelessWidget {
                     (state.baseState
                             as BaseSuccessState<List<BestSellerProductEntity>>)
                         .data;
+                if (products == null || products.isEmpty) {
+                  return Center(
+                    child: Text(
+                      LocaleKeys.NoProducts.tr(),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                }
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -52,19 +61,19 @@ class BestSellers extends StatelessWidget {
                     mainAxisSpacing: 17,
                     childAspectRatio: 0.8,
                   ),
-                  itemCount: products!.length,
+                  itemCount: products.length,
                   itemBuilder: (context, index) {
                     final product = products[index];
                     return ProductItem(productEntity: product);
                   },
                 );
+              } else if (state.baseState is BaseErrorState) {
+                AppDialogs.showFailureDialog(
+                  context,
+                  message: (state.baseState as BaseErrorState).errorMessage,
+                );
               }
-              return Center(
-                child: Text(
-                  (state.baseState as BaseErrorState).errorMessage,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              );
+              return const SizedBox.shrink();
             },
           ),
         ),

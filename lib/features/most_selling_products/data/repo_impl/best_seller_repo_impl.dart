@@ -8,14 +8,14 @@ import '../data_source/contract/best_seller_remote_data_source.dart';
 @Injectable(as: BestSellerRepo)
 class BestSellerRepoImpl implements BestSellerRepo {
   final ApiManager _apiManager = ApiManager();
-  final BestSellerRemoteDataSource bestSellerRemoteDataSource;
+  final BestSellerRemoteDataSource _bestSellerRemoteDataSource;
 
-  BestSellerRepoImpl({required this.bestSellerRemoteDataSource});
+  BestSellerRepoImpl(this._bestSellerRemoteDataSource);
 
   @override
   Future<Result<List<BestSellerProductEntity>>> getBestSellers() async {
     return await _apiManager.execute(() async {
-      final response = await bestSellerRemoteDataSource.getBestSellers();
+      final response = await _bestSellerRemoteDataSource.getBestSellers();
       return response.bestSeller!.map((e) => e.toEntity()).toList();
     });
   }

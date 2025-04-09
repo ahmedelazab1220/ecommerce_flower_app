@@ -32,7 +32,7 @@ class ProductItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
                   child: Image.network(
-                    productEntity.imgCover,
+                    productEntity.imgCover ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,7 +45,7 @@ class ProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productEntity.title,
+                    productEntity.title ?? '',
                     style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -53,7 +53,7 @@ class ProductItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'EGP ${productEntity.priceAfterDiscount}',
+                        '${LocaleKeys.EGP.tr()} ${productEntity.priceAfterDiscount}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(width: 6),

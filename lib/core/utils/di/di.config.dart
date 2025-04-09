@@ -72,18 +72,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i488.BestSellerRemoteDataSource>(
       () => _i461.BestSellerRemoteDataSourceImpl(
-        bestSellerRetrofitClient: gh<_i821.BestSellerRetrofitClient>(),
+        gh<_i821.BestSellerRetrofitClient>(),
       ),
     );
     gh.factory<_i58.BestSellerRepo>(
-      () => _i688.BestSellerRepoImpl(
-        bestSellerRemoteDataSource: gh<_i488.BestSellerRemoteDataSource>(),
-      ),
+      () => _i688.BestSellerRepoImpl(gh<_i488.BestSellerRemoteDataSource>()),
     );
     gh.factory<_i109.GetBestSellersUsecase>(
-      () => _i109.GetBestSellersUsecase(
-        bestSellerRepo: gh<_i58.BestSellerRepo>(),
-      ),
+      () => _i109.GetBestSellersUsecase(gh<_i58.BestSellerRepo>()),
     );
     gh.factory<_i190.BestSellerCubit>(
       () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()),

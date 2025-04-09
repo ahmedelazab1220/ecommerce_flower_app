@@ -1,9 +1,9 @@
 class BestSellerProductEntity {
-  final String title;
-  final String imgCover;
-  final int price;
-  final int priceAfterDiscount;
-  final int discount;
+  final String? title;
+  final String? imgCover;
+  final int? price;
+  final int? priceAfterDiscount;
+  final int? discount;
 
   BestSellerProductEntity({
     required this.title,

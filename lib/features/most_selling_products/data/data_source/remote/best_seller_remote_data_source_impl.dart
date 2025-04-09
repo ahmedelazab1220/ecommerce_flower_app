@@ -6,12 +6,12 @@ import '../../model/best_seller_products.dart';
 
 @Injectable(as: BestSellerRemoteDataSource)
 class BestSellerRemoteDataSourceImpl implements BestSellerRemoteDataSource {
-  final BestSellerRetrofitClient bestSellerRetrofitClient;
+  final BestSellerRetrofitClient _bestSellerRetrofitClient;
 
-  BestSellerRemoteDataSourceImpl({required this.bestSellerRetrofitClient});
+  BestSellerRemoteDataSourceImpl(this._bestSellerRetrofitClient);
 
   @override
   Future<BestSellerProducts> getBestSellers() async {
-    return await bestSellerRetrofitClient.getBestSellers();
+    return await _bestSellerRetrofitClient.getBestSellers();
   }
 }

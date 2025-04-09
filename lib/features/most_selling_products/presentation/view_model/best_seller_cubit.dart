@@ -9,9 +9,9 @@ import 'best_seller_state.dart';
 
 @injectable
 class BestSellerCubit extends Cubit<BestSellerState> {
-  final GetBestSellersUsecase getBestSellersUsecase;
+  final GetBestSellersUsecase _getBestSellersUsecase;
 
-  BestSellerCubit(this.getBestSellersUsecase)
+  BestSellerCubit(this._getBestSellersUsecase)
     : super(BestSellerState(baseState: BaseInitialState()));
 
   void doIntent(BestSellerAction action) {
@@ -22,7 +22,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
 
   Future<void> _getBestSellers() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await getBestSellersUsecase();
+    final result = await _getBestSellersUsecase();
     switch (result) {
       case SuccessResult<List<BestSellerProductEntity>>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
