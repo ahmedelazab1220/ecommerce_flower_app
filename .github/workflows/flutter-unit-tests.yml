@@ -53,9 +53,3 @@ jobs:
 
       - name: 📱 Build APK
         run: flutter build apk --release
-
-      - name: 📤 Upload APK
-        uses: actions/upload-artifact@e7f39d9f3c0e842254e6b984b0643fc1c8b195f3
-        with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
