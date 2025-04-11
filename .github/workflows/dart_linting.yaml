@@ -6,6 +6,11 @@ on:
       - development
       - main
   pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
     branches:
       - development
       - main
