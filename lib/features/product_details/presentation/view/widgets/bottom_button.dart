@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/assets/app_colors.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class BottomButton extends StatelessWidget {
   const BottomButton({super.key});
@@ -21,7 +22,7 @@ class BottomButton extends StatelessWidget {
             backgroundColor: AppColors.pink,
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
           ),
-          child: Text("Add to Cart", style: TextStyle(fontSize: 16.sp)),
+          child: Text(LocaleKeys.AddToCart, style: TextStyle(fontSize: 16.sp)),
         ),
       ),
     );

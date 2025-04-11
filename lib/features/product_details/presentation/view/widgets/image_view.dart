@@ -7,6 +7,7 @@ import '../../../../../core/assets/app_colors.dart';
 
 class ImageView extends StatefulWidget {
   final ProductsModel product;
+  final emptyString = "";
   int currentImageIndex = 0;
 
   ImageView({super.key, required this.product});
@@ -35,7 +36,7 @@ class _ImageViewState extends State<ImageView> {
             title:
                 isCollapsed
                     ? Text(
-                      widget.product.products?[0].title ?? '',
+                      widget.product.products?[0].title ?? widget.emptyString,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.sp,
