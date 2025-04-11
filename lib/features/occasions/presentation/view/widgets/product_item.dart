@@ -3,6 +3,7 @@ import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../domain/entity/products_entity.dart';
@@ -32,8 +33,13 @@ class ProductItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
-                  child: Image.network(
-                    productEntity!.imgCover ?? emptyString,
+                  child: CachedNetworkImage(
+                    imageUrl: productEntity!.imgCover ?? emptyString,
+                    placeholder:
+                        (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                    errorWidget:
+                        (context, url, error) => const Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
                 ),
