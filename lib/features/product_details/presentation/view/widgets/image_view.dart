@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:flutter/material.dart';
@@ -58,10 +59,15 @@ class _ImageViewState extends State<ImageView> {
                     },
                   ),
                   itemBuilder: (context, index, realIndex) {
-                    return Image.network(
-                      imageUrls[index],
+                    return CachedNetworkImage(
+                      imageUrl: imageUrls[index],
                       fit: BoxFit.contain,
                       width: double.infinity,
+                      placeholder:
+                          (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                      errorWidget:
+                          (context, url, error) => const Icon(Icons.error),
                     );
                   },
                 ),

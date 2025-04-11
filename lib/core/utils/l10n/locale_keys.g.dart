@@ -56,7 +56,7 @@ abstract class  LocaleKeys {
   static const BloomWithOurExquisiteBestSellers = 'BloomWithOurExquisiteBestSellers';
   static const EGP = 'EGP';
   static const AddToCart = 'AddToCart';
-  static const Status: = 'Status:';
+  static const Status = 'Status';
   static const InStock = 'InStock';
   static const AllPricesIncludeTax = 'AllPricesIncludeTax';
   static const LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa = 'LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa';
