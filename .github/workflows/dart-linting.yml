@@ -5,6 +5,8 @@ on:
     branches:
       - development
       - main
+    tags:
+      - "*"
   pull_request:
     branches:
       - development
@@ -14,6 +16,8 @@ on:
       - edited
       - synchronize
       - reopened
+    tags:
+      - "*"
 
 jobs:
   lint:
@@ -27,11 +31,11 @@ jobs:
         with:
           channel: stable
 
-      - name: Install Dependencies
+      - name: 📦 Install Dependencies
         run: flutter pub get
 
-      - name: Check Dart Formatting
+      - name: ✅ Check Dart Formatting
         run: dart format --set-exit-if-changed .
 
-      - name: Run Dart Analyze
+      - name: 🚀 Run Dart Analyze
         run: dart analyze
