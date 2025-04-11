@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,8 +27,13 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
 
+  late AnimationController controller;
+  late Animation<double> jumpAnimation;
+  late Animation<double> flipAnimation;
+
   @override
   Future<void> close() async {
+    controller.dispose();
     locationService.dispose();
     await super.close();
   }
@@ -98,5 +106,28 @@ class HomeCubit extends Cubit<HomeState> {
         navigationState: BaseNavigationState(routeName, arguments),
       ),
     );
+  }
+
+  void doAnimation({required TickerProvider vsync}) {
+    controller = AnimationController(
+      vsync: vsync,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    jumpAnimation = Tween<double>(
+      begin: 0,
+      end: -10,
+    ).chain(CurveTween(curve: Curves.easeOut)).animate(controller);
+
+    flipAnimation = Tween<double>(
+      begin: 0,
+      end: pi,
+    ).chain(CurveTween(curve: Curves.easeInOut)).animate(controller);
+
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      }
+    });
   }
 }
