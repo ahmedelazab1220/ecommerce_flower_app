@@ -21,7 +21,6 @@ class _ProductViewState extends State<ProductView> {
   @override
   void initState() {
     super.initState();
-    // Trigger the API call only once
     context.read<OccasionCubit>().doIntent(
       ProductsRequestAction(widget.occasionId),
     );
@@ -50,24 +49,20 @@ class _ProductViewState extends State<ProductView> {
             ),
           );
         }
-
-        // Show products once fetched
-        return SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.w),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 17,
-                mainAxisSpacing: 17,
-                childAspectRatio: 0.7,
-              ),
-              itemCount: viewModel.products!.length,
-              itemBuilder: (context, index) {
-                final product = viewModel.products![index];
-                return ProductItem(productEntity: product);
-              },
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.w),
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 17,
+              mainAxisSpacing: 17,
+              childAspectRatio: 0.74,
             ),
+            itemCount: viewModel.products!.length,
+            itemBuilder: (context, index) {
+              final product = viewModel.products![index];
+              return ProductItem(productEntity: product);
+            },
           ),
         );
       },

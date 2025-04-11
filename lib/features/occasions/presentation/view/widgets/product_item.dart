@@ -41,7 +41,7 @@ class ProductItem extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 21.5),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,7 +78,6 @@ class ProductItem extends StatelessWidget {
                 ],
               ),
             ),
-
             ElevatedButton.icon(
               onPressed: () {},
               label: Text(LocaleKeys.AddToCart.tr()),
