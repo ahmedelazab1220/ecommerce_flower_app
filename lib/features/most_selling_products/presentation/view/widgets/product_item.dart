@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
@@ -31,10 +32,7 @@ class ProductItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
-                  child: Image.network(
-                    productEntity.imgCover ?? '',
-                    fit: BoxFit.cover,
-                  ),
+                  child: CachedNetworkImage(imageUrl: productEntity.imgCover!),
                 ),
               ),
             ),
@@ -45,7 +43,7 @@ class ProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productEntity.title ?? '',
+                    productEntity.title!,
                     style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,

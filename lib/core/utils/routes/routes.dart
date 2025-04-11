@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../features/main_layout/presentation/view/main_layout.dart';
+import '../../../features/most_selling_products/presentation/view/screens/best_sellers.dart';
 
 class AppRoutes {
   AppRoutes._();
