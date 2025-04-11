@@ -32,27 +32,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   void doIntent(HomeAction action) {
     switch (action) {
-      case NavigateToBestSellerScreenAction():
+      case NavigateAction():
         {
-          _naviagteToBestSellerScreen(routeName: action.routeName);
-        }
-      case NavigateToProductDetailsScreenAction():
-        {
-          _naviagteToProductDetailsScreen(
-            routeName: action.routeName,
-            arguments: action.arguments,
-          );
-        }
-      case NavigateToCategoriesScreenAction():
-        {
-          _naviagteToCategoriesScreen(
-            routeName: action.routeName,
-            arguments: action.arguments,
-          );
-        }
-      case NavigateToOccasionsScreenAction():
-        {
-          _naviagteToOccasionsScreen(
+          _navigateToScreen(
             routeName: action.routeName,
             arguments: action.arguments,
           );
@@ -110,30 +92,11 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void _naviagteToBestSellerScreen({required String routeName}) {
-    emit(state.copyWith(bestSellers: BaseNavigationState(routeName)));
-  }
-
-  void _naviagteToCategoriesScreen({
-    required String routeName,
-    dynamic arguments,
-  }) {
-    emit(state.copyWith(categories: BaseNavigationState(routeName, arguments)));
-  }
-
-  void _naviagteToOccasionsScreen({
-    required String routeName,
-    dynamic arguments,
-  }) {
-    emit(state.copyWith(occasions: BaseNavigationState(routeName, arguments)));
-  }
-
-  void _naviagteToProductDetailsScreen({
-    required String routeName,
-    dynamic arguments,
-  }) {
+  void _navigateToScreen({required String routeName, dynamic arguments}) {
     emit(
-      state.copyWith(bestSellers: BaseNavigationState(routeName, arguments)),
+      state.copyWith(
+        navigationState: BaseNavigationState(routeName, arguments),
+      ),
     );
   }
 }
