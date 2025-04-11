@@ -8,7 +8,7 @@ import '../../../../core/utils/datasource_excution/api_manager.dart';
 import '../../domain/repo/occasion_repo.dart';
 
 @Injectable(as: OccasionRepo)
-class OccasionRepoImpl extends OccasionRepo {
+class OccasionRepoImpl implements OccasionRepo {
   final ApiManager _apiManager;
   final OccasionRemoteDataSource _occasionRemoteDataSource;
 

@@ -9,6 +9,7 @@ import '../../../domain/entity/products_entity.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductEntity? productEntity;
+  final emptyString = "";
 
   const ProductItem({super.key, required this.productEntity});
 
@@ -32,7 +33,7 @@ class ProductItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
                   child: Image.network(
-                    productEntity!.imgCover ?? "",
+                    productEntity!.imgCover ?? emptyString,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,7 +46,7 @@ class ProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productEntity!.title ?? "",
+                    productEntity!.title ?? emptyString,
                     style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -53,12 +54,12 @@ class ProductItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'EGP ${productEntity!.priceAfterDiscount ?? ""}',
+                        '${LocaleKeys.EGP.tr()} ${productEntity!.priceAfterDiscount ?? emptyString}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        '${productEntity!.price ?? ""}',
+                        '${productEntity!.price ?? emptyString}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.gray,
                           decoration: TextDecoration.lineThrough,
@@ -67,7 +68,7 @@ class ProductItem extends StatelessWidget {
                       const SizedBox(width: 6),
                       // Discount percentage
                       Text(
-                        '${productEntity!.discount ?? ""}%',
+                        '${productEntity!.discount ?? emptyString}%',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.successGreen,
                         ),

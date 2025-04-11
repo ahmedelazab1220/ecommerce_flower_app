@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/features/occasions/presentation/view/widgets/product_item.dart';
 import 'package:ecommerce_flower_app/features/occasions/presentation/view_model/occasion_cubit.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class ProductView extends StatefulWidget {
   final String occasionId;
@@ -31,21 +33,19 @@ class _ProductViewState extends State<ProductView> {
 
     return BlocBuilder<OccasionCubit, OccasionState>(
       builder: (context, state) {
-        if (viewModel.products == null || state.baseState is BaseLoadingState) {
+        if (state.baseState is BaseLoadingState) {
           return const Center(child: CircularProgressIndicator());
-        }
-        if (state.baseState is BaseErrorState) {
+        } else if (state.baseState is BaseErrorState) {
           return Center(
             child: Text(
               (state.baseState as BaseErrorState).errorMessage,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           );
-        }
-        if (viewModel.products!.isEmpty) {
+        } else if (viewModel.products == null || viewModel.products!.isEmpty) {
           return Center(
             child: Text(
-              'No products available',
+              LocaleKeys.NoProductAvailable.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           );
