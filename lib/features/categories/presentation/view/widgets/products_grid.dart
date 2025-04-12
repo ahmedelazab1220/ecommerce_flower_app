@@ -7,6 +7,7 @@ import 'package:ecommerce_flower_app/features/categories/presentation/view_model
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductsGrid extends StatelessWidget {
   const ProductsGrid({super.key});
@@ -16,11 +17,15 @@ class ProductsGrid extends StatelessWidget {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         final productState = state.getProductsState;
-
-        if (productState is BaseLoadingState) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (productState is BaseSuccessState<List<ProductEntity>>) {
-          final products = productState.data;
+        final isError = productState is BaseErrorState;
+        if (isError) {
+          return Center(child: Text((productState).errorMessage));
+        } else {
+          final isLoading = productState is BaseLoadingState;
+          final products =
+              productState is BaseSuccessState<List<ProductEntity>>
+                  ? productState.data
+                  : List.generate(6, (_) => ProductEntity());
           return products!.isEmpty
               ? Center(child: Text(LocaleKeys.NoProductsAvailable.tr()))
               : GridView.builder(
@@ -32,13 +37,13 @@ class ProductsGrid extends StatelessWidget {
                   childAspectRatio: 0.8,
                 ),
                 itemBuilder: (context, index) {
-                  return ProductItem(product: products[index]);
+                  return Skeletonizer(
+                    enabled: isLoading,
+                    child: ProductItem(product: products[index]),
+                  );
                 },
               );
         }
-        return Center(
-          child: Text((productState as BaseErrorState).errorMessage),
-        );
       },
     );
   }

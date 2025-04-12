@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
+import 'package:ecommerce_flower_app/core/assets/app_lotties.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductEntity product;
@@ -30,9 +33,17 @@ class ProductItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2.5),
                   child: Center(
-                    child: Image.network(
-                      product.imgCover ?? '',
-                      fit: BoxFit.contain,
+                    child: CachedNetworkImage(
+                      imageUrl: product.imgCover ?? '',
+                      placeholder:
+                          (context, url) => Lottie.asset(AppLotties.loading),
+                      errorWidget:
+                          (context, url, error) => const Icon(
+                            Icons.error,
+                            color: AppColors.pink,
+                            size: 45,
+                          ),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
