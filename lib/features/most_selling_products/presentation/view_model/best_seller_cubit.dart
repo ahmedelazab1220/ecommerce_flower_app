@@ -15,8 +15,9 @@ class BestSellerCubit extends Cubit<BestSellerState> {
     : super(BestSellerState(baseState: BaseInitialState()));
 
   void doIntent(BestSellerAction action) {
-    if (action is BestSellerRequestAction) {
-      _getBestSellers();
+    switch (action) {
+      case BestSellerRequestAction():
+        _getBestSellers();
     }
   }
 

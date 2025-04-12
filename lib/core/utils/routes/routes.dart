@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../features/main_layout/presentation/view/main_layout.dart';
-import '../../../features/most_selling_products/presentation/view/screens/best_sellers.dart';
+import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -15,6 +15,6 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     mainLayoutRoute: (context) => const MainLayout(),
-    bestSellerRoute: (context) => BestSellers(),
+    bestSellerRoute: (context) => const BestSellersScreen(),
   };
 }

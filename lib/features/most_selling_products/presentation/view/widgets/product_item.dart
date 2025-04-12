@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
+import 'package:ecommerce_flower_app/core/utils/font_responsive/font_responsive.dart';
+import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_flower_app/features/most_selling_products/domain/entity/best_seller_product_entity.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +28,12 @@ class ProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 130,
+              height: ResponsiveUtil.getResponsiveAspectRatioValue(
+                context,
+                tallAspectRatio: 130,
+                standardAspectRatio: 120,
+                wideAspectRatio: 110,
+              ),
               width: double.infinity,
               decoration: const BoxDecoration(color: AppColors.lightPink),
               child: Padding(
@@ -44,7 +51,12 @@ class ProductItem extends StatelessWidget {
                 children: [
                   Text(
                     productEntity.title!,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontSize: FontResponsive.getResponsiveFontSize(
+                        context: context,
+                        fontSize: 12,
+                      ),
+                    ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -52,12 +64,21 @@ class ProductItem extends StatelessWidget {
                     children: [
                       Text(
                         '${LocaleKeys.EGP.tr()} ${productEntity.priceAfterDiscount}',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontSize: FontResponsive.getResponsiveFontSize(
+                            context: context,
+                            fontSize: 14,
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         '${productEntity.price}',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontSize: FontResponsive.getResponsiveFontSize(
+                            context: context,
+                            fontSize: 12,
+                          ),
                           color: AppColors.gray,
                           decoration: TextDecoration.lineThrough,
                         ),
@@ -66,6 +87,10 @@ class ProductItem extends StatelessWidget {
                       Text(
                         '${productEntity.discount}%',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontSize: FontResponsive.getResponsiveFontSize(
+                            context: context,
+                            fontSize: 12,
+                          ),
                           color: AppColors.successGreen,
                         ),
                       ),
