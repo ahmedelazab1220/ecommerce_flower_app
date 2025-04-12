@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 
+
 class CategoriesScreenBody extends StatelessWidget {
   const CategoriesScreenBody({super.key});
 
