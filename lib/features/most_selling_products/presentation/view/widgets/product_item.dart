@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:ecommerce_flower_app/core/utils/font_responsive/font_responsive.dart';
-import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_flower_app/features/most_selling_products/domain/entity/best_seller_product_entity.dart';
 import 'package:flutter_svg/flutter_svg.dart';
