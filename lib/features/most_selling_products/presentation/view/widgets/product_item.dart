@@ -7,7 +7,9 @@ import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.
 import 'package:flutter/material.dart';
 import 'package:ecommerce_flower_app/features/most_selling_products/domain/entity/best_seller_product_entity.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../../../core/assets/app_lotties.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class ProductItem extends StatelessWidget {
@@ -28,18 +30,25 @@ class ProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: ResponsiveUtil.getResponsiveAspectRatioValue(
-                context,
-                tallAspectRatio: 130,
-                standardAspectRatio: 120,
-                wideAspectRatio: 110,
-              ),
+              height: 130,
               width: double.infinity,
               decoration: const BoxDecoration(color: AppColors.lightPink),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2.5),
                 child: Center(
-                  child: CachedNetworkImage(imageUrl: productEntity.imgCover!),
+                  child: CachedNetworkImage(
+                    imageUrl: productEntity.imgCover!,
+                    placeholder:
+                        (context, url) =>
+                            Center(child: Lottie.asset(AppLotties.loading)),
+                    errorWidget:
+                        (context, url, error) => const Icon(
+                          Icons.error,
+                          color: AppColors.pink,
+                          size: 45,
+                        ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

@@ -43,7 +43,7 @@ class BestSellersBody extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 17,
                 mainAxisSpacing: 17,
-                childAspectRatio: 0.8,
+                childAspectRatio: 0.845,
               ),
               itemCount: products.length,
               itemBuilder: (context, index) {
