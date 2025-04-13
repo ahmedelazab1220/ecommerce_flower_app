@@ -1,6 +1,12 @@
 name: Flutter Unit Tests
 
 on:
+  push:
+    branches:
+      - development
+      - main
+    tags:
+      - "*"
   pull_request:
     branches:
       - main
@@ -10,6 +16,8 @@ on:
       - edited
       - synchronize
       - reopened
+    tags:
+      - "*"
 
 jobs:
   test:
@@ -42,3 +50,6 @@ jobs:
 
       - name: 🚀 Run Flutter Unit Tests
         run: flutter test
+
+      - name: 📱 Build APK
+        run: flutter build apk --release
