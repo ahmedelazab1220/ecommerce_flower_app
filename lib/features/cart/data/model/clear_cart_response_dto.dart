@@ -7,9 +7,7 @@ class ClearCartResponseDto {
   @JsonKey(name: "message")
   final String? message;
 
-  ClearCartResponseDto ({
-    this.message,
-  });
+  ClearCartResponseDto({this.message});
 
   factory ClearCartResponseDto.fromJson(Map<String, dynamic> json) {
     return _$ClearCartResponseDtoFromJson(json);
@@ -19,5 +17,3 @@ class ClearCartResponseDto {
     return _$ClearCartResponseDtoToJson(this);
   }
 }
-
-

@@ -7,9 +7,7 @@ class UpdateProductQuantityRequestDto {
   @JsonKey(name: "quantity")
   final int? quantity;
 
-  UpdateProductQuantityRequestDto ({
-    this.quantity,
-  });
+  UpdateProductQuantityRequestDto({this.quantity});
 
   factory UpdateProductQuantityRequestDto.fromJson(Map<String, dynamic> json) {
     return _$UpdateProductQuantityRequestDtoFromJson(json);
@@ -19,5 +17,3 @@ class UpdateProductQuantityRequestDto {
     return _$UpdateProductQuantityRequestDtoToJson(this);
   }
 }
-
-

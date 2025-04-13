@@ -9,10 +9,7 @@ class AddProductToCartRequestDto {
   @JsonKey(name: "quantity")
   final int? quantity;
 
-  AddProductToCartRequestDto ({
-    this.product,
-    this.quantity,
-  });
+  AddProductToCartRequestDto({this.product, this.quantity});
 
   factory AddProductToCartRequestDto.fromJson(Map<String, dynamic> json) {
     return _$AddProductToCartRequestDtoFromJson(json);
@@ -22,5 +19,3 @@ class AddProductToCartRequestDto {
     return _$AddProductToCartRequestDtoToJson(this);
   }
 }
-
-
