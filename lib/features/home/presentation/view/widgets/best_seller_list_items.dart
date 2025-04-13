@@ -30,9 +30,7 @@ class BestSellerListItems extends StatelessWidget {
                 title: LocaleKeys.BestSeller.tr(),
                 onPressed: () {
                   viewModel.doIntent(
-                    NavigateToBestSellerScreenAction(
-                      routeName: AppRoutes.bestSellerRoute,
-                    ),
+                    NavigateAction(routeName: AppRoutes.bestSellerRoute),
                   );
                 },
               ),
