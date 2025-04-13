@@ -8,4 +8,10 @@ abstract class AuthLocalDataSource {
   Future<void> setRememberMe(bool value);
 
   Future<bool> isRememberMe();
+
+  Future<void> clearAll();
+
+  Future<void> setGuestUser(bool value);
+
+  Future<bool> isGuestUser();
 }

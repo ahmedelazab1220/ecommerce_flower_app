@@ -47,3 +47,5 @@ class LoginState extends Equatable {
 sealed class LoginAction {}
 
 class LoginRequestAction extends LoginAction {}
+
+class GuestRequestAction extends LoginAction {}

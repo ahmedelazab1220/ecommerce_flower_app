@@ -10,7 +10,7 @@ class LoginUseCase {
 
   LoginUseCase(this._authRep);
 
-  Future<Result<void>> call(LoginRequest request) {
-    return _authRep.login(request);
+  Future<Result<void>> call(LoginRequest request) async {
+    return await _authRep.login(request);
   }
 }

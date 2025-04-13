@@ -28,9 +28,25 @@ class AuthRepoImpl extends AuthRepo {
         ));
         _authLocalDataSource.saveToken("token", response.token ?? "");
         _authLocalDataSource.setRememberMe(request.isRememberMe);
+        _authLocalDataSource.setGuestUser(false);
         return response;
       },
     );
     return response;
+  }
+
+  @override
+  Future<void> guestLogin() async {
+    await _authLocalDataSource.setGuestUser(true);
+  }
+
+  @override
+  Future<void> logout() async {
+    await _authLocalDataSource.clearAll();
+  }
+
+  @override
+  Future<bool> isGuestUser() async {
+    return await _authLocalDataSource.isGuestUser();
   }
 }
