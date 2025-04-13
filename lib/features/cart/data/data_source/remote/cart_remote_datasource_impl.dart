@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../api/cart_retrofit_client.dart';
 
-@Injectable()
+@Injectable(as: CartRemoteDataSource)
 class CartRemoteDatasourceImpl implements CartRemoteDataSource {
   final CartRetrofitClient _cartRetrofitClient;
 
@@ -16,31 +16,33 @@ class CartRemoteDatasourceImpl implements CartRemoteDataSource {
   @override
   Future<CartResponseDto> addProductToCart(
     AddProductToCartRequestDto addProductToCartRequestDto,
-  ) {
-    return _cartRetrofitClient.addProductToCart(addProductToCartRequestDto);
+  ) async {
+    return await _cartRetrofitClient.addProductToCart(
+      addProductToCartRequestDto,
+    );
   }
 
   @override
-  Future<ClearCartResponseDto> clearCart() {
-    return _cartRetrofitClient.clearCart();
+  Future<ClearCartResponseDto> clearCart() async {
+    return await _cartRetrofitClient.clearCart();
   }
 
   @override
-  Future<CartResponseDto> deleteProductFromCart(String productId) {
-    return _cartRetrofitClient.deleteProductFromCart(productId);
+  Future<CartResponseDto> deleteProductFromCart(String productId) async {
+    return await _cartRetrofitClient.deleteProductFromCart(productId);
   }
 
   @override
-  Future<CartResponseDto> getCart() {
-    return _cartRetrofitClient.getCart();
+  Future<CartResponseDto> getCart() async {
+    return await _cartRetrofitClient.getCart();
   }
 
   @override
   Future<CartResponseDto> updateProductInCart(
     String productId,
     UpdateProductQuantityRequestDto updateProductQuantityRequestDto,
-  ) {
-    return _cartRetrofitClient.updateProductInCart(
+  ) async {
+    return await _cartRetrofitClient.updateProductInCart(
       productId,
       updateProductQuantityRequestDto,
     );
