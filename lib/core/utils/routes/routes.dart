@@ -15,6 +15,10 @@ class AppRoutes {
   static const String forgetPassword = "/forgetPassword";
   static const String home = "/home";
   static const String mainLayoutRoute = '/main-layout';
+  static const String productDetailsRoute = '/product-details';
+  static const String bestSellerRoute = '/best-seller';
+  static const String categoriesRoute = '/categories';
+  static const String occasionRoute = '/occasion';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     home: (context) => const HomeScreen(),
