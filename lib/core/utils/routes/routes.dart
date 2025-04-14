@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/categories/presentation/view/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/main_layout/presentation/view/main_layout.dart';
@@ -14,5 +15,11 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext context)> routes = {
     mainLayoutRoute: (context) => const MainLayout(),
+    categoriesRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      final categoryIndex = args['categoryIndex'] as int;
+      return CategoriesScreen(categoryIndex: categoryIndex);
+    },
   };
 }

@@ -1,7 +1,6 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/entities/category_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_cubit.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_intent.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +38,7 @@ class CustomTabBar extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (cubit.state.selectedTabIndex != index) {
-          cubit.doIntent(ChangeCategoryIntent(index));
+          cubit.doIntent(ChangeCategoryAction(index));
         }
       },
       child: Padding(

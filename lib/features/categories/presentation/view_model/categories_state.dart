@@ -31,3 +31,22 @@ class CategoriesState extends Equatable {
     selectedTabIndex,
   ];
 }
+
+sealed class CategoriesAction {}
+
+class GetCategoriesAction extends CategoriesAction {
+  final int? index;
+  GetCategoriesAction({this.index});
+}
+
+class GetProductsAction extends CategoriesAction {
+  final String? categoryId;
+
+  GetProductsAction({this.categoryId});
+}
+
+class ChangeCategoryAction extends CategoriesAction {
+  final int index;
+
+  ChangeCategoryAction(this.index);
+}

@@ -6,7 +6,6 @@ import 'package:ecommerce_flower_app/features/categories/domain/entities/categor
 import 'package:ecommerce_flower_app/features/categories/domain/entities/product_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/use_cases/get_products_use_case.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_intent.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -30,33 +29,33 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   void _changeCategory(int index) {
     if (index < 0 || index >= categories.length) return;
-
     emit(state.copyWith(selectedTabIndex: index));
     final selectedCategoryId = index == 0 ? null : categories[index].id;
-    doIntent(GetProductsIntent(categoryId: selectedCategoryId));
+    doIntent(GetProductsAction(categoryId: selectedCategoryId));
   }
 
-  void doIntent(CategoriesIntent intent) {
+  void doIntent(CategoriesAction intent) {
     switch (intent) {
-      case GetCategoriesIntent():
-        _getCategories();
+      case GetCategoriesAction():
+        _getCategories(intent.index);
         break;
-      case GetProductsIntent(categoryId: var categoryId):
+      case GetProductsAction(categoryId: var categoryId):
         _getProducts(categoryId: categoryId);
         break;
-      case ChangeCategoryIntent(index: var index):
+      case ChangeCategoryAction(index: var index):
         _changeCategory(index);
         break;
     }
   }
 
-  Future<void> _getCategories() async {
+  Future<void> _getCategories(int? index) async {
     emit(state.copyWith(getCategoriesState: BaseLoadingState()));
     final result = await _getCategoriesUseCase();
 
     switch (result) {
       case SuccessResult<List<CategoryEntity>>(data: var result):
         categories.addAll(result);
+        _changeCategory(index ?? 0);
         emit(
           state.copyWith(
             getCategoriesState: BaseSuccessState<List<CategoryEntity>>(

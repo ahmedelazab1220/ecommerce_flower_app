@@ -17,11 +17,14 @@ class ProductsGrid extends StatelessWidget {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         final productState = state.getProductsState;
+        final categoriesState = state.getCategoriesState;
         final isError = productState is BaseErrorState;
         if (isError) {
           return Center(child: Text((productState).errorMessage));
         } else {
-          final isLoading = productState is BaseLoadingState;
+          final isLoading =
+              productState is BaseLoadingState ||
+              categoriesState is BaseLoadingState;
           final products =
               productState is BaseSuccessState<List<ProductEntity>>
                   ? productState.data

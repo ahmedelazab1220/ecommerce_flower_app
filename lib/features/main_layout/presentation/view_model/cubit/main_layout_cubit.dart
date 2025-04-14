@@ -25,10 +25,30 @@ class MainLayoutCubit extends Cubit<MainLayoutState> {
   void doIntent(MainLayoutActions action) {
     switch (action) {
       case ChangeSelectedTab():
-        {
-          _changeSelectedTab(action.selectedTab);
-        }
+        _changeSelectedTab(action.selectedTab);
+        break;
+
+      case ChangeTabWithCategoryIndex():
+        _changeTabWithCategoryIndex(action.selectedTab, action.categoryIndex);
+        break;
     }
+  }
+
+  void _changeTabWithCategoryIndex(
+    MainLayoutTabs selectedTab,
+    int categoryIndex,
+  ) {
+    currentTab = selectedTab;
+
+    tabs[MainLayoutTabs.categories] = CategoriesScreen(
+      categoryIndex: categoryIndex,
+    );
+
+    emit(ScreenChangedState());
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      tabs[MainLayoutTabs.categories] = const CategoriesScreen();
+    });
   }
 
   void _changeSelectedTab(MainLayoutTabs selectedTab) {
