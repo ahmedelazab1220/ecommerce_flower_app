@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state.navigationState is BaseNavigationState) {
             Navigator.pushNamed(
               context,
-              (state.navigationState as BaseNavigationState).route,
+              (state.navigationState as BaseNavigationState).routeName,
               arguments:
                   (state.navigationState as BaseNavigationState).arguments,
             );

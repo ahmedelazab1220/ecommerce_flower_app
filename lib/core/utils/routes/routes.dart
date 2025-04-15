@@ -6,9 +6,9 @@ import '../../../features/main_layout/presentation/view/main_layout.dart';
 class AppRoutes {
   AppRoutes._();
   static const String initialRoute = '/';
-  static const String login = "/login";
-  static const String register = "/register";
-  static const String forgetPassword = "/forgetPassword";
+  static const String loginRoute = "/login";
+  static const String registerRoute = "/register";
+  static const String forgetPasswordRoute = "/forgetPassword";
   static const String home = "/home";
   static const String mainLayoutRoute = '/main-layout';
   static const String productDetailsRoute = '/product-details';
@@ -17,7 +17,7 @@ class AppRoutes {
   static const String occasionRoute = '/occasion';
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    login: (context) => LoginScreen(),
+    loginRoute: (context) => const LoginScreen(),
     mainLayoutRoute: (context) => const MainLayout(),
   };
 }

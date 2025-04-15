@@ -1,35 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'login_response_dto.g.dart';
+part 'user_dto.g.dart';
 
 @JsonSerializable()
-class LoginResponseDto {
-  @JsonKey(name: "message")
-  final String? message;
-  @JsonKey(name: "user")
-  final User? user;
-  @JsonKey(name: "token")
-  final String? token;
-
-  LoginResponseDto({
-    this.message,
-    this.user,
-    this.token,
-  });
-
-  factory LoginResponseDto.fromJson(Map<String, dynamic> json) {
-    return _$LoginResponseDtoFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$LoginResponseDtoToJson(this);
-  }
-}
-
-@JsonSerializable()
-class User {
+class UserDto {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "firstName")
   final String? firstName;
   @JsonKey(name: "lastName")
@@ -51,8 +27,8 @@ class User {
   @JsonKey(name: "createdAt")
   final String? createdAt;
 
-  User({
-    this.Id,
+  UserDto({
+    this.id,
     this.firstName,
     this.lastName,
     this.email,
@@ -65,11 +41,8 @@ class User {
     this.createdAt,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return _$UserFromJson(json);
-  }
+  factory UserDto.fromJson(Map<String, dynamic> json) =>
+      _$UserDtoFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return _$UserToJson(this);
-  }
+  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 }

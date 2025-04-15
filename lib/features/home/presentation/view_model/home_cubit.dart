@@ -103,7 +103,10 @@ class HomeCubit extends Cubit<HomeState> {
   void _navigateToScreen({required String routeName, dynamic arguments}) {
     emit(
       state.copyWith(
-        navigationState: BaseNavigationState(routeName, arguments),
+        navigationState: BaseNavigationState(
+          routeName: routeName,
+          arguments: arguments,
+        ),
       ),
     );
   }

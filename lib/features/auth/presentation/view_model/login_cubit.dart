@@ -1,3 +1,5 @@
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
+import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,12 +16,10 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final GuestUseCase _guestUseCase;
+  final Validator validator;
 
-  LoginCubit(this._loginUseCase, this._guestUseCase)
-      : super(LoginState(
-          baseState: BaseInitialState(),
-          isRememberMe: false,
-        ));
+  LoginCubit(this._loginUseCase, this._guestUseCase, this.validator)
+    : super(LoginState(baseState: BaseInitialState(), isRememberMe: false));
 
   final TextEditingController emailController = TextEditingController();
 
@@ -29,52 +29,63 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isRememberMe = false;
 
-  Future<void> _login() async {
-    if (formKey.currentState!.validate()) {
-      emit(state.copyWith(
-        baseState: BaseLoadingState(),
-      ));
-      final result = await _loginUseCase.call(LoginRequest(
-        email: emailController.text,
-        password: passwordController.text,
-        isRememberMe: isRememberMe,
-      ));
-      switch (result) {
-        case SuccessResult<void>():
-          emit(state.copyWith(
-            baseState: BaseSuccessState(),
-          ));
-        case FailureResult<void>():
-          emit(state.copyWith(
-            baseState:
-                BaseErrorState(errorMessage: result.exception.toString()),
-          ));
-      }
-    }
-  }
-
-  Future<void> _guestLogin() async {
-    emit(state.copyWith(
-      baseState: BaseLoadingState(),
-    ));
-    await _guestUseCase.call();
-    emit(state.copyWith(baseState: BaseSuccessState()));
-  }
-
-  void rememberMe(bool value) {
-    isRememberMe = value;
-    emit(state.copyWith(
-      isRememberMe: isRememberMe,
-    ));
-  }
-
   void doIntent(LoginAction action) async {
     switch (action) {
       case LoginRequestAction():
         _login();
       case GuestRequestAction():
         _guestLogin();
+      case NavigationAction():
+        _naviagtionToScreen(
+          routeName: action.routeName,
+          replace: action.replace,
+        );
     }
+  }
+
+  Future<void> _login() async {
+    if (formKey.currentState!.validate()) {
+      emit(state.copyWith(baseState: BaseLoadingState()));
+      final result = await _loginUseCase.call(
+        LoginRequest(
+          email: emailController.text,
+          password: passwordController.text,
+          isRememberMe: isRememberMe,
+        ),
+      );
+      switch (result) {
+        case SuccessResult<void>():
+          emit(state.copyWith(baseState: BaseSuccessState()));
+        case FailureResult<void>():
+          emit(
+            state.copyWith(
+              baseState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
+      }
+    }
+  }
+
+  Future<void> _guestLogin() async {
+    await _guestUseCase.call();
+    doIntent(
+      NavigationAction(routeName: AppRoutes.mainLayoutRoute, replace: true),
+    );
+  }
+
+  void rememberMe(bool value) {
+    isRememberMe = value;
+    emit(state.copyWith(isRememberMe: isRememberMe));
+  }
+
+  void _naviagtionToScreen({required String routeName, bool replace = false}) {
+    emit(
+      state.copyWith(
+        baseState: BaseNavigationState(routeName: routeName, replace: replace),
+      ),
+    );
   }
 
   void dispose() {

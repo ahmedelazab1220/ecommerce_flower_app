@@ -13,7 +13,7 @@ class RouteInitializer {
     if (isRememberMe != null && isRememberMe) {
       return AppRoutes.home;
     } else {
-      return AppRoutes.login;
+      return AppRoutes.loginRoute;
     }
   }
 }

@@ -12,11 +12,11 @@ class BaseLoadingState extends BaseState {}
 
 class BaseHideLoadingState extends BaseState {}
 
-class BaseNavigationState<T> extends BaseState {
-  T? arguments;
-  String route;
-
-  BaseNavigationState(this.route, [this.arguments]);
+class BaseNavigationState extends BaseState {
+  final dynamic arguments;
+  final String routeName;
+  final bool? replace;
+  BaseNavigationState({required this.routeName, this.arguments, this.replace});
 }
 
 class BaseErrorState extends BaseState {
