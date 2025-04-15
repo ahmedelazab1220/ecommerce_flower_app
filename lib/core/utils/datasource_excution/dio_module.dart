@@ -38,9 +38,7 @@ abstract class DioModule {
 class AppInterceptors extends InterceptorsWrapper {
   @override
   void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+      RequestOptions options, RequestInterceptorHandler handler) async {
     String? token = await getIt<FlutterSecureStorage>().read(key: "token");
 
     print("token: $token");

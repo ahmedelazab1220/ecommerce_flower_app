@@ -17,11 +17,11 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem({
     super.key,
     required this.categoryEntity,
-    required this.categoryNames,
+    required this.categoryIndex,
   });
 
   final CategoryEntity? categoryEntity;
-  final List<String?> categoryNames;
+  final int categoryIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,9 @@ class CategoryItem extends StatelessWidget {
         onTap: () {
           if (categoryEntity == null) return;
           viewModel.doIntent(
-            NavigateToCategoriesScreenAction(
+            NavigateAction(
               routeName: AppRoutes.categoriesRoute,
-              arguments: {
-                'categoryId': categoryEntity!.id,
-                'categoryFilters': categoryNames,
-              },
+              arguments: {'categoryIndex': categoryIndex},
             ),
           );
         },

@@ -18,11 +18,11 @@ class OccasionItem extends StatelessWidget {
   const OccasionItem({
     super.key,
     required this.occasionEntity,
-    required this.occasionNames,
+    required this.occasionIndex,
   });
 
   final OccasionEntity? occasionEntity;
-  final List<String?> occasionNames;
+  final int? occasionIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,9 @@ class OccasionItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           viewModel.doIntent(
-            NavigateToOccasionsScreenAction(
+            NavigateAction(
               routeName: AppRoutes.occasionRoute,
-              arguments: {
-                'occasionId': occasionEntity?.id,
-                'occasionFilters': occasionNames,
-              },
+              arguments: {'occasionIndex': occasionIndex},
             ),
           );
         },

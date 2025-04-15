@@ -27,9 +27,9 @@ class BestSellerItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           viewModel.doIntent(
-            NavigateToProductDetailsScreenAction(
+            NavigateAction(
               routeName: AppRoutes.productDetailsRoute,
-              arguments: bestSellerEntity,
+              arguments: {'bestSellerEntity': bestSellerEntity},
             ),
           );
         },
