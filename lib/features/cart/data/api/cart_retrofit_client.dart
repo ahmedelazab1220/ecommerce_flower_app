@@ -14,26 +14,23 @@ part 'cart_retrofit_client.g.dart';
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class CartRetrofitClient {
   @factoryMethod
-  factory CartRetrofitClient(Dio dio, {String baseUrl}) = _CartRetrofitClient;
+  factory CartRetrofitClient(Dio dio) = _CartRetrofitClient;
 
   @POST(ApiConstants.cartRoute)
   Future<CartResponseDto> addProductToCart(
-    @Body() AddProductToCartRequestDto addProductToCartRequestDto,
-  );
+      @Body() AddProductToCartRequestDto addProductToCartRequestDto,);
 
   @PUT(ApiConstants.cartRoute)
   Future<CartResponseDto> updateProductInCart(
-    @Path("productId") String productId,
-    @Body() UpdateProductQuantityRequestDto updateProductQuantityRequestDto,
-  );
+      @Path("productId") String productId,
+      @Body() UpdateProductQuantityRequestDto updateProductQuantityRequestDto,);
 
   @GET(ApiConstants.cartRoute)
   Future<CartResponseDto> getCart();
 
   @DELETE(ApiConstants.cartRoute)
   Future<CartResponseDto> deleteProductFromCart(
-    @Path("productId") String productId,
-  );
+      @Path("productId") String productId,);
 
   @DELETE(ApiConstants.cartRoute)
   Future<ClearCartResponseDto> clearCart();

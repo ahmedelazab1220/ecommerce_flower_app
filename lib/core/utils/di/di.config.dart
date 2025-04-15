@@ -31,6 +31,7 @@ import '../../../features/cart/domain/usecase/delete_product_from_cart_usecase.d
 import '../../../features/cart/domain/usecase/get_cart_usecase.dart' as _i1039;
 import '../../../features/cart/domain/usecase/update_product_in_cart_usecase.dart'
     as _i637;
+import '../../../features/cart/presentation/view_model/cart_cubit.dart' as _i99;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
 import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
     as _i493;
@@ -89,12 +90,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
         () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i675.CartRetrofitClient>(
+        () => _i675.CartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.singleton<_i675.CartRetrofitClient>(() => _i675.CartRetrofitClient(
-          gh<_i361.Dio>(),
-          baseUrl: gh<String>(),
-        ));
     gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -121,6 +120,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1039.GetCartUsecase(gh<_i1033.CartRepo>()));
     gh.factory<_i637.UpdateProductInCartUsecase>(
         () => _i637.UpdateProductInCartUsecase(gh<_i1033.CartRepo>()));
+    gh.factory<_i99.CartCubit>(() => _i99.CartCubit(
+          gh<_i1039.GetCartUsecase>(),
+          gh<_i407.ClearCartUsecase>(),
+          gh<_i1010.AddProductToCartUsecase>(),
+          gh<_i637.UpdateProductInCartUsecase>(),
+          gh<_i715.DeleteProductFromCartUsecase>(),
+        ));
     return this;
   }
 }
