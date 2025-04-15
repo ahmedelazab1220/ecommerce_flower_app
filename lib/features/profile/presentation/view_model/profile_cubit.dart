@@ -25,7 +25,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     switch (result) {
       case SuccessResult<UserDataEntity>():
         userData = result.data;
-        Logger().d("userData: $userData");
         emit(
           state.copyWith(
             baseState: BaseSuccessState<UserDataEntity>(data: result.data),
