@@ -38,7 +38,7 @@ class _ResetPasswordRetrofitClient implements ResetPasswordRetrofitClient {
     )
         .compose(
           _dio.options,
-          'auth/resetPassword',
+          'auth/change-password',
           queryParameters: queryParameters,
           data: _data,
         )

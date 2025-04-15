@@ -60,6 +60,8 @@ import '../../../features/reset_password/domain/repo/reset_password_repo.dart'
     as _i421;
 import '../../../features/reset_password/domain/use_case/reset_password_use_case.dart'
     as _i468;
+import '../../../features/reset_password/presentation/view_model/reset_password_cubit.dart'
+    as _i545;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -147,6 +149,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i114.GuestUseCase>(
         () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
+    gh.factory<_i545.ResetPasswordCubit>(() => _i545.ResetPasswordCubit(
+          gh<_i468.ResetPasswordUseCase>(),
+          gh<_i468.Validator>(),
+        ));
     gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
           gh<_i919.LoginUseCase>(),
           gh<_i114.GuestUseCase>(),

@@ -14,7 +14,7 @@ abstract class ResetPasswordRetrofitClient {
   @factoryMethod
   factory ResetPasswordRetrofitClient(Dio dio) = _ResetPasswordRetrofitClient;
 
-  @PATCH(ApiConstants.resetPasswordRoute)
+  @PATCH(ApiConstants.changePasswordRoute)
   Future<ResetPasswordResponseDto> resetPassword(
     @Body() ResetPasswordRequestDto request,
   );
