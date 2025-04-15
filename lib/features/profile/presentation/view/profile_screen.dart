@@ -1,11 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/logout_section.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/notification_section.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/order_section.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/profile_header.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/translation_and_about_us_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
+import '../../../../core/assets/app_colors.dart';
 import '../../../../core/assets/app_icons.dart';
 import '../../../../core/base/base_state.dart';
+import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../view_model/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -40,53 +50,24 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => viewModel..doIntent(ProfileRequestAction()),
-        child: BlocListener<ProfileCubit, ProfileState>(
-          listener: (context, state) {
-            if (state.baseState is BaseLoadingState) {
-              const Center(child: CircularProgressIndicator());
-            } else if (state.baseState is BaseErrorState) {
-              final errorState = state.baseState as BaseErrorState;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(errorState.errorMessage),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            } else if (state.baseState is BaseSuccessState) {
-              final successState = state.baseState as BaseSuccessState;
-              // Handle success state, e.g., navigate to another screen or show data
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Data loaded successfully!'),
-                  backgroundColor: Colors.green,
-                ),
-              );
-            }
-          },
-          child: BlocBuilder<ProfileCubit, ProfileState>(
-            builder: (context, state) {
-              if (state.baseState is BaseLoadingState) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state.baseState is BaseErrorState) {
-                final errorState = state.baseState as BaseErrorState;
-                return Center(
-                  child: Text(
-                    errorState.errorMessage,
-                    style: TextStyle(color: Colors.red),
-                  ),
-                );
-              } else if (state.baseState is BaseSuccessState) {
-                final successState = state.baseState as BaseSuccessState;
-                // Display user data here
-                return Center(
-                  child: Text(
-                    'User Data: ${successState.data}',
-                    style: TextStyle(fontSize: 20.sp),
-                  ),
-                );
-              }
-              return const SizedBox.shrink();
-            },
+        child: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProfileHeader(),
+                SizedBox(height: 32),
+                OrderSection(),
+                SizedBox(height: 8),
+                NotificationSection(),
+                SizedBox(height: 16),
+                TranslationAndAboutUsSection(),
+                SizedBox(height: 16),
+                LogoutSection(),
+              ],
+            ),
           ),
         ),
       ),
