@@ -1,10 +1,11 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_radio_buttons.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_text_field_section.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_radio_buttons.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_text_field_section.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_intent.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,7 +81,7 @@ class RegisterForm extends StatelessWidget {
               /// Sign-Up Button
               ElevatedButton(
                 onPressed: () {
-                  registerCubit.doIntent(RegisterButtonPressedIntent());
+                  registerCubit.doIntent(RegisterButtonPressedAction());
                 },
                 child: Text(LocaleKeys.Signup.tr()),
               ),
@@ -104,7 +105,10 @@ class RegisterForm extends StatelessWidget {
                       recognizer:
                           TapGestureRecognizer()
                             ..onTap = () {
-                              // Navigate to login screen
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.login,
+                              );
                             },
                     ),
                   ],

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 
+import 'core/functions/initial_route_function.dart';
 import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/routes.dart';
@@ -21,18 +22,15 @@ Future<void> main() async {
       path: Constants.assetsTranslations,
       fallbackLocale: const Locale(Constants.en),
       startLocale: const Locale(Constants.en),
-      child: const ScreenUtilInit(
-        designSize: Size(360, 910),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        child: MyApp(),
-      ),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final routeInitializer = getIt<RouteInitializer>();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,16 +38,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 910),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        routes: AppRoutes.routes,
-        theme: AppTheme.appTheme,
-        initialRoute: AppRoutes.mainLayoutRoute,
-      ),
+      builder:
+          (context, child) => MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            routes: AppRoutes.routes,
+            theme: AppTheme.appTheme,
+            initialRoute: routeInitializer.computeInitialRoute(),
+          ),
     );
   }
 }

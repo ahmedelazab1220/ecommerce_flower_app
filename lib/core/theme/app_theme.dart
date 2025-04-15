@@ -9,7 +9,7 @@ class AppTheme {
     primaryColor: AppColors.pink,
     secondaryHeaderColor: AppColors.black,
     dialogTheme: DialogTheme(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.r)),
       backgroundColor: AppColors.white,
     ),
     textTheme: const TextTheme(
@@ -53,42 +53,59 @@ class AppTheme {
       iconColor: AppColors.pink,
       hintStyle: TextStyle(
         color: AppColors.black[AppColors.colorCode30],
-        fontSize: 14,
+        fontSize: 14.sp,
       ),
       prefixIconColor: AppColors.black,
       suffixIconColor: AppColors.black,
       labelStyle: TextStyle(
-        fontSize: 12,
+        fontSize: 12.sp,
         color: AppColors.black[AppColors.colorCode40],
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.red),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.red),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.red),
+      ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith(
+        (states) {
+          if (states.contains(WidgetState.error)) {
+            return const TextStyle(
+              color: AppColors.red,
+            );
+          } else if (states.contains(WidgetState.focused)) {
+            return const TextStyle(
+              color: Colors.black,
+            );
+          } else {
+            return const TextStyle(
+              color: AppColors.gray,
+            );
+          }
+        },
       ),
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.black,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: 20,
+        fontSize: 20.sp,
         fontWeight: FontWeight.w500,
         color: AppColors.black,
       ),
@@ -98,10 +115,10 @@ class AppTheme {
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         foregroundColor: WidgetStateProperty.all(AppColors.pink),
         textStyle: WidgetStateProperty.all(
-          const TextStyle(
+          TextStyle(
             decoration: TextDecoration.underline,
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 16.sp,
             color: AppColors.pink,
           ),
         ),
@@ -114,7 +131,7 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16.h),
         foregroundColor: AppColors.pink,
         side: const BorderSide(color: AppColors.pink),
       ),

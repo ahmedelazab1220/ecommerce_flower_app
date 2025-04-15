@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/use_case/register_use_case.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_intent.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,16 +38,16 @@ class RegisterCubit extends Cubit<RegisterStates> {
   /// Prevent multiple requests
   bool _isRegistering = false;
 
-  void doIntent(RegisterIntent intent) {
+  void doIntent(RegisterAction intent) {
     switch (intent) {
-      case RegisterButtonPressedIntent():
+      case RegisterButtonPressedAction():
         _registerButtonPressed();
         break;
-      case GenderChangedIntent(:final gender):
+      case GenderChangedAction(:final gender):
         _changeGender(gender);
         break;
-      case UserRegistrationIntent():
-      case NavigateToLoginIntent():
+      case UserRegistrationAction():
+      case NavigateToLoginAction():
         _navigateToLogin();
         break;
     }
@@ -78,7 +78,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   }
 
   void _navigateToLogin() {
-    emit(state.copyWith(registerState: BaseNavigationState('')));
+    emit(state.copyWith(registerState: BaseNavigationState(AppRoutes.login)));
   }
 
   Future<void> _userRegistration(RegisterRequestEntity request) async {
@@ -95,6 +95,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
             registerState: BaseSuccessState<UserEntity>(data: result.data),
           ),
         );
+        _navigateToLogin();
         break;
       case FailureResult<UserEntity>():
         emit(

@@ -1,6 +1,5 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_intent.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +39,7 @@ class RegisterRadioTile extends StatelessWidget {
           visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           onChanged: (newValue) {
             context.read<RegisterCubit>().doIntent(
-              GenderChangedIntent(gender: newValue!),
+              GenderChangedAction(gender: newValue!),
             );
           },
         );

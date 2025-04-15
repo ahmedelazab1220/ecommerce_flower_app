@@ -3,9 +3,9 @@ import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register_form.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_form.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_intent.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               AppDialogs.showLoadingDialog(context);
             } else if (registerState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              context.read<RegisterCubit>().doIntent(NavigateToLoginIntent());
+              Navigator.pushReplacementNamed(context, AppRoutes.login);
             } else if (registerState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
