@@ -15,4 +15,7 @@ abstract class ProfileRetrofitClient {
 
   @GET(ApiConstants.profileDataRoute)
   Future<UserDataResponseDto> getUserData();
+
+  @POST(ApiConstants.logoutRoute)
+  Future<void> logout();
 }

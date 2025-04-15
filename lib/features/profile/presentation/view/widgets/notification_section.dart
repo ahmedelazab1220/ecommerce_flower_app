@@ -9,6 +9,7 @@ import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/profile_cubit.dart';
+import '../../view_model/profile_state.dart';
 
 class NotificationSection extends StatelessWidget {
   const NotificationSection({super.key});

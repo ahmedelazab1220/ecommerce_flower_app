@@ -50,8 +50,12 @@ import '../../../features/main_layout/presentation/view_model/cubit/main_layout_
     as _i393;
 import '../../../features/profile/data/api/profile_retrofit_client.dart'
     as _i766;
+import '../../../features/profile/data/data_source/contract/profile_local_data_source.dart'
+    as _i1011;
 import '../../../features/profile/data/data_source/contract/profile_remote_data_source.dart'
     as _i939;
+import '../../../features/profile/data/data_source/local/profile_local_data_source_impl.dart'
+    as _i862;
 import '../../../features/profile/data/data_source/remote/profile_remote_data_source_impl.dart'
     as _i1038;
 import '../../../features/profile/data/repo_impl/profile_repo_impl.dart'
@@ -59,6 +63,7 @@ import '../../../features/profile/data/repo_impl/profile_repo_impl.dart'
 import '../../../features/profile/domain/repo/profile_repo.dart' as _i863;
 import '../../../features/profile/domain/usecase/get_user_data_usecase.dart'
     as _i314;
+import '../../../features/profile/domain/usecase/logout_use_case.dart' as _i238;
 import '../../../features/profile/presentation/view_model/profile_cubit.dart'
     as _i782;
 import '../../functions/initial_route_function.dart' as _i687;
@@ -108,6 +113,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
     gh.factory<_i1015.AuthLocalDataSource>(
         () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
+    gh.factory<_i1011.ProfileLocalDataSource>(() =>
+        _i862.ProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.singleton<_i257.AuthRetrofitClient>(
         () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
@@ -126,6 +133,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
         ));
+    gh.factory<_i863.ProfileRepo>(() => _i1054.ProfileRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i939.ProfileRemoteDataSource>(),
+          gh<_i1011.ProfileLocalDataSource>(),
+        ));
     gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i1015.AuthLocalDataSource>(),
@@ -135,20 +147,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i1065.GetHomeDataUseCase>(
         () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
-    gh.factory<_i863.ProfileRepo>(() => _i1054.ProfileRepoImpl(
-          gh<_i28.ApiManager>(),
-          gh<_i939.ProfileRemoteDataSource>(),
-        ));
     gh.factory<_i314.GetUserDataUsecase>(
         () => _i314.GetUserDataUsecase(gh<_i863.ProfileRepo>()));
+    gh.factory<_i238.LogoutUseCase>(
+        () => _i238.LogoutUseCase(gh<_i863.ProfileRepo>()));
     gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
           gh<_i1065.GetHomeDataUseCase>(),
           gh<_i533.LocationService>(),
         ));
+    gh.factory<_i782.ProfileCubit>(() => _i782.ProfileCubit(
+          gh<_i314.GetUserDataUsecase>(),
+          gh<_i238.LogoutUseCase>(),
+        ));
     gh.factory<_i114.GuestUseCase>(
         () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i782.ProfileCubit>(
-        () => _i782.ProfileCubit(gh<_i314.GetUserDataUsecase>()));
     gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
           gh<_i919.LoginUseCase>(),
           gh<_i114.GuestUseCase>(),

@@ -1,1 +1,3 @@
-abstract interface class ProfileLocalDataSource {}
+abstract interface class ProfileLocalDataSource {
+  Future<void> clearAll();
+}

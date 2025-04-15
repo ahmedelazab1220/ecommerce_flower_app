@@ -17,6 +17,7 @@ import '../../../../core/assets/app_icons.dart';
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../view_model/profile_cubit.dart';
+import '../view_model/profile_state.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

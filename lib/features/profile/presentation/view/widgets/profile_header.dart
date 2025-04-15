@@ -9,6 +9,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
 import '../../../../../core/base/base_state.dart';
+import '../../view_model/profile_state.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
