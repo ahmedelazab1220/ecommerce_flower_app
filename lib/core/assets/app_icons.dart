@@ -17,4 +17,8 @@ class AppIcons {
   static const String starSvg = '${baseRoute}star.svg';
   static const String translateSvg = '${baseRoute}translate.svg';
   static const String notificationSvg = '${baseRoute}notification.svg';
+  static const String penSvg = '${baseRoute}pen.svg';
+  static const String backSvg = '${baseRoute}back.svg';
+  static const String transactionOrderSvg = '${baseRoute}Transaction-order.svg';
+  static const String logoutSvg = '${baseRoute}logout.svg';
 }

@@ -48,6 +48,19 @@ import '../../../features/home/presentation/view_model/home_cubit.dart'
     as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
+import '../../../features/profile/data/api/profile_retrofit_client.dart'
+    as _i766;
+import '../../../features/profile/data/data_source/contract/profile_remote_data_source.dart'
+    as _i939;
+import '../../../features/profile/data/data_source/remote/profile_remote_data_source_impl.dart'
+    as _i1038;
+import '../../../features/profile/data/repo_impl/profile_repo_impl.dart'
+    as _i1054;
+import '../../../features/profile/domain/repo/profile_repo.dart' as _i863;
+import '../../../features/profile/domain/usecase/get_user_data_usecase.dart'
+    as _i314;
+import '../../../features/profile/presentation/view_model/profile_cubit.dart'
+    as _i782;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -83,6 +96,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
         () => dioModule.providerInterceptor());
+    gh.lazySingleton<_i953.AppInterceptors>(() => _i953.AppInterceptors());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => secureStorageModule.storage);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
@@ -98,12 +112,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
         () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i766.ProfileRetrofitClient>(
+        () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
         sharedPreferences: gh<_i460.SharedPreferences>()));
     gh.factory<_i305.AuthRemoteDataSource>(
         () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
+    gh.factory<_i939.ProfileRemoteDataSource>(() =>
+        _i1038.ProfileRemoteDataSourceImpl(gh<_i766.ProfileRetrofitClient>()));
     gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -117,12 +135,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i1065.GetHomeDataUseCase>(
         () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
+    gh.factory<_i863.ProfileRepo>(() => _i1054.ProfileRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i939.ProfileRemoteDataSource>(),
+        ));
+    gh.factory<_i314.GetUserDataUsecase>(
+        () => _i314.GetUserDataUsecase(gh<_i863.ProfileRepo>()));
     gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
           gh<_i1065.GetHomeDataUseCase>(),
           gh<_i533.LocationService>(),
         ));
     gh.factory<_i114.GuestUseCase>(
         () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
+    gh.factory<_i782.ProfileCubit>(
+        () => _i782.ProfileCubit(gh<_i314.GetUserDataUsecase>()));
     gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
           gh<_i919.LoginUseCase>(),
           gh<_i114.GuestUseCase>(),

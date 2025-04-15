@@ -22,9 +22,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.Login.tr()),
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.Login.tr())),
       body: BlocProvider(
         create: (context) => loginViewModel,
         child: BlocConsumer<LoginCubit, LoginState>(
@@ -34,12 +32,17 @@ class LoginScreen extends StatelessWidget {
             }
             if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(context, AppRoutes.home);
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.mainLayoutRoute,
+              );
             }
             if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context,
-                  message: (state.baseState as BaseErrorState).errorMessage);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
           builder: (context, state) {

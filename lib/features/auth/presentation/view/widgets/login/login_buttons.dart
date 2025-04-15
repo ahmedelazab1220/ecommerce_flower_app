@@ -31,9 +31,7 @@ class LoginButtons extends StatelessWidget {
             child: Text(LocaleKeys.Login.tr()),
           ),
         ),
-        SizedBox(
-          height: 16.h,
-        ),
+        SizedBox(height: 16.h),
         Container(
           width: double.infinity,
           height: 48.h,
@@ -44,18 +42,15 @@ class LoginButtons extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               context.read<LoginCubit>().doIntent(GuestRequestAction());
-              Navigator.pushReplacementNamed(context, AppRoutes.home);
             },
             style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                  backgroundColor: WidgetStateProperty.all(AppColors.white),
-                  foregroundColor: WidgetStateProperty.all(AppColors.gray),
-                ),
+              backgroundColor: WidgetStateProperty.all(AppColors.white),
+              foregroundColor: WidgetStateProperty.all(AppColors.gray),
+            ),
             child: Text(LocaleKeys.ContinueAsGuest.tr()),
           ),
         ),
-        SizedBox(
-          height: 16.h,
-        ),
+        SizedBox(height: 16.h),
       ],
     );
   }

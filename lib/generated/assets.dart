@@ -8,6 +8,7 @@ class Assets {
       'assets/images/successfuly_order.png';
   static const String lottiesLoading = 'assets/lotties/loading.json';
   static const String svgsAlarmClock = 'assets/svgs/alarm_clock.svg';
+  static const String svgsBack = 'assets/svgs/back.svg';
   static const String svgsCall = 'assets/svgs/call.svg';
   static const String svgsCategories = 'assets/svgs/categories.svg';
   static const String svgsChat = 'assets/svgs/chat.svg';
@@ -18,11 +19,15 @@ class Assets {
   static const String svgsHome = 'assets/svgs/home.svg';
   static const String svgsLocation = 'assets/svgs/location.svg';
   static const String svgsLogo = 'assets/svgs/logo.svg';
+  static const String svgsLogout = 'assets/svgs/logout.svg';
   static const String svgsNotification = 'assets/svgs/notification.svg';
+  static const String svgsPen = 'assets/svgs/pen.svg';
   static const String svgsPerson = 'assets/svgs/person.svg';
   static const String svgsSearch = 'assets/svgs/search.svg';
   static const String svgsShoppingCart = 'assets/svgs/shopping_cart.svg';
   static const String svgsStar = 'assets/svgs/star.svg';
+  static const String svgsTransactionOrder =
+      'assets/svgs/Transaction-order.svg';
   static const String svgsTranslate = 'assets/svgs/translate.svg';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
