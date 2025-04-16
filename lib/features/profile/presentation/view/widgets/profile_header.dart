@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/features/profile/presentation/view_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,11 @@ class ProfileHeader extends StatelessWidget {
                       width: 24.spMax,
                     ),
                     onPressed: () {
-                      // Handle edit button press
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.editProfileRoute,
+                        arguments: viewModel.userData,
+                      );
                     },
                   ),
                 ],

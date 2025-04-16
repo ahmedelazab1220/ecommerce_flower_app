@@ -1,7 +1,6 @@
 import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../features/home/presentation/view/home_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 
 class AppRoutes {
@@ -16,6 +15,7 @@ class AppRoutes {
   static const String bestSellerRoute = '/best-seller';
   static const String categoriesRoute = '/categories';
   static const String occasionRoute = '/occasion';
+  static const String editProfileRoute = '/edit-profile';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     login: (context) => LoginScreen(),
