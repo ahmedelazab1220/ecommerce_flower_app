@@ -81,23 +81,15 @@ class AppTheme {
         borderRadius: BorderRadius.circular(4.r),
         borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
-      floatingLabelStyle: WidgetStateTextStyle.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.error)) {
-            return const TextStyle(
-              color: AppColors.red,
-            );
-          } else if (states.contains(WidgetState.focused)) {
-            return const TextStyle(
-              color: Colors.black,
-            );
-          } else {
-            return const TextStyle(
-              color: AppColors.gray,
-            );
-          }
-        },
-      ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+        if (states.contains(WidgetState.error)) {
+          return const TextStyle(color: AppColors.red);
+        } else if (states.contains(WidgetState.focused)) {
+          return const TextStyle(color: Colors.black);
+        } else {
+          return const TextStyle(color: AppColors.gray);
+        }
+      }),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.white,
