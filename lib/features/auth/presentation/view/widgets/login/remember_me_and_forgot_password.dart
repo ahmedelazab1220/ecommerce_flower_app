@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/routes/routes.dart';
-import '../../../view_model/login_cubit.dart';
+import '../../../view_model/login/login_cubit.dart';
 
 class RememberMeAndForgotPassword extends StatelessWidget {
   const RememberMeAndForgotPassword({super.key});
@@ -22,8 +22,9 @@ class RememberMeAndForgotPassword extends StatelessWidget {
             Row(
               children: [
                 BlocBuilder<LoginCubit, LoginState>(
-                  buildWhen: (previous, current) =>
-                      previous.isRememberMe != current.isRememberMe,
+                  buildWhen:
+                      (previous, current) =>
+                          previous.isRememberMe != current.isRememberMe,
                   builder: (context, state) {
                     return Checkbox(
                       value: loginViewModel.isRememberMe,
@@ -47,9 +48,10 @@ class RememberMeAndForgotPassword extends StatelessWidget {
               child: Text(
                 LocaleKeys.Forget_Password.tr(),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.black,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.black),
+                  color: AppColors.black,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.black,
+                ),
               ),
             ),
           ],

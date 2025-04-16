@@ -27,10 +27,13 @@ import '../../../features/auth/data/data_source/remote/auth_remote_data_source_i
     as _i212;
 import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
-import '../../../features/auth/domain/usecase/guest_use_case.dart' as _i114;
-import '../../../features/auth/domain/usecase/login_use_case.dart' as _i919;
-import '../../../features/auth/presentation/view_model/login_cubit.dart'
-    as _i646;
+import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i124;
+import '../../../features/auth/domain/use_case/login_use_case.dart' as _i197;
+import '../../../features/auth/domain/use_case/register_use_case.dart' as _i336;
+import '../../../features/auth/presentation/view_model/login/login_cubit.dart'
+    as _i204;
+import '../../../features/auth/presentation/view_model/register/register_cubit.dart'
+    as _i316;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
 import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
     as _i493;
@@ -137,8 +140,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i86.ResetPasswordDataSource>(),
           gh<_i28.ApiManager>(),
         ));
-    gh.factory<_i919.LoginUseCase>(
-        () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
+    gh.factory<_i197.LoginUseCase>(
+        () => _i197.LoginUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i1065.GetHomeDataUseCase>(
         () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
     gh.factory<_i468.ResetPasswordUseCase>(
@@ -147,15 +150,21 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1065.GetHomeDataUseCase>(),
           gh<_i533.LocationService>(),
         ));
-    gh.factory<_i114.GuestUseCase>(
-        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
+    gh.factory<_i124.GuestUseCase>(
+        () => _i124.GuestUseCase(gh<_i913.AuthRepo>()));
+    gh.factory<_i336.RegisterUseCase>(
+        () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i545.ResetPasswordCubit>(() => _i545.ResetPasswordCubit(
           gh<_i468.ResetPasswordUseCase>(),
           gh<_i468.Validator>(),
         ));
-    gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
-          gh<_i919.LoginUseCase>(),
-          gh<_i114.GuestUseCase>(),
+    gh.factory<_i316.RegisterCubit>(() => _i316.RegisterCubit(
+          gh<_i336.RegisterUseCase>(),
+          gh<_i468.Validator>(),
+        ));
+    gh.factory<_i204.LoginCubit>(() => _i204.LoginCubit(
+          gh<_i197.LoginUseCase>(),
+          gh<_i124.GuestUseCase>(),
         ));
     return this;
   }

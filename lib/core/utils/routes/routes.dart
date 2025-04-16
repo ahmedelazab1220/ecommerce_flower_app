@@ -1,4 +1,5 @@
 import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/login_screen.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/register_screen.dart';
 import 'package:ecommerce_flower_app/features/reset_password/presentation/view/screens/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> routes = {
     login: (context) => LoginScreen(),
+    register: (context) => const RegisterScreen(),
     mainLayoutRoute: (context) => const MainLayout(),
     resetPasswordRoute: (context) => const ResetPasswordScreen(),
   };

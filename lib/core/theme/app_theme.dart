@@ -41,10 +41,13 @@ class AppTheme {
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(14)),
+        padding: WidgetStateProperty.all(
+          const EdgeInsets.symmetric(vertical: 14),
+        ),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       errorStyle: const TextStyle(color: AppColors.red, fontSize: 12),
       contentPadding: const EdgeInsets.all(16),
       iconColor: AppColors.pink,
@@ -78,7 +81,6 @@ class AppTheme {
         borderRadius: BorderRadius.circular(4.r),
         borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
-      floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
         if (states.contains(WidgetState.error)) {
           return const TextStyle(color: AppColors.red);
