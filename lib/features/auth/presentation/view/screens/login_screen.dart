@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/login_cubit.dart';
+import '../../view_model/login/login_cubit.dart';
 import '../widgets/login/do_not_have_account.dart';
 import '../widgets/login/login_buttons.dart';
 import '../widgets/login/login_form.dart';
@@ -50,17 +50,18 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             }
             if (state.baseState is BaseNavigationState) {
-              final navState = (state.baseState as BaseNavigationState).replace;
-              if (navState == false) {
-                Navigator.pushNamed(
-                  context,
-                  (state.baseState as BaseNavigationState).routeName,
-                );
-              } else {
-                Navigator.pushReplacementNamed(
-                  context,
-                  (state.baseState as BaseNavigationState).routeName,
-                );
+              final navState = state.baseState as BaseNavigationState;
+
+              switch (navState.type) {
+                case NavigationType.pop:
+                  Navigator.pop(context);
+                  break;
+                case NavigationType.push:
+                  Navigator.pushNamed(context, navState.routeName);
+                  break;
+                case NavigationType.pushReplacement:
+                  Navigator.pushReplacementNamed(context, navState.routeName);
+                  break;
               }
             }
           },

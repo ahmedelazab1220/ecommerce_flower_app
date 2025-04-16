@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../../core/utils/routes/routes.dart';
-import '../../../view_model/login_cubit.dart';
+import '../../../view_model/login/login_cubit.dart';
 
 class DonotHaveAccount extends StatelessWidget {
   const DonotHaveAccount({super.key});
@@ -36,7 +37,7 @@ class DonotHaveAccount extends StatelessWidget {
                         viewModel.doIntent(
                           NavigationAction(
                             routeName: AppRoutes.registerRoute,
-                            replace: true,
+                            type: NavigationType.pushReplacement,
                           ),
                         );
                       },

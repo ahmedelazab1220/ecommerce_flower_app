@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../view_model/login_cubit.dart';
+import '../../../view_model/login/login_cubit.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

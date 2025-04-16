@@ -25,7 +25,7 @@ final class GuestRequestAction extends LoginAction {}
 
 final class NavigationAction extends LoginAction {
   final String routeName;
-  final bool replace;
+  final NavigationType type;
 
-  NavigationAction({required this.routeName, this.replace = false});
+  NavigationAction({required this.routeName, this.type = NavigationType.push});
 }
