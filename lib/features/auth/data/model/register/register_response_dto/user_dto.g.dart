@@ -1,29 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_response_dto.dart';
+part of 'user_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginResponseDto _$LoginResponseDtoFromJson(Map<String, dynamic> json) =>
-    LoginResponseDto(
-      message: json['message'] as String?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
-      token: json['token'] as String?,
-    );
-
-Map<String, dynamic> _$LoginResponseDtoToJson(LoginResponseDto instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'user': instance.user,
-      'token': instance.token,
-    };
-
-User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['_id'] as String?,
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       email: json['email'] as String?,
@@ -32,12 +15,14 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       photo: json['photo'] as String?,
       role: json['role'] as String?,
       wishlist: json['wishlist'] as List<dynamic>?,
+      id: json['_id'] as String?,
       addresses: json['addresses'] as List<dynamic>?,
-      createdAt: json['createdAt'] as String?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      '_id': instance.id,
+Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'email': instance.email,
@@ -46,6 +31,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'photo': instance.photo,
       'role': instance.role,
       'wishlist': instance.wishlist,
+      '_id': instance.id,
       'addresses': instance.addresses,
-      'createdAt': instance.createdAt,
+      'createdAt': instance.createdAt?.toIso8601String(),
     };

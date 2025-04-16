@@ -3,7 +3,7 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/login_cubit.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/login/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,9 +22,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.Login.tr()),
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.Login.tr())),
       body: BlocProvider(
         create: (context) => loginViewModel,
         child: BlocConsumer<LoginCubit, LoginState>(
@@ -38,8 +36,10 @@ class LoginScreen extends StatelessWidget {
             }
             if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
-              AppDialogs.showFailureDialog(context,
-                  message: (state.baseState as BaseErrorState).errorMessage);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
             }
           },
           builder: (context, state) {
@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 key: context.read<LoginCubit>().formKey,
                 child: Padding(
                   padding: EdgeInsets.all(16.w),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       LoginForm(),
