@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/features/categories/domain/entities/product_entity.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
+import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/product_item.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_cubit.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
@@ -49,7 +50,16 @@ class ProductsGrid extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Skeletonizer(
                     enabled: isLoading,
-                    child: ProductItem(product: products[index]),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.productDetailsRoute,
+                          arguments: products[index],
+                        );
+                      },
+                      child: ProductItem(product: products[index]),
+                    ),
                   );
                 },
               );
