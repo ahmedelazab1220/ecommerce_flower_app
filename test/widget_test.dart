@@ -22,7 +22,7 @@ void main() {
         path: Constants.assetsTranslations,
         fallbackLocale: const Locale(Constants.en),
         startLocale: const Locale(Constants.en),
-        child: const MyApp(),
+        child: MyApp(),
       ),
     );
   }
