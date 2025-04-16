@@ -29,6 +29,8 @@ import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i124;
 import '../../../features/auth/domain/use_case/login_use_case.dart' as _i197;
 import '../../../features/auth/domain/use_case/register_use_case.dart' as _i336;
+import '../../../features/auth/presentation/view_model/login/login_cubit.dart'
+    as _i204;
 import '../../../features/auth/presentation/view_model/register/register_cubit.dart'
     as _i316;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
@@ -148,6 +150,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.RegisterCubit>(
       () => _i316.RegisterCubit(
         gh<_i336.RegisterUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i204.LoginCubit>(
+      () => _i204.LoginCubit(
+        gh<_i197.LoginUseCase>(),
+        gh<_i124.GuestUseCase>(),
         gh<_i468.Validator>(),
       ),
     );
