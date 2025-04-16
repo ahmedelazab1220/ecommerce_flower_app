@@ -79,23 +79,15 @@ class AppTheme {
         borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      floatingLabelStyle: WidgetStateTextStyle.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.error)) {
-            return const TextStyle(
-              color: AppColors.red,
-            );
-          } else if (states.contains(WidgetState.focused)) {
-            return const TextStyle(
-              color: Colors.black,
-            );
-          } else {
-            return const TextStyle(
-              color: AppColors.gray,
-            );
-          }
-        },
-      ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+        if (states.contains(WidgetState.error)) {
+          return const TextStyle(color: AppColors.red);
+        } else if (states.contains(WidgetState.focused)) {
+          return const TextStyle(color: Colors.black);
+        } else {
+          return const TextStyle(color: AppColors.gray);
+        }
+      }),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.white,

@@ -9,10 +9,7 @@ class LoginRequestDto {
   @JsonKey(name: "password")
   final String password;
 
-  LoginRequestDto({
-    required this.email,
-    required this.password,
-  });
+  LoginRequestDto({required this.email, required this.password});
 
   factory LoginRequestDto.fromJson(Map<String, dynamic> json) {
     return _$LoginRequestDtoFromJson(json);

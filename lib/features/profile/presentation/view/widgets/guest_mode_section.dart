@@ -17,7 +17,7 @@ class GuestModeSection extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.YouAreInGuestMode.tr(),
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 16),
           Text(
@@ -37,6 +37,5 @@ class GuestModeSection extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

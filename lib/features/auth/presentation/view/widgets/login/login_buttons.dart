@@ -1,17 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/utils/di/di.dart';
-import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/auth_local_data_source.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../../../../core/utils/routes/routes.dart';
-import '../../../../data/data_source/local/auth_local_data_source_impl.dart';
 import '../../../view_model/login_cubit.dart';
 
 class LoginButtons extends StatelessWidget {

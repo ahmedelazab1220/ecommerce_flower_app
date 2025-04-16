@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                 key: context.read<LoginCubit>().formKey,
                 child: Padding(
                   padding: EdgeInsets.all(16.w),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       LoginForm(),
