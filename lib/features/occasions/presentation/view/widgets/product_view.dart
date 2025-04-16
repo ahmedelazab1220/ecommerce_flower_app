@@ -32,23 +32,29 @@ class _ProductViewState extends State<ProductView> {
 
     return BlocBuilder<OccasionCubit, OccasionState>(
       builder: (context, state) {
-        if (state.baseState is BaseLoadingState) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state.baseState is BaseErrorState) {
+        final isLoading = state.baseState is BaseLoadingState;
+
+        if (state.baseState is BaseErrorState) {
           return Center(
             child: Text(
               (state.baseState as BaseErrorState).errorMessage,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           );
-        } else if (viewModel.products == null || viewModel.products!.isEmpty) {
+        }
+
+        if (!isLoading &&
+            (viewModel.products == null || viewModel.products!.isEmpty)) {
           return Center(
             child: Text(
-              LocaleKeys.NoProductAvailable.tr(),
+              LocaleKeys.NoProductsAvailable.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           );
         }
+
+        final itemCount = isLoading ? 6 : viewModel.products!.length;
+
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.w),
           child: GridView.builder(
@@ -56,12 +62,12 @@ class _ProductViewState extends State<ProductView> {
               crossAxisCount: 2,
               crossAxisSpacing: 17,
               mainAxisSpacing: 17,
-              childAspectRatio: 0.74,
+              childAspectRatio: 0.7,
             ),
-            itemCount: viewModel.products!.length,
+            itemCount: itemCount,
             itemBuilder: (context, index) {
-              final product = viewModel.products![index];
-              return ProductItem(productEntity: product);
+              final product = isLoading ? null : viewModel.products![index];
+              return ProductItem(productEntity: product, isLoading: isLoading);
             },
           ),
         );
