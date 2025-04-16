@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/translation_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,14 +36,25 @@ class TranslationAndAboutUsSection extends StatelessWidget {
                 ],
               ),
               Text(
-                "English",
+                context.locale.languageCode == 'ar'
+                    ? LocaleKeys.Arabic.tr()
+                    : LocaleKeys.English.tr(),
                 style: Theme.of(
                   context,
                 ).textTheme.bodyLarge?.copyWith(color: AppColors.pink),
               ),
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
+              ),
+              isScrollControlled: true,
+              builder: (translationContext) => const TranslationBottomSheet(),
+            );
+          },
         ),
         const SizedBox(height: 4),
         GestureDetector(

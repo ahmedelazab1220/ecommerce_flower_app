@@ -1,5 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/logout_section.dart';
 import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/notification_section.dart';
@@ -10,12 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-
-import '../../../../core/assets/app_colors.dart';
 import '../../../../core/assets/app_icons.dart';
-import '../../../../core/base/base_state.dart';
-import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../view_model/profile_cubit.dart';
 import '../view_model/profile_state.dart';
 

@@ -180,5 +180,8 @@
     "GettingYourCurrentAddress": "🔄 Getting your current address...",
     "UnableToGetLocation": "❌ Unable to get location. Please try again.",
     "Long": "Long",
-    "Lat": "Lat"
+    "Lat": "Lat",
+    "ChangeLanguage": "Change language",
+    "Arabic": "Arabic",
+    "English": "English"
 }

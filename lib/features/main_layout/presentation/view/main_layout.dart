@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../profile/presentation/view_model/translation_cubit.dart';
+import '../../../profile/presentation/view_model/translation_state.dart';
 import '../view_model/cubit/main_layout_cubit.dart';
 
 class MainLayout extends StatefulWidget {
@@ -24,34 +26,38 @@ class _MainLayoutState extends State<MainLayout> {
       create: (context) => viewModel,
       child: BlocBuilder<MainLayoutCubit, MainLayoutState>(
         builder: (context, state) {
-          return Scaffold(
-            body: viewModel.tabs[viewModel.currentTab],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: viewModel.currentTab.index,
-              onTap: (value) {
-                viewModel.doIntent(
-                  ChangeSelectedTab(MainLayoutTabs.values[value]),
-                );
-              },
-              items: [
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.homeSvg),
-                  label: LocaleKeys.Home.tr(),
+          return BlocBuilder<TranslationCubit, TranslationState>(
+            builder: (context, langState) {
+              return Scaffold(
+                body: viewModel.tabs[viewModel.currentTab],
+                bottomNavigationBar: BottomNavigationBar(
+                  currentIndex: viewModel.currentTab.index,
+                  onTap: (value) {
+                    viewModel.doIntent(
+                      ChangeSelectedTab(MainLayoutTabs.values[value]),
+                    );
+                  },
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.homeSvg),
+                      label: LocaleKeys.Home.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.categoriesSvg),
+                      label: LocaleKeys.Categories.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
+                      label: LocaleKeys.Cart.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.personSvg),
+                      label: LocaleKeys.Profile.tr(),
+                    ),
+                  ],
                 ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.categoriesSvg),
-                  label: LocaleKeys.Categories.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
-                  label: LocaleKeys.Cart.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.personSvg),
-                  label: LocaleKeys.Profile.tr(),
-                ),
-              ],
-            ),
+              );
+            },
           );
         },
       ),
