@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class DonotHaveAccount extends StatelessWidget {
                         viewModel.doIntent(
                           NavigationAction(
                             routeName: AppRoutes.registerRoute,
-                            replace: true,
+                            type: NavigationType.pushReplacement,
                           ),
                         );
                       },

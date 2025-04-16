@@ -36,10 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
       case GuestRequestAction():
         _guestLogin();
       case NavigationAction():
-        _naviagtionToScreen(
-          routeName: action.routeName,
-          replace: action.replace,
-        );
+        _naviagtionToScreen(routeName: action.routeName, type: action.type);
     }
   }
 
@@ -70,9 +67,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _guestLogin() async {
     await _guestUseCase.call();
-    doIntent(
-      NavigationAction(routeName: AppRoutes.mainLayoutRoute, replace: true),
-    );
+    doIntent(NavigationAction(routeName: AppRoutes.mainLayoutRoute));
   }
 
   void rememberMe(bool value) {
@@ -80,10 +75,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(isRememberMe: isRememberMe));
   }
 
-  void _naviagtionToScreen({required String routeName, bool replace = false}) {
+  void _naviagtionToScreen({
+    required String routeName,
+    required NavigationType type,
+  }) {
     emit(
       state.copyWith(
-        baseState: BaseNavigationState(routeName: routeName, replace: replace),
+        baseState: BaseNavigationState(routeName: routeName, type: type),
       ),
     );
   }

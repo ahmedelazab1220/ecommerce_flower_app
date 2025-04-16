@@ -34,8 +34,8 @@ abstract class DioModule {
         onRequest: (options, handler) async {
           final token = await storage.read(key: Constants.token);
           if (token != null) {
-            options.headers["Authorization"] = token;
-            options.headers["token"] = token;
+            options.headers["Authorization"] = "Bearer $token";
+            options.headers["token"] = "Bearer $token";
           }
           handler.next(options);
         },

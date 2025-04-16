@@ -180,5 +180,9 @@
     "GettingYourCurrentAddress": "🔄 Getting your current address...",
     "UnableToGetLocation": "❌ Unable to get location. Please try again.",
     "Long": "Long",
-    "Lat": "Lat"
+    "Lat": "Lat",
+    "EditProfile": "Edit profile",
+    "TakeAPhoto": "Take a photo",
+    "ChooseFromGallery": "Choose from gallery",
+    "Change": "Change"
 }
