@@ -2,7 +2,7 @@ import 'package:ecommerce_flower_app/features/auth/domain/entity/user_enttity.da
 
 class RegisterEntity {
   final String? message;
-  final UserEntity? user;
+  final UserEntity user;
 
-  const RegisterEntity({this.message, this.user});
+  const RegisterEntity({this.message, required this.user});
 }

@@ -67,7 +67,12 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _guestLogin() async {
     await _guestUseCase.call();
-    doIntent(NavigationAction(routeName: AppRoutes.mainLayoutRoute));
+    doIntent(
+      NavigationAction(
+        routeName: AppRoutes.mainLayoutRoute,
+        type: NavigationType.pushReplacement,
+      ),
+    );
   }
 
   void rememberMe(bool value) {

@@ -1,98 +1,97 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../view_model/register/register_cubit.dart';
 
 class RegisterTextFieldSection extends StatelessWidget {
   const RegisterTextFieldSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final registerCubit = context.read<RegisterCubit>();
-
+    final viewModel = context.read<RegisterCubit>();
     return Column(
       children: [
-        /// First Name & Last Name
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: TextFormField(
-                controller: registerCubit.firstNameController,
+                controller: viewModel.firstNameController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator:
-                    (value) =>
-                        registerCubit.validator.validateName(value ?? ""),
+                    (value) => viewModel.validator.validateName(value ?? ""),
                 decoration: InputDecoration(
                   labelText: LocaleKeys.FirstName.tr(),
                   hintText: LocaleKeys.EnterFirstName.tr(),
                   errorMaxLines: 2,
                 ),
+                onTapOutside:
+                    (event) => FocusManager.instance.primaryFocus?.unfocus(),
               ),
             ),
             const SizedBox(width: 17),
             Expanded(
               child: TextFormField(
-                controller: registerCubit.lastNameController,
+                controller: viewModel.lastNameController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator:
-                    (value) =>
-                        registerCubit.validator.validateName(value ?? ""),
+                    (value) => viewModel.validator.validateName(value ?? ""),
                 decoration: InputDecoration(
                   labelText: LocaleKeys.LastName.tr(),
                   hintText: LocaleKeys.EnterLastName.tr(),
                   errorMaxLines: 2,
                 ),
+                onTapOutside:
+                    (event) => FocusManager.instance.primaryFocus?.unfocus(),
               ),
             ),
           ],
         ),
         const SizedBox(height: 24),
-
-        /// Email
         TextFormField(
-          controller: registerCubit.emailController,
+          controller: viewModel.emailController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator:
-              (value) => registerCubit.validator.validateEmail(value ?? ""),
+          validator: (value) => viewModel.validator.validateEmail(value ?? ""),
           decoration: InputDecoration(
             labelText: LocaleKeys.Email.tr(),
             hintText: LocaleKeys.EnterYourEmail.tr(),
             errorMaxLines: 2,
           ),
+          onTapOutside:
+              (event) => FocusManager.instance.primaryFocus?.unfocus(),
         ),
         const SizedBox(height: 24),
-
-        /// Password & Confirm Password
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
             Expanded(
               child: TextFormField(
-                controller: registerCubit.passwordController,
+                controller: viewModel.passwordController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator:
                     (value) =>
-                        registerCubit.validator.validatePassword(value ?? ""),
+                        viewModel.validator.validatePassword(value ?? ""),
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.Password.tr(),
                   hintText: LocaleKeys.EnterYourPassword.tr(),
                   errorMaxLines: 2,
                 ),
+                onTapOutside:
+                    (event) => FocusManager.instance.primaryFocus?.unfocus(),
               ),
             ),
             const SizedBox(width: 17),
             Expanded(
               child: TextFormField(
-                controller: registerCubit.confirmPasswordController,
+                controller: viewModel.confirmPasswordController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator:
-                    (value) => registerCubit.validator.validateConfirmPassword(
+                    (value) => viewModel.validator.validateConfirmPassword(
                       value ?? "",
-                      registerCubit.passwordController.text,
+                      viewModel.passwordController.text,
                     ),
                 obscureText: true,
                 decoration: InputDecoration(
@@ -100,24 +99,25 @@ class RegisterTextFieldSection extends StatelessWidget {
                   hintText: LocaleKeys.ConfirmPassword.tr(),
                   errorMaxLines: 2,
                 ),
+                onTapOutside:
+                    (event) => FocusManager.instance.primaryFocus?.unfocus(),
               ),
             ),
           ],
         ),
         const SizedBox(height: 24),
-
-        /// Phone Number
         TextFormField(
-          controller: registerCubit.phoneController,
+          controller: viewModel.phoneController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator:
-              (value) =>
-                  registerCubit.validator.validatePhoneNumber(value ?? ""),
+              (value) => viewModel.validator.validatePhoneNumber(value ?? ""),
           decoration: InputDecoration(
             labelText: LocaleKeys.PhoneNumber.tr(),
             hintText: LocaleKeys.PhoneNumber.tr(),
             errorMaxLines: 2,
           ),
+          onTapOutside:
+              (event) => FocusManager.instance.primaryFocus?.unfocus(),
         ),
       ],
     );
