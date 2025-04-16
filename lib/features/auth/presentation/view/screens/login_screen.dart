@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
             }
             if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(context, AppRoutes.home);
+              Navigator.pushReplacementNamed(context, AppRoutes.mainLayoutRoute);
             }
             if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);

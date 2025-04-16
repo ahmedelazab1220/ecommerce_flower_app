@@ -1,24 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/assets/app_colors.dart';
-import '../../../../home/domain/entity/product_entity.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 
 class ImageView extends StatefulWidget {
   final ProductEntity product;
   final emptyString = "";
-  int currentImageIndex = 0;
 
-  ImageView({super.key, required this.product});
+  const ImageView({super.key, required this.product});
 
   @override
   State<ImageView> createState() => _ImageViewState();
 }
 
 class _ImageViewState extends State<ImageView> {
+  int currentImageIndex = 0;
   @override
   Widget build(BuildContext context) {
     final List<String> imageUrls = widget.product.images ?? [];
@@ -56,7 +55,7 @@ class _ImageViewState extends State<ImageView> {
                     viewportFraction: 1.0,
                     enableInfiniteScroll: false,
                     onPageChanged: (index, reason) {
-                      setState(() => widget.currentImageIndex = index);
+                      setState(() => currentImageIndex = index);
                     },
                   ),
                   itemBuilder: (context, index, realIndex) {
@@ -85,7 +84,7 @@ class _ImageViewState extends State<ImageView> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color:
-                                  widget.currentImageIndex == entry.key
+                                  currentImageIndex == entry.key
                                       ? AppColors.pink
                                       : AppColors.lightGray,
                             ),

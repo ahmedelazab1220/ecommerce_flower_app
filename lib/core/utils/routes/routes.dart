@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/categories/presentation/view/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/auth/presentation/view/screens/login_screen.dart';
@@ -22,6 +23,12 @@ class AppRoutes {
     loginRoute: (context) => const LoginScreen(),
     registerRoute: (context) => const RegisterScreen(),
     mainLayoutRoute: (context) => const MainLayout(),
+    categoriesRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      final categoryIndex = args['categoryIndex'] as int;
+      return CategoriesScreen(categoryIndex: categoryIndex);
+    },
     productDetailsRoute: (context) => const ProductDetailsScreen(),
   };
 }

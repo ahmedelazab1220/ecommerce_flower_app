@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_retorfit_client.dart';
+part of 'categories_retrofit_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'auth_retorfit_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthRetrofitClient implements AuthRetrofitClient {
-  _AuthRetrofitClient(
+class _CategoriesRetrofitClient implements CategoriesRetrofitClient {
+  _CategoriesRetrofitClient(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
@@ -24,20 +24,19 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LoginResponseDto> login(LoginRequestDto request) async {
+  Future<CategoriesResponse> getCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<LoginResponseDto>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<CategoriesResponse>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'auth/signin',
+          'categories',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -47,9 +46,9 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginResponseDto _value;
+    late CategoriesResponse _value;
     try {
-      _value = LoginResponseDto.fromJson(_result.data!);
+      _value = CategoriesResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -58,20 +57,20 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
   }
 
   @override
-  Future<RegisterResponseDto> signUp(RegisterRequestDto request) async {
+  Future<ProductsResponse> getProductsByCategory({String? categoryId}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'category': categoryId};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _options = _setStreamType<RegisterResponseDto>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ProductsResponse>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'auth/signup',
+          'products',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -81,9 +80,9 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late RegisterResponseDto _value;
+    late ProductsResponse _value;
     try {
-      _value = RegisterResponseDto.fromJson(_result.data!);
+      _value = ProductsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
