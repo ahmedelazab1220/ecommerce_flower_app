@@ -2,23 +2,31 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/profile/domain/usecase/get_user_data_usecase.dart';
+import 'package:ecommerce_flower_app/features/profile/domain/usecase/guest_mode_use_case.dart';
 import 'package:ecommerce_flower_app/features/profile/domain/usecase/logout_use_case.dart';
 import 'package:ecommerce_flower_app/features/profile/presentation/view_model/profile_state.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
+import '../../../../core/utils/di/di.dart';
 import '../../domain/entity/user_data_entity.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
   final GetUserDataUsecase _getUserDataUsecase;
   final LogoutUseCase _logoutUseCase;
+  final GuestModeUseCase _guestModeUseCase;
+  String? token;
   bool isNotification = false;
   UserDataEntity? userData;
 
-  ProfileCubit(this._getUserDataUsecase, this._logoutUseCase)
-    : super(ProfileState(baseState: BaseInitialState(), isNotification: false));
+  ProfileCubit(
+    this._getUserDataUsecase,
+    this._logoutUseCase,
+    this._guestModeUseCase,
+  ) : super(ProfileState(baseState: BaseInitialState(), isNotification: false));
 
   Future<void> _getUserData() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
@@ -59,6 +67,20 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
+  Future<void> _isGuestUser() async {
+    emit(state.copyWith(guestState: BaseLoadingState()));
+    token = await getIt<FlutterSecureStorage>().read(key: "token");
+    if (token == null || token!.isEmpty) {
+      emit(state.copyWith(guestState: BaseSuccessState()));
+    } else {
+      emit(
+        state.copyWith(
+          guestState: BaseErrorState(errorMessage: "You are not a guest user"),
+        ),
+      );
+    }
+  }
+
   void notification(bool value) {
     isNotification = value;
     emit(state.copyWith(isNotification: isNotification));
@@ -70,6 +92,8 @@ class ProfileCubit extends Cubit<ProfileState> {
         _getUserData();
       case LogoutRequestAction():
         _logout();
+      case GuestStateRequestAction():
+        _isGuestUser();
     }
   }
 }

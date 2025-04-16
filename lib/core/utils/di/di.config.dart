@@ -63,6 +63,8 @@ import '../../../features/profile/data/repo_impl/profile_repo_impl.dart'
 import '../../../features/profile/domain/repo/profile_repo.dart' as _i863;
 import '../../../features/profile/domain/usecase/get_user_data_usecase.dart'
     as _i314;
+import '../../../features/profile/domain/usecase/guest_mode_use_case.dart'
+    as _i405;
 import '../../../features/profile/domain/usecase/logout_use_case.dart' as _i238;
 import '../../../features/profile/presentation/view_model/profile_cubit.dart'
     as _i782;
@@ -151,16 +153,19 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i314.GetUserDataUsecase(gh<_i863.ProfileRepo>()));
     gh.factory<_i238.LogoutUseCase>(
         () => _i238.LogoutUseCase(gh<_i863.ProfileRepo>()));
+    gh.factory<_i405.GuestModeUseCase>(
+        () => _i405.GuestModeUseCase(gh<_i863.ProfileRepo>()));
     gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
           gh<_i1065.GetHomeDataUseCase>(),
           gh<_i533.LocationService>(),
         ));
+    gh.factory<_i114.GuestUseCase>(
+        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i782.ProfileCubit>(() => _i782.ProfileCubit(
           gh<_i314.GetUserDataUsecase>(),
           gh<_i238.LogoutUseCase>(),
+          gh<_i405.GuestModeUseCase>(),
         ));
-    gh.factory<_i114.GuestUseCase>(
-        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
           gh<_i919.LoginUseCase>(),
           gh<_i114.GuestUseCase>(),

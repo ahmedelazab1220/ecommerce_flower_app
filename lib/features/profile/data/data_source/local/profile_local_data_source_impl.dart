@@ -13,4 +13,10 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     sharedPreferences.clear();
     return await _flutterSecureStorage.deleteAll();
   }
+
+  @override
+  Future<bool> isGuestUser() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getBool('isGuestUser') ?? true;
+  }
 }

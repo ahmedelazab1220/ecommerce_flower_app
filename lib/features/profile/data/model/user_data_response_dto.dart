@@ -84,6 +84,8 @@ class User {
       lastName: lastName,
       email: email,
       photo: photo,
+      gender: gender,
+      phone: phone,
     );
   }
 }

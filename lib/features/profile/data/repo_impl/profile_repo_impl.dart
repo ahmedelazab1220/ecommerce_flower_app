@@ -33,4 +33,9 @@ class ProfileRepoImpl implements ProfileRepo {
     });
     return response;
   }
+
+  @override
+  Future<bool> isGuestUser() async {
+    return await _profileLocalDataSource.isGuestUser();
+  }
 }
