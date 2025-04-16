@@ -22,12 +22,12 @@ void main() {
         path: Constants.assetsTranslations,
         fallbackLocale: const Locale(Constants.en),
         startLocale: const Locale(Constants.en),
-        child: const MyApp(),
+        child: MyApp(),
       ),
     );
   }
 
-  testWidgets('Finds main widget and localization', (
+  testWidgets('Finds main widgets and localization', (
     WidgetTester tester,
   ) async {
     await pumpLocalizedWidget(tester);
