@@ -1,14 +1,16 @@
-import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/auth_local_data_source.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/login/response/login_response_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../core/utils/datasource_excution/api_manager.dart';
 import '../../domain/entity/login_request.dart';
+import '../../domain/entity/register_entity/register_request_entity.dart';
+import '../../domain/entity/user_enttity.dart';
 import '../data_source/contract/auth_remote_data_source.dart';
 import '../model/login/request/login_request_dto.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
@@ -28,7 +30,7 @@ class AuthRepoImpl extends AuthRepo {
       final response = await _authRemoteDataSource.login(
         LoginRequestDto(email: request.email, password: request.password),
       );
-      _authLocalDataSource.saveToken(Constants.token, response.token ?? "");
+      _authLocalDataSource.saveToken("token", response.token ?? "");
       _authLocalDataSource.setRememberMe(request.isRememberMe);
       _authLocalDataSource.setGuestUser(false);
       return response;
@@ -49,5 +51,16 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<bool> isGuestUser() async {
     return await _authLocalDataSource.isGuestUser();
+  }
+
+  @override
+  Future<Result<UserEntity>> signUp(RegisterRequestEntity request) async {
+    final result = await _apiManager.execute<UserEntity>(() async {
+      final response = await _authRemoteDataSource.signUp(
+        request.toDto(request),
+      );
+      return response.user?.toEntity() ?? const UserEntity();
+    });
+    return result;
   }
 }

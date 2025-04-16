@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/base/base_state.dart';
-import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../../domain/entity/login_request.dart';
-import '../../domain/usecase/guest_use_case.dart';
-import '../../domain/usecase/login_use_case.dart';
+import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../domain/entity/login_request.dart';
+import '../../../domain/use_case/guest_use_case.dart';
+import '../../../domain/use_case/login_use_case.dart';
 
 part 'login_state.dart';
 
@@ -36,10 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
       case GuestRequestAction():
         _guestLogin();
       case NavigationAction():
-        _naviagtionToScreen(
-          routeName: action.routeName,
-          replace: action.replace,
-        );
+        _naviagtionToScreen(routeName: action.routeName, type: action.type);
     }
   }
 
@@ -70,9 +67,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _guestLogin() async {
     await _guestUseCase.call();
-    doIntent(
-      NavigationAction(routeName: AppRoutes.mainLayoutRoute, replace: true),
-    );
+    doIntent(NavigationAction(routeName: AppRoutes.mainLayoutRoute));
   }
 
   void rememberMe(bool value) {
@@ -80,10 +75,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(isRememberMe: isRememberMe));
   }
 
-  void _naviagtionToScreen({required String routeName, bool replace = false}) {
+  void _naviagtionToScreen({
+    required String routeName,
+    required NavigationType type,
+  }) {
     emit(
       state.copyWith(
-        baseState: BaseNavigationState(routeName: routeName, replace: replace),
+        baseState: BaseNavigationState(routeName: routeName, type: type),
       ),
     );
   }
