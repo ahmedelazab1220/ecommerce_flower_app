@@ -20,23 +20,20 @@ class DonotHaveAccount extends StatelessWidget {
               text: TextSpan(
                 style: Theme.of(context).textTheme.bodyLarge,
                 children: [
-                  TextSpan(
-                    text: LocaleKeys.DonotHaveAnAccount.tr(),
-                  ),
-                  const TextSpan(
-                    text: ' ',
-                  ),
+                  TextSpan(text: LocaleKeys.DonotHaveAnAccount.tr()),
+                  const TextSpan(text: ' '),
                   TextSpan(
                     text: LocaleKeys.Signup.tr(),
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.pink,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.pink,
-                        ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushNamed(context, AppRoutes.register);
-                      },
+                      color: AppColors.pink,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.pink,
+                    ),
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, AppRoutes.register);
+                          },
                   ),
                 ],
               ),

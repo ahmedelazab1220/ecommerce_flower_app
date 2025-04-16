@@ -1,4 +1,6 @@
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
+import 'package:ecommerce_flower_app/features/cart/presentation/view/widgets/cart_item.dart';
+import 'package:ecommerce_flower_app/features/cart/presentation/view/widgets/total_price_item.dart';
 import 'package:ecommerce_flower_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:ecommerce_flower_app/features/cart/presentation/view_model/cart_state.dart';
 import 'package:flutter/material.dart';
@@ -32,16 +34,32 @@ class CartScreen extends StatelessWidget {
               } else if (state.baseState is BaseSuccessState<CartEntity>) {
                 final cart =
                     (state.baseState as BaseSuccessState<CartEntity>).data;
-                return ListView.builder(
-                  itemCount: cart?.numOfCartItems,
-                  itemBuilder: (context, index) {
-                    final product = cart?.cartList[index];
-                    return ListTile(
-                      title: Text(product?.title ?? ''),
-                      subtitle: Text('Quantity: ${product?.quantity}'),
-                      trailing: Text('\$${product?.price}'),
-                    );
-                  },
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: cart!.numOfCartItems,
+                      itemBuilder: (context, index) {
+                        final product = cart.cartList[index];
+                        return CartItem(cartProductEntity: product);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(height: 24);
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TotalPriceItem(
+                      subtotal: cart.totalPrice,
+                      deliveryFee: 10,
+                      totalPrice: cart.totalPriceAfterDiscount,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Checkout'),
+                    ),
+                  ],
                 );
               }
               return const SizedBox.shrink();

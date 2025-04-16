@@ -37,9 +37,7 @@ class LoginForm extends StatelessWidget {
             hintText: LocaleKeys.EnterYourPassword.tr(),
           ),
         ),
-        SizedBox(
-          height: 16.h,
-        ),
+        SizedBox(height: 16.h),
       ],
     );
   }

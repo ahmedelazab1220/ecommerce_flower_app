@@ -18,19 +18,22 @@ abstract class CartRetrofitClient {
 
   @POST(ApiConstants.cartRoute)
   Future<CartResponseDto> addProductToCart(
-      @Body() AddProductToCartRequestDto addProductToCartRequestDto,);
+    @Body() AddProductToCartRequestDto addProductToCartRequestDto,
+  );
 
-  @PUT(ApiConstants.cartRoute)
+  @PUT("${ApiConstants.cartRoute}/{productId}")
   Future<CartResponseDto> updateProductInCart(
-      @Path("productId") String productId,
-      @Body() UpdateProductQuantityRequestDto updateProductQuantityRequestDto,);
+    @Path("productId") String productId,
+    @Body() UpdateProductQuantityRequestDto updateProductQuantityRequestDto,
+  );
 
   @GET(ApiConstants.cartRoute)
   Future<CartResponseDto> getCart();
 
-  @DELETE(ApiConstants.cartRoute)
+  @DELETE("${ApiConstants.cartRoute}/{productId}")
   Future<CartResponseDto> deleteProductFromCart(
-      @Path("productId") String productId,);
+    @Path("productId") String productId,
+  );
 
   @DELETE(ApiConstants.cartRoute)
   Future<ClearCartResponseDto> clearCart();

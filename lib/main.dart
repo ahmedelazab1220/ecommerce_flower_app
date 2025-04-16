@@ -38,16 +38,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 910),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        routes: AppRoutes.routes,
-        theme: AppTheme.appTheme,
-        initialRoute: routeInitializer.computeInitialRoute(),
-      ),
+      builder:
+          (context, child) => MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            routes: AppRoutes.routes,
+            theme: AppTheme.appTheme,
+            initialRoute: routeInitializer.computeInitialRoute(),
+          ),
     );
   }
 }

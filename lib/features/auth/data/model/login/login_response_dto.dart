@@ -11,11 +11,7 @@ class LoginResponseDto {
   @JsonKey(name: "token")
   final String? token;
 
-  LoginResponseDto({
-    this.message,
-    this.user,
-    this.token,
-  });
+  LoginResponseDto({this.message, this.user, this.token});
 
   factory LoginResponseDto.fromJson(Map<String, dynamic> json) {
     return _$LoginResponseDtoFromJson(json);

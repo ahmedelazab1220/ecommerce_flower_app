@@ -31,6 +31,22 @@ import '../../../features/auth/domain/usecase/guest_use_case.dart' as _i114;
 import '../../../features/auth/domain/usecase/login_use_case.dart' as _i919;
 import '../../../features/auth/presentation/view_model/login_cubit.dart'
     as _i646;
+import '../../../features/cart/data/api/cart_retrofit_client.dart' as _i675;
+import '../../../features/cart/data/data_source/contract/cart_remote_datasource.dart'
+    as _i12;
+import '../../../features/cart/data/data_source/remote/cart_remote_datasource_impl.dart'
+    as _i616;
+import '../../../features/cart/data/repo_impl/cart_repo_impl.dart' as _i833;
+import '../../../features/cart/domain/repo/cart_repo.dart' as _i1033;
+import '../../../features/cart/domain/usecase/add_product_to_cart_usecase.dart'
+    as _i1010;
+import '../../../features/cart/domain/usecase/clear_cart_usecase.dart' as _i407;
+import '../../../features/cart/domain/usecase/delete_product_from_cart_usecase.dart'
+    as _i715;
+import '../../../features/cart/domain/usecase/get_cart_usecase.dart' as _i1039;
+import '../../../features/cart/domain/usecase/update_product_in_cart_usecase.dart'
+    as _i637;
+import '../../../features/cart/presentation/view_model/cart_cubit.dart' as _i99;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
 import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
     as _i493;
@@ -59,16 +75,12 @@ import '../validator/validator.dart' as _i468;
 import 'module/shared_preference_module.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i526.GetItHelper(
-      this,
-      environment,
-      environmentFilter,
-    );
+    final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final sharedPreferenceModule = _$SharedPreferenceModule();
     final dioModule = _$DioModule();
     final secureStorageModule = _$SecureStorageModule();
@@ -82,51 +94,109 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
-        () => dioModule.providerInterceptor());
+      () => dioModule.providerInterceptor(),
+    );
+    gh.lazySingleton<_i953.AppInterceptors>(() => _i953.AppInterceptors());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
-        () => secureStorageModule.storage);
+      () => secureStorageModule.storage,
+    );
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.factory<_i493.HomeLocalDataSource>(
-        () => _i640.HomeLocalDataSourceImpl());
+      () => _i640.HomeLocalDataSourceImpl(),
+    );
     gh.singleton<_i649.BlocObserverService>(
-        () => _i649.BlocObserverService(gh<_i974.Logger>()));
+      () => _i649.BlocObserverService(gh<_i974.Logger>()),
+    );
     gh.factory<_i1015.AuthLocalDataSource>(
-        () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
+      () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()),
+    );
     gh.singleton<_i257.AuthRetrofitClient>(
-        () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
+      () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i945.HomeRetrofitClient>(
-        () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
-    gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
-        sharedPreferences: gh<_i460.SharedPreferences>()));
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i675.CartRetrofitClient>(
+      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i687.RouteInitializer>(
+      () => _i687.RouteInitializer(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
     gh.factory<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
+      () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()),
+    );
     gh.singleton<_i1043.HomeRemoteDataSource>(
-        () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
-          gh<_i1043.HomeRemoteDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
-          gh<_i305.AuthRemoteDataSource>(),
-          gh<_i1015.AuthLocalDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
+      () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()),
+    );
+    gh.factory<_i242.HomeRepo>(
+      () => _i801.HomeRepoImpl(
+        gh<_i1043.HomeRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i12.CartRemoteDataSource>(
+      () => _i616.CartRemoteDatasourceImpl(gh<_i675.CartRetrofitClient>()),
+    );
+    gh.factory<_i1033.CartRepo>(
+      () => _i833.CartRepoImpl(
+        gh<_i12.CartRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i913.AuthRepo>(
+      () => _i822.AuthRepoImpl(
+        gh<_i305.AuthRemoteDataSource>(),
+        gh<_i1015.AuthLocalDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i919.LoginUseCase>(
-        () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
+      () => _i919.LoginUseCase(gh<_i913.AuthRepo>()),
+    );
     gh.factory<_i1065.GetHomeDataUseCase>(
-        () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
-    gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
-          gh<_i1065.GetHomeDataUseCase>(),
-          gh<_i533.LocationService>(),
-        ));
+      () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
+    );
+    gh.factory<_i595.HomeCubit>(
+      () => _i595.HomeCubit(
+        gh<_i1065.GetHomeDataUseCase>(),
+        gh<_i533.LocationService>(),
+      ),
+    );
     gh.factory<_i114.GuestUseCase>(
-        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
-          gh<_i919.LoginUseCase>(),
-          gh<_i114.GuestUseCase>(),
-        ));
+      () => _i114.GuestUseCase(gh<_i913.AuthRepo>()),
+    );
+    gh.factory<_i1010.AddProductToCartUsecase>(
+      () => _i1010.AddProductToCartUsecase(gh<_i1033.CartRepo>()),
+    );
+    gh.factory<_i407.ClearCartUsecase>(
+      () => _i407.ClearCartUsecase(gh<_i1033.CartRepo>()),
+    );
+    gh.factory<_i715.DeleteProductFromCartUsecase>(
+      () => _i715.DeleteProductFromCartUsecase(gh<_i1033.CartRepo>()),
+    );
+    gh.factory<_i1039.GetCartUsecase>(
+      () => _i1039.GetCartUsecase(gh<_i1033.CartRepo>()),
+    );
+    gh.factory<_i637.UpdateProductInCartUsecase>(
+      () => _i637.UpdateProductInCartUsecase(gh<_i1033.CartRepo>()),
+    );
+    gh.factory<_i646.LoginCubit>(
+      () =>
+          _i646.LoginCubit(gh<_i919.LoginUseCase>(), gh<_i114.GuestUseCase>()),
+    );
+    gh.factory<_i99.CartCubit>(
+      () => _i99.CartCubit(
+        gh<_i1039.GetCartUsecase>(),
+        gh<_i407.ClearCartUsecase>(),
+        gh<_i1010.AddProductToCartUsecase>(),
+        gh<_i637.UpdateProductInCartUsecase>(),
+        gh<_i715.DeleteProductFromCartUsecase>(),
+      ),
+    );
     return this;
   }
 }

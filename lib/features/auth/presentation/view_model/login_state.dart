@@ -27,10 +27,7 @@ class LoginState extends Equatable {
 
   const LoginState({this.baseState, this.isRememberMe});
 
-  LoginState copyWith({
-    BaseState? baseState,
-    bool? isRememberMe,
-  }) {
+  LoginState copyWith({BaseState? baseState, bool? isRememberMe}) {
     return LoginState(
       baseState: baseState ?? this.baseState,
       isRememberMe: isRememberMe ?? this.isRememberMe,
@@ -38,10 +35,7 @@ class LoginState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        baseState,
-        isRememberMe,
-      ];
+  List<Object?> get props => [baseState, isRememberMe];
 }
 
 sealed class LoginAction {}

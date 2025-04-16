@@ -54,7 +54,9 @@ class Cart {
           cartItems!
               .map(
                 (cartItem) => CartProductEntity(
+                  id: cartItem.product?.id ?? '',
                   title: cartItem.product?.title ?? '',
+                  description: cartItem.product?.description ?? '',
                   imgCover: cartItem.product?.imgCover ?? '',
                   price: cartItem.price ?? 0,
                   quantity: cartItem.quantity ?? 0,

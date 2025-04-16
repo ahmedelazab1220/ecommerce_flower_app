@@ -16,10 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   final GuestUseCase _guestUseCase;
 
   LoginCubit(this._loginUseCase, this._guestUseCase)
-      : super(LoginState(
-          baseState: BaseInitialState(),
-          isRememberMe: false,
-        ));
+    : super(LoginState(baseState: BaseInitialState(), isRememberMe: false));
 
   final TextEditingController emailController = TextEditingController();
 
@@ -31,41 +28,38 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _login() async {
     if (formKey.currentState!.validate()) {
-      emit(state.copyWith(
-        baseState: BaseLoadingState(),
-      ));
-      final result = await _loginUseCase.call(LoginRequest(
-        email: emailController.text,
-        password: passwordController.text,
-        isRememberMe: isRememberMe,
-      ));
+      emit(state.copyWith(baseState: BaseLoadingState()));
+      final result = await _loginUseCase.call(
+        LoginRequest(
+          email: emailController.text,
+          password: passwordController.text,
+          isRememberMe: isRememberMe,
+        ),
+      );
       switch (result) {
         case SuccessResult<void>():
-          emit(state.copyWith(
-            baseState: BaseSuccessState(),
-          ));
+          emit(state.copyWith(baseState: BaseSuccessState()));
         case FailureResult<void>():
-          emit(state.copyWith(
-            baseState:
-                BaseErrorState(errorMessage: result.exception.toString()),
-          ));
+          emit(
+            state.copyWith(
+              baseState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
       }
     }
   }
 
   Future<void> _guestLogin() async {
-    emit(state.copyWith(
-      baseState: BaseLoadingState(),
-    ));
+    emit(state.copyWith(baseState: BaseLoadingState()));
     await _guestUseCase.call();
     emit(state.copyWith(baseState: BaseSuccessState()));
   }
 
   void rememberMe(bool value) {
     isRememberMe = value;
-    emit(state.copyWith(
-      isRememberMe: isRememberMe,
-    ));
+    emit(state.copyWith(isRememberMe: isRememberMe));
   }
 
   void doIntent(LoginAction action) async {
