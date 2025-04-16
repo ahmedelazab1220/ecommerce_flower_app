@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/routes/routes.dart';
-import '../../../view_model/login_cubit.dart';
+import '../../../view_model/login/login_cubit.dart';
 
 class RememberMeAndForgotPassword extends StatelessWidget {
   const RememberMeAndForgotPassword({super.key});

@@ -25,7 +25,7 @@ class LoginResponseDto {
 @JsonSerializable()
 class User {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "firstName")
   final String? firstName;
   @JsonKey(name: "lastName")
@@ -48,7 +48,7 @@ class User {
   final String? createdAt;
 
   User({
-    this.Id,
+    this.id,
     this.firstName,
     this.lastName,
     this.email,

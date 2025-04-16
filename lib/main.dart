@@ -13,6 +13,7 @@ import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/routes.dart';
 import 'features/profile/presentation/view_model/translation_cubit.dart';
+import 'features/profile/presentation/view_model/translation_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

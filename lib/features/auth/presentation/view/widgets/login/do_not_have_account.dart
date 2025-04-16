@@ -32,7 +32,10 @@ class DonotHaveAccount extends StatelessWidget {
                     recognizer:
                         TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushNamed(context, AppRoutes.register);
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.register,
+                            );
                           },
                   ),
                 ],

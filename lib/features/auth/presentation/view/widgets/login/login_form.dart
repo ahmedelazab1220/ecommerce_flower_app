@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../../core/utils/validator/validator.dart';
-import '../../../view_model/login_cubit.dart';
+import '../../../view_model/login/login_cubit.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

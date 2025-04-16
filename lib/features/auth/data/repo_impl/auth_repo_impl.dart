@@ -3,11 +3,12 @@ import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/aut
 import 'package:ecommerce_flower_app/features/auth/data/model/login/login_response_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../core/utils/datasource_excution/api_manager.dart';
 import '../../domain/entity/login_request.dart';
 import '../data_source/contract/auth_remote_data_source.dart';
 import '../model/login/login_request_dto.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
@@ -48,5 +49,17 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<bool> isGuestUser() async {
     return await _authLocalDataSource.isGuestUser();
+  }
+
+  @override
+  Future<Result<UserEntity>> signUp(RegisterRequestEntity request) async {
+    final result = await _apiManager.execute<UserEntity>(() async {
+      final response = await _authRemoteDataSource.signUp(
+        request.toDto(request),
+      );
+      return response.user?.toEntity() ??
+          const UserEntity(); 
+    });
+    return result;
   }
 }
