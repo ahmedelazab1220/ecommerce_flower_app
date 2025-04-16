@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,8 +8,9 @@ import '../contract/auth_local_data_source.dart';
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   final FlutterSecureStorage _flutterSecureStorage;
+  final SharedPreferences _sharedPreferences;
 
-  AuthLocalDataSourceImpl(this._flutterSecureStorage);
+  AuthLocalDataSourceImpl(this._flutterSecureStorage, this._sharedPreferences);
 
   @override
   Future<void> deleteToken(String key) async {
@@ -27,14 +29,12 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<void> setRememberMe(bool value) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool('isRememberMe', value);
+    _sharedPreferences.setBool(Constants.isRememberMe, value);
   }
 
   @override
   Future<bool> isRememberMe() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool('isRememberMe') ?? false;
+    return _sharedPreferences.getBool(Constants.isRememberMe) ?? false;
   }
 
   @override
@@ -44,13 +44,11 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<void> setGuestUser(bool value) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool('isGuestUser', value);
+    _sharedPreferences.setBool(Constants.isGuestUser, value);
   }
 
   @override
   Future<bool> isGuestUser() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool('isGuestUser') ?? false;
+    return _sharedPreferences.getBool(Constants.isGuestUser) ?? false;
   }
 }
