@@ -7,9 +7,9 @@ part 'register_response_dto.g.dart';
 
 @JsonSerializable()
 class RegisterResponseDto {
-  final String message;
-  final UserDto user;
-  final String token;
+  final String? message;
+  final UserDto? user;
+  final String? token;
 
   const RegisterResponseDto({
     required this.message,
@@ -24,6 +24,6 @@ class RegisterResponseDto {
   Map<String, dynamic> toJson() => _$RegisterResponseDtoToJson(this);
 
   RegisterEntity toEntity() {
-    return RegisterEntity(message: message, user: user.toEntity());
+    return RegisterEntity(message: message, user: user?.toEntity());
   }
 }

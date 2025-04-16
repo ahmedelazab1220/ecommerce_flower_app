@@ -6,10 +6,10 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class RegisterUseCase {
-  final AuthRepo repository;
-  RegisterUseCase(this.repository);
+  final AuthRepo _repository;
+  RegisterUseCase(this._repository);
 
   Future<Result<UserEntity>> call(RegisterRequestEntity request) async {
-    return await repository.signUp(request);
+    return await _repository.signUp(request);
   }
 }

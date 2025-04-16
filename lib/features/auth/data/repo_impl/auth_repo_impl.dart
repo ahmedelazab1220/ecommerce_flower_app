@@ -57,7 +57,8 @@ class AuthRepoImpl extends AuthRepo {
       final response = await _authRemoteDataSource.signUp(
         request.toDto(request),
       );
-      return response.user.toEntity();
+      return response.user?.toEntity() ??
+          const UserEntity(); 
     });
     return result;
   }
