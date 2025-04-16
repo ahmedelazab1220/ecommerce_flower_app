@@ -27,11 +27,11 @@ import '../../../features/auth/data/data_source/remote/auth_remote_data_source_i
     as _i212;
 import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
+import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i124;
+import '../../../features/auth/domain/use_case/login_use_case.dart' as _i197;
 import '../../../features/auth/domain/use_case/register_use_case.dart' as _i336;
-import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i114;
-import '../../../features/auth/domain/use_case/login_use_case.dart' as _i919;
 import '../../../features/auth/presentation/view_model/login/login_cubit.dart'
-    as _i646;
+    as _i204;
 import '../../../features/auth/presentation/view_model/register/register_cubit.dart'
     as _i316;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
@@ -62,16 +62,12 @@ import '../validator/validator.dart' as _i468;
 import 'module/shared_preference_module.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i526.GetItHelper(
-      this,
-      environment,
-      environmentFilter,
-    );
+    final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final sharedPreferenceModule = _$SharedPreferenceModule();
     final dioModule = _$DioModule();
     final secureStorageModule = _$SecureStorageModule();
@@ -85,58 +81,82 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
-        () => dioModule.providerInterceptor());
+      () => dioModule.providerInterceptor(),
+    );
     gh.lazySingleton<_i953.AppInterceptors>(() => _i953.AppInterceptors());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
-        () => secureStorageModule.storage);
+      () => secureStorageModule.storage,
+    );
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.factory<_i493.HomeLocalDataSource>(
-        () => _i640.HomeLocalDataSourceImpl());
+      () => _i640.HomeLocalDataSourceImpl(),
+    );
     gh.singleton<_i649.BlocObserverService>(
-        () => _i649.BlocObserverService(gh<_i974.Logger>()));
+      () => _i649.BlocObserverService(gh<_i974.Logger>()),
+    );
     gh.factory<_i1015.AuthLocalDataSource>(
-        () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
-    gh.singleton<_i257.AuthRetrofitClient>(
-        () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
+      () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()),
+    );
     gh.singleton<_i945.HomeRetrofitClient>(
-        () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
-    gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
-        sharedPreferences: gh<_i460.SharedPreferences>()));
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i257.AuthRetrofitClient>(
+      () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i687.RouteInitializer>(
+      () => _i687.RouteInitializer(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
     gh.factory<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
+      () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()),
+    );
     gh.singleton<_i1043.HomeRemoteDataSource>(
-        () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
-          gh<_i1043.HomeRemoteDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
-          gh<_i305.AuthRemoteDataSource>(),
-          gh<_i1015.AuthLocalDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i919.LoginUseCase>(
-        () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
+      () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()),
+    );
+    gh.factory<_i242.HomeRepo>(
+      () => _i801.HomeRepoImpl(
+        gh<_i1043.HomeRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i913.AuthRepo>(
+      () => _i822.AuthRepoImpl(
+        gh<_i305.AuthRemoteDataSource>(),
+        gh<_i1015.AuthLocalDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i197.LoginUseCase>(
+      () => _i197.LoginUseCase(gh<_i913.AuthRepo>()),
+    );
     gh.factory<_i1065.GetHomeDataUseCase>(
-        () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
+      () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
+    );
+    gh.factory<_i595.HomeCubit>(
+      () => _i595.HomeCubit(
+        gh<_i1065.GetHomeDataUseCase>(),
+        gh<_i533.LocationService>(),
+      ),
+    );
+    gh.factory<_i124.GuestUseCase>(
+      () => _i124.GuestUseCase(gh<_i913.AuthRepo>()),
+    );
     gh.factory<_i336.RegisterUseCase>(
-        () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
-          gh<_i1065.GetHomeDataUseCase>(),
-          gh<_i533.LocationService>(),
-        ));
-    gh.factory<_i114.GuestUseCase>(
-        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i316.RegisterCubit>(() => _i316.RegisterCubit(
-          gh<_i336.RegisterUseCase>(),
-          gh<_i468.Validator>(),
-        ));
-    gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
-          gh<_i919.LoginUseCase>(),
-          gh<_i114.GuestUseCase>(),
-        ));
+      () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()),
+    );
+    gh.factory<_i316.RegisterCubit>(
+      () => _i316.RegisterCubit(
+        gh<_i336.RegisterUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i204.LoginCubit>(
+      () =>
+          _i204.LoginCubit(gh<_i197.LoginUseCase>(), gh<_i124.GuestUseCase>()),
+    );
     return this;
   }
 }

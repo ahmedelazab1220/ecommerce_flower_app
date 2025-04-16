@@ -20,12 +20,14 @@ BestSellerDto _$BestSellerDtoFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] as num?,
       category: json['category'] as String?,
       occasion: json['occasion'] as String?,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          json['createdAt'] == null
+              ? null
+              : DateTime.parse(json['createdAt'] as String),
+      updatedAt:
+          json['updatedAt'] == null
+              ? null
+              : DateTime.parse(json['updatedAt'] as String),
       v: json['__v'] as num?,
       discount: json['discount'] as num?,
       sold: json['sold'] as num?,

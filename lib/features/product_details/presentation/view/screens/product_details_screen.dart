@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../home/domain/entity/product_entity.dart';
 import '../widgets/bottom_button.dart';
 import '../widgets/image_view.dart';
 import '../widgets/product_details_body.dart';
@@ -14,8 +15,8 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final ProductsModel product =
-        ModalRoute.of(context)?.settings.arguments as ProductsModel;
+    final ProductEntity product =
+        ModalRoute.of(context)?.settings.arguments as ProductEntity;
     return Scaffold(
       body: CustomScrollView(
         slivers: [

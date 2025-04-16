@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/assets/app_colors.dart';
+import '../../../../home/domain/entity/product_entity.dart';
 
 class ProductDetailsBody extends StatelessWidget {
-  final ProductsModel product;
+  final ProductEntity product;
   final emptyString = "";
 
   const ProductDetailsBody({super.key, required this.product});
@@ -24,7 +25,7 @@ class ProductDetailsBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${LocaleKeys.EGP} ${product.products?[0].price ?? emptyString}",
+                      "${LocaleKeys.EGP} ${product.price ?? emptyString}",
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
@@ -54,7 +55,7 @@ class ProductDetailsBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "${product.Products?[0].title ?? emptyString}}",
+                  "${product.title ?? emptyString}}",
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class ProductDetailsBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  product.products?[0].description ?? emptyString,
+                  product.description ?? emptyString,
                   style: TextStyle(fontSize: 14.sp, color: Colors.black),
                 ),
                 // const SizedBox(height: 24),

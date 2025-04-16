@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/assets/app_colors.dart';
+import '../../../../home/domain/entity/product_entity.dart';
 
 class ImageView extends StatefulWidget {
-  final ProductsModel product;
+  final ProductEntity product;
   final emptyString = "";
   int currentImageIndex = 0;
 
@@ -20,7 +21,7 @@ class ImageView extends StatefulWidget {
 class _ImageViewState extends State<ImageView> {
   @override
   Widget build(BuildContext context) {
-    final List<String> imageUrls = widget.product.products?[0].images ?? [];
+    final List<String> imageUrls = widget.product.images ?? [];
     return SliverAppBar(
       pinned: true,
       expandedHeight: 400.h,
@@ -37,7 +38,7 @@ class _ImageViewState extends State<ImageView> {
             title:
                 isCollapsed
                     ? Text(
-                      widget.product.products?[0].title ?? widget.emptyString,
+                      widget.product.title ?? widget.emptyString,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.sp,
