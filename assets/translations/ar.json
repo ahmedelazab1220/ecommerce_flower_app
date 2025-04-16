@@ -183,5 +183,7 @@
     "Lat": "عرض",
     "ChangeLanguage": "تغيير اللغة",
     "Arabic": "العربية",
-    "English": "الإنجليزية"
+    "English": "الإنجليزية",
+    "YouAreInGuestMode": "أنت في وضع الضيف",
+    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات"
 }

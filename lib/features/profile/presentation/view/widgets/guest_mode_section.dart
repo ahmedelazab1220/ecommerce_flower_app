@@ -15,11 +15,14 @@ class GuestModeSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text('You are in guest mode', style: TextStyle(fontSize: 20)),
-          const SizedBox(height: 16),
-          const Text(
-            'Please login to access all features',
+          Text(
+            LocaleKeys.YouAreInGuestMode.tr(),
             style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            LocaleKeys.PleaseLoginToAccessAllFeatures.tr(),
+            style: const TextStyle(fontSize: 20),
           ),
           const SizedBox(height: 32),
           SizedBox(

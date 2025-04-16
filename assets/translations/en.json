@@ -183,5 +183,7 @@
     "Lat": "Lat",
     "ChangeLanguage": "Change language",
     "Arabic": "Arabic",
-    "English": "English"
+    "English": "English",
+    "YouAreInGuestMode": "You are in guest mode",
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
 }

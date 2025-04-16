@@ -188,5 +188,7 @@ abstract class  LocaleKeys {
   static const ChangeLanguage = 'ChangeLanguage';
   static const Arabic = 'Arabic';
   static const English = 'English';
+  static const YouAreInGuestMode = 'YouAreInGuestMode';
+  static const PleaseLoginToAccessAllFeatures = 'PleaseLoginToAccessAllFeatures';
 
 }
