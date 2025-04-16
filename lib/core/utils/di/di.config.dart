@@ -34,6 +34,20 @@ import '../../../features/auth/presentation/view_model/login/login_cubit.dart'
     as _i204;
 import '../../../features/auth/presentation/view_model/register/register_cubit.dart'
     as _i316;
+import '../../../features/change_password/data/api/change_password_retrofit_client.dart'
+    as _i436;
+import '../../../features/change_password/data/data_source/contract/change_password_data_source.dart'
+    as _i945;
+import '../../../features/change_password/data/data_source/remote/change_password_data_source_impl.dart'
+    as _i6;
+import '../../../features/change_password/data/repo_impl/change_password_repo_impl.dart'
+    as _i723;
+import '../../../features/change_password/domain/repo/change_password_repo.dart'
+    as _i472;
+import '../../../features/change_password/domain/use_case/change_password_use_case.dart'
+    as _i280;
+import '../../../features/change_password/presentation/view_model/change_password_cubit.dart'
+    as _i744;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
 import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
     as _i493;
@@ -51,20 +65,6 @@ import '../../../features/home/presentation/view_model/home_cubit.dart'
     as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
-import '../../../features/reset_password/data/api/reset_password_retrofit_client.dart'
-    as _i27;
-import '../../../features/reset_password/data/data_source/contract/reset_password_data_source.dart'
-    as _i86;
-import '../../../features/reset_password/data/data_source/remote/reset_password_data_source_impl.dart'
-    as _i603;
-import '../../../features/reset_password/data/repo_impl/reset_password_repo_impl.dart'
-    as _i31;
-import '../../../features/reset_password/domain/repo/reset_password_repo.dart'
-    as _i421;
-import '../../../features/reset_password/domain/use_case/reset_password_use_case.dart'
-    as _i468;
-import '../../../features/reset_password/presentation/view_model/reset_password_cubit.dart'
-    as _i545;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -112,21 +112,21 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
     gh.factory<_i1015.AuthLocalDataSource>(
         () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
-    gh.lazySingleton<_i27.ResetPasswordRetrofitClient>(
-        () => _i27.ResetPasswordRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
+        () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i257.AuthRetrofitClient>(
         () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
         () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i945.ChangePasswordDataSource>(() =>
+        _i6.ChangePasswordDataSourceImpl(
+            gh<_i436.ChangePasswordRetrofitClient>()));
     gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
         sharedPreferences: gh<_i460.SharedPreferences>()));
     gh.factory<_i305.AuthRemoteDataSource>(
         () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.lazySingleton<_i86.ResetPasswordDataSource>(() =>
-        _i603.ResetPasswordDataSourceImpl(
-            gh<_i27.ResetPasswordRetrofitClient>()));
     gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -136,16 +136,21 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1015.AuthLocalDataSource>(),
           gh<_i28.ApiManager>(),
         ));
-    gh.lazySingleton<_i421.ResetPasswordRepo>(() => _i31.ResetPasswordRepoImpl(
-          gh<_i86.ResetPasswordDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
+    gh.lazySingleton<_i472.ChangePasswordRepo>(
+        () => _i723.ChangePasswordRepoImpl(
+              gh<_i945.ChangePasswordDataSource>(),
+              gh<_i28.ApiManager>(),
+            ));
     gh.factory<_i197.LoginUseCase>(
         () => _i197.LoginUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i1065.GetHomeDataUseCase>(
         () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
-    gh.factory<_i468.ResetPasswordUseCase>(
-        () => _i468.ResetPasswordUseCase(gh<_i421.ResetPasswordRepo>()));
+    gh.factory<_i280.ChangePasswordUseCase>(
+        () => _i280.ChangePasswordUseCase(gh<_i472.ChangePasswordRepo>()));
+    gh.factory<_i744.ChangePasswordCubit>(() => _i744.ChangePasswordCubit(
+          gh<_i280.ChangePasswordUseCase>(),
+          gh<_i468.Validator>(),
+        ));
     gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
           gh<_i1065.GetHomeDataUseCase>(),
           gh<_i533.LocationService>(),
@@ -154,10 +159,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i124.GuestUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i336.RegisterUseCase>(
         () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i545.ResetPasswordCubit>(() => _i545.ResetPasswordCubit(
-          gh<_i468.ResetPasswordUseCase>(),
-          gh<_i468.Validator>(),
-        ));
     gh.factory<_i316.RegisterCubit>(() => _i316.RegisterCubit(
           gh<_i336.RegisterUseCase>(),
           gh<_i468.Validator>(),
