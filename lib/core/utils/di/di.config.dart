@@ -97,9 +97,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferenceModule.sharedPreferences,
       preResolve: true,
     );
+    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
-    gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
         () => dioModule.providerInterceptor());

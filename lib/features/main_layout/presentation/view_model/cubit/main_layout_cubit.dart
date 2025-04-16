@@ -9,7 +9,7 @@ import '../../../../profile/presentation/view/profile_screen.dart';
 
 part 'main_layout_state.dart';
 
-@singleton
+@injectable
 class MainLayoutCubit extends Cubit<MainLayoutState> {
   MainLayoutCubit() : super(MainLayoutInitial());
 
