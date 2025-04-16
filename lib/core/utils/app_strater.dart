@@ -6,9 +6,11 @@ import 'di/di.dart';
 
 abstract class AppStrater {
   static Future<void> init() async {
-    await ScreenUtil.ensureScreenSize();
-    await Hive.initFlutter();
-    await EasyLocalization.ensureInitialized();
-    await configureDependencies();
+    await Future.wait([
+      ScreenUtil.ensureScreenSize(),
+      Hive.initFlutter(),
+      EasyLocalization.ensureInitialized(),
+      configureDependencies(),
+    ]);
   }
 }
