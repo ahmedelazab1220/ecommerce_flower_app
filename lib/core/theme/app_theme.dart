@@ -36,12 +36,12 @@ class AppTheme {
         elevation: WidgetStateProperty.all(0),
         textStyle: WidgetStateProperty.all(
           TextStyle(
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             fontSize: 16.sp,
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(14)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -79,23 +79,15 @@ class AppTheme {
         borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      floatingLabelStyle: WidgetStateTextStyle.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.error)) {
-            return const TextStyle(
-              color: AppColors.red,
-            );
-          } else if (states.contains(WidgetState.focused)) {
-            return const TextStyle(
-              color: Colors.black,
-            );
-          } else {
-            return const TextStyle(
-              color: AppColors.gray,
-            );
-          }
-        },
-      ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+        if (states.contains(WidgetState.error)) {
+          return const TextStyle(color: AppColors.red);
+        } else if (states.contains(WidgetState.focused)) {
+          return const TextStyle(color: Colors.black);
+        } else {
+          return const TextStyle(color: AppColors.gray);
+        }
+      }),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.white,
