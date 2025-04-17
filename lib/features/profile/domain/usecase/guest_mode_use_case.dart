@@ -6,7 +6,7 @@ class GuestModeUseCase {
   final ProfileRepo _profileRepo;
   GuestModeUseCase(this._profileRepo);
 
-  Future<bool> call() async {
+  Future<String?> call() async {
     return await _profileRepo.isGuestUser();
   }
 }

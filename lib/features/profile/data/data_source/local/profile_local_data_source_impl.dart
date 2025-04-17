@@ -15,8 +15,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
   }
 
   @override
-  Future<bool> isGuestUser() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool('isGuestUser') ?? true;
+  Future<String?> isGuestUser() async {
+    return await _flutterSecureStorage.read(key: "token");
   }
 }

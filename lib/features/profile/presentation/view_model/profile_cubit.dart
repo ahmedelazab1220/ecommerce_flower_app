@@ -5,10 +5,8 @@ import 'package:ecommerce_flower_app/features/profile/domain/usecase/get_user_da
 import 'package:ecommerce_flower_app/features/profile/domain/usecase/guest_mode_use_case.dart';
 import 'package:ecommerce_flower_app/features/profile/domain/usecase/logout_use_case.dart';
 import 'package:ecommerce_flower_app/features/profile/presentation/view_model/profile_state.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/utils/di/di.dart';
 import '../../domain/entity/user_data_entity.dart';
 
 @injectable
@@ -67,7 +65,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> _isGuestUser() async {
     emit(state.copyWith(guestState: BaseLoadingState()));
-    token = await getIt<FlutterSecureStorage>().read(key: "token");
+    token = await _guestModeUseCase.call();
     if (token == null || token!.isEmpty) {
       emit(state.copyWith(guestState: BaseSuccessState()));
     } else {

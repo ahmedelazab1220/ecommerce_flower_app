@@ -5,5 +5,5 @@ import '../entity/user_data_entity.dart';
 abstract interface class ProfileRepo {
   Future<Result<UserDataEntity>> getUserData();
   Future<Result<void>> logout();
-  Future<bool> isGuestUser();
+  Future<String?> isGuestUser();
 }

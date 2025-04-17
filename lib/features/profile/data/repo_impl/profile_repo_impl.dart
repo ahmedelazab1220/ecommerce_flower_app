@@ -35,7 +35,7 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<bool> isGuestUser() async {
+  Future<String?> isGuestUser() async {
     return await _profileLocalDataSource.isGuestUser();
   }
 }
