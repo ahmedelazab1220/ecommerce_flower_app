@@ -7,7 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../domain/entity/products_entity.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductEntity? productEntity;

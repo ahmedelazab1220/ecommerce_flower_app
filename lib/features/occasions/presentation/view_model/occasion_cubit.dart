@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_flower_app/features/occasions/domain/entity/products_entity.dart';
 import 'package:ecommerce_flower_app/features/occasions/domain/usecase/get_products_by_id_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:logger/logger.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/product_entity.dart';
 import '../../domain/entity/occasions_entity.dart';
 import '../../domain/usecase/get_all_occasions_usecase.dart';
 
@@ -54,11 +54,11 @@ class OccasionCubit extends Cubit<OccasionState> {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _getProductsByIdUsecase.call(occasionId);
     switch (result) {
-      case SuccessResult<ProductsEntity>():
+      case SuccessResult<List<ProductEntity>>():
         emit(state.copyWith(baseState: BaseSuccessState()));
-        products = result.data.products;
+        products = result.data;
         Logger().f("Products: $products");
-      case FailureResult<ProductsEntity>():
+      case FailureResult<List<ProductEntity>>():
         emit(
           state.copyWith(
             baseState: BaseErrorState(

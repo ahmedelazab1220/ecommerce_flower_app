@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entity/products_entity.dart';
+import '../../../../core/utils/shared_models/product_entity.dart';
 
 part 'products_response_dto.g.dart';
 
@@ -21,13 +21,6 @@ class ProductsResponseDto {
 
   Map<String, dynamic> toJson() {
     return _$ProductsResponseDtoToJson(this);
-  }
-
-  ProductsEntity toEntity() {
-    return ProductsEntity(
-      message: message,
-      products: products?.map((product) => product.toEntity()).toList(),
-    );
   }
 }
 
@@ -137,6 +130,13 @@ class Products {
       sold: sold,
       rateAvg: rateAvg,
       rateCount: rateCount,
+      productId: id,
+      category: category,
+      occasion: occasion,
+      createdAt: DateTime.tryParse(createdAt ?? ''),
+      updatedAt: DateTime.tryParse(updatedAt ?? ''),
+      v: V,
+      slug: slug,
     );
   }
 }

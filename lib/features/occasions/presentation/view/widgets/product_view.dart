@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/routes.dart';
 
 class ProductView extends StatefulWidget {
   final String occasionId;
@@ -67,7 +68,21 @@ class _ProductViewState extends State<ProductView> {
             itemCount: itemCount,
             itemBuilder: (context, index) {
               final product = isLoading ? null : viewModel.products![index];
-              return ProductItem(productEntity: product, isLoading: isLoading);
+              return GestureDetector(
+                onTap: () {
+                  if (!isLoading && product != null) {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.productDetailsRoute,
+                      arguments: product,
+                    );
+                  }
+                },
+                child: ProductItem(
+                  productEntity: product,
+                  isLoading: isLoading,
+                ),
+              );
             },
           ),
         );
