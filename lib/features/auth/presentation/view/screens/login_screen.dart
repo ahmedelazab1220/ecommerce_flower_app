@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/login_cubit.dart';
+import '../../view_model/login/login_cubit.dart';
 import '../widgets/login/do_not_have_account.dart';
 import '../widgets/login/login_buttons.dart';
 import '../widgets/login/login_form.dart';
@@ -43,6 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
             }
             if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
+              AppDialogs.showFailureDialog(
+                context,
+                message: (state.baseState as BaseErrorState).errorMessage,
+              );
               AppDialogs.showFailureDialog(
                 context,
                 message: (state.baseState as BaseErrorState).errorMessage,

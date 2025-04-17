@@ -1,7 +1,7 @@
 import 'best_seller_entity.dart';
 import 'category_entity.dart';
 import 'occasion_entity.dart';
-import 'product_entity.dart';
+import '../../../../core/utils/shared_models/product_entity.dart';
 
 class HomeResponseEntity {
   final String? message;
