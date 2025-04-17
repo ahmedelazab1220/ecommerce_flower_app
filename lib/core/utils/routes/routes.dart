@@ -6,6 +6,7 @@ import '../../../features/auth/presentation/view/screens/register_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
+import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -37,5 +38,6 @@ class AppRoutes {
       return OccasionScreen(occasionIndex: occasionIndex);
     },
     productDetailsRoute: (context) => const ProductDetailsScreen(),
+    bestSellerRoute: (context) => const BestSellersScreen(),
   };
 }

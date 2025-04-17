@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             routes: AppRoutes.routes,
             theme: AppTheme.appTheme,
-            initialRoute: AppRoutes.mainLayoutRoute,
+            initialRoute: routeInitializer.computeInitialRoute(),
           ),
     );
   }
