@@ -11,8 +11,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/routes.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 import '../../../domain/entity/cart_entity.dart';
-import '../../../domain/entity/cart_product_entity.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -69,14 +70,25 @@ class CartScreen extends StatelessWidget {
                                 physics:
                                     isLoading
                                         ? const NeverScrollableScrollPhysics()
-                                        : null,
+                                        : const NeverScrollableScrollPhysics(),
                                 itemCount: isLoading ? 2 : cart!.numOfCartItems,
                                 itemBuilder: (context, index) {
                                   final product =
                                       isLoading ? null : cart!.cartList[index];
-                                  return CartItem(
-                                    cartProductEntity:
-                                        product ?? CartProductEntity.fake(),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (!isLoading && product != null) {
+                                        Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.productDetailsRoute,
+                                          arguments: product,
+                                        );
+                                      }
+                                    },
+                                    child: CartItem(
+                                      cartProductEntity:
+                                          product ?? ProductEntity.fake(),
+                                    ),
                                   );
                                 },
                                 separatorBuilder:

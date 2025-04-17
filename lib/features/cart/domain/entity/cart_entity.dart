@@ -1,8 +1,8 @@
-import 'cart_product_entity.dart';
+import '../../../../core/utils/shared_models/product_entity.dart';
 
 class CartEntity {
   final int numOfCartItems;
-  final List<CartProductEntity> cartList;
+  final List<ProductEntity> cartList;
   final int totalPrice;
   final int discount;
   final int totalPriceAfterDiscount;

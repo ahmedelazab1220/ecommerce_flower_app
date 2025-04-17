@@ -2,20 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
-import 'package:ecommerce_flower_app/features/cart/domain/entity/cart_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/assets/app_lotties.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 import '../../view_model/cart_cubit.dart';
 import '../../view_model/cart_state.dart';
 
 class CartItem extends StatelessWidget {
-  final CartProductEntity cartProductEntity;
+  final ProductEntity? cartProductEntity;
+  final emptyString = "";
 
   const CartItem({super.key, required this.cartProductEntity});
 
@@ -38,7 +37,7 @@ class CartItem extends StatelessWidget {
                   width: 100,
                   color: AppColors.lightPink,
                   child: CachedNetworkImage(
-                    imageUrl: cartProductEntity.imgCover,
+                    imageUrl: cartProductEntity?.imgCover ?? emptyString,
                     fit: BoxFit.cover,
                     errorWidget:
                         (context, url, error) => const Icon(
@@ -61,7 +60,7 @@ class CartItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                cartProductEntity.title,
+                                cartProductEntity?.title ?? emptyString,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: const TextStyle(
@@ -71,7 +70,7 @@ class CartItem extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                cartProductEntity.description,
+                                cartProductEntity?.description ?? emptyString,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: const TextStyle(fontSize: 13),
@@ -82,7 +81,9 @@ class CartItem extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             context.read<CartCubit>().doIntent(
-                              DeleteProductFromCartAction(cartProductEntity.id),
+                              DeleteProductFromCartAction(
+                                cartProductEntity?.id ?? emptyString,
+                              ),
                             );
                           },
                           icon: Skeleton.ignore(
@@ -96,18 +97,19 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${LocaleKeys.EGP.tr()} : ${cartProductEntity.price * cartProductEntity.quantity}',
+                          '${LocaleKeys.EGP.tr()} : ${cartProductEntity?.price ?? 0 * (cartProductEntity?.quantity ?? 0)}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Row(
                           children: [
                             IconButton(
                               onPressed: () {
-                                if (cartProductEntity.quantity > 1) {
+                                if ((cartProductEntity?.quantity ?? 0) > 1) {
                                   context.read<CartCubit>().doIntent(
                                     UpdateProductInCartAction(
-                                      cartProductEntity.id,
-                                      cartProductEntity.quantity - 1,
+                                      cartProductEntity?.id ?? emptyString,
+                                      ((cartProductEntity?.quantity ?? 0) - 1)
+                                          .toInt(),
                                     ),
                                   );
                                 }
@@ -115,7 +117,8 @@ class CartItem extends StatelessWidget {
                               icon: const Icon(Icons.remove),
                             ),
                             Text(
-                              cartProductEntity.quantity.toString(),
+                              cartProductEntity?.quantity.toString() ??
+                                  emptyString,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -124,8 +127,9 @@ class CartItem extends StatelessWidget {
                               onPressed: () {
                                 context.read<CartCubit>().doIntent(
                                   UpdateProductInCartAction(
-                                    cartProductEntity.id,
-                                    cartProductEntity.quantity + 1,
+                                    cartProductEntity?.id ?? emptyString,
+                                    ((cartProductEntity?.quantity ?? 0) + 1)
+                                        .toInt(),
                                   ),
                                 );
                               },

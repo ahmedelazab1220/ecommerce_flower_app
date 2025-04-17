@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
+import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../../core/utils/routes/routes.dart';
 import '../../../view_model/login/login_cubit.dart';
