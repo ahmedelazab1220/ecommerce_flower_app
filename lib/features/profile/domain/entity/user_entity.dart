@@ -1,4 +1,4 @@
-class UserDataEntity {
+class UserEntity {
   final String? firstName;
   final String? lastName;
   final String? email;
@@ -6,7 +6,7 @@ class UserDataEntity {
   final String? phone;
   final String? gender;
 
-  UserDataEntity({
+  UserEntity({
     required this.firstName,
     required this.lastName,
     required this.email,

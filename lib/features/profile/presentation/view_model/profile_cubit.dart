@@ -1,13 +1,13 @@
-import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/profile/domain/usecase/get_user_data_usecase.dart';
-import 'package:ecommerce_flower_app/features/profile/domain/usecase/guest_mode_use_case.dart';
-import 'package:ecommerce_flower_app/features/profile/domain/usecase/logout_use_case.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view_model/profile_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entity/user_data_entity.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../domain/entity/user_entity.dart';
+import '../../domain/usecase/get_user_data_usecase.dart';
+import '../../domain/usecase/guest_mode_use_case.dart';
+import '../../domain/usecase/logout_use_case.dart';
+import 'profile_state.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
@@ -16,7 +16,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final GuestModeUseCase _guestModeUseCase;
   String? token;
   bool isNotification = false;
-  UserDataEntity? userData;
+  UserEntity? userData;
 
   ProfileCubit(
     this._getUserDataUsecase,
@@ -28,14 +28,14 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _getUserDataUsecase();
     switch (result) {
-      case SuccessResult<UserDataEntity>():
+      case SuccessResult<UserEntity>():
         userData = result.data;
         emit(
           state.copyWith(
-            baseState: BaseSuccessState<UserDataEntity>(data: result.data),
+            baseState: BaseSuccessState<UserEntity>(data: result.data),
           ),
         );
-      case FailureResult<UserDataEntity>():
+      case FailureResult<UserEntity>():
         emit(
           state.copyWith(
             baseState: BaseErrorState(

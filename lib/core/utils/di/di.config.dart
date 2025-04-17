@@ -138,12 +138,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
-    gh.factory<_i1011.ProfileLocalDataSource>(
-      () => _i862.ProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()),
-    );
     gh.factory<_i687.RouteInitializer>(
       () => _i687.RouteInitializer(
         sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
+    gh.factory<_i1011.ProfileLocalDataSource>(
+      () => _i862.ProfileLocalDataSourceImpl(
+        gh<_i558.FlutterSecureStorage>(),
+        gh<_i460.SharedPreferences>(),
       ),
     );
     gh.lazySingleton<_i361.Dio>(
