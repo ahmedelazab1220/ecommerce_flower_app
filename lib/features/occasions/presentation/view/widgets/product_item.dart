@@ -44,9 +44,7 @@ class ProductItem extends StatelessWidget {
                   child: Center(
                     child: CachedNetworkImage(
                       imageUrl: productEntity?.imgCover ?? emptyString,
-                      placeholder:
-                          (context, url) =>
-                              const Center(child: CircularProgressIndicator()),
+                      placeholder: (context, url) => const SizedBox.shrink(),
                       errorWidget:
                           (context, url, error) => const Icon(Icons.error),
                       fit: BoxFit.cover,
@@ -94,8 +92,15 @@ class ProductItem extends StatelessWidget {
                 ),
               ),
               ElevatedButton.icon(
+                style: TextButton.styleFrom(padding: const EdgeInsets.all(8)),
                 onPressed: () {},
-                label: Text(LocaleKeys.AddToCart.tr()),
+                label: Text(
+                  LocaleKeys.AddToCart.tr(),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 icon: SvgPicture.asset(
                   AppIcons.shoppingCartSvg,
                   colorFilter: const ColorFilter.mode(

@@ -69,12 +69,22 @@ class OccasionCubit extends Cubit<OccasionState> {
     }
   }
 
+  Future<void> _changeOccasionTab(int tabIndex) async {
+    emit(state.copyWith(selectedTabIndex: tabIndex));
+    final occasionId = occasions?[tabIndex].id;
+    if (occasionId != null) {
+      await _getProductsById(occasionId);
+    }
+  }
+
   void doIntent(OccasionAction action) async {
     switch (action) {
       case OccasionRequestAction():
         _getAllOccasions();
       case ProductsRequestAction():
         _getProductsById(action.occasionId);
+      case ChangeOccasionTabAction():
+        _changeOccasionTab(action.tabIndex);
     }
   }
 }

@@ -6,6 +6,7 @@ import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/utils/di/di.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/occasion_cubit.dart';
+import '../widgets/custom_occasion_tab_bar.dart';
 import '../widgets/product_view.dart';
 
 class OccasionScreen extends StatelessWidget {
@@ -18,47 +19,36 @@ class OccasionScreen extends StatelessWidget {
       create: (_) => viewModel..doIntent(OccasionRequestAction()),
       child: BlocBuilder<OccasionCubit, OccasionState>(
         builder: (context, state) {
-          final viewModel = context.read<OccasionCubit>();
-          final tabs = viewModel.myTabs;
+          final cubit = context.read<OccasionCubit>();
+          final tabs = cubit.myTabs;
+          final selectedTabIndex = state.selectedTabIndex;
+
           if (tabs == null || tabs.isEmpty) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
           }
-          return DefaultTabController(
-            length: tabs.length,
-            child: Scaffold(
-              appBar: AppBar(
-                title: ListTile(
-                  title: Text(
-                    LocaleKeys.Occasion.tr(),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  subtitle: Text(
-                    LocaleKeys.BloomWithOurExquisiteBestSellers.tr(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+
+          final occasionId = cubit.occasions?[selectedTabIndex].id ?? "";
+
+          return Scaffold(
+            appBar: AppBar(
+              title: ListTile(
+                title: Text(
+                  LocaleKeys.Occasion.tr(),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                bottom: TabBar(
-                  isScrollable: true,
-                  indicatorColor: AppColors.pink,
-                  labelColor: AppColors.pink,
-                  unselectedLabelColor: AppColors.lightGray,
-                  labelStyle: Theme.of(context).textTheme.bodyLarge,
-                  indicatorWeight: 4,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  dividerHeight: 2,
-                  tabs: tabs.map((tab) => Tab(text: tab.text)).toList(),
+                subtitle: Text(
+                  LocaleKeys.BloomWithOurExquisiteBestSellers.tr(),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
-              body: TabBarView(
-                children:
-                    tabs.map((tab) {
-                      final index = tabs.indexOf(tab);
-                      final occasionId = viewModel.occasions?[index].id;
-                      return ProductView(occasionId: occasionId ?? "");
-                    }).toList(),
-              ),
+            ),
+            body: Column(
+              children: [
+                CustomOccasionTabBar(tabs: tabs),
+                Expanded(child: ProductView(occasionId: occasionId)),
+              ],
             ),
           );
         },
