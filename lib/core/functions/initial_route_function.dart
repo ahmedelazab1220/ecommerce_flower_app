@@ -13,7 +13,7 @@ class RouteInitializer {
     if (isRememberMe != null && isRememberMe) {
       return AppRoutes.mainLayoutRoute;
     } else {
-      return AppRoutes.login;
+      return AppRoutes.loginRoute;
     }
   }
 }

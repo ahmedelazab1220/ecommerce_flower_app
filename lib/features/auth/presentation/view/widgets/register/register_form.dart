@@ -1,34 +1,34 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
+import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_radio_buttons.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_text_field_section.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../view_model/register/register_cubit.dart';
+import '../../../view_model/register/register_state.dart';
+import 'register_radio_buttons.dart';
+import 'register_text_field_section.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final registerCubit = context.read<RegisterCubit>();
+    final viewModel = context.read<RegisterCubit>();
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
-          key: registerCubit.formKey,
+          key: viewModel.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const RegisterTextFieldSection(),
               const SizedBox(height: 24),
-
-              /// Gender Selection
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
@@ -57,8 +57,6 @@ class RegisterForm extends StatelessWidget {
                   ],
                 ),
               ),
-
-              /// Terms & Conditions
               Text.rich(
                 textAlign: TextAlign.center,
                 TextSpan(
@@ -77,17 +75,13 @@ class RegisterForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 48),
-
-              /// Sign-Up Button
               ElevatedButton(
                 onPressed: () {
-                  registerCubit.doIntent(RegisterButtonPressedAction());
+                  viewModel.doIntent(UserRegistrationAction());
                 },
                 child: Text(LocaleKeys.Signup.tr()),
               ),
               const SizedBox(height: 16),
-
-              /// Already have an account? Login
               Text.rich(
                 textAlign: TextAlign.center,
                 TextSpan(
@@ -105,9 +99,11 @@ class RegisterForm extends StatelessWidget {
                       recognizer:
                           TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushReplacementNamed(
-                                context,
-                                AppRoutes.login,
+                              viewModel.doIntent(
+                                NavigationAction(
+                                  routeName: AppRoutes.loginRoute,
+                                  type: NavigationType.pushReplacement,
+                                ),
                               );
                             },
                     ),

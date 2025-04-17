@@ -1,7 +1,7 @@
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'user_dto.dart';
+import '../../user_dto.dart';
 
 part 'register_response_dto.g.dart';
 

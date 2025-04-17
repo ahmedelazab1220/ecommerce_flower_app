@@ -1,9 +1,10 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import '../../../view_model/register/register_cubit.dart';
+import '../../../view_model/register/register_state.dart';
 
 class RegisterRadioTile extends StatelessWidget {
   final String value;
@@ -17,7 +18,8 @@ class RegisterRadioTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisterCubit, RegisterStates>(
+    var viewModel = context.read<RegisterCubit>();
+    return BlocBuilder<RegisterCubit, RegisterState>(
       buildWhen:
           (previous, current) =>
               previous.selectedGender != current.selectedGender,
@@ -38,9 +40,7 @@ class RegisterRadioTile extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           onChanged: (newValue) {
-            context.read<RegisterCubit>().doIntent(
-              GenderChangedAction(gender: newValue!),
-            );
+            viewModel.doIntent(GenderChangedAction(gender: newValue!));
           },
         );
       },

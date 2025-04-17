@@ -1,3 +1,5 @@
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
+import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,8 +16,9 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final GuestUseCase _guestUseCase;
+  final Validator validator;
 
-  LoginCubit(this._loginUseCase, this._guestUseCase)
+  LoginCubit(this._loginUseCase, this._guestUseCase, this.validator)
     : super(LoginState(baseState: BaseInitialState(), isRememberMe: false));
 
   final TextEditingController emailController = TextEditingController();
@@ -25,6 +28,17 @@ class LoginCubit extends Cubit<LoginState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isRememberMe = false;
+
+  void doIntent(LoginAction action) async {
+    switch (action) {
+      case LoginRequestAction():
+        _login();
+      case GuestRequestAction():
+        _guestLogin();
+      case NavigationAction():
+        _naviagtionToScreen(routeName: action.routeName, type: action.type);
+    }
+  }
 
   Future<void> _login() async {
     if (formKey.currentState!.validate()) {
@@ -52,9 +66,13 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _guestLogin() async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
     await _guestUseCase.call();
-    emit(state.copyWith(baseState: BaseSuccessState()));
+    doIntent(
+      NavigationAction(
+        routeName: AppRoutes.mainLayoutRoute,
+        type: NavigationType.pushReplacement,
+      ),
+    );
   }
 
   void rememberMe(bool value) {
@@ -62,13 +80,15 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(isRememberMe: isRememberMe));
   }
 
-  void doIntent(LoginAction action) async {
-    switch (action) {
-      case LoginRequestAction():
-        _login();
-      case GuestRequestAction():
-        _guestLogin();
-    }
+  void _naviagtionToScreen({
+    required String routeName,
+    required NavigationType type,
+  }) {
+    emit(
+      state.copyWith(
+        baseState: BaseNavigationState(routeName: routeName, type: type),
+      ),
+    );
   }
 
   void dispose() {
