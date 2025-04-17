@@ -24,6 +24,6 @@ class RegisterResponseDto {
   Map<String, dynamic> toJson() => _$RegisterResponseDtoToJson(this);
 
   RegisterEntity toEntity() {
-    return RegisterEntity(message: message, user: user!.toEntity());
+    return RegisterEntity(message: message, user: user?.toEntity());
   }
 }
