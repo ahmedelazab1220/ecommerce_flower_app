@@ -157,20 +157,20 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
-    gh.singleton<_i945.HomeRetrofitClient>(
-      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
-    );
     gh.singleton<_i1048.AuthRetrofitClient>(
       () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i865.EditProfileRetrofitClient>(
-      () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i945.HomeRetrofitClient>(
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i865.EditProfileRetrofitClient>(
+      () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i691.CategoriesRemoteDataSource>(
       () => _i939.CategoriesRemoteDataSourceImpl(
@@ -198,15 +198,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i28.ApiManager>(),
       ),
     );
+    gh.factory<_i592.EditProfileRemoteDataSource>(
+      () => _i503.EditProfileRemoteDataSourceImpl(
+        gh<_i865.EditProfileRetrofitClient>(),
+      ),
+    );
     gh.singleton<_i781.CategoriesRepo>(
       () => _i427.CategoriesRepoImpl(
         gh<_i691.CategoriesRemoteDataSource>(),
         gh<_i28.ApiManager>(),
-      ),
-    );
-    gh.factory<_i592.EditProfileRemoteDataSource>(
-      () => _i503.EditProfileRemoteDataSourceImpl(
-        gh<_i865.EditProfileRetrofitClient>(),
       ),
     );
     gh.factory<_i913.AuthRepo>(
@@ -241,17 +241,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1065.GetHomeDataUseCase>(
       () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
     );
-    gh.factory<_i1027.GetCategoriesUseCase>(
-      () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),
-    );
-    gh.factory<_i752.GetProductsUseCase>(
-      () => _i752.GetProductsUseCase(gh<_i781.CategoriesRepo>()),
-    );
     gh.factory<_i1071.EditProfileUseCase>(
       () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()),
     );
     gh.factory<_i365.UploadProfileImageUseCase>(
       () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
+    );
+    gh.factory<_i1027.GetCategoriesUseCase>(
+      () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),
+    );
+    gh.factory<_i752.GetProductsUseCase>(
+      () => _i752.GetProductsUseCase(gh<_i781.CategoriesRepo>()),
     );
     gh.factory<_i595.HomeCubit>(
       () => _i595.HomeCubit(
@@ -272,16 +272,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i336.RegisterUseCase>(
       () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()),
     );
-    gh.factory<_i1008.CategoriesCubit>(
-      () => _i1008.CategoriesCubit(
-        gh<_i1027.GetCategoriesUseCase>(),
-        gh<_i752.GetProductsUseCase>(),
-      ),
-    );
     gh.factory<_i316.RegisterCubit>(
       () => _i316.RegisterCubit(
         gh<_i336.RegisterUseCase>(),
         gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i1008.CategoriesCubit>(
+      () => _i1008.CategoriesCubit(
+        gh<_i1027.GetCategoriesUseCase>(),
+        gh<_i752.GetProductsUseCase>(),
       ),
     );
     gh.factory<_i204.LoginCubit>(
