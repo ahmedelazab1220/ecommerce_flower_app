@@ -1,14 +1,14 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:equatable/equatable.dart';
 
-class RegisterStates extends Equatable {
+class RegisterState extends Equatable {
   final BaseState? registerState;
   final String selectedGender;
 
-  const RegisterStates({this.registerState, this.selectedGender = ''});
+  const RegisterState({this.registerState, this.selectedGender = ''});
 
-  RegisterStates copyWith({BaseState? registerState, String? selectedGender}) {
-    return RegisterStates(
+  RegisterState copyWith({BaseState? registerState, String? selectedGender}) {
+    return RegisterState(
       registerState: registerState ?? this.registerState,
       selectedGender: selectedGender ?? this.selectedGender,
     );
@@ -20,13 +20,16 @@ class RegisterStates extends Equatable {
 
 sealed class RegisterAction {}
 
-class RegisterButtonPressedAction extends RegisterAction {}
-
 class GenderChangedAction extends RegisterAction {
   final String gender;
   GenderChangedAction({required this.gender});
 }
 
-class NavigateToLoginAction extends RegisterAction {}
-
 class UserRegistrationAction extends RegisterAction {}
+
+final class NavigationAction extends RegisterAction {
+  final String routeName;
+  final NavigationType type;
+
+  NavigationAction({required this.routeName, this.type = NavigationType.push});
+}
