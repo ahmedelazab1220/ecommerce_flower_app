@@ -13,26 +13,25 @@ class GuestModeSection extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             LocaleKeys.YouAreInGuestMode.tr(),
             style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
           Text(
             LocaleKeys.PleaseLoginToAccessAllFeatures.tr(),
             style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, AppRoutes.login);
-              },
-              child: Text(LocaleKeys.Login.tr()),
-            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
+            },
+            child: Text(LocaleKeys.Login.tr()),
           ),
         ],
       ),

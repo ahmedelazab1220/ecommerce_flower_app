@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
@@ -15,74 +14,43 @@ class OrderSection extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        GestureDetector(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.transactionOrderSvg,
-                    height: 24.spMax,
-                    width: 24.spMax,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    LocaleKeys.MyOrders.tr(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  AppIcons.backSvg,
-                  height: 24.spMax,
-                  width: 24.spMax,
-                ),
-                onPressed: () {
-                  // Handle settings button press
-                },
-              ),
-            ],
-          ),
+        ListTile(
+          visualDensity: const VisualDensity(vertical: -2),
           onTap: () {},
-        ),
-        const SizedBox(height: 4),
-        GestureDetector(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.locationSvg,
-                    height: 24.spMax,
-                    width: 24.spMax,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    LocaleKeys.SaveAddress.tr(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  AppIcons.backSvg,
-                  height: 24.spMax,
-                  width: 24.spMax,
-                ),
-                onPressed: () {
-                  // Handle settings button press
-                },
-              ),
-            ],
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
           ),
-          onTap: () {},
+          leading: SvgPicture.asset(
+            AppIcons.transactionOrderSvg,
+            height: 24,
+            width: 24,
+          ),
+          title: Text(
+            LocaleKeys.MyOrders.tr(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          trailing: SvgPicture.asset(AppIcons.backSvg),
         ),
-        const SizedBox(height: 8),
+        ListTile(
+          visualDensity: const VisualDensity(vertical: -2),
+          onTap: () {},
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          leading: SvgPicture.asset(
+            AppIcons.locationSvg,
+            height: 24,
+            width: 24,
+          ),
+          title: Text(
+            LocaleKeys.SaveAddress.tr(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          trailing: SvgPicture.asset(AppIcons.backSvg),
+        ),
+        const SizedBox(height: 2),
         const Divider(thickness: 1, color: AppColors.lightGray),
       ],
     );

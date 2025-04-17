@@ -1,56 +1,52 @@
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/guest_mode_section.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/logout_section.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/notification_section.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/order_section.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/profile_header.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/translation_and_about_us_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/assets/app_icons.dart';
 import '../../../../core/base/base_state.dart';
 import '../view_model/profile_cubit.dart';
 import '../view_model/profile_state.dart';
+import 'widgets/guest_mode_section.dart';
+import 'widgets/logout_section.dart';
+import 'widgets/notification_section.dart';
+import 'widgets/order_section.dart';
+import 'widgets/profile_header.dart';
+import 'widgets/translation_and_about_us_section.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final viewModel = getIt<ProfileCubit>();
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel.doIntent(GuestStateRequestAction());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: SvgPicture.asset(AppIcons.logoSvg, height: 40.spMin),
-              ),
-            ),
-            IconButton(
-              icon: SvgPicture.asset(
-                AppIcons.notificationSvg,
-                height: 24.spMax,
-                width: 24.spMax,
-              ),
-              onPressed: () {
-                // Handle settings button press
-              },
-            ),
-          ],
-        ),
+        title: SvgPicture.asset(AppIcons.logoSvg),
+        actions: [
+          IconButton(
+            icon: SvgPicture.asset(AppIcons.notificationSvg),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: BlocProvider(
-        create:
-            (_) => getIt<ProfileCubit>()..doIntent(GuestStateRequestAction()),
+        create: (_) => viewModel,
         child: BlocConsumer<ProfileCubit, ProfileState>(
           listenWhen:
               (previous, current) => previous.guestState != current.guestState,
           listener: (context, state) {
-            final viewModel = context.read<ProfileCubit>();
             if (state.guestState is BaseErrorState) {
               viewModel.doIntent(ProfileRequestAction());
             }
@@ -71,13 +67,13 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProfileHeader(),
-                    SizedBox(height: 32),
+                    SizedBox(height: 28.0),
                     OrderSection(),
-                    SizedBox(height: 8),
+                    SizedBox(height: 8.0),
                     NotificationSection(),
-                    SizedBox(height: 16),
+                    SizedBox(height: 16.0),
                     TranslationAndAboutUsSection(),
-                    SizedBox(height: 16),
+                    SizedBox(height: 16.0),
                     LogoutSection(),
                   ],
                 ),

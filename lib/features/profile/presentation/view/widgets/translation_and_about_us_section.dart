@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/profile/presentation/view/widgets/translation_bottom_sheet.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import 'translation_bottom_sheet.dart';
 
 class TranslationAndAboutUsSection extends StatelessWidget {
   const TranslationAndAboutUsSection({super.key});
@@ -16,34 +16,25 @@ class TranslationAndAboutUsSection extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        GestureDetector(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.translateSvg,
-                    height: 18.spMax,
-                    width: 18.spMax,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    LocaleKeys.Language.tr(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-              Text(
-                context.locale.languageCode == 'ar'
-                    ? LocaleKeys.Arabic.tr()
-                    : LocaleKeys.English.tr(),
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(color: AppColors.pink),
-              ),
-            ],
+        ListTile(
+          visualDensity: const VisualDensity(vertical: -2),
+          contentPadding: EdgeInsets.zero,
+          leading: SvgPicture.asset(
+            AppIcons.translateSvg,
+            height: 24,
+            width: 24,
+          ),
+          title: Text(
+            LocaleKeys.Language.tr(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          trailing: Text(
+            context.locale.languageCode == Constants.ar
+                ? LocaleKeys.Arabic.tr()
+                : LocaleKeys.English.tr(),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: AppColors.pink),
           ),
           onTap: () {
             showModalBottomSheet(
@@ -56,53 +47,33 @@ class TranslationAndAboutUsSection extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 4),
-        GestureDetector(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                LocaleKeys.AboutUs.tr(),
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  AppIcons.backSvg,
-                  height: 24.spMax,
-                  width: 24.spMax,
-                ),
-                onPressed: () {
-                  // Handle settings button press
-                },
-              ),
-            ],
-          ),
+        ListTile(
+          visualDensity: const VisualDensity(vertical: -2),
           onTap: () {},
-        ),
-        const SizedBox(height: 4),
-        GestureDetector(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                LocaleKeys.Terms_Conditions.tr(),
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  AppIcons.backSvg,
-                  height: 24.spMax,
-                  width: 24.spMax,
-                ),
-                onPressed: () {
-                  // Handle settings button press
-                },
-              ),
-            ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
           ),
-          onTap: () {},
+          contentPadding: EdgeInsets.zero,
+          title: Text(
+            LocaleKeys.AboutUs.tr(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          trailing: SvgPicture.asset(AppIcons.backSvg, height: 24, width: 24),
         ),
-        const SizedBox(height: 8),
+        ListTile(
+          visualDensity: const VisualDensity(vertical: -2),
+          onTap: () {},
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          contentPadding: EdgeInsets.zero,
+          title: Text(
+            LocaleKeys.Terms_Conditions.tr(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          trailing: SvgPicture.asset(AppIcons.backSvg, height: 24, width: 24),
+        ),
+        const SizedBox(height: 2),
         const Divider(thickness: 1, color: AppColors.lightGray),
       ],
     );

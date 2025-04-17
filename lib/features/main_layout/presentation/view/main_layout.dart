@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../profile/presentation/view_model/translation_cubit.dart';
-import '../../../profile/presentation/view_model/translation_state.dart';
 import '../view_model/cubit/main_layout_cubit.dart';
 
 class MainLayout extends StatefulWidget {
@@ -24,10 +22,11 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel,
-      child: BlocBuilder<MainLayoutCubit, MainLayoutState>(
-        builder: (context, state) {
-          return BlocBuilder<TranslationCubit, TranslationState>(
-            builder: (context, langState) {
+      child: Builder(
+        builder: (context) {
+          final _ = context.locale;
+          return BlocBuilder<MainLayoutCubit, MainLayoutState>(
+            builder: (context, state) {
               return Scaffold(
                 body: viewModel.tabs[viewModel.currentTab],
                 bottomNavigationBar: BottomNavigationBar(

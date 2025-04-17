@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
@@ -20,52 +18,41 @@ class NotificationSection extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                BlocBuilder<ProfileCubit, ProfileState>(
-                  buildWhen:
-                      (previous, current) =>
-                          previous.isNotification != current.isNotification,
-                  builder: (context, state) {
-                    return FlutterSwitch(
-                      value: viewModel.isNotification,
-                      onToggle: (value) {
-                        viewModel.notification(value);
-                      },
-                      width: 42.spMax,
-                      height: 20.spMax,
-                      borderRadius: 30.spMax,
-                      padding: 1.spMax,
-                      toggleColor: AppColors.white,
-                      activeColor: AppColors.pink,
-                      inactiveColor: AppColors.black.withValues(alpha: 0.1),
-                    );
-                  },
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  LocaleKeys.Notification.tr(),
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
-            ),
-            IconButton(
-              icon: SvgPicture.asset(
-                AppIcons.backSvg,
-                height: 24.spMax,
-                width: 24.spMax,
+        BlocBuilder<ProfileCubit, ProfileState>(
+          buildWhen:
+              (previous, current) =>
+                  previous.isNotification != current.isNotification,
+          builder: (context, state) {
+            return ListTile(
+              visualDensity: const VisualDensity(vertical: -2),
+              onTap: () {},
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
               ),
-              onPressed: () {
-                // Handle settings button press
-              },
-            ),
-          ],
+              contentPadding: EdgeInsets.zero,
+              leading: Switch(
+                value: viewModel.isNotification,
+                onChanged: (value) {
+                  viewModel.notification(value);
+                },
+                activeColor: AppColors.pink,
+                activeTrackColor: AppColors.pink[AppColors.colorCode40],
+                inactiveThumbColor: AppColors.white,
+                inactiveTrackColor: AppColors.black.withValues(alpha: 0.1),
+                padding: const EdgeInsets.all(1.0),
+                trackOutlineColor: WidgetStateProperty.all(
+                  AppColors.pink.withAlpha(1),
+                ),
+              ),
+              title: Text(
+                LocaleKeys.Notification.tr(),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              trailing: SvgPicture.asset(AppIcons.backSvg),
+            );
+          },
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 2),
         const Divider(thickness: 1, color: AppColors.lightGray),
       ],
     );

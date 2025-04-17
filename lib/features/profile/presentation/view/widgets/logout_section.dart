@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_icons.dart';
@@ -25,7 +24,7 @@ class LogoutSection extends StatelessWidget {
         }
         if (state.logoutState is BaseSuccessState) {
           AppDialogs.hideLoading(context);
-          Navigator.pushReplacementNamed(context, AppRoutes.login);
+          Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
         }
         if (state.logoutState is BaseErrorState) {
           AppDialogs.hideLoading(context);
@@ -38,36 +37,23 @@ class LogoutSection extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          GestureDetector(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      AppIcons.logoutSvg,
-                      height: 19.spMax,
-                      width: 19.spMax,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      LocaleKeys.Logout.tr(),
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-                IconButton(
-                  icon: SvgPicture.asset(
-                    AppIcons.logoutSvg,
-                    height: 24.spMax,
-                    width: 24.spMax,
-                  ),
-                  onPressed: () {
-                    viewModel.doIntent(LogoutRequestAction());
-                  },
-                ),
-              ],
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: const VisualDensity(vertical: -4),
+            leading: SvgPicture.asset(
+              AppIcons.logoutSvg,
+              height: 19,
+              width: 19,
+            ),
+            title: Text(
+              LocaleKeys.Logout.tr(),
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            trailing: IconButton(
+              icon: SvgPicture.asset(AppIcons.logoutSvg, height: 24, width: 24),
+              onPressed: () {
+                viewModel.doIntent(LogoutRequestAction());
+              },
             ),
             onTap: () {
               viewModel.doIntent(LogoutRequestAction());

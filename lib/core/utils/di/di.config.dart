@@ -28,8 +28,6 @@ import '../../../features/auth/data/repo_impl/auth_repo_impl.dart' as _i822;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i124;
 import '../../../features/auth/domain/use_case/login_use_case.dart' as _i197;
-import '../../../features/auth/domain/use_case/guest_use_case.dart' as _i124;
-import '../../../features/auth/domain/use_case/login_use_case.dart' as _i197;
 import '../../../features/auth/domain/use_case/register_use_case.dart' as _i336;
 import '../../../features/auth/presentation/view_model/login/login_cubit.dart'
     as _i204;
@@ -67,6 +65,19 @@ import '../../../features/home/presentation/view_model/home_cubit.dart'
     as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
+import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
+    as _i1061;
+import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
+    as _i73;
+import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
+    as _i835;
+import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
+import '../../../features/occasions/domain/usecase/get_all_occasions_usecase.dart'
+    as _i1056;
+import '../../../features/occasions/domain/usecase/get_products_by_id_usecase.dart'
+    as _i619;
+import '../../../features/occasions/presentation/view_model/occasion_cubit.dart'
+    as _i41;
 import '../../../features/profile/data/api/profile_retrofit_client.dart'
     as _i766;
 import '../../../features/profile/data/data_source/contract/profile_local_data_source.dart'
@@ -87,19 +98,6 @@ import '../../../features/profile/domain/usecase/guest_mode_use_case.dart'
 import '../../../features/profile/domain/usecase/logout_use_case.dart' as _i238;
 import '../../../features/profile/presentation/view_model/profile_cubit.dart'
     as _i782;
-import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
-    as _i1061;
-import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
-    as _i73;
-import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
-    as _i835;
-import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
-import '../../../features/occasions/domain/usecase/get_all_occasions_usecase.dart'
-    as _i1056;
-import '../../../features/occasions/domain/usecase/get_products_by_id_usecase.dart'
-    as _i619;
-import '../../../features/occasions/presentation/view_model/occasion_cubit.dart'
-    as _i41;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -140,20 +138,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
-    gh.factory<_i1015.AuthLocalDataSource>(
-      () => _i241.AuthLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()),
-    );
     gh.factory<_i1011.ProfileLocalDataSource>(
       () => _i862.ProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()),
-    );
-    gh.singleton<_i257.AuthRetrofitClient>(
-      () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i945.HomeRetrofitClient>(
-      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i766.ProfileRetrofitClient>(
-      () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i687.RouteInitializer>(
       () => _i687.RouteInitializer(
@@ -169,17 +155,20 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
-    gh.singleton<_i945.HomeRetrofitClient>(
-      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
-    );
     gh.singleton<_i1048.AuthRetrofitClient>(
       () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i945.HomeRetrofitClient>(
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i766.ProfileRetrofitClient>(
+      () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i691.CategoriesRemoteDataSource>(
       () => _i939.CategoriesRemoteDataSourceImpl(
@@ -258,6 +247,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i238.LogoutUseCase>(
       () => _i238.LogoutUseCase(gh<_i863.ProfileRepo>()),
     );
+    gh.factory<_i1027.GetCategoriesUseCase>(
+      () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),
+    );
+    gh.factory<_i752.GetProductsUseCase>(
+      () => _i752.GetProductsUseCase(gh<_i781.CategoriesRepo>()),
+    );
     gh.factory<_i595.HomeCubit>(
       () => _i595.HomeCubit(
         gh<_i1065.GetHomeDataUseCase>(),
@@ -270,16 +265,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i336.RegisterUseCase>(
       () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()),
     );
+    gh.factory<_i316.RegisterCubit>(
+      () => _i316.RegisterCubit(
+        gh<_i336.RegisterUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
     gh.factory<_i1008.CategoriesCubit>(
       () => _i1008.CategoriesCubit(
         gh<_i1027.GetCategoriesUseCase>(),
         gh<_i752.GetProductsUseCase>(),
       ),
     );
-    gh.factory<_i316.RegisterCubit>(
-      () => _i316.RegisterCubit(
-        gh<_i336.RegisterUseCase>(),
-        gh<_i468.Validator>(),
+    gh.factory<_i782.ProfileCubit>(
+      () => _i782.ProfileCubit(
+        gh<_i314.GetUserDataUsecase>(),
+        gh<_i238.LogoutUseCase>(),
+        gh<_i405.GuestModeUseCase>(),
       ),
     );
     gh.factory<_i204.LoginCubit>(

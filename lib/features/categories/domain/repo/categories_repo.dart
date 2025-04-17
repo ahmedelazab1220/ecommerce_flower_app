@@ -4,5 +4,7 @@ import 'package:ecommerce_flower_app/features/categories/domain/entities/categor
 
 abstract class CategoriesRepo {
   Future<Result<List<CategoryEntity>>> getCategories();
-  Future<Result<List<ProductEntity>>> getProductsByCategory({String? categoryId});
+  Future<Result<List<ProductEntity>>> getProductsByCategory({
+    String? categoryId,
+  });
 }
