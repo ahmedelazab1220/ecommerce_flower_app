@@ -70,7 +70,7 @@ class CartScreen extends StatelessWidget {
                                     isLoading
                                         ? const NeverScrollableScrollPhysics()
                                         : null,
-                                itemCount: isLoading ? 3 : cart!.numOfCartItems,
+                                itemCount: isLoading ? 2 : cart!.numOfCartItems,
                                 itemBuilder: (context, index) {
                                   final product =
                                       isLoading ? null : cart!.cartList[index];
