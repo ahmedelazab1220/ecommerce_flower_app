@@ -183,5 +183,6 @@
     "GettingYourCurrentAddress": "🔄 Getting your current address...",
     "UnableToGetLocation": "❌ Unable to get location. Please try again.",
     "Long": "Long",
-    "Lat": "Lat"
+    "Lat": "Lat",
+    "NoProductsAvailable": "No products available"
 }

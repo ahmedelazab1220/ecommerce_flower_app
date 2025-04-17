@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import '../../api/auth_retorfit_client.dart';
+import '../../api/auth_retrofit_client.dart';
 import '../../model/login/request/login_request_dto.dart';
 import '../../model/login/response/login_response_dto.dart';
 import '../../model/register/register_request_dto/register_request_dto.dart';

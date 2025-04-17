@@ -15,7 +15,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-import '../../../features/auth/data/api/auth_retorfit_client.dart' as _i257;
+import '../../../features/auth/data/api/auth_retrofit_client.dart' as _i1048;
 import '../../../features/auth/data/data_source/contract/auth_local_data_source.dart'
     as _i1015;
 import '../../../features/auth/data/data_source/contract/auth_remote_data_source.dart'
@@ -65,6 +65,19 @@ import '../../../features/home/presentation/view_model/home_cubit.dart'
     as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
+import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
+    as _i1061;
+import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
+    as _i73;
+import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
+    as _i835;
+import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
+import '../../../features/occasions/domain/usecase/get_all_occasions_usecase.dart'
+    as _i1056;
+import '../../../features/occasions/domain/usecase/get_products_by_id_usecase.dart'
+    as _i619;
+import '../../../features/occasions/presentation/view_model/occasion_cubit.dart'
+    as _i41;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -114,19 +127,27 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i558.FlutterSecureStorage>(),
           gh<_i460.SharedPreferences>(),
         ));
-    gh.singleton<_i257.AuthRetrofitClient>(
-        () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i619.CategoriesRetrofitClient>(
-        () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
         () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i1048.AuthRetrofitClient>(
+        () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i619.CategoriesRetrofitClient>(
+        () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i1061.OccasionRetrofitClient>(
+        () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i691.CategoriesRemoteDataSource>(() =>
         _i939.CategoriesRemoteDataSourceImpl(
             gh<_i619.CategoriesRetrofitClient>()));
-    gh.factory<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
+    gh.factory<_i73.OccasionRemoteDataSource>(() =>
+        _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()));
+    gh.factory<_i72.OccasionRepo>(() => _i835.OccasionRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i73.OccasionRemoteDataSource>(),
+        ));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
+    gh.factory<_i305.AuthRemoteDataSource>(
+        () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()));
     gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -139,6 +160,14 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i1015.AuthLocalDataSource>(),
           gh<_i28.ApiManager>(),
+        ));
+    gh.factory<_i1056.GetAllOccasionsUsecase>(
+        () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()));
+    gh.factory<_i619.GetProductsByIdUsecase>(
+        () => _i619.GetProductsByIdUsecase(gh<_i72.OccasionRepo>()));
+    gh.factory<_i41.OccasionCubit>(() => _i41.OccasionCubit(
+          gh<_i1056.GetAllOccasionsUsecase>(),
+          gh<_i619.GetProductsByIdUsecase>(),
         ));
     gh.factory<_i197.LoginUseCase>(
         () => _i197.LoginUseCase(gh<_i913.AuthRepo>()));
