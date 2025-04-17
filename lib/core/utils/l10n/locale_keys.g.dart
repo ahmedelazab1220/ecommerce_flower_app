@@ -186,5 +186,7 @@ abstract class  LocaleKeys {
   static const Long = 'Long';
   static const Lat = 'Lat';
   static const NoProductsAvailable = 'NoProductsAvailable';
+  static const Egp = 'Egp';
+  static const all = 'all';
 
 }

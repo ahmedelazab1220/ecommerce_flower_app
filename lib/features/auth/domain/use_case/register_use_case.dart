@@ -1,8 +1,9 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../entity/register_entity/register_request_entity.dart';
+import '../entity/user_enttity.dart';
+import '../repo/auth_repo.dart';
 
 @injectable
 class RegisterUseCase {

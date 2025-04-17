@@ -14,4 +14,11 @@ final class ChangeSelectedTab extends MainLayoutActions {
   ChangeSelectedTab(this.selectedTab);
 }
 
+final class ChangeTabWithCategoryIndex extends MainLayoutActions {
+  final MainLayoutTabs selectedTab;
+  final int categoryIndex;
+
+  ChangeTabWithCategoryIndex(this.selectedTab, this.categoryIndex);
+}
+
 enum MainLayoutTabs { home, categories, cart, profile }

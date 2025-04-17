@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../home/domain/entity/product_entity.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 import '../widgets/bottom_button.dart';
 import '../widgets/image_view.dart';
 import '../widgets/product_details_body.dart';

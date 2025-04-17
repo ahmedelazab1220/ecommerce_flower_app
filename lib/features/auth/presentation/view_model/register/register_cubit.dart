@@ -5,7 +5,7 @@ import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/entity/user_enttity.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/use_case/register_use_case.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +78,11 @@ class RegisterCubit extends Cubit<RegisterStates> {
   }
 
   void _navigateToLogin() {
-    emit(state.copyWith(registerState: BaseNavigationState(AppRoutes.login)));
+    emit(
+      state.copyWith(
+        registerState: BaseNavigationState(routeName: AppRoutes.loginRoute),
+      ),
+    );
   }
 
   Future<void> _userRegistration(RegisterRequestEntity request) async {

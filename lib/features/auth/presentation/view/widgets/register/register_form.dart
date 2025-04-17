@@ -2,13 +2,14 @@ import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_radio_buttons.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_text_field_section.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../view_model/register/register_cubit.dart';
+import '../../../view_model/register/register_states.dart';
+import 'register_radio_buttons.dart';
+import 'register_text_field_section.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
@@ -107,7 +108,7 @@ class RegisterForm extends StatelessWidget {
                             ..onTap = () {
                               Navigator.pushReplacementNamed(
                                 context,
-                                AppRoutes.login,
+                                AppRoutes.loginRoute,
                               );
                             },
                     ),
