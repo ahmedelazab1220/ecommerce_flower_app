@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,10 +7,9 @@ import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/di/di.dart';
 import '../../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../domain/entity/best_seller_product_entity.dart';
 import '../../view_model/best_seller_cubit.dart';
 import '../../view_model/best_seller_state.dart';
-import '../widgets/product_item.dart';
+import '../../../../../core/widgets/product_item.dart';
 
 class BestSellersBody extends StatelessWidget {
   const BestSellersBody({super.key});
@@ -24,12 +24,9 @@ class BestSellersBody extends StatelessWidget {
           if (state.baseState is BaseLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state.baseState
-              is BaseSuccessState<List<BestSellerProductEntity>>) {
+          if (state.baseState is BaseSuccessState<List<ProductEntity>>) {
             final products =
-                (state.baseState
-                        as BaseSuccessState<List<BestSellerProductEntity>>)
-                    .data;
+                (state.baseState as BaseSuccessState<List<ProductEntity>>).data;
             if (products == null || products.isEmpty) {
               return Center(
                 child: Text(
@@ -48,7 +45,7 @@ class BestSellersBody extends StatelessWidget {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return ProductItem(productEntity: product);
+                return ProductItem(product: product);
               },
             );
           } else if (state.baseState is BaseErrorState) {

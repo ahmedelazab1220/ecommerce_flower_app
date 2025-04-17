@@ -1,6 +1,5 @@
+import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../domain/entity/best_seller_product_entity.dart';
 
 part 'best_seller_product.g.dart';
 
@@ -75,13 +74,19 @@ class BestSellerProduct {
     return _$BestSellerProductToJson(this);
   }
 
-  BestSellerProductEntity toEntity() {
-    return BestSellerProductEntity(
-      title: title ?? '',
-      imgCover: imgCover ?? '',
-      price: price ?? 0,
-      priceAfterDiscount: priceAfterDiscount ?? 0,
-      discount: discount ?? 0,
+  ProductEntity toEntity() {
+    return ProductEntity(
+      id: id,
+      title: title,
+      slug: slug,
+      description: description,
+      imgCover: imgCover,
+      images: images,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      quantity: quantity,
+      discount: discount,
+      sold: sold,
     );
   }
 }
