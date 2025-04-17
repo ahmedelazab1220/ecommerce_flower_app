@@ -9,7 +9,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/shared_models/product_entity.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   final ProductEntity? productEntity;
   final bool isLoading;
 
@@ -19,12 +19,17 @@ class ProductItem extends StatelessWidget {
     this.isLoading = false,
   });
 
-  final emptyString = "";
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  final String emptyString = "";
 
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      enabled: isLoading,
+      enabled: widget.isLoading,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -43,7 +48,7 @@ class ProductItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 2.5),
                   child: Center(
                     child: CachedNetworkImage(
-                      imageUrl: productEntity?.imgCover ?? emptyString,
+                      imageUrl: widget.productEntity?.imgCover ?? emptyString,
                       placeholder: (context, url) => const SizedBox.shrink(),
                       errorWidget:
                           (context, url, error) => const Icon(Icons.error),
@@ -59,7 +64,7 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productEntity?.title ?? emptyString,
+                      widget.productEntity?.title ?? emptyString,
                       style: Theme.of(context).textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -67,12 +72,12 @@ class ProductItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '${LocaleKeys.EGP.tr()} ${productEntity?.priceAfterDiscount ?? emptyString}',
+                          '${LocaleKeys.EGP.tr()} ${widget.productEntity?.priceAfterDiscount ?? emptyString}',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${productEntity?.price ?? emptyString}',
+                          '${widget.productEntity?.price ?? emptyString}',
                           style: Theme.of(
                             context,
                           ).textTheme.bodySmall?.copyWith(
@@ -82,7 +87,7 @@ class ProductItem extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          '${productEntity?.discount ?? emptyString}%',
+                          '${widget.productEntity?.discount ?? emptyString}%',
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.successGreen),
                         ),

@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/occasions/presentation/view/widgets/product_item.dart';
-import 'package:ecommerce_flower_app/features/occasions/presentation/view_model/occasion_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
+import '../../view_model/occasion_cubit.dart';
+import 'product_item.dart';
 
 class ProductView extends StatefulWidget {
   final String occasionId;
@@ -57,7 +56,7 @@ class _ProductViewState extends State<ProductView> {
         final itemCount = isLoading ? 6 : viewModel.products!.length;
 
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.w),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

@@ -11,6 +11,7 @@ class CustomOccasionTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var viewModel = context.read<OccasionCubit>();
     return BlocBuilder<OccasionCubit, OccasionState>(
       builder: (context, state) {
         final selectedIndex = state.selectedTabIndex;
@@ -24,9 +25,7 @@ class CustomOccasionTabBar extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   if (!isSelected) {
-                    context.read<OccasionCubit>().doIntent(
-                      ChangeOccasionTabAction(index),
-                    );
+                    viewModel.doIntent(ChangeOccasionTabAction(index));
                   }
                 },
                 child: Padding(

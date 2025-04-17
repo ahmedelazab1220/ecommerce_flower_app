@@ -67,8 +67,10 @@ import '../../../features/main_layout/presentation/view_model/cubit/main_layout_
     as _i393;
 import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
     as _i1061;
-import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
-    as _i73;
+import '../../../features/occasions/data/data_source/contract/occasion_remote_data_source.dart'
+    as _i452;
+import '../../../features/occasions/data/data_source/occasion_remote_data_source_impl.dart'
+    as _i61;
 import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
     as _i835;
 import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
@@ -127,27 +129,27 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i558.FlutterSecureStorage>(),
           gh<_i460.SharedPreferences>(),
         ));
-    gh.singleton<_i945.HomeRetrofitClient>(
-        () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1048.AuthRetrofitClient>(
         () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i619.CategoriesRetrofitClient>(
         () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i945.HomeRetrofitClient>(
+        () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1061.OccasionRetrofitClient>(
         () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i691.CategoriesRemoteDataSource>(() =>
         _i939.CategoriesRemoteDataSourceImpl(
             gh<_i619.CategoriesRetrofitClient>()));
-    gh.factory<_i73.OccasionRemoteDataSource>(() =>
-        _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()));
-    gh.factory<_i72.OccasionRepo>(() => _i835.OccasionRepoImpl(
-          gh<_i28.ApiManager>(),
-          gh<_i73.OccasionRemoteDataSource>(),
-        ));
+    gh.factory<_i452.OccasionRemoteDataSource>(() =>
+        _i61.OccasionRemoteDataSourceImpl(gh<_i1061.OccasionRetrofitClient>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
     gh.factory<_i305.AuthRemoteDataSource>(
         () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()));
+    gh.factory<_i72.OccasionRepo>(() => _i835.OccasionRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i452.OccasionRemoteDataSource>(),
+        ));
     gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
           gh<_i1043.HomeRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -185,13 +187,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i124.GuestUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i336.RegisterUseCase>(
         () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
-          gh<_i1027.GetCategoriesUseCase>(),
-          gh<_i752.GetProductsUseCase>(),
-        ));
     gh.factory<_i316.RegisterCubit>(() => _i316.RegisterCubit(
           gh<_i336.RegisterUseCase>(),
           gh<_i468.Validator>(),
+        ));
+    gh.factory<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
+          gh<_i1027.GetCategoriesUseCase>(),
+          gh<_i752.GetProductsUseCase>(),
         ));
     gh.factory<_i204.LoginCubit>(() => _i204.LoginCubit(
           gh<_i197.LoginUseCase>(),
