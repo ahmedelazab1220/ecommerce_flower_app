@@ -10,13 +10,16 @@ import '../widgets/custom_occasion_tab_bar.dart';
 import '../widgets/product_view.dart';
 
 class OccasionScreen extends StatelessWidget {
-  const OccasionScreen({super.key});
+  final int? occasionIndex;
+  const OccasionScreen({super.key, this.occasionIndex});
 
   @override
   Widget build(BuildContext context) {
     final viewModel = getIt<OccasionCubit>();
     return BlocProvider(
-      create: (_) => viewModel..doIntent(OccasionRequestAction()),
+      create:
+          (_) =>
+              viewModel..doIntent(OccasionRequestAction(index: occasionIndex)),
       child: BlocBuilder<OccasionCubit, OccasionState>(
         builder: (context, state) {
           final cubit = context.read<OccasionCubit>();

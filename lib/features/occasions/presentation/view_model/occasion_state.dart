@@ -19,7 +19,10 @@ class OccasionState extends Equatable {
 
 sealed class OccasionAction {}
 
-class OccasionRequestAction extends OccasionAction {}
+class OccasionRequestAction extends OccasionAction {
+  final int? index;
+  OccasionRequestAction({this.index});
+}
 
 class ProductsRequestAction extends OccasionAction {
   final String occasionId;

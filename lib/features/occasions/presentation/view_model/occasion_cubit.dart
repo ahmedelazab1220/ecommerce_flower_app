@@ -26,19 +26,16 @@ class OccasionCubit extends Cubit<OccasionState> {
   OccasionCubit(this._getAllOccasionsUsecase, this._getProductsByIdUsecase)
     : super(OccasionState(baseState: BaseInitialState()));
 
-  Future<void> _getAllOccasions() async {
+  Future<void> _getAllOccasions([int? index]) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _getAllOccasionsUsecase.call();
     switch (result) {
       case SuccessResult<OccasionsEntity>():
-        emit(state.copyWith(baseState: BaseSuccessState()));
         occasions = result.data.occasions;
-        Logger().f("Occasions: $occasions");
-        myTabs =
-            occasions?.map((occasion) {
-              return Tab(text: occasion.name);
-            }).toList();
-        Logger().f("Tabs: $myTabs");
+        myTabs = occasions?.map((e) => Tab(text: e.name)).toList();
+        emit(state.copyWith(baseState: BaseSuccessState()));
+        _changeOccasionTab((index ?? 1) - 1);
+        break;
       case FailureResult<OccasionsEntity>():
         emit(
           state.copyWith(
@@ -80,7 +77,7 @@ class OccasionCubit extends Cubit<OccasionState> {
   void doIntent(OccasionAction action) async {
     switch (action) {
       case OccasionRequestAction():
-        _getAllOccasions();
+        _getAllOccasions(action.index);
       case ProductsRequestAction():
         _getProductsById(action.occasionId);
       case ChangeOccasionTabAction():
