@@ -35,6 +35,14 @@ class TotalPriceItem extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
+        Row(
+          children: [
+            Text(LocaleKeys.Discount.tr()),
+            const Spacer(),
+            Text("\$${subtotal - totalPrice}"),
+          ],
+        ),
+        const SizedBox(height: 10),
         const Divider(),
         Row(
           children: [

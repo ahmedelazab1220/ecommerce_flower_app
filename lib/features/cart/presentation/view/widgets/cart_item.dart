@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
+import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:ecommerce_flower_app/features/cart/domain/entity/cart_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../core/assets/app_lotties.dart';
@@ -31,15 +33,11 @@ class CartItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Container(
-                width: 80,
-                height: 80,
+                width: 100,
                 color: AppColors.lightPink,
                 child: CachedNetworkImage(
                   imageUrl: cartProductEntity.imgCover,
                   fit: BoxFit.cover,
-                  placeholder:
-                      (context, url) =>
-                          Center(child: Lottie.asset(AppLotties.loading)),
                   errorWidget:
                       (context, url, error) => const Icon(
                         Icons.error,
@@ -85,10 +83,7 @@ class CartItem extends StatelessWidget {
                             DeleteProductFromCartAction(cartProductEntity.id),
                           );
                         },
-                        icon: const Icon(
-                          Icons.delete_outline,
-                          color: AppColors.pink,
-                        ),
+                        icon: SvgPicture.asset(AppIcons.trashSvg),
                       ),
                     ],
                   ),

@@ -6,6 +6,7 @@ class Assets {
   static const String imagesCar = 'assets/images/car.png';
   static const String imagesSuccessfulyOrder =
       'assets/images/successfuly_order.png';
+  static const String lottiesLoading = 'assets/lotties/loading.json';
   static const String svgsAlarmClock = 'assets/svgs/alarm_clock.svg';
   static const String svgsCall = 'assets/svgs/call.svg';
   static const String svgsCategories = 'assets/svgs/categories.svg';
@@ -18,6 +19,7 @@ class Assets {
   static const String svgsLocation = 'assets/svgs/location.svg';
   static const String svgsLogo = 'assets/svgs/logo.svg';
   static const String svgsPerson = 'assets/svgs/person.svg';
+  static const String svgsRecycleBin = 'assets/svgs/trash.svg';
   static const String svgsSearch = 'assets/svgs/search.svg';
   static const String svgsShoppingCart = 'assets/svgs/shopping_cart.svg';
   static const String svgsStar = 'assets/svgs/star.svg';

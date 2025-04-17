@@ -14,4 +14,15 @@ class CartProductEntity {
     required this.quantity,
     required this.description,
   });
+
+  factory CartProductEntity.fake() {
+    return CartProductEntity(
+      id: '',
+      title: '',
+      description: '',
+      imgCover: '',
+      price: 0,
+      quantity: 1,
+    );
+  }
 }

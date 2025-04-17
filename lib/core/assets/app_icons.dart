@@ -16,4 +16,5 @@ class AppIcons {
   static const String shoppingCartSvg = '${baseRoute}shopping_cart.svg';
   static const String starSvg = '${baseRoute}star.svg';
   static const String translateSvg = '${baseRoute}translate.svg';
+  static const String trashSvg = '${baseRoute}trash.svg';
 }
