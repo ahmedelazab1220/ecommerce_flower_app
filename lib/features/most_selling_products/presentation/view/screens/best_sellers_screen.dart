@@ -11,6 +11,7 @@ class BestSellersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: 0,
         title: ListTile(
           title: Text(
             LocaleKeys.BestSeller.tr(),
@@ -23,7 +24,7 @@ class BestSellersScreen extends StatelessWidget {
           ),
           subtitle: Text(
             LocaleKeys.BloomWithOurExquisiteBestSellers.tr(),
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
               fontSize: FontResponsive.getResponsiveFontSize(
                 context: context,
                 fontSize: 18,
