@@ -9,9 +9,10 @@ part of 'login_response_dto.dart';
 LoginResponseDto _$LoginResponseDtoFromJson(Map<String, dynamic> json) =>
     LoginResponseDto(
       message: json['message'] as String?,
-      user: json['user'] == null
-          ? null
-          : UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      user:
+          json['user'] == null
+              ? null
+              : UserDto.fromJson(json['user'] as Map<String, dynamic>),
       token: json['token'] as String?,
     );
 
