@@ -28,15 +28,23 @@ class EditProfileBody extends StatelessWidget {
           SliverToBoxAdapter(child: EditProfileForm(userEntity: userEntity)),
           const SliverToBoxAdapter(child: SizedBox(height: 48.0)),
           SliverToBoxAdapter(
-            child: ElevatedButton(
-              onPressed: () {
-                viewModel.doIntent(EditProfileRequestAction());
+            child: ValueListenableBuilder(
+              valueListenable: viewModel.valid,
+              builder: (context, value, child) {
+                return ElevatedButton(
+                  onPressed: () {
+                    viewModel.doIntent(EditProfileRequestAction());
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(14),
+                    backgroundColor:
+                        value
+                            ? AppColors.pink
+                            : AppColors.white[AppColors.colorCode80]!,
+                  ),
+                  child: Text(LocaleKeys.Update.tr()),
+                );
               },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(14),
-                backgroundColor: AppColors.pink,
-              ),
-              child: Text(LocaleKeys.Update.tr()),
             ),
           ),
         ],

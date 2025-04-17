@@ -78,16 +78,12 @@ import '../validator/validator.dart' as _i468;
 import 'module/shared_preference_module.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i526.GetItHelper(
-      this,
-      environment,
-      environmentFilter,
-    );
+    final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final sharedPreferenceModule = _$SharedPreferenceModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
@@ -100,75 +96,111 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
     gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
-        () => secureStorageModule.storage);
+      () => secureStorageModule.storage,
+    );
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.factory<_i493.HomeLocalDataSource>(
-        () => _i640.HomeLocalDataSourceImpl());
-    gh.factory<_i750.EditProfileLocalDataSource>(() =>
-        _i350.EditProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
+      () => _i640.HomeLocalDataSourceImpl(),
+    );
+    gh.factory<_i750.EditProfileLocalDataSource>(
+      () => _i350.EditProfileLocalDataSourceImpl(
+        gh<_i558.FlutterSecureStorage>(),
+      ),
+    );
     gh.singleton<_i649.BlocObserverService>(
-        () => _i649.BlocObserverService(gh<_i974.Logger>()));
-    gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
-        sharedPreferences: gh<_i460.SharedPreferences>()));
+      () => _i649.BlocObserverService(gh<_i974.Logger>()),
+    );
+    gh.factory<_i687.RouteInitializer>(
+      () => _i687.RouteInitializer(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
     gh.lazySingleton<_i361.Dio>(
-        () => dioModule.provideDio(gh<_i558.FlutterSecureStorage>()));
-    gh.factory<_i1015.AuthLocalDataSource>(() => _i241.AuthLocalDataSourceImpl(
-          gh<_i558.FlutterSecureStorage>(),
-          gh<_i460.SharedPreferences>(),
-        ));
+      () => dioModule.provideDio(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i1015.AuthLocalDataSource>(
+      () => _i241.AuthLocalDataSourceImpl(
+        gh<_i558.FlutterSecureStorage>(),
+        gh<_i460.SharedPreferences>(),
+      ),
+    );
     gh.singleton<_i257.AuthRetrofitClient>(
-        () => _i257.AuthRetrofitClient(gh<_i361.Dio>()));
+      () => _i257.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i945.HomeRetrofitClient>(
-        () => _i945.HomeRetrofitClient(gh<_i361.Dio>()));
+      () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i865.EditProfileRetrofitClient>(
-        () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()));
+      () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()));
+      () => _i212.AuthRemoteDataSourceImpl(gh<_i257.AuthRetrofitClient>()),
+    );
     gh.singleton<_i1043.HomeRemoteDataSource>(
-        () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.factory<_i242.HomeRepo>(() => _i801.HomeRepoImpl(
-          gh<_i1043.HomeRemoteDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i592.EditProfileRemoteDataSource>(() =>
-        _i503.EditProfileRemoteDataSourceImpl(
-            gh<_i865.EditProfileRetrofitClient>()));
-    gh.factory<_i913.AuthRepo>(() => _i822.AuthRepoImpl(
-          gh<_i305.AuthRemoteDataSource>(),
-          gh<_i1015.AuthLocalDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
+      () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()),
+    );
+    gh.factory<_i242.HomeRepo>(
+      () => _i801.HomeRepoImpl(
+        gh<_i1043.HomeRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i592.EditProfileRemoteDataSource>(
+      () => _i503.EditProfileRemoteDataSourceImpl(
+        gh<_i865.EditProfileRetrofitClient>(),
+      ),
+    );
+    gh.factory<_i913.AuthRepo>(
+      () => _i822.AuthRepoImpl(
+        gh<_i305.AuthRemoteDataSource>(),
+        gh<_i1015.AuthLocalDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i919.LoginUseCase>(
-        () => _i919.LoginUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i1005.EditProfileRepo>(() => _i192.EditProfileRepoImpl(
-          gh<_i592.EditProfileRemoteDataSource>(),
-          gh<_i750.EditProfileLocalDataSource>(),
-          gh<_i28.ApiManager>(),
-        ));
+      () => _i919.LoginUseCase(gh<_i913.AuthRepo>()),
+    );
+    gh.factory<_i1005.EditProfileRepo>(
+      () => _i192.EditProfileRepoImpl(
+        gh<_i592.EditProfileRemoteDataSource>(),
+        gh<_i750.EditProfileLocalDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1065.GetHomeDataUseCase>(
-        () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));
+      () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
+    );
     gh.factory<_i1071.EditProfileUseCase>(
-        () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()));
+      () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()),
+    );
     gh.factory<_i365.UploadProfileImageUseCase>(
-        () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()));
-    gh.factory<_i595.HomeCubit>(() => _i595.HomeCubit(
-          gh<_i1065.GetHomeDataUseCase>(),
-          gh<_i533.LocationService>(),
-        ));
-    gh.factory<_i4.EditProfileCubit>(() => _i4.EditProfileCubit(
-          gh<_i1071.EditProfileUseCase>(),
-          gh<_i365.UploadProfileImageUseCase>(),
-          gh<_i468.Validator>(),
-        ));
+      () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
+    );
+    gh.factory<_i595.HomeCubit>(
+      () => _i595.HomeCubit(
+        gh<_i1065.GetHomeDataUseCase>(),
+        gh<_i533.LocationService>(),
+      ),
+    );
+    gh.factory<_i4.EditProfileCubit>(
+      () => _i4.EditProfileCubit(
+        gh<_i1071.EditProfileUseCase>(),
+        gh<_i365.UploadProfileImageUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
     gh.factory<_i114.GuestUseCase>(
-        () => _i114.GuestUseCase(gh<_i913.AuthRepo>()));
-    gh.factory<_i646.LoginCubit>(() => _i646.LoginCubit(
-          gh<_i919.LoginUseCase>(),
-          gh<_i114.GuestUseCase>(),
-          gh<_i468.Validator>(),
-        ));
+      () => _i114.GuestUseCase(gh<_i913.AuthRepo>()),
+    );
+    gh.factory<_i646.LoginCubit>(
+      () => _i646.LoginCubit(
+        gh<_i919.LoginUseCase>(),
+        gh<_i114.GuestUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
     return this;
   }
 }

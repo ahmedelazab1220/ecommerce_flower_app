@@ -18,7 +18,7 @@ abstract class EditProfileRetrofitClient {
 
   @PUT(ApiConstants.uploadProfilePhotoRoute)
   @MultiPart()
-  Future<void> updateProfilePicture(@Part(name: "photo") File image);
+  Future<void> updateProfilePicture(@Part() File photo);
 
   @PUT(ApiConstants.editProfileRoute)
   Future<EditProfileResponseDto> editProfile(
