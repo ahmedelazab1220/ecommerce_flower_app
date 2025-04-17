@@ -8,11 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 
 import 'core/functions/initial_route_function.dart';
-import 'core/functions/initial_route_function.dart';
 import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/routes.dart';
-import 'features/occasions/presentation/view/screen/occasion_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +47,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             routes: AppRoutes.routes,
             theme: AppTheme.appTheme,
-            initialRoute: AppRoutes.mainLayoutRoute,
+            initialRoute: routeInitializer.computeInitialRoute(),
           ),
     );
   }

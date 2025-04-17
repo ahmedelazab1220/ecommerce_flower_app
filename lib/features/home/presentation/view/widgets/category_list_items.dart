@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/responsive_util/responsive_util.dart';
-import '../../../../../core/utils/routes/routes.dart';
+import '../../../../main_layout/presentation/view_model/cubit/main_layout_cubit.dart';
 import '../../../domain/entity/category_entity.dart';
-import '../../view_model/home_cubit.dart';
 import 'category_item.dart';
 import 'home_shared_title_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -18,7 +17,6 @@ class CategoryListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var viewModel = BlocProvider.of<HomeCubit>(context);
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,11 +27,8 @@ class CategoryListItems extends StatelessWidget {
               HomeSharedTitleWidget(
                 title: LocaleKeys.Categories.tr(),
                 onPressed: () {
-                  viewModel.doIntent(
-                    NavigateAction(
-                      routeName: AppRoutes.categoriesRoute,
-                      arguments: {'categoryIndex': 0},
-                    ),
+                  context.read<MainLayoutCubit>().doIntent(
+                    ChangeTabWithCategoryIndex(MainLayoutTabs.categories, 0),
                   );
                 },
               ),
