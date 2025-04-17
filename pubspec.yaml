@@ -54,6 +54,7 @@ dependencies:
   provider: ^6.1.2
   retrofit: ^4.4.2
   shared_preferences: ^2.5.2
+  carousel_slider: ^5.0.0
   skeletonizer: ^1.4.3
 
 dev_dependencies:
