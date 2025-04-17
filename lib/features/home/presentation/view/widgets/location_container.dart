@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/font_responsive/font_responsive.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
@@ -23,46 +21,17 @@ class LocationContainer extends StatefulWidget {
 class _LocationContainerState extends State<LocationContainer>
     with SingleTickerProviderStateMixin {
   late HomeCubit _homeCubit;
-  late AnimationController _controller;
-  late Animation<double> _jumpAnimation;
-  late Animation<double> _flipAnimation;
 
   @override
   void initState() {
     super.initState();
     _homeCubit = context.read<HomeCubit>();
     _homeCubit.doIntent(GetLocation());
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    _jumpAnimation = Tween<double>(
-      begin: 0,
-      end: -10,
-    ).chain(CurveTween(curve: Curves.easeOut)).animate(_controller);
-
-    _flipAnimation = Tween<double>(
-      begin: 0,
-      end: pi,
-    ).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
-
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse(); // return to original
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    _homeCubit.doAnimation(vsync: this);
   }
 
   void _triggerAnimationAndRefreshLocation() {
-    _controller.forward();
+    _homeCubit.controller.forward();
     _homeCubit.doIntent(GetLocation());
   }
 
@@ -74,13 +43,13 @@ class _LocationContainerState extends State<LocationContainer>
         spacing: 8.0,
         children: [
           AnimatedBuilder(
-            animation: _controller,
+            animation: _homeCubit.controller,
             builder: (context, child) {
               return Transform.translate(
-                offset: Offset(0, _jumpAnimation.value),
+                offset: Offset(0, _homeCubit.jumpAnimation.value),
                 child: Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.rotationY(_flipAnimation.value),
+                  transform: Matrix4.rotationY(_homeCubit.flipAnimation.value),
                   child: child,
                 ),
               );

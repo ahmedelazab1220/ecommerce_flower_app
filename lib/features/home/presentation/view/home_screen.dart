@@ -28,10 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
       create: (context) => viewModel,
       child: BlocListener<HomeCubit, HomeState>(
         listener: (context, state) {
-          if (state is BaseNavigationState) {
-            Navigator.of(context).pushNamed(
-              (state as BaseNavigationState).route,
-              arguments: (state as BaseNavigationState).arguments,
+          if (state.navigationState is BaseNavigationState) {
+            Navigator.pushNamed(
+              context,
+              (state.navigationState as BaseNavigationState).routeName,
+              arguments:
+                  (state.navigationState as BaseNavigationState).arguments,
             );
           }
         },

@@ -33,7 +33,7 @@ class BestSellersBody extends StatelessWidget {
             if (products == null || products.isEmpty) {
               return Center(
                 child: Text(
-                  LocaleKeys.NoProducts.tr(),
+                  LocaleKeys.NoProductsAvailable.tr(),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               );
