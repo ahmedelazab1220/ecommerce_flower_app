@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flower_app/features/product_details/presentation/view_model/product_details_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/base_state.dart';

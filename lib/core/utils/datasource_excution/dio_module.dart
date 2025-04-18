@@ -42,8 +42,6 @@ class AppInterceptors extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     String? token = await getIt<FlutterSecureStorage>().read(key: "token");
-
-    print("token: $token");
     if (token != null) {
       options.headers["Authorization"] = "Bearer $token";
       options.headers["token"] = token;
