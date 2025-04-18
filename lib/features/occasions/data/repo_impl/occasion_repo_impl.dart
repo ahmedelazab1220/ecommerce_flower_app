@@ -1,11 +1,11 @@
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/occasions/data/occasion_data_source/occasion_remote_data_source.dart';
-import 'package:ecommerce_flower_app/features/occasions/domain/entity/occasions_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_manager.dart';
 import '../../../../core/utils/shared_models/product_entity.dart';
+import '../../domain/entity/occasions_response_entity.dart';
 import '../../domain/repo/occasion_repo.dart';
+import '../data_source/contract/occasion_remote_data_source.dart';
 
 @Injectable(as: OccasionRepo)
 class OccasionRepoImpl implements OccasionRepo {
@@ -15,8 +15,8 @@ class OccasionRepoImpl implements OccasionRepo {
   OccasionRepoImpl(this._apiManager, this._occasionRemoteDataSource);
 
   @override
-  Future<Result<OccasionsEntity>> getAllOccasions() {
-    var response = _apiManager.execute<OccasionsEntity>(() async {
+  Future<Result<OccasionResponseEntity>> getAllOccasions() {
+    var response = _apiManager.execute<OccasionResponseEntity>(() async {
       final response = await _occasionRemoteDataSource.getAllOccasions();
       return response.toEntity();
     });

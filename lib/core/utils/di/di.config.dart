@@ -85,10 +85,26 @@ import '../../../features/home/presentation/view_model/home_cubit.dart'
     as _i595;
 import '../../../features/main_layout/presentation/view_model/cubit/main_layout_cubit.dart'
     as _i393;
+import '../../../features/most_selling_products/data/api/best_seller_retrofit_client.dart'
+    as _i821;
+import '../../../features/most_selling_products/data/data_source/contract/best_seller_remote_data_source.dart'
+    as _i488;
+import '../../../features/most_selling_products/data/data_source/remote/best_seller_remote_data_source_impl.dart'
+    as _i461;
+import '../../../features/most_selling_products/data/repo_impl/best_seller_repo_impl.dart'
+    as _i688;
+import '../../../features/most_selling_products/domain/repo/best_seller_repo.dart'
+    as _i58;
+import '../../../features/most_selling_products/domain/usecase/get_best_sellers_usecase.dart'
+    as _i109;
+import '../../../features/most_selling_products/presentation/view_model/best_seller_cubit.dart'
+    as _i190;
 import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
     as _i1061;
-import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
-    as _i73;
+import '../../../features/occasions/data/data_source/contract/occasion_remote_data_source.dart'
+    as _i452;
+import '../../../features/occasions/data/data_source/occasion_remote_data_source_impl.dart'
+    as _i61;
 import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
     as _i835;
 import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
@@ -166,6 +182,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i945.HomeRetrofitClient>(
       () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i821.BestSellerRetrofitClient>(
+      () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
@@ -177,13 +196,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i619.CategoriesRetrofitClient>(),
       ),
     );
-    gh.factory<_i73.OccasionRemoteDataSource>(
-      () => _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()),
-    );
-    gh.factory<_i72.OccasionRepo>(
-      () => _i835.OccasionRepoImpl(
-        gh<_i28.ApiManager>(),
-        gh<_i73.OccasionRemoteDataSource>(),
+    gh.factory<_i452.OccasionRemoteDataSource>(
+      () => _i61.OccasionRemoteDataSourceImpl(
+        gh<_i1061.OccasionRetrofitClient>(),
       ),
     );
     gh.singleton<_i1043.HomeRemoteDataSource>(
@@ -191,6 +206,23 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i305.AuthRemoteDataSource>(
       () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()),
+    );
+    gh.factory<_i488.BestSellerRemoteDataSource>(
+      () => _i461.BestSellerRemoteDataSourceImpl(
+        gh<_i821.BestSellerRetrofitClient>(),
+      ),
+    );
+    gh.factory<_i72.OccasionRepo>(
+      () => _i835.OccasionRepoImpl(
+        gh<_i28.ApiManager>(),
+        gh<_i452.OccasionRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i58.BestSellerRepo>(
+      () => _i688.BestSellerRepoImpl(
+        gh<_i488.BestSellerRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
     );
     gh.factory<_i242.HomeRepo>(
       () => _i801.HomeRepoImpl(
@@ -241,11 +273,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1065.GetHomeDataUseCase>(
       () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
     );
+    gh.factory<_i109.GetBestSellersUsecase>(
+      () => _i109.GetBestSellersUsecase(gh<_i58.BestSellerRepo>()),
+    );
     gh.factory<_i1071.EditProfileUseCase>(
       () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()),
     );
     gh.factory<_i365.UploadProfileImageUseCase>(
       () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
+    );
+    gh.factory<_i190.BestSellerCubit>(
+      () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()),
     );
     gh.factory<_i1027.GetCategoriesUseCase>(
       () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),
