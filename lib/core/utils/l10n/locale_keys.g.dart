@@ -205,4 +205,6 @@ abstract class LocaleKeys {
   static const YouAreInGuestMode = 'YouAreInGuestMode';
   static const PleaseLoginToAccessAllFeatures =
       'PleaseLoginToAccessAllFeatures';
+  static const ProductAddedToCartSuccessfully =
+      'ProductAddedToCartSuccessfully';
 }

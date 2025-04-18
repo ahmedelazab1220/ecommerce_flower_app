@@ -192,5 +192,6 @@
     "Arabic": "العربية",
     "English": "الإنجليزية",
     "YouAreInGuestMode": "أنت في وضع الضيف",
-    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات"
+    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات",
+    "ProductAddedToCartSuccessfully": "تمت اضافة المنتج بنجاح للسلة"
 }

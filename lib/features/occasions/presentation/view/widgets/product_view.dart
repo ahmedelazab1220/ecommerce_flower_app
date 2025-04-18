@@ -42,7 +42,7 @@ class _ProductViewState extends State<ProductView> {
                               .NoProductsAvailable.tr(), //assign title to to increase the length of text in skeletonizer
                     ),
                   );
-          return products == null && products!.isEmpty
+          return products!.isEmpty
               ? Center(child: Text(LocaleKeys.NoProductsAvailable.tr()))
               : GridView.builder(
                 itemCount: products.length,

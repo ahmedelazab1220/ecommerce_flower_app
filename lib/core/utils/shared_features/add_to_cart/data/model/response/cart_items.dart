@@ -13,9 +13,9 @@ class CartItems {
   @JsonKey(name: "quantity")
   final int? quantity;
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
 
-  CartItems({this.product, this.price, this.quantity, this.Id});
+  CartItems({this.product, this.price, this.quantity, this.id});
 
   factory CartItems.fromJson(Map<String, dynamic> json) {
     return _$CartItemsFromJson(json);
