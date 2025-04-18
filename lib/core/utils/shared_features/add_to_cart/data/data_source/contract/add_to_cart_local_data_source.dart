@@ -1,1 +1,3 @@
-abstract interface class AddToCartLocalDataSource {}
+abstract interface class AddToCartLocalDataSource {
+  Future<String?> isGuestUser();
+}

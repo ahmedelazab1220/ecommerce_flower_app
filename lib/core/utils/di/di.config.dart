@@ -134,19 +134,8 @@ import '../shared_features/add_to_cart/domain/repo/add_to_cart_repo.dart'
     as _i946;
 import '../shared_features/add_to_cart/domain/usecase/add_to_cart_use_case.dart'
     as _i393;
-import '../shared_features/is_guest/data/data_source/contract/is_guest_local_data_source.dart'
-    as _i1005;
-import '../shared_features/is_guest/data/data_source/contract/is_guest_remote_data_source.dart'
-    as _i361;
-import '../shared_features/is_guest/data/data_source/local/is_guest_local_data_source_impl.dart'
-    as _i943;
-import '../shared_features/is_guest/data/data_source/remote/is_guest_remote_data_source_impl.dart'
-    as _i111;
-import '../shared_features/is_guest/data/repo_impl/is_guest_repo_impl.dart'
-    as _i494;
-import '../shared_features/is_guest/domain/repo/is_guest_repo.dart' as _i556;
-import '../shared_features/is_guest/domain/usecase/is_guest_use_case.dart'
-    as _i203;
+import '../shared_features/add_to_cart/domain/usecase/is_guest_use_case.dart'
+    as _i182;
 import '../validator/validator.dart' as _i468;
 import 'module/shared_preference_module.dart' as _i460;
 
@@ -181,12 +170,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
-    gh.factory<_i1005.IsGuestLocalDataSource>(() =>
-        _i943.IsGuestLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i493.HomeLocalDataSource>(
         () => _i640.HomeLocalDataSourceImpl());
-    gh.factory<_i361.IsGuestRemoteDataSource>(
-        () => _i111.IsGuestRemoteDataSourceImpl());
     gh.singleton<_i649.BlocObserverService>(
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
     gh.singleton<_i1048.AuthRetrofitClient>(
@@ -203,11 +188,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i918.AddToCartRetrofitClient>(
         () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()));
+    gh.factory<_i528.AddToCartLocalDataSource>(() =>
+        _i719.AddToCartLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.singleton<_i691.CategoriesRemoteDataSource>(() =>
         _i939.CategoriesRemoteDataSourceImpl(
             gh<_i619.CategoriesRetrofitClient>()));
-    gh.factory<_i528.AddToCartLocalDataSource>(
-        () => _i719.AddToCartLocalDataSourceImpl());
     gh.factory<_i73.OccasionRemoteDataSource>(() =>
         _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()));
     gh.factory<_i664.AddToCartRemoteDataSource>(() =>
@@ -227,8 +212,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i558.FlutterSecureStorage>(),
           gh<_i460.SharedPreferences>(),
         ));
-    gh.factory<_i556.IsGuestRepo>(
-        () => _i494.IsGuestRepoImpl(gh<_i1005.IsGuestLocalDataSource>()));
     gh.factory<_i488.BestSellerRemoteDataSource>(() =>
         _i461.BestSellerRemoteDataSourceImpl(
             gh<_i821.BestSellerRetrofitClient>()));
@@ -242,6 +225,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i12.CartRemoteDataSource>(
         () => _i616.CartRemoteDatasourceImpl(gh<_i675.CartRetrofitClient>()));
+    gh.factory<_i946.AddToCartRepo>(() => _i934.AddToCartRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i664.AddToCartRemoteDataSource>(),
+          gh<_i528.AddToCartLocalDataSource>(),
+        ));
     gh.singleton<_i781.CategoriesRepo>(() => _i427.CategoriesRepoImpl(
           gh<_i691.CategoriesRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -254,10 +242,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i1015.AuthLocalDataSource>(),
           gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i946.AddToCartRepo>(() => _i934.AddToCartRepoImpl(
-          gh<_i28.ApiManager>(),
-          gh<_i664.AddToCartRemoteDataSource>(),
         ));
     gh.factory<_i1056.GetAllOccasionsUsecase>(
         () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()));
@@ -275,8 +259,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i109.GetBestSellersUsecase(gh<_i58.BestSellerRepo>()));
     gh.factory<_i190.BestSellerCubit>(
         () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()));
-    gh.factory<_i203.IsGuestUseCase>(
-        () => _i203.IsGuestUseCase(gh<_i556.IsGuestRepo>()));
     gh.factory<_i1027.GetCategoriesUseCase>(
         () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()));
     gh.factory<_i752.GetProductsUseCase>(
@@ -287,6 +269,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i393.AddToCartUseCase>(
         () => _i393.AddToCartUseCase(gh<_i946.AddToCartRepo>()));
+    gh.factory<_i182.IsGuestUseCase>(
+        () => _i182.IsGuestUseCase(gh<_i946.AddToCartRepo>()));
     gh.factory<_i124.GuestUseCase>(
         () => _i124.GuestUseCase(gh<_i913.AuthRepo>()));
     gh.factory<_i1010.AddProductToCartUsecase>(
@@ -311,18 +295,18 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i834.ProductDetailsCubit>(
         () => _i834.ProductDetailsCubit(gh<_i393.AddToCartUseCase>()));
+    gh.factory<_i204.LoginCubit>(() => _i204.LoginCubit(
+          gh<_i197.LoginUseCase>(),
+          gh<_i124.GuestUseCase>(),
+          gh<_i468.Validator>(),
+        ));
     gh.factory<_i99.CartCubit>(() => _i99.CartCubit(
           gh<_i1039.GetCartUsecase>(),
           gh<_i407.ClearCartUsecase>(),
           gh<_i1010.AddProductToCartUsecase>(),
           gh<_i637.UpdateProductInCartUsecase>(),
           gh<_i715.DeleteProductFromCartUsecase>(),
-          gh<_i203.IsGuestUseCase>(),
-        ));
-    gh.factory<_i204.LoginCubit>(() => _i204.LoginCubit(
-          gh<_i197.LoginUseCase>(),
-          gh<_i124.GuestUseCase>(),
-          gh<_i468.Validator>(),
+          gh<_i182.IsGuestUseCase>(),
         ));
     return this;
   }

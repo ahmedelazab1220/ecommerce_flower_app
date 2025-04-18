@@ -1,6 +1,6 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/core/utils/shared_features/is_guest/domain/usecase/is_guest_use_case.dart';
+import 'package:ecommerce_flower_app/core/utils/shared_features/add_to_cart/domain/usecase/is_guest_use_case.dart';
 import 'package:ecommerce_flower_app/features/cart/data/model/add_product_to_cart_request_dto.dart';
 import 'package:ecommerce_flower_app/features/cart/domain/entity/cart_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

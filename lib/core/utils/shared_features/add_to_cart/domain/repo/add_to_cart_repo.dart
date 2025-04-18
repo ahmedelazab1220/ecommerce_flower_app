@@ -5,4 +5,5 @@ import '../../data/model/response/add_to_cart_response_dto.dart';
 
 abstract interface class AddToCartRepo {
   Future<Result<AddToCartResponseDto>> addToCart(AddToCartRequestDto request);
+  Future<String?> isGuestUser();
 }
