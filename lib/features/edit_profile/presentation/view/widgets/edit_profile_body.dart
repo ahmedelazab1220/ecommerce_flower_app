@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../domain/entity/user_entity.dart';
+import '../../../../profile/domain/entity/user_entity.dart';
 import '../../view_model/cubit/edit_profile_cubit.dart';
 import 'edit_profile_form.dart';
 import 'edit_profile_user_image.dart';

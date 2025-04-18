@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/di/di.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../domain/entity/user_entity.dart';
+import '../../../profile/domain/entity/user_entity.dart';
 import '../view_model/cubit/edit_profile_cubit.dart';
 import 'edit_profile_bloc_listener.dart';
 import 'widgets/edit_profile_body.dart';
@@ -28,10 +28,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     viewModel.userEntity = widget.userEntity;
-    viewModel.emailController.text = widget.userEntity.email;
-    viewModel.phoneController.text = widget.userEntity.phone;
-    viewModel.firstNameController.text = widget.userEntity.firstName;
-    viewModel.lastNameController.text = widget.userEntity.lastName;
+    viewModel.emailController.text = widget.userEntity.email!;
+    viewModel.phoneController.text = widget.userEntity.phone!;
+    viewModel.firstNameController.text = widget.userEntity.firstName!;
+    viewModel.lastNameController.text = widget.userEntity.lastName!;
   }
 
   @override

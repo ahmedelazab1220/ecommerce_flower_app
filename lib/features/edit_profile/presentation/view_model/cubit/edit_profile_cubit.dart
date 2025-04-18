@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../profile/domain/entity/user_entity.dart';
 import '../../../domain/entity/edit_profile/edit_profile_request.dart';
-import '../../../domain/entity/user_entity.dart';
 import '../../../domain/use_case/edit_profile_use_case.dart';
 import '../../../domain/use_case/upload_profile_image_use_case.dart';
 

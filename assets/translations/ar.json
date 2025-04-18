@@ -188,7 +188,10 @@
     "TakeAPhoto": "احصل على صورة",
     "ChooseFromGallery": "اختر من الصورة",
     "Change": "تغيير",
-    "ProductAddedToCartSuccessfully":"تمت إضافة المنتج إلى السلة بنجاح",
+    "ChangeLanguage": "تغيير اللغة",
+    "Arabic": "العربية",
+    "English": "الإنجليزية",
     "YouAreInGuestMode": "أنت في وضع الضيف",
-    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات"
+    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات",
+    "ProductAddedToCartSuccessfully": "تمت اضافة المنتج بنجاح للسلة"
 }

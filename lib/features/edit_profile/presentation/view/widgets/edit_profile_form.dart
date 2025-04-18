@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/edit_profile/domain/entity/user_entity.dart';
-import 'package:ecommerce_flower_app/features/edit_profile/presentation/view/widgets/edit_profile_gender.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../profile/domain/entity/user_entity.dart';
 import '../../view_model/cubit/edit_profile_cubit.dart';
 import 'edit_profile_change_password.dart';
+import 'edit_profile_gender.dart';
 
 class EditProfileForm extends StatelessWidget {
   const EditProfileForm({super.key, required this.userEntity});
@@ -81,7 +81,7 @@ class EditProfileForm extends StatelessWidget {
               const SizedBox(height: 24.0),
               const EditProfileChangePassword(),
               const SizedBox(height: 24.0),
-              EditProfileGender(gender: userEntity.gender),
+              EditProfileGender(gender: userEntity.gender!),
             ],
           ),
         );

@@ -147,6 +147,26 @@ import '../../../features/occasions/presentation/view_model/occasion_cubit.dart'
     as _i41;
 import '../../../features/product_details/presentation/view_model/product_details_cubit.dart'
     as _i834;
+import '../../../features/profile/data/api/profile_retrofit_client.dart'
+    as _i766;
+import '../../../features/profile/data/data_source/contract/profile_local_data_source.dart'
+    as _i1011;
+import '../../../features/profile/data/data_source/contract/profile_remote_data_source.dart'
+    as _i939;
+import '../../../features/profile/data/data_source/local/profile_local_data_source_impl.dart'
+    as _i862;
+import '../../../features/profile/data/data_source/remote/profile_remote_data_source_impl.dart'
+    as _i1038;
+import '../../../features/profile/data/repo_impl/profile_repo_impl.dart'
+    as _i1054;
+import '../../../features/profile/domain/repo/profile_repo.dart' as _i863;
+import '../../../features/profile/domain/usecase/get_user_data_usecase.dart'
+    as _i314;
+import '../../../features/profile/domain/usecase/guest_mode_use_case.dart'
+    as _i405;
+import '../../../features/profile/domain/usecase/logout_use_case.dart' as _i238;
+import '../../../features/profile/presentation/view_model/profile_cubit.dart'
+    as _i782;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -190,9 +210,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferenceModule.sharedPreferences,
       preResolve: true,
     );
+    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
-    gh.singleton<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
     gh.lazySingleton<_i528.PrettyDioLogger>(
       () => dioModule.providerInterceptor(),
@@ -233,6 +253,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i766.ProfileRetrofitClient>(
+      () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i918.AddToCartRetrofitClient>(
       () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
     );
@@ -264,6 +287,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i687.RouteInitializer>(
       () => _i687.RouteInitializer(
         sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
+    gh.factory<_i1011.ProfileLocalDataSource>(
+      () => _i862.ProfileLocalDataSourceImpl(
+        gh<_i558.FlutterSecureStorage>(),
+        gh<_i460.SharedPreferences>(),
       ),
     );
     gh.factory<_i452.OccasionRemoteDataSource>(
@@ -299,6 +328,10 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i488.BestSellerRemoteDataSource>(),
         gh<_i28.ApiManager>(),
       ),
+    );
+    gh.factory<_i939.ProfileRemoteDataSource>(
+      () =>
+          _i1038.ProfileRemoteDataSourceImpl(gh<_i766.ProfileRetrofitClient>()),
     );
     gh.factory<_i242.HomeRepo>(
       () => _i801.HomeRepoImpl(
@@ -337,6 +370,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i833.CartRepoImpl(
         gh<_i12.CartRemoteDataSource>(),
         gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i863.ProfileRepo>(
+      () => _i1054.ProfileRepoImpl(
+        gh<_i28.ApiManager>(),
+        gh<_i939.ProfileRemoteDataSource>(),
+        gh<_i1011.ProfileLocalDataSource>(),
       ),
     );
     gh.factory<_i913.AuthRepo>(
@@ -391,6 +431,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i280.ChangePasswordUseCase>(),
         gh<_i468.Validator>(),
       ),
+    );
+    gh.factory<_i314.GetUserDataUsecase>(
+      () => _i314.GetUserDataUsecase(gh<_i863.ProfileRepo>()),
+    );
+    gh.factory<_i405.GuestModeUseCase>(
+      () => _i405.GuestModeUseCase(gh<_i863.ProfileRepo>()),
+    );
+    gh.factory<_i238.LogoutUseCase>(
+      () => _i238.LogoutUseCase(gh<_i863.ProfileRepo>()),
     );
     gh.factory<_i1027.GetCategoriesUseCase>(
       () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),
@@ -448,6 +497,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1008.CategoriesCubit(
         gh<_i1027.GetCategoriesUseCase>(),
         gh<_i752.GetProductsUseCase>(),
+      ),
+    );
+    gh.factory<_i782.ProfileCubit>(
+      () => _i782.ProfileCubit(
+        gh<_i314.GetUserDataUsecase>(),
+        gh<_i238.LogoutUseCase>(),
+        gh<_i405.GuestModeUseCase>(),
       ),
     );
     gh.factory<_i834.ProductDetailsCubit>(

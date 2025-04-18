@@ -33,7 +33,10 @@ class _OccasionScreenState extends State<OccasionScreen> {
       create: (_) => viewModel,
       child: Scaffold(
         appBar: AppBar(
+          titleSpacing: 0,
           title: ListTile(
+            contentPadding: EdgeInsets.zero,
+            visualDensity: const VisualDensity(vertical: -4),
             title: Text(
               LocaleKeys.Occasion.tr(),
               style: Theme.of(context).textTheme.titleLarge,

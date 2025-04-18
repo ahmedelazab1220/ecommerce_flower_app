@@ -20,8 +20,8 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale(Constants.ar), Locale(Constants.en)],
       path: Constants.assetsTranslations,
+      startLocale: AppStrater.startLocale ?? const Locale(Constants.en),
       fallbackLocale: const Locale(Constants.en),
-      startLocale: const Locale(Constants.en),
       child: MyApp(),
     ),
   );

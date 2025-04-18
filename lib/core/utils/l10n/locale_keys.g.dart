@@ -199,9 +199,12 @@ abstract class LocaleKeys {
   static const TakeAPhoto = 'TakeAPhoto';
   static const ChooseFromGallery = 'ChooseFromGallery';
   static const Change = 'Change';
-  static const ProductAddedToCartSuccessfully =
-      'ProductAddedToCartSuccessfully';
+  static const ChangeLanguage = 'ChangeLanguage';
+  static const Arabic = 'Arabic';
+  static const English = 'English';
   static const YouAreInGuestMode = 'YouAreInGuestMode';
   static const PleaseLoginToAccessAllFeatures =
       'PleaseLoginToAccessAllFeatures';
+  static const ProductAddedToCartSuccessfully =
+      'ProductAddedToCartSuccessfully';
 }
