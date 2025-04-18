@@ -28,7 +28,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   }
 
   void _changeCategory(int index) {
-    if (index < 0 || index >= categories.length) return;
+    if (index < 0 || index >= categories.length) index = 0;
     emit(state.copyWith(selectedTabIndex: index));
     final selectedCategoryId = index == 0 ? null : categories[index].id;
     doIntent(GetProductsAction(categoryId: selectedCategoryId));

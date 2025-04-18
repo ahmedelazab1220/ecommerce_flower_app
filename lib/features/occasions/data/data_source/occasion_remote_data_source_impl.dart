@@ -1,19 +1,22 @@
-import 'package:ecommerce_flower_app/features/occasions/data/model/occasions_response_dto.dart';
 import 'package:injectable/injectable.dart';
 
 import '../api/occasion_retrofit_client.dart';
+import '../model/occasions_response_dto.dart';
 import '../model/products_response_dto.dart';
+import 'contract/occasion_remote_data_source.dart';
 
-@injectable
-class OccasionRemoteDataSource {
+@Injectable(as: OccasionRemoteDataSource)
+class OccasionRemoteDataSourceImpl implements OccasionRemoteDataSource {
   final OccasionRetrofitClient _occasionRetrofitClient;
 
-  OccasionRemoteDataSource(this._occasionRetrofitClient);
+  OccasionRemoteDataSourceImpl(this._occasionRetrofitClient);
 
+  @override
   Future<OccasionsResponseDto> getAllOccasions() async {
     return await _occasionRetrofitClient.getAllOccasions();
   }
 
+  @override
   Future<ProductsResponseDto> getProductsByOccasion(String occasionId) async {
     return await _occasionRetrofitClient.getProductsByOccasion(occasionId);
   }
