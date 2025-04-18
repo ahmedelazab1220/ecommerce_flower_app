@@ -1,5 +1,6 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
+import 'package:ecommerce_flower_app/core/utils/shared_features/is_guest/domain/usecase/is_guest_use_case.dart';
 import 'package:ecommerce_flower_app/features/cart/data/model/add_product_to_cart_request_dto.dart';
 import 'package:ecommerce_flower_app/features/cart/domain/entity/cart_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,9 @@ class CartCubit extends Cubit<CartState> {
   final AddProductToCartUsecase _addProductToCartUsecase;
   final UpdateProductInCartUsecase _updateProductInCartUsecase;
   final DeleteProductFromCartUsecase _deleteProductFromCartUsecase;
+  final IsGuestUseCase _guestModeUseCase;
+
+  String? token;
 
   CartCubit(
     this._getCartUsecase,
@@ -27,6 +31,7 @@ class CartCubit extends Cubit<CartState> {
     this._addProductToCartUsecase,
     this._updateProductInCartUsecase,
     this._deleteProductFromCartUsecase,
+    this._guestModeUseCase,
   ) : super(CartState(baseState: BaseInitialState()));
 
   void doIntent(CartAction action) {
@@ -41,6 +46,22 @@ class CartCubit extends Cubit<CartState> {
         _deleteProductFromCart(action.productId);
       case ClearCartAction():
         _clearCart();
+      case GuestStateRequestAction():
+        _isGuestUser();
+    }
+  }
+
+  Future<void> _isGuestUser() async {
+    emit(state.copyWith(guestState: BaseLoadingState()));
+    token = await _guestModeUseCase.call();
+    if (token == null || token!.isEmpty) {
+      emit(state.copyWith(guestState: BaseSuccessState()));
+    } else {
+      emit(
+        state.copyWith(
+          guestState: BaseErrorState(errorMessage: "You are not a guest user"),
+        ),
+      );
     }
   }
 

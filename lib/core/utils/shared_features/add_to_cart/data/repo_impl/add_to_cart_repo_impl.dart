@@ -1,9 +1,9 @@
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_manager.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/core/utils/shared_api/add_to_cart/data/data_source/contract/add_to_cart_remote_data_source.dart';
-import 'package:ecommerce_flower_app/core/utils/shared_api/add_to_cart/domain/repo/add_to_cart_repo.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/repo/add_to_cart_repo.dart';
+import '../data_source/contract/add_to_cart_remote_data_source.dart';
 import '../model/request/add_to_cart_request_dto.dart';
 import '../model/response/add_to_cart_response_dto.dart';
 

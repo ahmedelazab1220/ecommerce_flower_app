@@ -3,14 +3,18 @@ import 'package:equatable/equatable.dart';
 
 class CartState extends Equatable {
   final BaseState? baseState;
+  final BaseState? guestState;
 
-  const CartState({this.baseState});
+  const CartState({this.baseState, this.guestState});
 
   @override
-  List<Object?> get props => [baseState];
+  List<Object?> get props => [baseState, guestState];
 
-  CartState copyWith({BaseState? baseState}) {
-    return CartState(baseState: baseState ?? this.baseState);
+  CartState copyWith({BaseState? baseState, BaseState? guestState}) {
+    return CartState(
+      baseState: baseState ?? this.baseState,
+      guestState: guestState ?? this.guestState,
+    );
   }
 }
 
@@ -38,3 +42,5 @@ class DeleteProductFromCartAction extends CartAction {
 }
 
 class ClearCartAction extends CartAction {}
+
+class GuestStateRequestAction extends CartAction {}

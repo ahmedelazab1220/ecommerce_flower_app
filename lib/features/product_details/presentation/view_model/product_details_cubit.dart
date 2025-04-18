@@ -4,9 +4,9 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../../../../core/utils/shared_api/add_to_cart/data/model/request/add_to_cart_request_dto.dart';
-import '../../../../core/utils/shared_api/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
-import '../../../../core/utils/shared_api/add_to_cart/domain/usecase/add_to_cart_use_case.dart';
+import '../../../../core/utils/shared_features/add_to_cart/data/model/request/add_to_cart_request_dto.dart';
+import '../../../../core/utils/shared_features/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
+import '../../../../core/utils/shared_features/add_to_cart/domain/usecase/add_to_cart_use_case.dart';
 
 @injectable
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {

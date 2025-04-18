@@ -1,8 +1,8 @@
-import 'package:ecommerce_flower_app/core/utils/shared_api/add_to_cart/data/api/add_to_cart_retrofit_client.dart';
-import 'package:ecommerce_flower_app/core/utils/shared_api/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../api/add_to_cart_retrofit_client.dart';
 import '../../model/request/add_to_cart_request_dto.dart';
+import '../../model/response/add_to_cart_response_dto.dart';
 import '../contract/add_to_cart_remote_data_source.dart';
 
 @Injectable(as: AddToCartRemoteDataSource)

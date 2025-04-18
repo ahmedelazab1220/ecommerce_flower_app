@@ -185,5 +185,7 @@
     "Long": "طويل",
     "Lat": "عرض",
     "NoProductsAvailable":"لا توجد منتجات متاحة",
-    "ProductAddedToCartSuccessfully":"تمت إضافة المنتج إلى السلة بنجاح"
+    "ProductAddedToCartSuccessfully":"تمت إضافة المنتج إلى السلة بنجاح",
+    "YouAreInGuestMode": "أنت في وضع الضيف",
+    "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات"
 }

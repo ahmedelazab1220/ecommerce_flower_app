@@ -185,5 +185,7 @@
     "Long": "Long",
     "Lat": "Lat",
     "NoProductsAvailable": "No products available",
-    "ProductAddedToCartSuccessfully" : "Product added to cart successfully"
+    "ProductAddedToCartSuccessfully" : "Product added to cart successfully",
+    "YouAreInGuestMode": "You are in guest mode",
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
 }
