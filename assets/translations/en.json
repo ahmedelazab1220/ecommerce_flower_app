@@ -173,7 +173,6 @@
     "InvalidName": "Please enter a valid name without special characters.",
     "PhoneNumberCannotBeEmpty": "Phone number cannot be empty",
     "InvalidPhoneNumber": "Invalid number format. Ensure it starts with 010, 011, 012, or 015 and has 11 digits.",
-    "NoProductsAvailable": "No Products Available",
     "Egp": "EGP",
     "all": "All",
     "FetchingYourLocation": "🔍 Fetching your location...",
@@ -188,5 +187,10 @@
     "Arabic": "Arabic",
     "English": "English",
     "YouAreInGuestMode": "You are in guest mode",
-    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features",
+    "NoProductsAvailable": "No products available",
+    "EditProfile": "Edit profile",
+    "TakeAPhoto": "Take a photo",
+    "ChooseFromGallery": "Choose from gallery",
+    "Change": "Change"
 }

@@ -48,7 +48,7 @@ class ProfileHeader extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.editProfileRoute,
-                          arguments: viewModel.userData,
+                          arguments: {'userEntity': viewModel.userData},
                         );
                       },
                     ),
