@@ -17,31 +17,32 @@ part 'occasion_state.dart';
 class OccasionCubit extends Cubit<OccasionState> {
   final GetAllOccasionsUsecase _getAllOccasionsUsecase;
   final GetProductsByIdUsecase _getProductsByIdUsecase;
-
   List<OccasionEntity>? occasions;
   List<ProductEntity>? products = [];
 
-  List<Tab>? myTabs = [];
-
   OccasionCubit(this._getAllOccasionsUsecase, this._getProductsByIdUsecase)
-    : super(OccasionState(baseState: BaseInitialState()));
+    : super(OccasionState(occasionState: BaseInitialState()));
 
   Future<void> _getAllOccasions([int? index]) async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
+    emit(state.copyWith(occasionState: BaseLoadingState()));
     final result = await _getAllOccasionsUsecase.call();
     switch (result) {
       case SuccessResult<OccasionResponseEntity>():
         {
           occasions = result.data.occasions;
-          myTabs = occasions?.map((e) => Tab(text: e.name)).toList();
-          emit(state.copyWith(baseState: BaseSuccessState()));
+          final myTabs = occasions?.map((e) => Tab(text: e.name)).toList();
+          emit(
+            state.copyWith(
+              occasionState: BaseSuccessState<List<Tab>>(data: myTabs),
+            ),
+          );
           _changeOccasionTab((index ?? 1) - 1);
         }
       case FailureResult<OccasionResponseEntity>():
         {
           emit(
             state.copyWith(
-              baseState: BaseErrorState(
+              occasionState: BaseErrorState(
                 errorMessage: result.exception.toString(),
               ),
             ),
@@ -51,19 +52,24 @@ class OccasionCubit extends Cubit<OccasionState> {
   }
 
   Future<void> _getProductsById(String occasionId) async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
+    emit(state.copyWith(productsState: BaseLoadingState()));
     final result = await _getProductsByIdUsecase.call(occasionId);
     switch (result) {
       case SuccessResult<List<ProductEntity>>():
         {
-          emit(state.copyWith(baseState: BaseSuccessState()));
-          products = result.data;
+          emit(
+            state.copyWith(
+              productsState: BaseSuccessState<List<ProductEntity>>(
+                data: result.data,
+              ),
+            ),
+          );
         }
       case FailureResult<List<ProductEntity>>():
         {
           emit(
             state.copyWith(
-              baseState: BaseErrorState(
+              productsState: BaseErrorState(
                 errorMessage: result.exception.toString(),
               ),
             ),
@@ -73,6 +79,7 @@ class OccasionCubit extends Cubit<OccasionState> {
   }
 
   Future<void> _changeOccasionTab(int tabIndex) async {
+    if (tabIndex < 0 || tabIndex >= occasions!.length) tabIndex = 0;
     emit(state.copyWith(selectedTabIndex: tabIndex));
     final occasionId = occasions?[tabIndex].id;
     if (occasionId != null) {
@@ -85,10 +92,6 @@ class OccasionCubit extends Cubit<OccasionState> {
       case OccasionRequestAction():
         {
           _getAllOccasions(action.index);
-        }
-      case ProductsRequestAction():
-        {
-          _getProductsById(action.occasionId);
         }
       case ChangeOccasionTabAction():
         {
