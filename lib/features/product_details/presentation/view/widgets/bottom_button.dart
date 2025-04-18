@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class BottomButton extends StatelessWidget {
-  const BottomButton({super.key});
+  final String? productId;
+  const BottomButton({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {

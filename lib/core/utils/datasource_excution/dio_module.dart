@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../constants.dart';
 import 'api_constants.dart';
 
 @module

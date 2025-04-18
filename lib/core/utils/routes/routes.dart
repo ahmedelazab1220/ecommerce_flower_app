@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../features/auth/presentation/view/screens/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
+import '../../../features/change_password/presentation/view/screens/change_password_screen.dart';
+import '../../../features/edit_profile/presentation/view/edit_profile_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
@@ -20,12 +22,21 @@ class AppRoutes {
   static const String bestSellerRoute = '/best-seller';
   static const String categoriesRoute = '/categories';
   static const String occasionRoute = '/occasion';
+  static const String editProfileRoute = '/edit-profile';
+  static const String resetPasswordRoute = '/reset-password';
   static const String productDetailsRoute = '/product-details';
+  static const String changePasswordRoute = '/change-password';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
     registerRoute: (context) => const RegisterScreen(),
     mainLayoutRoute: (context) => const MainLayout(),
+    editProfileRoute: (context) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final userEntity = args['userEntity'];
+      return EditProfileScreen(userEntity: userEntity);
+    },
     categoriesRoute: (context) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
@@ -44,5 +55,6 @@ class AppRoutes {
       return ProductDetailsScreen(productEntity: productEntity);
     },
     bestSellerRoute: (context) => const BestSellersScreen(),
+    changePasswordRoute: (context) => const ChangePasswordScreen(),
   };
 }

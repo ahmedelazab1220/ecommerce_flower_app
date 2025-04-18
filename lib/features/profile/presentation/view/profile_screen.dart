@@ -1,4 +1,17 @@
+import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../../core/assets/app_icons.dart';
+import '../../../../core/base/base_state.dart';
+import '../view_model/profile_cubit.dart';
+import '../view_model/profile_state.dart';
+import 'widgets/guest_mode_section.dart';
+import 'widgets/logout_section.dart';
+import 'widgets/notification_section.dart';
+import 'widgets/order_section.dart';
+import 'widgets/profile_header.dart';
+import 'widgets/translation_and_about_us_section.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -8,8 +21,67 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final viewModel = getIt<ProfileCubit>();
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel.doIntent(GuestStateRequestAction());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Profile Screen')));
+    return Scaffold(
+      appBar: AppBar(
+        title: SvgPicture.asset(AppIcons.logoSvg),
+        actions: [
+          IconButton(
+            icon: SvgPicture.asset(AppIcons.notificationSvg),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: BlocProvider(
+        create: (_) => viewModel,
+        child: BlocConsumer<ProfileCubit, ProfileState>(
+          listenWhen:
+              (previous, current) => previous.guestState != current.guestState,
+          listener: (context, state) {
+            if (state.guestState is BaseErrorState) {
+              viewModel.doIntent(ProfileRequestAction());
+            }
+          },
+          builder: (context, state) {
+            if (state.guestState is BaseLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (state.guestState is BaseSuccessState) {
+              return const GuestModeSection();
+            }
+            return const SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProfileHeader(),
+                    SizedBox(height: 28.0),
+                    OrderSection(),
+                    SizedBox(height: 8.0),
+                    NotificationSection(),
+                    SizedBox(height: 16.0),
+                    TranslationAndAboutUsSection(),
+                    SizedBox(height: 16.0),
+                    LogoutSection(),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

@@ -22,36 +22,41 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel,
-      child: BlocBuilder<MainLayoutCubit, MainLayoutState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: viewModel.tabs[viewModel.currentTab],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: viewModel.currentTab.index,
-              onTap: (value) {
-                viewModel.doIntent(
-                  ChangeSelectedTab(MainLayoutTabs.values[value]),
-                );
-              },
-              items: [
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.homeSvg),
-                  label: LocaleKeys.Home.tr(),
+      child: Builder(
+        builder: (context) {
+          final _ = context.locale;
+          return BlocBuilder<MainLayoutCubit, MainLayoutState>(
+            builder: (context, state) {
+              return Scaffold(
+                body: viewModel.tabs[viewModel.currentTab],
+                bottomNavigationBar: BottomNavigationBar(
+                  currentIndex: viewModel.currentTab.index,
+                  onTap: (value) {
+                    viewModel.doIntent(
+                      ChangeSelectedTab(MainLayoutTabs.values[value]),
+                    );
+                  },
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.homeSvg),
+                      label: LocaleKeys.Home.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.categoriesSvg),
+                      label: LocaleKeys.Categories.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
+                      label: LocaleKeys.Cart.tr(),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset(AppIcons.personSvg),
+                      label: LocaleKeys.Profile.tr(),
+                    ),
+                  ],
                 ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.categoriesSvg),
-                  label: LocaleKeys.Categories.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
-                  label: LocaleKeys.Cart.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.personSvg),
-                  label: LocaleKeys.Profile.tr(),
-                ),
-              ],
-            ),
+              );
+            },
           );
         },
       ),

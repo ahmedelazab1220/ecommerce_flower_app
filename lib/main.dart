@@ -20,8 +20,8 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: const [Locale(Constants.ar), Locale(Constants.en)],
       path: Constants.assetsTranslations,
+      startLocale: AppStrater.startLocale ?? const Locale(Constants.en),
       fallbackLocale: const Locale(Constants.en),
-      startLocale: const Locale(Constants.en),
       child: MyApp(),
     ),
   );
@@ -38,17 +38,18 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 910),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder:
-          (context, child) => MaterialApp(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            routes: AppRoutes.routes,
-            theme: AppTheme.appTheme,
-            initialRoute: routeInitializer.computeInitialRoute(),
-          ),
+      builder: (context, child) {
+        return MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          title: 'Ecommerce Flower App',
+          routes: AppRoutes.routes,
+          theme: AppTheme.appTheme,
+          initialRoute: routeInitializer.computeInitialRoute(),
+        );
+      },
     );
   }
 }
