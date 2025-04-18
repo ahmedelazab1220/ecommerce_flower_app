@@ -55,7 +55,7 @@ class ProductDetailsBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "${product.title ?? emptyString}}",
+                  product.title ?? emptyString,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
