@@ -29,7 +29,7 @@ class CustomOccasionTabBar extends StatelessWidget {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: IntrinsicWidth(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
