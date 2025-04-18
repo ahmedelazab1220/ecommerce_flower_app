@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Ecommerce Flower App',
           routes: AppRoutes.routes,
           theme: AppTheme.appTheme,
           initialRoute: routeInitializer.computeInitialRoute(),
