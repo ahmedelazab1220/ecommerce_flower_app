@@ -3,7 +3,7 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/product_item.dart';
+import 'package:ecommerce_flower_app/core/widgets/product_item.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_cubit.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
