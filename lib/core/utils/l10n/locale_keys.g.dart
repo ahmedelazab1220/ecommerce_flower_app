@@ -195,4 +195,6 @@ abstract class LocaleKeys {
   static const UnableToGetLocation = 'UnableToGetLocation';
   static const Long = 'Long';
   static const Lat = 'Lat';
+  static const ProductAddedToCartSuccessfully =
+      'ProductAddedToCartSuccessfully';
 }

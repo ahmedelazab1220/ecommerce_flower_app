@@ -82,7 +82,9 @@ class CartScreen extends StatelessWidget {
                                           context,
                                           AppRoutes.productDetailsRoute,
                                           arguments: product,
-                                        );
+                                        ).then((_) {
+                                          cartCubit.doIntent(GetCartAction());
+                                        });
                                       }
                                     },
                                     child: CartItem(

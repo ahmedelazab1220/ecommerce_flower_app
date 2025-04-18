@@ -184,5 +184,6 @@
     "UnableToGetLocation": "❌ Unable to get location. Please try again.",
     "Long": "Long",
     "Lat": "Lat",
-    "NoProductsAvailable": "No products available"
+    "NoProductsAvailable": "No products available",
+    "ProductAddedToCartSuccessfully" : "Product added to cart successfully"
 }

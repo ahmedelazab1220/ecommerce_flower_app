@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../../features/cart/data/model/add_product_to_cart_request_dto.dart';
 import '../../../../datasource_excution/api_constants.dart';
+import '../model/request/add_to_cart_request_dto.dart';
 import '../model/response/add_to_cart_response_dto.dart';
 
 part 'add_to_cart_retrofit_client.g.dart';
@@ -16,6 +16,6 @@ abstract class AddToCartRetrofitClient {
 
   @POST(ApiConstants.cartRoute)
   Future<AddToCartResponseDto> addProductToCart(
-    @Body() AddProductToCartRequestDto addProductToCartRequestDto,
+    @Body() AddToCartRequestDto addProductToCartRequestDto,
   );
 }
