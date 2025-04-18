@@ -45,17 +45,16 @@ class Validator {
   }
 
   String? validatePhoneNumber(String phoneNumber) {
-    phoneNumber = phoneNumber.trim().replaceAll(RegExp(r'\s+'), '');
-
     if (phoneNumber.isEmpty) {
       return LocaleKeys.PhoneNumberCannotBeEmpty.tr();
     }
 
-    final egyptianInternationalRegex = RegExp(r'^\+201[0125][0-9]{8}$');
+    final egyptianPattern = RegExp(r'^\+201[0125][0-9]{8}$');
 
-    if (egyptianInternationalRegex.hasMatch(phoneNumber)) {
-      return null;
+    if (!egyptianPattern.hasMatch(phoneNumber)) {
+      return LocaleKeys.InvalidPhoneNumber.tr();
     }
-    return LocaleKeys.InvalidPhoneNumber.tr();
+
+    return null;
   }
 }

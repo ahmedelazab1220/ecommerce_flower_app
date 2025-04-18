@@ -184,6 +184,9 @@ abstract class LocaleKeys {
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
+  static const NoProductsAvailable = 'NoProductsAvailable';
+  static const Egp = 'Egp';
+  static const all = 'all';
   static const FetchingYourLocation = 'FetchingYourLocation';
   static const RequestingPermission = 'RequestingPermission';
   static const PleaseEnableLocation = 'PleaseEnableLocation';
@@ -192,4 +195,8 @@ abstract class LocaleKeys {
   static const UnableToGetLocation = 'UnableToGetLocation';
   static const Long = 'Long';
   static const Lat = 'Lat';
+  static const EditProfile = 'EditProfile';
+  static const TakeAPhoto = 'TakeAPhoto';
+  static const ChooseFromGallery = 'ChooseFromGallery';
+  static const Change = 'Change';
 }

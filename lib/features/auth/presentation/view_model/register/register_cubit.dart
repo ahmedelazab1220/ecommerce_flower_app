@@ -4,22 +4,23 @@ import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.d
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/register_request_entity.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/register_entity/user_enttity.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/use_case/register_use_case.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain/entity/register_entity/register_request_entity.dart';
+import '../../../domain/entity/user_enttity.dart';
+import '../../../domain/use_case/register_use_case.dart';
+import 'register_state.dart';
+
 @injectable
-class RegisterCubit extends Cubit<RegisterStates> {
-  final RegisterUseCase registerUseCase;
+class RegisterCubit extends Cubit<RegisterState> {
+  final RegisterUseCase _registerUseCase;
   final Validator validator;
 
-  RegisterCubit(this.registerUseCase, this.validator)
+  RegisterCubit(this._registerUseCase, this.validator)
     : super(
-        RegisterStates(
+        RegisterState(
           registerState: BaseInitialState(),
           selectedGender: LocaleKeys.Female.tr(),
         ),
@@ -38,24 +39,26 @@ class RegisterCubit extends Cubit<RegisterStates> {
   /// Prevent multiple requests
   bool _isRegistering = false;
 
-  void doIntent(RegisterAction intent) {
-    switch (intent) {
-      case RegisterButtonPressedAction():
-        _registerButtonPressed();
-        break;
-      case GenderChangedAction(:final gender):
-        _changeGender(gender);
-        break;
+  void doIntent(RegisterAction action) {
+    switch (action) {
+      case GenderChangedAction():
+        {
+          _changeGender(action.gender);
+        }
+
       case UserRegistrationAction():
-      case NavigateToLoginAction():
-        _navigateToLogin();
-        break;
+        {
+          _registerButtonPressed();
+        }
+      case NavigationAction():
+        {
+          _navigationToScreen(routeName: action.routeName, type: action.type);
+        }
     }
   }
 
-  /// Validate form and initiate registration
   void _registerButtonPressed() {
-    if (_isRegistering) return; // Prevent duplicate requests
+    if (_isRegistering) return;
     if (formKey.currentState!.validate()) {
       final request = RegisterRequestEntity(
         email: emailController.text,
@@ -63,8 +66,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
         firstName: firstNameController.text,
         lastName: lastNameController.text,
         phone: phoneController.text,
-        gender:
-            state.selectedGender == LocaleKeys.Male.tr() ? 'male' : 'female',
+        gender: state.selectedGender.toLowerCase(),
         rePassword: confirmPasswordController.text,
       );
       _userRegistration(request);
@@ -77,8 +79,18 @@ class RegisterCubit extends Cubit<RegisterStates> {
     emit(state.copyWith(selectedGender: gender));
   }
 
-  void _navigateToLogin() {
-    emit(state.copyWith(registerState: BaseNavigationState(AppRoutes.login)));
+  void _navigationToScreen({
+    required String routeName,
+    required NavigationType type,
+  }) {
+    emit(
+      state.copyWith(
+        registerState: BaseNavigationState(
+          routeName: AppRoutes.loginRoute,
+          type: type,
+        ),
+      ),
+    );
   }
 
   Future<void> _userRegistration(RegisterRequestEntity request) async {
@@ -86,26 +98,27 @@ class RegisterCubit extends Cubit<RegisterStates> {
     _isRegistering = true;
 
     emit(state.copyWith(registerState: BaseLoadingState()));
-    final result = await registerUseCase((request));
+    final result = await _registerUseCase((request));
 
     switch (result) {
       case SuccessResult<UserEntity>():
-        emit(
-          state.copyWith(
-            registerState: BaseSuccessState<UserEntity>(data: result.data),
-          ),
-        );
-        _navigateToLogin();
-        break;
-      case FailureResult<UserEntity>():
-        emit(
-          state.copyWith(
-            registerState: BaseErrorState(
-              errorMessage: result.exception.toString(),
+        {
+          emit(
+            state.copyWith(
+              registerState: BaseSuccessState<UserEntity>(data: result.data),
             ),
-          ),
-        );
-        break;
+          );
+        }
+      case FailureResult<UserEntity>():
+        {
+          emit(
+            state.copyWith(
+              registerState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
+        }
     }
 
     _isRegistering = false;

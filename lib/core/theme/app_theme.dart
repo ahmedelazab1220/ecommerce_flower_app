@@ -9,7 +9,7 @@ class AppTheme {
     primaryColor: AppColors.pink,
     secondaryHeaderColor: AppColors.black,
     dialogTheme: DialogTheme(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.r)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: AppColors.white,
     ),
     textTheme: const TextTheme(
@@ -35,15 +35,13 @@ class AppTheme {
         ),
         elevation: WidgetStateProperty.all(0),
         textStyle: WidgetStateProperty.all(
-          TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 16.sp,
+          const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(
-          const EdgeInsets.symmetric(vertical: 14),
-        ),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(14)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -53,12 +51,12 @@ class AppTheme {
       iconColor: AppColors.pink,
       hintStyle: TextStyle(
         color: AppColors.black[AppColors.colorCode30],
-        fontSize: 14.sp,
+        fontSize: 14,
       ),
       prefixIconColor: AppColors.black,
       suffixIconColor: AppColors.black,
       labelStyle: TextStyle(
-        fontSize: 12.sp,
+        fontSize: 12,
         color: AppColors.black[AppColors.colorCode40],
       ),
       border: OutlineInputBorder(
@@ -91,13 +89,13 @@ class AppTheme {
         }
       }),
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.black,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: 20.sp,
+        fontSize: 20,
         fontWeight: FontWeight.w500,
         color: AppColors.black,
       ),
@@ -107,10 +105,10 @@ class AppTheme {
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         foregroundColor: WidgetStateProperty.all(AppColors.pink),
         textStyle: WidgetStateProperty.all(
-          TextStyle(
+          const TextStyle(
             decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w600,
-            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
             color: AppColors.pink,
           ),
         ),
@@ -123,7 +121,7 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        padding: EdgeInsets.all(16.h),
+        padding: const EdgeInsets.all(16),
         foregroundColor: AppColors.pink,
         side: const BorderSide(color: AppColors.pink),
       ),

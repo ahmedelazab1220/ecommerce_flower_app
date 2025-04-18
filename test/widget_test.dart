@@ -27,7 +27,7 @@ void main() {
     );
   }
 
-  testWidgets('Finds main widget and localization', (
+  testWidgets('Finds main widgets and localization', (
     WidgetTester tester,
   ) async {
     await pumpLocalizedWidget(tester);

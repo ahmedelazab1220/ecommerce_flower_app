@@ -4,11 +4,12 @@ import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/register/register_form.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_cubit.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../view_model/register/register_cubit.dart';
+import '../../view_model/register/register_state.dart';
+import '../widgets/register/register_form.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,27 +19,45 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final viewModel = getIt<RegisterCubit>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text(LocaleKeys.Signup.tr())),
       body: BlocProvider(
-        create: (context) => getIt<RegisterCubit>(),
-        child: BlocListener<RegisterCubit, RegisterStates>(
+        create: (context) => viewModel,
+        child: BlocListener<RegisterCubit, RegisterState>(
           listener: (context, state) {
-            final registerState = state.registerState;
-            if (registerState is BaseLoadingState) {
+            if (state.registerState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
-            } else if (registerState is BaseSuccessState) {
+            }
+            if (state.registerState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(context, AppRoutes.login);
-            } else if (registerState is BaseErrorState) {
+              Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
+            }
+            if (state.registerState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
                 context,
-                message: registerState.errorMessage,
+                message: (state as BaseErrorState).errorMessage,
               );
+            }
+            if (state.registerState is BaseNavigationState) {
+              final navState = state.registerState as BaseNavigationState;
+
+              switch (navState.type) {
+                case NavigationType.pop:
+                  Navigator.pop(context);
+                  break;
+                case NavigationType.push:
+                  Navigator.pushNamed(context, navState.routeName);
+                  break;
+                case NavigationType.pushReplacement:
+                  Navigator.pushReplacementNamed(context, navState.routeName);
+                  break;
+              }
             }
           },
           child: const RegisterForm(),

@@ -32,7 +32,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               AppDialogs.showLoadingDialog(context);
             } else if (changePasswordState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(context, AppRoutes.login);
+              Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
             } else if (changePasswordState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(

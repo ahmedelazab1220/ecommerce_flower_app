@@ -1,3 +1,5 @@
+import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
+
 class BestSellerEntity {
   final String? id;
   final String? title;
@@ -38,4 +40,27 @@ class BestSellerEntity {
     this.rateAvg,
     this.rateCount,
   });
+
+  ProductEntity toProductEntity() {
+    return ProductEntity(
+      id: id,
+      title: title,
+      slug: slug,
+      description: description,
+      imgCover: imgCover,
+      images: images,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      quantity: quantity,
+      category: category,
+      occasion: occasion,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      v: v,
+      discount: discount,
+      sold: sold,
+      rateAvg: rateAvg,
+      rateCount: rateCount,
+    );
+  }
 }
