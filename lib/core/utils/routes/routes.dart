@@ -1,12 +1,13 @@
-import 'package:ecommerce_flower_app/features/categories/presentation/view/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/auth/presentation/view/screens/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register_screen.dart';
+import '../../../features/categories/presentation/view/screens/categories_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
+import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -37,7 +38,11 @@ class AppRoutes {
       final occasionIndex = args?['occasionIndex'] as int?;
       return OccasionScreen(occasionIndex: occasionIndex);
     },
-    productDetailsRoute: (context) => const ProductDetailsScreen(),
+    productDetailsRoute: (context) {
+      final productEntity =
+          ModalRoute.of(context)?.settings.arguments as ProductEntity;
+      return ProductDetailsScreen(productEntity: productEntity);
+    },
     bestSellerRoute: (context) => const BestSellersScreen(),
   };
 }

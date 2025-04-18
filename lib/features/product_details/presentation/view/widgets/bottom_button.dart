@@ -1,7 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class BottomButton extends StatelessWidget {
@@ -11,18 +10,11 @@ class BottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
-      child: Container(
-        height: 48.h,
-        color: AppColors.white,
-        child: ElevatedButton(
-          onPressed: () {
-            // Add to cart action
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.pink,
-            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
-          ),
-          child: Text(LocaleKeys.AddToCart, style: TextStyle(fontSize: 16.sp)),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          LocaleKeys.AddToCart.tr(),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
     );

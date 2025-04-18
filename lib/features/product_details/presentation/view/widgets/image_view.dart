@@ -1,90 +1,91 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/assets/app_colors.dart';
-import '../../../../../core/utils/shared_models/product_entity.dart';
+import '../../../../../core/utils/responsive_util/responsive_util.dart';
 
 class ImageView extends StatefulWidget {
-  final ProductEntity product;
-  final emptyString = "";
+  final List<String> imageUrls;
 
-  const ImageView({super.key, required this.product});
+  const ImageView({super.key, required this.imageUrls});
 
   @override
   State<ImageView> createState() => _ImageViewState();
 }
 
 class _ImageViewState extends State<ImageView> {
-  int currentImageIndex = 0;
+  int _currentImageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    final List<String> imageUrls = widget.product.images ?? [];
     return SliverAppBar(
       pinned: true,
-      expandedHeight: 400.h,
+      snap: true,
+      floating: true,
+      expandedHeight: 400,
+      collapsedHeight: 250,
       backgroundColor: AppColors.lightPink,
-      iconTheme: const IconThemeData(color: Colors.black),
-      centerTitle: true,
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
-          final collapsedHeight =
-              kToolbarHeight + MediaQuery.of(context).padding.top + 50;
-          final isCollapsed = constraints.maxHeight <= collapsedHeight;
           return FlexibleSpaceBar(
-            centerTitle: true,
-            title:
-                isCollapsed
-                    ? Text(
-                      widget.product.title ?? widget.emptyString,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                    : null,
             background: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                CarouselSlider.builder(
-                  itemCount: imageUrls.length,
+                CarouselSlider(
                   options: CarouselOptions(
-                    height: 400.h,
+                    height: ResponsiveUtil.getResponsiveHeightValue(
+                      context,
+                      tablet: 0.55,
+                      largeMobile: 0.45,
+                      mobile: 0.3,
+                    ),
                     viewportFraction: 1.0,
                     enableInfiniteScroll: false,
                     onPageChanged: (index, reason) {
-                      setState(() => currentImageIndex = index);
+                      setState(() => _currentImageIndex = index);
                     },
                   ),
-                  itemBuilder: (context, index, realIndex) {
-                    return CachedNetworkImage(
-                      imageUrl: imageUrls[index],
-                      fit: BoxFit.contain,
-                      width: double.infinity,
-                      placeholder:
-                          (context, url) =>
-                              const Center(child: CircularProgressIndicator()),
-                      errorWidget:
-                          (context, url, error) => const Icon(Icons.error),
-                    );
-                  },
+                  items: [
+                    ...widget.imageUrls.map(
+                      (e) => Container(
+                        width: ResponsiveUtil.getResponsiveWidthValue(
+                          context,
+                          tablet: 0.3,
+                          largeMobile: 0.6,
+                          mobile: 0.9,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: AppColors.lightPink,
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: e,
+                          fit: BoxFit.cover,
+                          placeholder:
+                              (context, url) => const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                          errorWidget:
+                              (context, url, error) => const Icon(Icons.error),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Positioned(
-                  bottom: 12.h,
+                  bottom: 12,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:
-                        imageUrls.asMap().entries.map((entry) {
+                        widget.imageUrls.asMap().entries.map((entry) {
                           return Container(
-                            width: 8.w,
-                            height: 8.w,
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
+                            padding: const EdgeInsets.all(4.0),
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color:
-                                  currentImageIndex == entry.key
+                                  _currentImageIndex == entry.key
                                       ? AppColors.pink
                                       : AppColors.lightGray,
                             ),
