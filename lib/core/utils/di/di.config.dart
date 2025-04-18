@@ -50,7 +50,7 @@ import '../../../features/categories/presentation/view_model/categories_cubit.da
     as _i1008;
 import '../../../features/change_password/data/api/change_password_retrofit_client.dart'
     as _i436;
-import '../../../features/change_password/data/data_source/contract/change_password_data_source.dart'
+import '../../../features/change_password/data/data_source/contract/change_password_remote_data_source.dart'
     as _i945;
 import '../../../features/change_password/data/data_source/remote/change_password_data_source_impl.dart'
     as _i6;
@@ -213,7 +213,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i619.CategoriesRetrofitClient>(),
       ),
     );
-    gh.lazySingleton<_i945.ChangePasswordDataSource>(
+    gh.lazySingleton<_i945.ChangePasswordRemoteDataSource>(
       () => _i6.ChangePasswordDataSourceImpl(
         gh<_i436.ChangePasswordRetrofitClient>(),
       ),
@@ -272,7 +272,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i472.ChangePasswordRepo>(
       () => _i723.ChangePasswordRepoImpl(
-        gh<_i945.ChangePasswordDataSource>(),
+        gh<_i945.ChangePasswordRemoteDataSource>(),
         gh<_i28.ApiManager>(),
       ),
     );
