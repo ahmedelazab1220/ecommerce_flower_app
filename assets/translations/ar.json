@@ -184,5 +184,9 @@
     "UnableToGetLocation": "❌ غير قادر على الحصول على الموقع. يرجى المحاولة مرة أخرى.",
     "Long": "طويل",
     "Lat": "عرض",
-    "NoProductsAvailable":"لا توجد منتجات متاحة"
+    "NoProductsAvailable": "لا توجد منتجات متاحة",
+    "EditProfile": "تعديل الملف الشخصي",
+    "TakeAPhoto": "احصل على صورة",
+    "ChooseFromGallery": "اختر من الصورة",
+    "Change": "تغيير"
 }

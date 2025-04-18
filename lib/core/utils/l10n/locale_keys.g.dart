@@ -195,4 +195,8 @@ abstract class LocaleKeys {
   static const UnableToGetLocation = 'UnableToGetLocation';
   static const Long = 'Long';
   static const Lat = 'Lat';
+  static const EditProfile = 'EditProfile';
+  static const TakeAPhoto = 'TakeAPhoto';
+  static const ChooseFromGallery = 'ChooseFromGallery';
+  static const Change = 'Change';
 }

@@ -48,6 +48,26 @@ import '../../../features/categories/domain/use_cases/get_products_use_case.dart
     as _i752;
 import '../../../features/categories/presentation/view_model/categories_cubit.dart'
     as _i1008;
+import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
+    as _i865;
+import '../../../features/edit_profile/data/data_source/contract/edit_profile_local_data_source.dart'
+    as _i750;
+import '../../../features/edit_profile/data/data_source/contract/edit_profile_remote_data_source.dart'
+    as _i592;
+import '../../../features/edit_profile/data/data_source/local/edit_profile_local_data_source_impl.dart'
+    as _i350;
+import '../../../features/edit_profile/data/data_source/remote/edit_profile_remote_data_source_impl.dart'
+    as _i503;
+import '../../../features/edit_profile/data/repo_impl/edit_profile_repo_impl.dart'
+    as _i192;
+import '../../../features/edit_profile/domain/repo/edit_profile_repo.dart'
+    as _i1005;
+import '../../../features/edit_profile/domain/use_case/edit_profile_use_case.dart'
+    as _i1071;
+import '../../../features/edit_profile/domain/use_case/upload_profile_image_use_case.dart'
+    as _i365;
+import '../../../features/edit_profile/presentation/view_model/cubit/edit_profile_cubit.dart'
+    as _i4;
 import '../../../features/home/data/api/home_retrofit_client.dart' as _i945;
 import '../../../features/home/data/data_source/contract/home_local_data_source.dart'
     as _i493;
@@ -131,6 +151,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i493.HomeLocalDataSource>(
       () => _i640.HomeLocalDataSourceImpl(),
     );
+    gh.factory<_i750.EditProfileLocalDataSource>(
+      () => _i350.EditProfileLocalDataSourceImpl(
+        gh<_i558.FlutterSecureStorage>(),
+      ),
+    );
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
@@ -157,11 +182,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i945.HomeRetrofitClient>(
       () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i821.BestSellerRetrofitClient>(
+      () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
-    gh.singleton<_i821.BestSellerRetrofitClient>(
-      () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()),
+    gh.factory<_i865.EditProfileRetrofitClient>(
+      () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i691.CategoriesRemoteDataSource>(
       () => _i939.CategoriesRemoteDataSourceImpl(
@@ -202,6 +230,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i28.ApiManager>(),
       ),
     );
+    gh.factory<_i592.EditProfileRemoteDataSource>(
+      () => _i503.EditProfileRemoteDataSourceImpl(
+        gh<_i865.EditProfileRetrofitClient>(),
+      ),
+    );
     gh.singleton<_i781.CategoriesRepo>(
       () => _i427.CategoriesRepoImpl(
         gh<_i691.CategoriesRemoteDataSource>(),
@@ -230,11 +263,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i197.LoginUseCase>(
       () => _i197.LoginUseCase(gh<_i913.AuthRepo>()),
     );
+    gh.factory<_i1005.EditProfileRepo>(
+      () => _i192.EditProfileRepoImpl(
+        gh<_i592.EditProfileRemoteDataSource>(),
+        gh<_i750.EditProfileLocalDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1065.GetHomeDataUseCase>(
       () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
     );
     gh.factory<_i109.GetBestSellersUsecase>(
       () => _i109.GetBestSellersUsecase(gh<_i58.BestSellerRepo>()),
+    );
+    gh.factory<_i1071.EditProfileUseCase>(
+      () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()),
+    );
+    gh.factory<_i365.UploadProfileImageUseCase>(
+      () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
     );
     gh.factory<_i190.BestSellerCubit>(
       () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()),
@@ -249,6 +295,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i595.HomeCubit(
         gh<_i1065.GetHomeDataUseCase>(),
         gh<_i533.LocationService>(),
+      ),
+    );
+    gh.factory<_i4.EditProfileCubit>(
+      () => _i4.EditProfileCubit(
+        gh<_i1071.EditProfileUseCase>(),
+        gh<_i365.UploadProfileImageUseCase>(),
+        gh<_i468.Validator>(),
       ),
     );
     gh.factory<_i124.GuestUseCase>(
