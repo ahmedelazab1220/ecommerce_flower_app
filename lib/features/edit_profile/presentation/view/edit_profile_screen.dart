@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/core/utils/dialogs/app_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +7,7 @@ import '../../../../core/utils/di/di.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../domain/entity/user_entity.dart';
 import '../view_model/cubit/edit_profile_cubit.dart';
+import 'edit_profile_bloc_listener.dart';
 import 'widgets/edit_profile_body.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -39,59 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel,
-      child: BlocListener<EditProfileCubit, EditProfileState>(
-        listenWhen: (previous, current) {
-          return previous.editProfileState != current.editProfileState ||
-              previous.uploadProfileImageState !=
-                  current.uploadProfileImageState;
-        },
-        listener: (context, state) {
-          final previous = context.read<EditProfileCubit>().state;
-
-          if (state.editProfileState is BaseSuccessState &&
-              previous.editProfileState != state.editProfileState) {
-            showToast(title: 'Edit Profile Success', color: AppColors.pink);
-          }
-
-          if (state.uploadProfileImageState is BaseSuccessState &&
-              previous.uploadProfileImageState !=
-                  state.uploadProfileImageState) {
-            showToast(
-              title: 'Upload Profile Image Success',
-              color: AppColors.pink,
-            );
-          }
-
-          if ((state.editProfileState is BaseErrorState ||
-                  state.uploadProfileImageState is BaseErrorState) &&
-              (previous.editProfileState != state.editProfileState ||
-                  previous.uploadProfileImageState !=
-                      state.uploadProfileImageState)) {
-            final errorState =
-                state.editProfileState is BaseErrorState
-                    ? state.editProfileState as BaseErrorState
-                    : state.uploadProfileImageState as BaseErrorState;
-
-            showToast(title: errorState.errorMessage, color: AppColors.red);
-          }
-
-          if (state.editProfileState is BaseNavigationState &&
-              previous.editProfileState != state.editProfileState) {
-            final navState = state.editProfileState as BaseNavigationState;
-
-            switch (navState.type) {
-              case NavigationType.pop:
-                Navigator.pop(context);
-                break;
-              case NavigationType.push:
-                Navigator.pushNamed(context, navState.routeName);
-                break;
-              case NavigationType.pushReplacement:
-                Navigator.pushReplacementNamed(context, navState.routeName);
-                break;
-            }
-          }
-        },
+      child: EditProfileBlocListener(
         child: Scaffold(
           appBar: AppBar(
             title: Text(LocaleKeys.EditProfile.tr()),
