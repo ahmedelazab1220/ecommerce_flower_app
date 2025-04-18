@@ -13,11 +13,13 @@ class AddToCartRepoImpl implements AddToCartRepo {
   final ApiManager _apiManager;
   final AddToCartRemoteDataSource _addToCartRemoteDataSource;
   final AddToCartLocalDataSource _addToCartLocalDataSource;
+
   AddToCartRepoImpl(
     this._apiManager,
     this._addToCartRemoteDataSource,
     this._addToCartLocalDataSource,
   );
+
   @override
   Future<Result<AddToCartResponseDto>> addToCart(
     AddToCartRequestDto request,

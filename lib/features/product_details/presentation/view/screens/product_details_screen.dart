@@ -9,28 +9,35 @@ import '../widgets/image_view.dart';
 import '../widgets/product_details_body.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.productEntity});
+
+  final ProductEntity productEntity;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  final viewModel = getIt<ProductDetailsCubit>();
+
   @override
   Widget build(BuildContext context) {
-    final viewModel = getIt<ProductDetailsCubit>();
-    final ProductEntity product =
-        ModalRoute.of(context)?.settings.arguments as ProductEntity;
     return BlocProvider(
       create: (context) => viewModel,
       child: Scaffold(
         body: CustomScrollView(
+          controller: viewModel.scrollController,
+          physics: const BouncingScrollPhysics(),
           slivers: [
-            ImageView(product: product),
-            ProductDetailsBody(product: product),
+            ImageView(imageUrls: widget.productEntity.images ?? []),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                ProductDetailsBody(product: widget.productEntity),
+              ]),
+            ),
           ],
         ),
-        bottomNavigationBar: BottomButton(productId: product.id),
+        bottomNavigationBar: BottomButton(productId: widget.productEntity.id),
       ),
     );
   }

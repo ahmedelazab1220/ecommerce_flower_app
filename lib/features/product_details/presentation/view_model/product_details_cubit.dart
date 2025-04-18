@@ -1,4 +1,4 @@
-import 'package:ecommerce_flower_app/features/product_details/presentation/view_model/product_details_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,12 +7,15 @@ import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/shared_features/add_to_cart/data/model/request/add_to_cart_request_dto.dart';
 import '../../../../core/utils/shared_features/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
 import '../../../../core/utils/shared_features/add_to_cart/domain/usecase/add_to_cart_use_case.dart';
+import 'product_details_state.dart';
 
 @injectable
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final AddToCartUseCase _addToCartUseCase;
   ProductDetailsCubit(this._addToCartUseCase)
     : super(ProductDetailsState(baseState: BaseInitialState()));
+
+  final ScrollController scrollController = ScrollController();
 
   Future<void> _addProductToCart(String productId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));

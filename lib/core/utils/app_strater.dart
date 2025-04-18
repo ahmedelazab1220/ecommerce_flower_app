@@ -18,13 +18,14 @@ abstract class AppStrater {
       configureDependencies(),
     ]);
 
-    final prefs = await SharedPreferences.getInstance();
-    final langCode = prefs.getString('selected_language_code') ?? Constants.en;
+    final sharedPreferences = getIt<SharedPreferences>();
+
+    final langCode = selectedLanguageCode(sharedPreferences);
     startLocale = Locale(langCode);
   }
 
-  static Future<void> saveLocale(String langCode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selected_language_code', langCode);
+  static String selectedLanguageCode(SharedPreferences sharedPreferences) {
+    return sharedPreferences.getString(Constants.selectedLanguageCode) ??
+        Constants.en;
   }
 }

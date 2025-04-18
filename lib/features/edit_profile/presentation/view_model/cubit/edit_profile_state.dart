@@ -3,18 +3,24 @@ part of 'edit_profile_cubit.dart';
 class EditProfileState extends Equatable {
   final BaseState? editProfileState;
   final BaseState? uploadProfileImageState;
+  final EditProfileActionType? lastActionType;
 
-  const EditProfileState({this.editProfileState, this.uploadProfileImageState});
+  const EditProfileState({
+    this.editProfileState,
+    this.uploadProfileImageState,
+    this.lastActionType,
+  });
 
   EditProfileState copyWith({
-    BaseState? changePasswordState,
     BaseState? editProfileState,
     BaseState? uploadProfileImageState,
+    EditProfileActionType? lastActionType,
   }) {
     return EditProfileState(
       editProfileState: editProfileState ?? this.editProfileState,
       uploadProfileImageState:
           uploadProfileImageState ?? this.uploadProfileImageState,
+      lastActionType: lastActionType ?? this.lastActionType,
     );
   }
 
@@ -40,3 +46,5 @@ final class NavigationAction extends EditProfileAction {
 
   NavigationAction({required this.routeName, required this.type});
 }
+
+enum EditProfileActionType { editProfile, uploadImage, none }

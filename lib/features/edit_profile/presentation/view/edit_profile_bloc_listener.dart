@@ -13,41 +13,35 @@ class EditProfileBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<EditProfileCubit, EditProfileState>(
-      listenWhen: (previous, current) {
-        return previous.editProfileState != current.editProfileState ||
-            previous.uploadProfileImageState != current.uploadProfileImageState;
-      },
       listener: (context, state) {
-        final previous = context.read<EditProfileCubit>().state;
-
         if (state.editProfileState is BaseSuccessState &&
-            previous.editProfileState != state.editProfileState) {
+            state.lastActionType == EditProfileActionType.editProfile) {
           showToast(title: 'Edit Profile Success', color: AppColors.pink);
         }
 
         if (state.uploadProfileImageState is BaseSuccessState &&
-            previous.uploadProfileImageState != state.uploadProfileImageState) {
+            state.lastActionType == EditProfileActionType.uploadImage) {
           showToast(
             title: 'Upload Profile Image Success',
             color: AppColors.pink,
           );
         }
 
-        if ((state.editProfileState is BaseErrorState ||
-                state.uploadProfileImageState is BaseErrorState) &&
-            (previous.editProfileState != state.editProfileState ||
-                previous.uploadProfileImageState !=
-                    state.uploadProfileImageState)) {
-          final errorState =
-              state.editProfileState is BaseErrorState
-                  ? state.editProfileState as BaseErrorState
-                  : state.uploadProfileImageState as BaseErrorState;
+        if (state.editProfileState is BaseErrorState &&
+            state.lastActionType == EditProfileActionType.editProfile) {
+          final errorState = state.editProfileState as BaseErrorState;
 
           showToast(title: errorState.errorMessage, color: AppColors.red);
         }
 
-        if (state.editProfileState is BaseNavigationState &&
-            previous.editProfileState != state.editProfileState) {
+        if (state.uploadProfileImageState is BaseErrorState &&
+            state.lastActionType == EditProfileActionType.uploadImage) {
+          final errorState = state.uploadProfileImageState as BaseErrorState;
+
+          showToast(title: errorState.errorMessage, color: AppColors.red);
+        }
+
+        if (state.editProfileState is BaseNavigationState) {
           final navState = state.editProfileState as BaseNavigationState;
 
           switch (navState.type) {

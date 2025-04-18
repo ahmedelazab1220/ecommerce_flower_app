@@ -29,6 +29,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         EditProfileState(
           editProfileState: BaseInitialState(),
           uploadProfileImageState: BaseInitialState(),
+          lastActionType: EditProfileActionType.none,
         ),
       );
 
@@ -73,7 +74,12 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   Future<void> _editProfile() async {
     if (formKey.currentState!.validate()) {
-      emit(state.copyWith(editProfileState: BaseLoadingState()));
+      emit(
+        state.copyWith(
+          editProfileState: BaseLoadingState(),
+          lastActionType: EditProfileActionType.editProfile,
+        ),
+      );
       final result = await _editProfileUseCase.call(
         request: EditProfileRequest(
           firstName: firstNameController.text,
@@ -99,7 +105,12 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   }
 
   Future<void> _uploadProfileImage({required File image}) async {
-    emit(state.copyWith(uploadProfileImageState: BaseLoadingState()));
+    emit(
+      state.copyWith(
+        uploadProfileImageState: BaseLoadingState(),
+        lastActionType: EditProfileActionType.uploadImage,
+      ),
+    );
     final result = await _uploadProfileImageUseCase.call(image: image);
     switch (result) {
       case SuccessResult<void>():
@@ -123,6 +134,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(
       state.copyWith(
         editProfileState: BaseNavigationState(routeName: routeName, type: type),
+        lastActionType: EditProfileActionType.editProfile,
       ),
     );
   }

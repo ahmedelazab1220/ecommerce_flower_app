@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -15,10 +13,6 @@ part 'edit_profile_retrofit_client.g.dart';
 abstract class EditProfileRetrofitClient {
   @factoryMethod
   factory EditProfileRetrofitClient(Dio dio) = _EditProfileRetrofitClient;
-
-  @PUT(ApiConstants.uploadProfilePhotoRoute)
-  @MultiPart()
-  Future<void> updateProfilePicture(@Part() File photo);
 
   @PUT(ApiConstants.editProfileRoute)
   Future<EditProfileResponseDto> editProfile(

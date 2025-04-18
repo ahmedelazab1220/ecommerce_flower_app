@@ -33,7 +33,7 @@ class _EditProfileChangePasswordState extends State<EditProfileChangePassword> {
               onTap: () {
                 viewModel.doIntent(
                   NavigationAction(
-                    routeName: AppRoutes.resetPasswordRoute,
+                    routeName: AppRoutes.changePasswordRoute,
                     type: NavigationType.pushReplacement,
                   ),
                 );

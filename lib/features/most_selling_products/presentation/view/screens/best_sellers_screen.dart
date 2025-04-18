@@ -13,6 +13,8 @@ class BestSellersScreen extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 0,
         title: ListTile(
+          contentPadding: EdgeInsets.zero,
+          visualDensity: const VisualDensity(vertical: -4),
           title: Text(
             LocaleKeys.BestSeller.tr(),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(

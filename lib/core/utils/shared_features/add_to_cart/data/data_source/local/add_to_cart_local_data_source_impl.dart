@@ -8,6 +8,7 @@ import '../contract/add_to_cart_local_data_source.dart';
 class AddToCartLocalDataSourceImpl implements AddToCartLocalDataSource {
   final FlutterSecureStorage _flutterSecureStorage;
   AddToCartLocalDataSourceImpl(this._flutterSecureStorage);
+
   @override
   Future<String?> isGuestUser() async {
     return await _flutterSecureStorage.read(key: Constants.token);
