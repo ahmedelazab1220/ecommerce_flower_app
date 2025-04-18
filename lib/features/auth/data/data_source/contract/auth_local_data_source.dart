@@ -11,7 +11,9 @@ abstract class AuthLocalDataSource {
 
   Future<void> clearAll();
 
-  Future<void> setGuestUser(bool value);
+  Future<void> enableGuestUser();
+
+  Future<void> disableGuestUser();
 
   Future<bool> isGuestUser();
 }

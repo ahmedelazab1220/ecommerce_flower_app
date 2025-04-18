@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/datasource_excution/api_result.dart';
-import '../../../domain/entity/login_request.dart';
+import '../../../domain/entity/login/login_request.dart';
 import '../../../domain/use_case/guest_use_case.dart';
 import '../../../domain/use_case/login_use_case.dart';
 
@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isRememberMe = false;
 
-  void doIntent(LoginAction action) async {
+  void doIntent(LoginAction action) {
     switch (action) {
       case LoginRequestAction():
         _login();

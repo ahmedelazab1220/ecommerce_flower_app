@@ -2,8 +2,8 @@ import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/utils/datasource_excution/api_manager.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../../domain/entity/login_request.dart';
-import '../../domain/entity/register_entity/register_request_entity.dart';
+import '../../domain/entity/login/login_request.dart';
+import '../../domain/entity/register/register_request_entity.dart';
 import '../../domain/entity/user_enttity.dart';
 import '../../domain/repo/auth_repo.dart';
 import '../data_source/contract/auth_local_data_source.dart';
@@ -32,7 +32,7 @@ class AuthRepoImpl extends AuthRepo {
       );
       _authLocalDataSource.saveToken(Constants.token, response.token ?? "");
       _authLocalDataSource.setRememberMe(request.isRememberMe);
-      _authLocalDataSource.setGuestUser(false);
+      _authLocalDataSource.disableGuestUser();
       return response;
     });
     return response;
@@ -40,12 +40,8 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<void> guestLogin() async {
-    await _authLocalDataSource.setGuestUser(true);
-  }
-
-  @override
-  Future<void> logout() async {
     await _authLocalDataSource.clearAll();
+    await _authLocalDataSource.enableGuestUser();
   }
 
   @override

@@ -1,7 +1,8 @@
 class LoginRequest {
-  String email;
-  String password;
-  bool isRememberMe;
+  final String email;
+  final String password;
+  final bool isRememberMe;
+
   LoginRequest({
     required this.email,
     required this.password,
