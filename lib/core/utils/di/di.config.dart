@@ -81,8 +81,10 @@ import '../../../features/most_selling_products/presentation/view_model/best_sel
     as _i190;
 import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
     as _i1061;
-import '../../../features/occasions/data/occasion_data_source/occasion_remote_data_source.dart'
-    as _i73;
+import '../../../features/occasions/data/data_source/contract/occasion_remote_data_source.dart'
+    as _i452;
+import '../../../features/occasions/data/data_source/occasion_remote_data_source_impl.dart'
+    as _i61;
 import '../../../features/occasions/data/repo_impl/occasion_repo_impl.dart'
     as _i835;
 import '../../../features/occasions/domain/repo/occasion_repo.dart' as _i72;
@@ -146,33 +148,29 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.singleton<_i1048.AuthRetrofitClient>(
+      () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i945.HomeRetrofitClient>(
       () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
     );
-    gh.singleton<_i1048.AuthRetrofitClient>(
-      () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
+    gh.singleton<_i1061.OccasionRetrofitClient>(
+      () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i821.BestSellerRetrofitClient>(
       () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i1061.OccasionRetrofitClient>(
-      () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i691.CategoriesRemoteDataSource>(
       () => _i939.CategoriesRemoteDataSourceImpl(
         gh<_i619.CategoriesRetrofitClient>(),
       ),
     );
-    gh.factory<_i73.OccasionRemoteDataSource>(
-      () => _i73.OccasionRemoteDataSource(gh<_i1061.OccasionRetrofitClient>()),
-    );
-    gh.factory<_i72.OccasionRepo>(
-      () => _i835.OccasionRepoImpl(
-        gh<_i28.ApiManager>(),
-        gh<_i73.OccasionRemoteDataSource>(),
+    gh.factory<_i452.OccasionRemoteDataSource>(
+      () => _i61.OccasionRemoteDataSourceImpl(
+        gh<_i1061.OccasionRetrofitClient>(),
       ),
     );
     gh.singleton<_i1043.HomeRemoteDataSource>(
@@ -184,6 +182,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i488.BestSellerRemoteDataSource>(
       () => _i461.BestSellerRemoteDataSourceImpl(
         gh<_i821.BestSellerRetrofitClient>(),
+      ),
+    );
+    gh.factory<_i72.OccasionRepo>(
+      () => _i835.OccasionRepoImpl(
+        gh<_i28.ApiManager>(),
+        gh<_i452.OccasionRemoteDataSource>(),
       ),
     );
     gh.factory<_i58.BestSellerRepo>(

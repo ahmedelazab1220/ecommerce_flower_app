@@ -1,20 +1,30 @@
 part of 'occasion_cubit.dart';
 
 class OccasionState extends Equatable {
-  final BaseState? baseState;
+  final BaseState? occasionState;
+  final BaseState? productsState;
   final int selectedTabIndex;
 
-  const OccasionState({this.baseState, this.selectedTabIndex = 0});
+  const OccasionState({
+    this.occasionState,
+    this.selectedTabIndex = 0,
+    this.productsState,
+  });
 
-  OccasionState copyWith({BaseState? baseState, int? selectedTabIndex}) {
+  OccasionState copyWith({
+    BaseState? occasionState,
+    BaseState? productsState,
+    int? selectedTabIndex,
+  }) {
     return OccasionState(
-      baseState: baseState ?? this.baseState,
+      occasionState: occasionState ?? this.occasionState,
+      productsState: productsState ?? this.productsState,
       selectedTabIndex: selectedTabIndex ?? this.selectedTabIndex,
     );
   }
 
   @override
-  List<Object?> get props => [baseState, selectedTabIndex];
+  List<Object?> get props => [occasionState, selectedTabIndex, productsState];
 }
 
 sealed class OccasionAction {}
@@ -22,12 +32,6 @@ sealed class OccasionAction {}
 class OccasionRequestAction extends OccasionAction {
   final int? index;
   OccasionRequestAction({this.index});
-}
-
-class ProductsRequestAction extends OccasionAction {
-  final String occasionId;
-
-  ProductsRequestAction(this.occasionId);
 }
 
 class ChangeOccasionTabAction extends OccasionAction {
