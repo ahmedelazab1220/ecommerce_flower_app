@@ -1,4 +1,5 @@
 import 'package:ecommerce_flower_app/features/categories/presentation/view/screens/categories_screen.dart';
+import 'package:ecommerce_flower_app/features/change_password/presentation/view/screens/change_password_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/auth/presentation/view/screens/login_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String editProfileRoute = '/edit-profile';
   static const String resetPasswordRoute = '/reset-password';
   static const String productDetailsRoute = '/product-details';
+  static const String changePasswordRoute = '/change-password';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -48,5 +50,6 @@ class AppRoutes {
     },
     productDetailsRoute: (context) => const ProductDetailsScreen(),
     bestSellerRoute: (context) => const BestSellersScreen(),
+    changePasswordRoute: (context) => const ChangePasswordScreen(),
   };
 }

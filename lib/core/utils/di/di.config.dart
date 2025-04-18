@@ -65,6 +65,20 @@ import '../../../features/categories/domain/use_cases/get_products_use_case.dart
     as _i752;
 import '../../../features/categories/presentation/view_model/categories_cubit.dart'
     as _i1008;
+import '../../../features/change_password/data/api/change_password_retrofit_client.dart'
+    as _i436;
+import '../../../features/change_password/data/data_source/contract/change_password_remote_data_source.dart'
+    as _i120;
+import '../../../features/change_password/data/data_source/remote/change_password_data_source_impl.dart'
+    as _i6;
+import '../../../features/change_password/data/repo_impl/change_password_repo_impl.dart'
+    as _i723;
+import '../../../features/change_password/domain/repo/change_password_repo.dart'
+    as _i472;
+import '../../../features/change_password/domain/use_case/change_password_use_case.dart'
+    as _i280;
+import '../../../features/change_password/presentation/view_model/change_password_cubit.dart'
+    as _i744;
 import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
     as _i865;
 import '../../../features/edit_profile/data/data_source/contract/edit_profile_local_data_source.dart'
@@ -201,14 +215,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
-    gh.singleton<_i918.AddToCartRetrofitClient>(
-      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
+      () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i1048.AuthRetrofitClient>(
       () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i675.CartRetrofitClient>(
-      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
@@ -221,6 +232,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i918.AddToCartRetrofitClient>(
+      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i675.CartRetrofitClient>(
+      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i865.EditProfileRetrofitClient>(
       () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
@@ -237,6 +254,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i664.AddToCartRemoteDataSource>(
       () => _i338.AddToCartRemoteDataSourceImpl(
         gh<_i918.AddToCartRetrofitClient>(),
+      ),
+    );
+    gh.lazySingleton<_i120.ChangePasswordRemoteDataSource>(
+      () => _i6.ChangePasswordDataSourceImpl(
+        gh<_i436.ChangePasswordRetrofitClient>(),
       ),
     );
     gh.factory<_i687.RouteInitializer>(
@@ -299,6 +321,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i528.AddToCartLocalDataSource>(),
       ),
     );
+    gh.lazySingleton<_i472.ChangePasswordRepo>(
+      () => _i723.ChangePasswordRepoImpl(
+        gh<_i120.ChangePasswordRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.singleton<_i781.CategoriesRepo>(
       () => _i427.CategoriesRepoImpl(
         gh<_i691.CategoriesRemoteDataSource>(),
@@ -352,8 +380,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i365.UploadProfileImageUseCase>(
       () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
     );
+    gh.factory<_i280.ChangePasswordUseCase>(
+      () => _i280.ChangePasswordUseCase(gh<_i472.ChangePasswordRepo>()),
+    );
     gh.factory<_i190.BestSellerCubit>(
       () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()),
+    );
+    gh.factory<_i744.ChangePasswordCubit>(
+      () => _i744.ChangePasswordCubit(
+        gh<_i280.ChangePasswordUseCase>(),
+        gh<_i468.Validator>(),
+      ),
     );
     gh.factory<_i1027.GetCategoriesUseCase>(
       () => _i1027.GetCategoriesUseCase(gh<_i781.CategoriesRepo>()),

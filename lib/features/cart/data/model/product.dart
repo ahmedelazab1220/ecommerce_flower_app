@@ -5,7 +5,7 @@ part 'product.g.dart';
 @JsonSerializable()
 class Product {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "title")
   final String? title;
   @JsonKey(name: "slug")
@@ -40,11 +40,9 @@ class Product {
   final double? rateAvg;
   @JsonKey(name: "rateCount")
   final int? rateCount;
-  @JsonKey(name: "id")
-  final String? id;
 
   Product({
-    this.Id,
+    this.id,
     this.title,
     this.slug,
     this.description,
@@ -62,7 +60,6 @@ class Product {
     this.sold,
     this.rateAvg,
     this.rateCount,
-    this.id,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
