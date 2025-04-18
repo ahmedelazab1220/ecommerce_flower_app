@@ -40,4 +40,28 @@ class ProductEntity {
     this.rateCount,
     this.productId,
   });
+
+  factory ProductEntity.fake() {
+    return ProductEntity(
+      id: '',
+      title: '',
+      slug: '',
+      description: '',
+      imgCover: '',
+      images: [],
+      price: 0,
+      priceAfterDiscount: 0,
+      quantity: 0,
+      category: '',
+      occasion: '',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      v: 0,
+      discount: 0,
+      sold: 0,
+      rateAvg: 0,
+      rateCount: 0,
+      productId: '',
+    );
+  }
 }

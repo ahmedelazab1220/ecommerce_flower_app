@@ -184,9 +184,11 @@
     "UnableToGetLocation": "❌ Unable to get location. Please try again.",
     "Long": "Long",
     "Lat": "Lat",
-    "NoProductsAvailable": "No products available",
     "EditProfile": "Edit profile",
     "TakeAPhoto": "Take a photo",
     "ChooseFromGallery": "Choose from gallery",
-    "Change": "Change"
+    "Change": "Change",
+    "ProductAddedToCartSuccessfully" : "Product added to cart successfully",
+    "YouAreInGuestMode": "You are in guest mode",
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
 }
