@@ -84,12 +84,8 @@ import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
     as _i891;
 import '../../../features/edit_profile/data/api/upload_file_api_manager_impl.dart'
     as _i562;
-import '../../../features/edit_profile/data/data_source/contract/edit_profile_local_data_source.dart'
-    as _i750;
 import '../../../features/edit_profile/data/data_source/contract/edit_profile_remote_data_source.dart'
     as _i592;
-import '../../../features/edit_profile/data/data_source/local/edit_profile_local_data_source_impl.dart'
-    as _i350;
 import '../../../features/edit_profile/data/data_source/remote/edit_profile_remote_data_source_impl.dart'
     as _i503;
 import '../../../features/edit_profile/data/repo_impl/edit_profile_repo_impl.dart'
@@ -209,11 +205,11 @@ extension GetItInjectableX on _i174.GetIt {
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
-    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => sharedPreferenceModule.sharedPreferences,
       preResolve: true,
     );
+    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
@@ -224,11 +220,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.factory<_i493.HomeLocalDataSource>(
       () => _i640.HomeLocalDataSourceImpl(),
-    );
-    gh.factory<_i750.EditProfileLocalDataSource>(
-      () => _i350.EditProfileLocalDataSourceImpl(
-        gh<_i558.FlutterSecureStorage>(),
-      ),
     );
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
@@ -263,8 +254,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
       () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i918.AddToCartRetrofitClient>(
+      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1048.AuthRetrofitClient>(
       () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i675.CartRetrofitClient>(
+      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
@@ -280,12 +277,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i766.ProfileRetrofitClient>(
       () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i918.AddToCartRetrofitClient>(
-      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i675.CartRetrofitClient>(
-      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i865.EditProfileRetrofitClient>(
       () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
@@ -371,6 +362,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i28.ApiManager>(),
       ),
     );
+    gh.factory<_i1005.EditProfileRepo>(
+      () => _i192.EditProfileRepoImpl(
+        gh<_i592.EditProfileRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1033.CartRepo>(
       () => _i833.CartRepoImpl(
         gh<_i12.CartRemoteDataSource>(),
@@ -405,13 +402,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i197.LoginUseCase>(
       () => _i197.LoginUseCase(gh<_i913.AuthRepo>()),
-    );
-    gh.factory<_i1005.EditProfileRepo>(
-      () => _i192.EditProfileRepoImpl(
-        gh<_i592.EditProfileRemoteDataSource>(),
-        gh<_i750.EditProfileLocalDataSource>(),
-        gh<_i28.ApiManager>(),
-      ),
     );
     gh.factory<_i1065.GetHomeDataUseCase>(
       () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),
