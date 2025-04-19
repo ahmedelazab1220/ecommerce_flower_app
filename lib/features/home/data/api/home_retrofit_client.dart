@@ -3,12 +3,16 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/utils/datasource_excution/api_constants.dart';
+import '../models/response/home_response_dto.dart';
 
-part 'auth_retorfit_client.g.dart';
+part 'home_retrofit_client.g.dart';
 
 @singleton
 @RestApi(baseUrl: ApiConstants.baseUrl)
-abstract class AuthRetrofitClient {
+abstract class HomeRetrofitClient {
   @factoryMethod
-  factory AuthRetrofitClient(Dio dio) = _AuthRetrofitClient;
+  factory HomeRetrofitClient(Dio dio) = _HomeRetrofitClient;
+
+  @GET(ApiConstants.homeTabRoute)
+  Future<HomeResponseDto> getHomeData();
 }

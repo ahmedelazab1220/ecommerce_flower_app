@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_retorfit_client.dart';
+part of 'change_password_retrofit_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'auth_retorfit_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthRetrofitClient implements AuthRetrofitClient {
-  _AuthRetrofitClient(this._dio, {this.baseUrl, this.errorLogger}) {
+class _ChangePasswordRetrofitClient implements ChangePasswordRetrofitClient {
+  _ChangePasswordRetrofitClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
   }
 
@@ -18,6 +18,36 @@ class _AuthRetrofitClient implements AuthRetrofitClient {
   String? baseUrl;
 
   final ParseErrorLogger? errorLogger;
+
+  @override
+  Future<ChangePasswordResponseDto> changePassword(
+    ChangePasswordRequestDto request,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _options = _setStreamType<ChangePasswordResponseDto>(
+      Options(method: 'PATCH', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'auth/change-password',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ChangePasswordResponseDto _value;
+    try {
+      _value = ChangePasswordResponseDto.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
