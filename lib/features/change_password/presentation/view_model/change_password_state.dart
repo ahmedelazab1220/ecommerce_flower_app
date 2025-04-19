@@ -26,6 +26,6 @@ class ChangePasswordState extends Equatable {
 
 sealed class ChangePasswordAction {}
 
-class ButtonPressedAction extends ChangePasswordAction {}
+final class ButtonPressedAction extends ChangePasswordAction {}
 
-class FormChangedAction extends ChangePasswordAction {}
+final class FormChangedAction extends ChangePasswordAction {}
