@@ -6,9 +6,19 @@ on:
      - development
      - main
   pull_request:
-    branches:
-     - development
-     - main
+    types: 
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+      - labeled
+      - unlabeled
+      - closed
+      - reopened
+      - unlocked
  
 jobs:
   lint:
