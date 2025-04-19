@@ -15,6 +15,7 @@ class ProductsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<CategoriesCubit>();
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         final productState = state.getProductsState;
@@ -40,6 +41,7 @@ class ProductsGrid extends StatelessWidget {
           return products!.isEmpty
               ? Center(child: Text(LocaleKeys.NoProductsAvailable.tr()))
               : GridView.builder(
+                controller: viewModel.scrollController,
                 itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

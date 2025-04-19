@@ -2,11 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
+import 'package:ecommerce_flower_app/core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
 import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/entities/category_entity.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:ecommerce_flower_app/features/categories/domain/use_cases/get_products_use_case.dart';
 import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,8 +16,13 @@ import 'package:injectable/injectable.dart';
 class CategoriesCubit extends Cubit<CategoriesState> {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetProductsUseCase _getProductsUseCase;
+
   final String all = LocaleKeys.all.tr();
+
   late List<CategoryEntity> categories;
+  late ScrollVisibilityController scrollVisibilityController;
+  final scrollController = ScrollController();
+
   CategoriesCubit(this._getCategoriesUseCase, this._getProductsUseCase)
     : super(
         CategoriesState(
