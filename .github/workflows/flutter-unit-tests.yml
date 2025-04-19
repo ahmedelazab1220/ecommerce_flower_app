@@ -16,8 +16,6 @@ on:
       - edited
       - synchronize
       - reopened
-    tags:
-      - "*"
 
 jobs:
   test:
