@@ -11,69 +11,59 @@ class ChangePasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ChangePasswordCubit changePasswordCubit =
-        context.read<ChangePasswordCubit>();
+    final viewModel = context.read<ChangePasswordCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
         children: [
           Form(
-            key: changePasswordCubit.formKey,
+            onChanged: () => viewModel.doIntent(FormChangedAction()),
+            key: viewModel.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
-                  controller: changePasswordCubit.currentPasswordController,
+                  controller: viewModel.currentPasswordController,
                   decoration: InputDecoration(
                     labelText: LocaleKeys.CurrentPassword.tr(),
                     hintText: LocaleKeys.CurrentPassword.tr(),
                   ),
                   validator:
-                      (value) => changePasswordCubit.validator.validatePassword(
-                        value ?? '',
-                      ),
+                      (value) =>
+                          viewModel.validator.validatePassword(value ?? ''),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   obscureText: true,
-                  onChanged:
-                      (value) =>
-                          changePasswordCubit.doIntent(FormChangedAction()),
+                  onTapUpOutside:
+                      (event) => FocusManager.instance.primaryFocus?.unfocus(),
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  controller: changePasswordCubit.newPasswordController,
+                  controller: viewModel.newPasswordController,
                   decoration: InputDecoration(
                     labelText: LocaleKeys.NewPassword.tr(),
                     hintText: LocaleKeys.NewPassword.tr(),
                   ),
                   validator:
-                      (value) => changePasswordCubit.validator.validatePassword(
-                        value!,
-                      ),
+                      (value) => viewModel.validator.validatePassword(value!),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   obscureText: true,
-
-                  onChanged:
-                      (value) =>
-                          changePasswordCubit.doIntent(FormChangedAction()),
+                  onTapUpOutside:
+                      (event) => FocusManager.instance.primaryFocus?.unfocus(),
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  controller: changePasswordCubit.confirmPasswordController,
+                  controller: viewModel.confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: LocaleKeys.ConfirmPassword.tr(),
                     hintText: LocaleKeys.ConfirmPassword.tr(),
                   ),
                   validator:
-                      (value) =>
-                          changePasswordCubit.validator.validateConfirmPassword(
-                            value!,
-                            changePasswordCubit.newPasswordController.text,
-                          ),
+                      (value) => viewModel.validator.validateConfirmPassword(
+                        value!,
+                        viewModel.newPasswordController.text,
+                      ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   obscureText: true,
-                  onChanged:
-                      (value) =>
-                          changePasswordCubit.doIntent(FormChangedAction()),
                 ),
                 const SizedBox(height: 48),
                 BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
@@ -85,9 +75,7 @@ class ChangePasswordForm extends StatelessWidget {
                       ),
                       onPressed:
                           state.isFormValid
-                              ? () => changePasswordCubit.doIntent(
-                                ButtonPressedAction(),
-                              )
+                              ? () => viewModel.doIntent(ButtonPressedAction())
                               : null,
                       child: Text(LocaleKeys.Update.tr()),
                     );
