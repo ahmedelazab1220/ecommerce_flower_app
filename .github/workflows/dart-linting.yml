@@ -1,40 +1,32 @@
 name: Dart Linting
-
+ 
 on:
   push:
     branches:
-      - development
-      - main
-    tags:
-      - "*"
+     - development
+     - main
   pull_request:
     branches:
-      - development
-      - main
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-
+     - development
+     - main
+ 
 jobs:
   lint:
-    name: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: dart-lang/setup-dart@v1
-
+ 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-
-      - name: 📦 Install Dependencies
+ 
+      - name: Install Dependencies
         run: flutter pub get
-
-      - name: ✅ Check Dart Formatting
+ 
+      - name: Check Dart Formatting
         run: dart format --set-exit-if-changed .
-
-      - name: 🚀 Run Dart Analyze
+ 
+      - name: Run Dart Analyze
         run: dart analyze
