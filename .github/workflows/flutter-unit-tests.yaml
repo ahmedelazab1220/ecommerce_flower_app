@@ -2,9 +2,6 @@ name: Flutter Unit Tests
 
 on:
   pull_request:
-    branches:
-      - main
-      - development
     types:
       - opened
       - synchronize
