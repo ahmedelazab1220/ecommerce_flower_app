@@ -1,7 +1,7 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/entity/login_request.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../entity/login/login_request.dart';
 import '../repo/auth_repo.dart';
 
 @injectable

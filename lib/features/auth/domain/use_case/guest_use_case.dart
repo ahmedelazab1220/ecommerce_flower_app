@@ -1,5 +1,6 @@
-import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
+
+import '../repo/auth_repo.dart';
 
 @injectable
 class GuestUseCase {
