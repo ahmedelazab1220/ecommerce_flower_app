@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/location_service/location_service.dart';
+import '../../../../core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
 import '../../domain/entity/home_response_entity.dart';
 import '../../domain/use_case/get_home_data_use_case.dart';
 
@@ -27,6 +28,8 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
 
+  late ScrollVisibilityController scrollVisibilityController;
+  final scrollController = ScrollController();
   late AnimationController controller;
   late Animation<double> jumpAnimation;
   late Animation<double> flipAnimation;

@@ -1,17 +1,19 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
-import 'package:ecommerce_flower_app/features/change_password/domain/entities/change_password_request_entity.dart';
-import 'package:ecommerce_flower_app/features/change_password/domain/use_case/change_password_use_case.dart';
-import 'package:ecommerce_flower_app/features/change_password/presentation/view_model/change_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/entities/change_password_request_entity.dart';
+import '../../domain/use_case/change_password_use_case.dart';
+import 'change_password_state.dart';
 
 @injectable
 class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   final ChangePasswordUseCase _changePasswordUseCase;
   final Validator validator;
+
   ChangePasswordCubit(this._changePasswordUseCase, this.validator)
     : super(const ChangePasswordState());
 
@@ -19,14 +21,17 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   final currentPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
   void doIntent(ChangePasswordAction action) {
     switch (action) {
       case ButtonPressedAction():
-        _buttonPressd();
-        break;
+        {
+          _buttonPressd();
+        }
       case FormChangedAction():
-        _validateForm();
-        break;
+        {
+          _validateForm();
+        }
     }
   }
 

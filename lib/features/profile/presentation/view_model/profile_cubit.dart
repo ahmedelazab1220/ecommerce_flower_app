@@ -1,8 +1,10 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
 import '../../domain/entity/user_entity.dart';
 import '../../domain/usecase/get_user_data_usecase.dart';
 import '../../domain/usecase/guest_mode_use_case.dart';
@@ -17,6 +19,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   String? token;
   bool isNotification = false;
   UserEntity? userData;
+  late ScrollVisibilityController scrollVisibilityController;
+  final scrollController = ScrollController();
 
   ProfileCubit(
     this._getUserDataUsecase,

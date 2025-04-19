@@ -7,9 +7,9 @@ import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../view_model/register/register_cubit.dart';
-import '../../view_model/register/register_state.dart';
-import '../widgets/register/register_form.dart';
+import '../../../view_model/register/register_cubit.dart';
+import '../../../view_model/register/register_state.dart';
+import '../../widgets/register/register_form.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

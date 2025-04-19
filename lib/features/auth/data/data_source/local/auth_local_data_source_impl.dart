@@ -43,12 +43,17 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   }
 
   @override
-  Future<void> setGuestUser(bool value) async {
-    _sharedPreferences.setBool(Constants.isGuestUser, value);
+  Future<void> enableGuestUser() async {
+    _sharedPreferences.setBool(Constants.isGuestUser, true);
   }
 
   @override
   Future<bool> isGuestUser() async {
     return _sharedPreferences.getBool(Constants.isGuestUser) ?? false;
+  }
+
+  @override
+  Future<void> disableGuestUser() async {
+    _sharedPreferences.setBool(Constants.isGuestUser, false);
   }
 }
