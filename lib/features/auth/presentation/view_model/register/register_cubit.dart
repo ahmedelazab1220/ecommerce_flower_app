@@ -1,14 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/entity/register_entity/register_request_entity.dart';
+import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/routes.dart';
+import '../../../../../core/utils/validator/validator.dart';
+import '../../../domain/entity/register/register_request_entity.dart';
 import '../../../domain/entity/user_enttity.dart';
 import '../../../domain/use_case/register_use_case.dart';
 import 'register_state.dart';
