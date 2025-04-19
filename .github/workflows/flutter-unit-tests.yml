@@ -1,36 +1,53 @@
-name: Validate PR Title
+name: Flutter Unit Tests
 
 on:
   pull_request:
+    branches:
+      - main
+      - development
     types:
       - opened
-      - edited
       - synchronize
       - reopened
+      - edited
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+      - labeled
+      - unlabeled
+      - closed
+      - reopened
+      - unlocked
+      
 
 jobs:
-  validate-pr-title:
+  test:
+    name: Run Flutter Unit Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Validate PR title
-        run: |
-          echo "Validating PR Title: ${{ github.event.pull_request.title }}"
+      - name: 🔧 Setup Java (for Android builds)
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
 
-          PR_title="${{ github.event.pull_request.title }}"
+      - name: 🛠 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
 
-          # Define regex to validate PR title format
-          pattern='^(Fix|Release|Hotfix|Test|Feature|Docs|Chore|Refactor|Bugfix|Perf)\/FA-[0-9]+-.+'
+      - name: 📦 Install Dependencies
+        run: flutter pub get
 
-          # Validate PR title using regex
-          if ! [[ "$PR_title" =~ $pattern ]]; then
-            echo "❌ PR title does not match the expected format: 'type/FA-Number-TaskName'"
-            echo "Expected format: 'Feature/FA-4-Initialize-Project'"
-            echo "Allowed types: fix, release, feat, hotfix, build, test, feature"
-            exit 1
-          fi
+      - name: ✅ Verify Flutter Installation
+        run: flutter --version
 
-          echo "✅ PR title is valid."
+      - name: 🔄 Run Build Runner (if necessary)
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 🚀 Run Flutter Unit Tests
+        run: flutter test
