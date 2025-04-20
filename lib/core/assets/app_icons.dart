@@ -22,4 +22,5 @@ class AppIcons {
   static const String transactionOrderSvg = '${baseRoute}Transaction-order.svg';
   static const String logoutSvg = '${baseRoute}logout.svg';
   static const String trashSvg = '${baseRoute}trash.svg';
+  static const String filterSvg = '${baseRoute}filter.svg';
 }

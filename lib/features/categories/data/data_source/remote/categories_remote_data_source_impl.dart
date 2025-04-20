@@ -17,9 +17,15 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   }
 
   @override
-  Future<List<Product>> getProductsByCategory({String? categoryId}) async {
+  Future<List<Product>> getProductsByCategory({
+    String? categoryId,
+    int? price,
+    String? sort,
+  }) async {
     final response = await _categoriesRetrofitClient.getProductsByCategory(
       categoryId: categoryId,
+      price: price,
+      sort: sort,
     );
     return response.products ?? [];
   }

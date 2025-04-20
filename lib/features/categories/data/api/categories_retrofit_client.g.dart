@@ -47,9 +47,17 @@ class _CategoriesRetrofitClient implements CategoriesRetrofitClient {
   }
 
   @override
-  Future<ProductsResponse> getProductsByCategory({String? categoryId}) async {
+  Future<ProductsResponse> getProductsByCategory({
+    String? categoryId,
+    int? price,
+    String? sort,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'category': categoryId};
+    final queryParameters = <String, dynamic>{
+      r'category': categoryId,
+      r'price': price,
+      r'sort': sort,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
