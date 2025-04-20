@@ -33,9 +33,7 @@ class ProductsGrid extends StatelessWidget {
                   : List.generate(
                     6,
                     (_) => ProductEntity(
-                      title:
-                          LocaleKeys
-                              .NoProductsAvailable.tr(), //assign title to to increase the length of text in skeletonizer
+                      title: LocaleKeys.NoProductsAvailable.tr(),
                     ),
                   );
           return products!.isEmpty

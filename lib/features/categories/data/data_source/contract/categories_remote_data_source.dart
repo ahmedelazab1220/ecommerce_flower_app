@@ -3,5 +3,9 @@ import 'package:ecommerce_flower_app/features/categories/data/models/products_re
 
 abstract class CategoriesRemoteDataSource {
   Future<List<Category>> getCategories();
-  Future<List<Product>> getProductsByCategory({String? categoryId});
+  Future<List<Product>> getProductsByCategory({
+    String? categoryId,
+    int? price,
+    String? sort,
+  });
 }
