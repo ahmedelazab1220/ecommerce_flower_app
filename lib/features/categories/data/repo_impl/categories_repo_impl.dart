@@ -25,10 +25,14 @@ class CategoriesRepoImpl implements CategoriesRepo {
   @override
   Future<Result<List<ProductEntity>>> getProductsByCategory({
     String? categoryId,
+    int? price,
+    String? sort,
   }) async {
     final result = await _apiManager.execute<List<ProductEntity>>(() async {
       final response = await _categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
+        price: price,
+        sort: sort,
       );
       return response.map((product) => product.toEntity()).toList();
     });

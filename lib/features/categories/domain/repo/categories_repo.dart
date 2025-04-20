@@ -6,5 +6,7 @@ abstract class CategoriesRepo {
   Future<Result<List<CategoryEntity>>> getCategories();
   Future<Result<List<ProductEntity>>> getProductsByCategory({
     String? categoryId,
+    int? price,
+    String? sort,
   });
 }

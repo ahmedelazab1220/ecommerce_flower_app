@@ -8,7 +8,15 @@ class GetProductsUseCase {
   final CategoriesRepo _repository;
   GetProductsUseCase(this._repository);
 
-  Future<Result<List<ProductEntity>>> call({String? categoryId}) async {
-    return await _repository.getProductsByCategory(categoryId: categoryId);
+  Future<Result<List<ProductEntity>>> call({
+    String? categoryId,
+    int? price,
+    String? sort,
+  }) async {
+    return await _repository.getProductsByCategory(
+      categoryId: categoryId,
+      price: price,
+      sort: sort,
+    );
   }
 }
