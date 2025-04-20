@@ -78,6 +78,8 @@ import '../../../features/change_password/domain/use_case/change_password_use_ca
     as _i280;
 import '../../../features/change_password/presentation/view_model/change_password_cubit.dart'
     as _i744;
+import '../../../features/checkout/data/api/checkout_retrofit_client.dart'
+    as _i967;
 import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
     as _i865;
 import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
@@ -250,8 +252,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i562.UploadFileApiManagerImpl(gh<_i361.Dio>()));
     gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
         () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i918.AddToCartRetrofitClient>(
+        () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1048.AuthRetrofitClient>(
         () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i675.CartRetrofitClient>(
+        () => _i675.CartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i619.CategoriesRetrofitClient>(
         () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
@@ -262,10 +268,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i766.ProfileRetrofitClient>(
         () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i918.AddToCartRetrofitClient>(
-        () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i675.CartRetrofitClient>(
-        () => _i675.CartRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i967.CheckoutRetrofitClient>(
+        () => _i967.CheckoutRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i865.EditProfileRetrofitClient>(
         () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i691.CategoriesRemoteDataSource>(() =>
