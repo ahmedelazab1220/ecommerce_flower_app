@@ -21,6 +21,14 @@ import '../../../features/address_details/data/data_sources/contract/address_det
     as _i928;
 import '../../../features/address_details/data/data_sources/remote/address_details_remote_data_source.dart'
     as _i517;
+import '../../../features/address_details/data/repo_impl/address_details_repo_impl.dart'
+    as _i31;
+import '../../../features/address_details/domain/repo/address_details_repo.dart'
+    as _i349;
+import '../../../features/address_details/domain/use_cases/add_adderss_use_case.dart'
+    as _i1016;
+import '../../../features/address_details/domain/use_cases/update_address_use_case.dart'
+    as _i622;
 import '../../../features/auth/data/api/auth_retrofit_client.dart' as _i1048;
 import '../../../features/auth/data/data_source/contract/auth_local_data_source.dart'
     as _i1015;
@@ -330,6 +338,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i305.AuthRemoteDataSource>(
       () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()),
     );
+    gh.lazySingleton<_i349.AddressDetailsRepo>(
+      () => _i31.AddressDetailsRepoImpl(
+        gh<_i928.AddressDetailsDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i488.BestSellerRemoteDataSource>(
       () => _i461.BestSellerRemoteDataSourceImpl(
         gh<_i821.BestSellerRetrofitClient>(),
@@ -384,6 +398,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i691.CategoriesRemoteDataSource>(),
         gh<_i28.ApiManager>(),
       ),
+    );
+    gh.factory<_i1016.AddAdderssUseCase>(
+      () => _i1016.AddAdderssUseCase(gh<_i349.AddressDetailsRepo>()),
+    );
+    gh.factory<_i622.UpdateAddressUseCase>(
+      () => _i622.UpdateAddressUseCase(gh<_i349.AddressDetailsRepo>()),
     );
     gh.factory<_i1033.CartRepo>(
       () => _i833.CartRepoImpl(
