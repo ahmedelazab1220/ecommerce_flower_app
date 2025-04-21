@@ -1,16 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/core/assets/app_icons.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
-import 'package:ecommerce_flower_app/core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
-import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/bottom_sheet_filteration.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/categories_body.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_cubit.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../core/assets/app_colors.dart';
+import '../../../../../core/assets/app_icons.dart';
+import '../../../../../core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../view_model/categories_cubit.dart';
+import '../../view_model/categories_state.dart';
+import '../widgets/bottom_sheet_filteration.dart';
+import '../widgets/categories_body.dart';
 
 class CategoriesScreen extends StatefulWidget {
   final int? categoryIndex;

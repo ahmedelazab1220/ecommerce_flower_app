@@ -50,8 +50,9 @@ class AppRoutes {
       return OccasionScreen(occasionIndex: occasionIndex);
     },
     productDetailsRoute: (context) {
-      final productEntity =
-          ModalRoute.of(context)?.settings.arguments as ProductEntity;
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final productEntity = args?['productEntity'] as ProductEntity;
       return ProductDetailsScreen(productEntity: productEntity);
     },
     bestSellerRoute: (context) => const BestSellersScreen(),

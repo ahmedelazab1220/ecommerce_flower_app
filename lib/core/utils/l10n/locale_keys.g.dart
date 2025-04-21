@@ -207,4 +207,9 @@ abstract class LocaleKeys {
       'PleaseLoginToAccessAllFeatures';
   static const ProductAddedToCartSuccessfully =
       'ProductAddedToCartSuccessfully';
+  static const ClearFilters = 'ClearFilters';
+  static const ExploreCategories = 'ExploreCategories';
+  static const OopsNoProductsFound = 'OopsNoProductsFound';
+  static const TryAdjustingYourFiltersOrExploreOtherCategories =
+      'TryAdjustingYourFiltersOrExploreOtherCategories';
 }

@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'product.dart';
+import 'product_dto.dart';
 
 part 'products_response.g.dart';
 
 @JsonSerializable()
 class ProductsResponse {
   final String? message;
-  final List<Product>? products;
+  final List<ProductDto>? products;
 
   const ProductsResponse({required this.message, required this.products});
 
