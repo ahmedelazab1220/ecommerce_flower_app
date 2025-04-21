@@ -80,6 +80,14 @@ import '../../../features/change_password/presentation/view_model/change_passwor
     as _i744;
 import '../../../features/checkout/data/api/checkout_retrofit_client.dart'
     as _i967;
+import '../../../features/checkout/data/data_source/contract/checkout_local_data_source.dart'
+    as _i119;
+import '../../../features/checkout/data/data_source/contract/checkout_remote_data_source.dart'
+    as _i766;
+import '../../../features/checkout/data/data_source/local/checkout_local_data_source_impl.dart'
+    as _i900;
+import '../../../features/checkout/data/data_source/remote/checkout_remote_data_source_impl.dart'
+    as _i936;
 import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
     as _i865;
 import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
@@ -233,6 +241,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i350.EditProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.singleton<_i649.BlocObserverService>(
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
+    gh.factory<_i119.CheckoutLocalDataSource>(
+        () => _i900.CheckoutLocalDataSourceImpl());
     gh.factory<_i528.AddToCartLocalDataSource>(() =>
         _i719.AddToCartLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
@@ -283,6 +293,8 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i436.ChangePasswordRetrofitClient>()));
     gh.factory<_i452.OccasionRemoteDataSource>(() =>
         _i61.OccasionRemoteDataSourceImpl(gh<_i1061.OccasionRetrofitClient>()));
+    gh.factory<_i766.CheckoutRemoteDataSource>(() =>
+        _i936.CheckoutRemoteDataSourceImpl(gh<_i967.CheckoutRetrofitClient>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
     gh.factory<_i305.AuthRemoteDataSource>(

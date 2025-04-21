@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../../../core/utils/shared_features/add_to_cart/data/model/response/cart_items.dart';
+import '../../../../../checkout/data/model/response/cart/cart_items.dart';
+import '../../../../domain/entity/cart_entity.dart';
 
 part 'cart.g.dart';
 
@@ -43,5 +44,13 @@ class Cart {
 
   Map<String, dynamic> toJson() {
     return _$CartToJson(this);
+  }
+
+  CartEntity toEntity() {
+    return CartEntity(
+      discount: discount,
+      totalPrice: totalPrice,
+      totalPriceAfterDiscount: totalPriceAfterDiscount,
+    );
   }
 }

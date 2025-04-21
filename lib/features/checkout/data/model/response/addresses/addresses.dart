@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/checkout/domain/entity/addresses_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'addresses.g.dart';
@@ -35,5 +36,9 @@ class Addresses {
 
   Map<String, dynamic> toJson() {
     return _$AddressesToJson(this);
+  }
+
+  AddressesEntity toEntity() {
+    return AddressesEntity(street: street, city: city, lat: lat, long: long);
   }
 }
