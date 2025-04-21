@@ -10,7 +10,7 @@ class GetAddressesUseCase {
 
   GetAddressesUseCase(this._checkoutRepo);
 
-  Future<Result<AddressesEntity>> call() async {
+  Future<Result<List<AddressesEntity>>> call() async {
     return await _checkoutRepo.getAddresses();
   }
 }

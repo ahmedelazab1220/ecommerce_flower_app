@@ -88,6 +88,17 @@ import '../../../features/checkout/data/data_source/local/checkout_local_data_so
     as _i900;
 import '../../../features/checkout/data/data_source/remote/checkout_remote_data_source_impl.dart'
     as _i936;
+import '../../../features/checkout/data/repo_impl/checkout_repo_impl.dart'
+    as _i154;
+import '../../../features/checkout/domain/repo/checkout_repo.dart' as _i10;
+import '../../../features/checkout/domain/usecase/add_cache_order_use_case.dart'
+    as _i1055;
+import '../../../features/checkout/domain/usecase/add_credit_order_use_case.dart'
+    as _i211;
+import '../../../features/checkout/domain/usecase/get_addresses_use_case.dart'
+    as _i217;
+import '../../../features/checkout/domain/usecase/get_cart_info_use_case.dart'
+    as _i370;
 import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
     as _i865;
 import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
@@ -306,6 +317,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i28.ApiManager>(),
           gh<_i452.OccasionRemoteDataSource>(),
         ));
+    gh.factory<_i10.CheckoutRepo>(() => _i154.CheckoutRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i766.CheckoutRemoteDataSource>(),
+        ));
     gh.factory<_i58.BestSellerRepo>(() => _i688.BestSellerRepoImpl(
           gh<_i488.BestSellerRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -328,6 +343,14 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i664.AddToCartRemoteDataSource>(),
           gh<_i528.AddToCartLocalDataSource>(),
         ));
+    gh.factory<_i1055.AddCacheOrderUseCase>(
+        () => _i1055.AddCacheOrderUseCase(gh<_i10.CheckoutRepo>()));
+    gh.factory<_i211.AddCreditOrderUseCase>(
+        () => _i211.AddCreditOrderUseCase(gh<_i10.CheckoutRepo>()));
+    gh.factory<_i217.GetAddressesUseCase>(
+        () => _i217.GetAddressesUseCase(gh<_i10.CheckoutRepo>()));
+    gh.factory<_i370.GetCartInfoUseCase>(
+        () => _i370.GetCartInfoUseCase(gh<_i10.CheckoutRepo>()));
     gh.lazySingleton<_i472.ChangePasswordRepo>(
         () => _i723.ChangePasswordRepoImpl(
               gh<_i120.ChangePasswordRemoteDataSource>(),

@@ -15,7 +15,13 @@ class ShippingAddress {
   @JsonKey(name: "long")
   final String? long;
 
-  ShippingAddress({this.street, this.phone, this.city, this.lat, this.long});
+  ShippingAddress({
+    required this.street,
+    required this.phone,
+    required this.city,
+    required this.lat,
+    required this.long,
+  });
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) {
     return _$ShippingAddressFromJson(json);

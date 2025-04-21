@@ -7,7 +7,7 @@ import '../entity/addresses_entity.dart';
 import '../entity/cart_entity.dart';
 
 abstract interface class CheckoutRepo {
-  Future<Result<AddressesEntity>> getAddresses();
+  Future<Result<List<AddressesEntity>>> getAddresses();
   Future<Result<AddCacheOrderResponseDto>> addCacheOrder(
     AddOrderRequestDto request,
   );

@@ -8,7 +8,7 @@ class AddOrderRequestDto {
   @JsonKey(name: "shippingAddress")
   final ShippingAddress? shippingAddress;
 
-  AddOrderRequestDto({this.shippingAddress});
+  AddOrderRequestDto({required this.shippingAddress});
 
   factory AddOrderRequestDto.fromJson(Map<String, dynamic> json) {
     return _$AddOrderRequestDtoFromJson(json);

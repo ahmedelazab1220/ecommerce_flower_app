@@ -17,10 +17,13 @@ class CheckoutRepoImpl implements CheckoutRepo {
   CheckoutRepoImpl(this._apiManager, this._checkoutRemoteDataSource);
 
   @override
-  Future<Result<AddressesEntity>> getAddresses() async {
-    return await _apiManager.execute<AddressesEntity>(() async {
+  Future<Result<List<AddressesEntity>>> getAddresses() async {
+    return await _apiManager.execute<List<AddressesEntity>>(() async {
       final response = await _checkoutRemoteDataSource.getAddresses();
-      return response.addresses!.toList().first.toEntity();
+      return response.addresses!.map((address) {
+        ;
+        return address.toEntity();
+      }).toList();
     });
   }
 
