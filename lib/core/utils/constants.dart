@@ -9,4 +9,6 @@ class Constants {
   static const String isRememberMe = 'isRememberMe';
   static const String isGuestUser = 'isGuestUser';
   static const String selectedLanguageCode = 'selected_language_code';
+  static const double maxPriceRange = 2049;
+  static const double minPriceRange = 0;
 }
