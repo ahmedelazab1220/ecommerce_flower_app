@@ -1,10 +1,11 @@
-import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'product.g.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
+
+part 'product_dto.g.dart';
 
 @JsonSerializable()
-class Product {
+class ProductDto {
   final int? rateAvg;
   final int? rateCount;
   @JsonKey(name: '_id')
@@ -26,7 +27,7 @@ class Product {
   final int? discount;
   final int? sold;
 
-  const Product({
+  const ProductDto({
     this.rateAvg,
     this.rateCount,
     this.title,
@@ -47,11 +48,11 @@ class Product {
     this.id,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return _$ProductFromJson(json);
+  factory ProductDto.fromJson(Map<String, dynamic> json) {
+    return _$ProductDtoFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$ProductToJson(this);
+  Map<String, dynamic> toJson() => _$ProductDtoToJson(this);
   ProductEntity toEntity() {
     return ProductEntity(
       id: id,

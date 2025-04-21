@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product.dart';
+part of 'product_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Product _$ProductFromJson(Map<String, dynamic> json) => Product(
+ProductDto _$ProductDtoFromJson(Map<String, dynamic> json) => ProductDto(
   rateAvg: (json['rateAvg'] as num?)?.toInt(),
   rateCount: (json['rateCount'] as num?)?.toInt(),
   title: json['title'] as String?,
@@ -33,23 +33,24 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
   id: json['_id'] as String?,
 );
 
-Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
-  'rateAvg': instance.rateAvg,
-  'rateCount': instance.rateCount,
-  '_id': instance.id,
-  'title': instance.title,
-  'slug': instance.slug,
-  'description': instance.description,
-  'imgCover': instance.imgCover,
-  'images': instance.images,
-  'price': instance.price,
-  'priceAfterDiscount': instance.priceAfterDiscount,
-  'quantity': instance.quantity,
-  'category': instance.category,
-  'occasion': instance.occasion,
-  'createdAt': instance.createdAt?.toIso8601String(),
-  'updatedAt': instance.updatedAt?.toIso8601String(),
-  '__v': instance.v,
-  'discount': instance.discount,
-  'sold': instance.sold,
-};
+Map<String, dynamic> _$ProductDtoToJson(ProductDto instance) =>
+    <String, dynamic>{
+      'rateAvg': instance.rateAvg,
+      'rateCount': instance.rateCount,
+      '_id': instance.id,
+      'title': instance.title,
+      'slug': instance.slug,
+      'description': instance.description,
+      'imgCover': instance.imgCover,
+      'images': instance.images,
+      'price': instance.price,
+      'priceAfterDiscount': instance.priceAfterDiscount,
+      'quantity': instance.quantity,
+      'category': instance.category,
+      'occasion': instance.occasion,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+      '__v': instance.v,
+      'discount': instance.discount,
+      'sold': instance.sold,
+    };
