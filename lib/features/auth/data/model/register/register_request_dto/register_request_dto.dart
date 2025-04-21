@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../domain/entity/register_entity/register_request_entity.dart';
+import '../../../../domain/entity/register/register_request_entity.dart';
 
 part 'register_request_dto.g.dart';
 
