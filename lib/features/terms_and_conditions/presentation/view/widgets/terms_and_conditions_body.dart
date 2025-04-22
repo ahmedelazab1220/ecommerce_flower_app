@@ -23,17 +23,6 @@ class TermsAndConditionsBody extends StatefulWidget {
 }
 
 class _TermsAndConditionsBodyState extends State<TermsAndConditionsBody> {
-  late dynamic contentStyle;
-  late dynamic titleStyle;
-
-  void _buildStyles(TermSection term, bool isArabic) {
-    contentStyle = TermsStyleParser.parseStyle(term.style, isArabic);
-    titleStyle =
-        term.style.title != null
-            ? TermsStyleParser.parseStyle(term.style.title!, isArabic)
-            : contentStyle;
-  }
-
   @override
   Widget build(BuildContext context) {
     final locale = context.locale;
@@ -62,7 +51,18 @@ class _TermsAndConditionsBodyState extends State<TermsAndConditionsBody> {
               itemCount: widget.terms.length,
               itemBuilder: (context, index) {
                 final term = widget.terms[index];
-                _buildStyles(term, isArabic);
+                final contentStyle = TermsStyleParser.buildStyle(
+                  term.style,
+                  isArabic,
+                );
+                final titleStyle =
+                    term.style.title != null
+                        ? TermsStyleParser.buildStyle(
+                          term.style.title!,
+                          isArabic,
+                        )
+                        : contentStyle;
+
                 return TermSectionWidget(
                   isArabic: isArabic,
                   term: term,

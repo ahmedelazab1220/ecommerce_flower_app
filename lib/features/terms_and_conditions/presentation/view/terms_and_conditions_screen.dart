@@ -30,6 +30,22 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
     _loadTerms();
   }
 
+  /// Loads the terms and conditions data from a JSON file and updates the state.
+  ///
+  /// This method retrieves the JSON data from the assets using the path defined in
+  /// [Constants.termsAndConditionsJsonFilePath], decodes it, and validates its structure.
+  /// If the data is valid (i.e., contains the 'terms_and_conditions' key), it parses the data
+  /// into a list of [TermSection] objects and updates the [_terms] list. The [_isLoading] state
+  /// is set to `false` once the operation is complete, whether successful or not.
+  ///
+  /// If the JSON data is invalid or an error occurs during loading or parsing, the method
+  /// sets [_isLoading] to `false` and leaves [_terms] unchanged (empty).
+  ///
+  /// Throws:
+  ///   - [Exception] if an error occurs while loading the JSON file or parsing the data.
+  ///
+  /// Returns:
+  ///   - [Future<void>] that completes when the loading and parsing operation is finished.
   Future<void> _loadTerms() async {
     try {
       // Load the JSON file from the assets
