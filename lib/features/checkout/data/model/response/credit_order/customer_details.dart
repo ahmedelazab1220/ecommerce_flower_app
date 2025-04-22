@@ -5,17 +5,17 @@ part 'customer_details.g.dart';
 @JsonSerializable()
 class CustomerDetails {
   @JsonKey(name: "address")
-  final dynamic? address;
+  final dynamic address;
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "name")
-  final dynamic? name;
+  final dynamic name;
   @JsonKey(name: "phone")
-  final dynamic? phone;
+  final dynamic phone;
   @JsonKey(name: "tax_exempt")
   final String? taxExempt;
   @JsonKey(name: "tax_ids")
-  final dynamic? taxIds;
+  final dynamic taxIds;
 
   CustomerDetails({
     this.address,
