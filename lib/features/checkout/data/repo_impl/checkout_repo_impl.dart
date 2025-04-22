@@ -21,7 +21,6 @@ class CheckoutRepoImpl implements CheckoutRepo {
     return await _apiManager.execute<List<AddressesEntity>>(() async {
       final response = await _checkoutRemoteDataSource.getAddresses();
       return response.addresses!.map((address) {
-        ;
         return address.toEntity();
       }).toList();
     });

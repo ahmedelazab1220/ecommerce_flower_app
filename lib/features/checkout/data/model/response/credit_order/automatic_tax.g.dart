@@ -7,11 +7,11 @@ part of 'automatic_tax.dart';
 // **************************************************************************
 
 AutomaticTax _$AutomaticTaxFromJson(Map<String, dynamic> json) => AutomaticTax(
-      enabled: json['enabled'] as bool?,
-      liability: json['liability'],
-      provider: json['provider'],
-      status: json['status'],
-    );
+  enabled: json['enabled'] as bool?,
+  liability: json['liability'],
+  provider: json['provider'],
+  status: json['status'],
+);
 
 Map<String, dynamic> _$AutomaticTaxToJson(AutomaticTax instance) =>
     <String, dynamic>{
