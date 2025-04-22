@@ -13,9 +13,9 @@ class IsGiftSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<CheckoutCubit>();
-    final isCreditSelected = cubit.selectedPaymentIndex == 1;
-    final isGift = cubit.isGift;
+    final viewModel = context.watch<CheckoutCubit>();
+    final isCreditSelected = viewModel.selectedPaymentIndex == 1;
+    final isGift = viewModel.isGift;
 
     return AnimatedVisibility(
       visible: isCreditSelected,
@@ -36,7 +36,7 @@ class IsGiftSection extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               leading: Switch(
                 value: isGift,
-                onChanged: (val) => cubit.toggleGift(val),
+                onChanged: (val) => viewModel.toggleGift(val),
                 activeColor: AppColors.pink,
                 activeTrackColor: AppColors.pink[AppColors.colorCode40],
                 inactiveThumbColor: AppColors.white,
@@ -59,22 +59,42 @@ class IsGiftSection extends StatelessWidget {
               visible: isGift,
               enter: expandVertically(alignment: -1),
               exit: shrinkVertically(alignment: -1),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: LocaleKeys.Name.tr(),
-                      hintText: LocaleKeys.EnterTheName.tr(),
+              child: Form(
+                key: viewModel.formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: viewModel.nameController,
+                      validator:
+                          (value) =>
+                              viewModel.validator.validateName(value ?? ""),
+                      decoration: InputDecoration(
+                        labelText: LocaleKeys.Name.tr(),
+                        hintText: LocaleKeys.EnterTheName.tr(),
+                      ),
+                      onTapOutside:
+                          (event) =>
+                              FocusManager.instance.primaryFocus?.unfocus(),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: LocaleKeys.PhoneNumber.tr(),
-                      hintText: LocaleKeys.EnterThePhoneNumber.tr(),
+                    const SizedBox(height: 24),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: viewModel.phoneController,
+                      validator:
+                          (value) => viewModel.validator.validatePhoneNumber(
+                            value ?? "",
+                          ),
+                      decoration: InputDecoration(
+                        labelText: LocaleKeys.PhoneNumber.tr(),
+                        hintText: LocaleKeys.EnterThePhoneNumber.tr(),
+                      ),
+                      onTapOutside:
+                          (event) =>
+                              FocusManager.instance.primaryFocus?.unfocus(),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

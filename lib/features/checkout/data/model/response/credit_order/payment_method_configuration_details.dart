@@ -7,7 +7,7 @@ class PaymentMethodConfigurationDetails {
   @JsonKey(name: "id")
   final String? id;
   @JsonKey(name: "parent")
-  final dynamic? parent;
+  final dynamic parent;
 
   PaymentMethodConfigurationDetails({this.id, this.parent});
 
