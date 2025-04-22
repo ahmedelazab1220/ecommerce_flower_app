@@ -193,5 +193,8 @@
     "English": "الإنجليزية",
     "YouAreInGuestMode": "أنت في وضع الضيف",
     "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات",
-    "ProductAddedToCartSuccessfully": "تمت اضافة المنتج بنجاح للسلة"
+    "ProductAddedToCartSuccessfully": "تمت اضافة المنتج بنجاح للسلة",
+    "ArriveBy": "الوصول بحلول",
+    "AM": "صباحًا",
+    "PM": "مساءً"
 }

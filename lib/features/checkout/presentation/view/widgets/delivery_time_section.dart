@@ -1,17 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
 import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../view_model/checkout_cubit.dart';
 
 class DeliveryTimeSection extends StatelessWidget {
   const DeliveryTimeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<CheckoutCubit>();
     return Container(
       color: AppColors.white,
       padding: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
@@ -46,14 +49,15 @@ class DeliveryTimeSection extends StatelessWidget {
               const SizedBox(width: 4),
               RichText(
                 text: TextSpan(
-                  text: LocaleKeys.Instant.tr(),
+                  text: "${LocaleKeys.Instant.tr()}, ",
                   style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
                     TextSpan(
-                      text: ", Arrive by 03 Sep 2024, 11:00 AM",
+                      text:
+                          "${LocaleKeys.ArriveBy.tr()} 22 April 2025, ${viewModel.currentHours}:${viewModel.currentMinute} ${LocaleKeys.AM.tr()}",
                       style: AppTheme.appTheme.textTheme.titleLarge?.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

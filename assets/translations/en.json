@@ -192,5 +192,8 @@
     "Change": "Change",
     "ProductAddedToCartSuccessfully": "Product added to cart successfully",
     "YouAreInGuestMode": "You are in guest mode",
-    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features",
+    "ArriveBy": "Arrive by",
+    "AM": "AM",
+    "PM": "PM"
 }

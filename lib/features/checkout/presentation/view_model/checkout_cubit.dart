@@ -21,6 +21,8 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   final AddCreditOrderUseCase _addCreditOrderUseCase;
   final GetCartInfoUseCase _getCartInfoUseCase;
 
+  final int currentHours = DateTime.now().hour + 1;
+  final int currentMinute = DateTime.now().minute;
   List<AddressesEntity>? addresses = [];
   CartEntity? cartData;
 
