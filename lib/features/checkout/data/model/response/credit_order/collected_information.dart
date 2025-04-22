@@ -5,7 +5,7 @@ part 'collected_information.g.dart';
 @JsonSerializable()
 class CollectedInformation {
   @JsonKey(name: "shipping_details")
-  final dynamic shippingDetails;
+  final dynamic? shippingDetails;
 
   CollectedInformation({this.shippingDetails});
 

@@ -1,12 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/checkout/data/model/request/add_order_request_dto.dart';
 import 'package:ecommerce_flower_app/features/checkout/domain/usecase/add_cache_order_use_case.dart';
 import 'package:ecommerce_flower_app/features/checkout/domain/usecase/add_credit_order_use_case.dart';
 import 'package:ecommerce_flower_app/features/checkout/domain/usecase/get_addresses_use_case.dart';
 import 'package:ecommerce_flower_app/features/checkout/domain/usecase/get_cart_info_use_case.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
@@ -23,12 +21,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   final AddCreditOrderUseCase _addCreditOrderUseCase;
   final GetCartInfoUseCase _getCartInfoUseCase;
 
-  final Validator validator;
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   final int currentHours = DateTime.now().hour + 1;
   final int currentMinute = DateTime.now().minute;
 
@@ -44,7 +36,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     this._addCacheOrderUseCase,
     this._addCreditOrderUseCase,
     this._getCartInfoUseCase,
-    this.validator,
   ) : super(CheckoutState(baseState: BaseInitialState(), isGift: false));
 
   Future<void> _getAddresses() async {
@@ -151,15 +142,9 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       case AddCacheOrderAction():
         _addCacheOrder(action.request);
       case AddCreditOrderAction():
-        _addCreditOrder(action.request);
+        throw UnimplementedError();
       case GetOrderDetailsAction():
         _getOrderDetails();
     }
-  }
-
-  void dispose() {
-    nameController.dispose();
-    phoneController.dispose();
-    super.close();
   }
 }

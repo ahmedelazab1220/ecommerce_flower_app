@@ -7,11 +7,11 @@ class AutomaticTax {
   @JsonKey(name: "enabled")
   final bool? enabled;
   @JsonKey(name: "liability")
-  final dynamic liability;
+  final dynamic? liability;
   @JsonKey(name: "provider")
-  final dynamic provider;
+  final dynamic? provider;
   @JsonKey(name: "status")
-  final dynamic status;
+  final dynamic? status;
 
   AutomaticTax({this.enabled, this.liability, this.provider, this.status});
 

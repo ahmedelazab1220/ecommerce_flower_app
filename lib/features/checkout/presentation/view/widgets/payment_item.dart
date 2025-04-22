@@ -14,13 +14,13 @@ class PaymentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CheckoutCubit>();
+    final cubit = context.read<CheckoutCubit>();
 
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       buildWhen: (prev, curr) => prev.paymentState != curr.paymentState,
       builder: (context, state) {
         return InkWell(
-          onTap: () => viewModel.selectPayment(index),
+          onTap: () => cubit.selectPayment(index),
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -46,11 +46,11 @@ class PaymentItem extends StatelessWidget {
                 ),
                 Radio<int>(
                   value: index,
-                  groupValue: viewModel.selectedPaymentIndex,
+                  groupValue: cubit.selectedPaymentIndex,
                   activeColor: AppColors.pink,
                   fillColor: WidgetStateProperty.all(AppColors.pink),
                   onChanged: (int? value) {
-                    if (value != null) viewModel.selectPayment(value);
+                    if (value != null) cubit.selectPayment(value);
                   },
                 ),
               ],
