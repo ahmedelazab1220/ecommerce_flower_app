@@ -27,14 +27,16 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   List<AddressesEntity>? addresses = [];
   CartEntity? cartData;
 
+  bool isGift = false;
   int selectedAddressIndex = 0;
+  int selectedPaymentIndex = 0;
 
   CheckoutCubit(
     this._getAddressesUseCase,
     this._addCacheOrderUseCase,
     this._addCreditOrderUseCase,
     this._getCartInfoUseCase,
-  ) : super(CheckoutState(baseState: BaseInitialState()));
+  ) : super(CheckoutState(baseState: BaseInitialState(), isGift: false));
 
   Future<void> _getAddresses() async {
     emit(state.copyWith(addressState: BaseLoadingState()));
@@ -115,6 +117,24 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(addressState: BaseSuccessState(data: addresses)));
   }
 
+  void selectPayment(int index) {
+    selectedPaymentIndex = index;
+    if (index == 0) {
+      isGift = false;
+    }
+    emit(
+      state.copyWith(
+        paymentState: BaseSuccessState(data: index),
+        isGift: isGift,
+      ),
+    );
+  }
+
+  void toggleGift(bool value) {
+    isGift = value;
+    emit(state.copyWith(isGift: isGift));
+  }
+
   void doIntent(CheckoutAction action) {
     switch (action) {
       case GetAddressesAction():
@@ -122,8 +142,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       case AddCacheOrderAction():
         _addCacheOrder(action.request);
       case AddCreditOrderAction():
-        _addCreditOrder(action.request);
-      case AddPaymentAction():
         throw UnimplementedError();
       case GetOrderDetailsAction():
         _getOrderDetails();

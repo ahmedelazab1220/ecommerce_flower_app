@@ -1,48 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/theme/app_theme.dart';
+import '../../view_model/checkout_cubit.dart';
+import '../../view_model/checkout_state.dart';
 
 class PaymentItem extends StatelessWidget {
   final String title;
-  const PaymentItem({super.key, required this.title});
+  final int index;
+
+  const PaymentItem({super.key, required this.title, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.gray.withAlpha((0.2 * 255).toInt()),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+    final cubit = context.read<CheckoutCubit>();
+
+    return BlocBuilder<CheckoutCubit, CheckoutState>(
+      buildWhen: (prev, curr) => prev.paymentState != curr.paymentState,
+      builder: (context, state) {
+        return InkWell(
+          onTap: () => cubit.selectPayment(index),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.gray.withValues(alpha: 0.2),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Radio<int>(
+                  value: index,
+                  groupValue: cubit.selectedPaymentIndex,
+                  activeColor: AppColors.pink,
+                  fillColor: WidgetStateProperty.all(AppColors.pink),
+                  onChanged: (int? value) {
+                    if (value != null) cubit.selectPayment(value);
+                  },
+                ),
+              ],
             ),
           ),
-          Radio<int>(
-            value: 0,
-            groupValue: 0,
-            activeColor: AppColors.pink,
-            fillColor: WidgetStateProperty.all(AppColors.pink),
-            onChanged: (int? value) {
-              // Handle radio button change
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

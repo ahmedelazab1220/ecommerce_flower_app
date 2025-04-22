@@ -9,6 +9,7 @@ class CheckoutState extends Equatable {
   final BaseState? orderState;
   final BaseState? paymentState;
   final BaseState? orderDetailsState;
+  final bool? isGift;
 
   const CheckoutState({
     this.baseState,
@@ -16,7 +17,26 @@ class CheckoutState extends Equatable {
     this.orderState,
     this.paymentState,
     this.orderDetailsState,
+    this.isGift,
   });
+
+  CheckoutState copyWith({
+    BaseState? baseState,
+    BaseState? addressState,
+    BaseState? orderState,
+    BaseState? paymentState,
+    BaseState? orderDetailsState,
+    bool? isGift,
+  }) {
+    return CheckoutState(
+      baseState: baseState ?? this.baseState,
+      addressState: addressState ?? this.addressState,
+      orderState: orderState ?? this.orderState,
+      paymentState: paymentState ?? this.paymentState,
+      orderDetailsState: orderDetailsState ?? this.orderDetailsState,
+      isGift: isGift ?? this.isGift,
+    );
+  }
 
   @override
   List<Object?> get props => [
@@ -25,23 +45,8 @@ class CheckoutState extends Equatable {
     orderState,
     paymentState,
     orderDetailsState,
+    isGift,
   ];
-
-  CheckoutState copyWith({
-    BaseState? baseState,
-    BaseState? addressState,
-    BaseState? orderState,
-    BaseState? paymentState,
-    BaseState? orderDetailsState,
-  }) {
-    return CheckoutState(
-      baseState: baseState ?? this.baseState,
-      addressState: addressState ?? this.addressState,
-      orderState: orderState ?? this.orderState,
-      paymentState: paymentState ?? this.paymentState,
-      orderDetailsState: orderDetailsState ?? this.orderDetailsState,
-    );
-  }
 }
 
 sealed class CheckoutAction {}
@@ -59,7 +64,5 @@ class AddCreditOrderAction extends CheckoutAction {
 
   AddCreditOrderAction(this.request);
 }
-
-class AddPaymentAction extends CheckoutAction {}
 
 class GetOrderDetailsAction extends CheckoutAction {}

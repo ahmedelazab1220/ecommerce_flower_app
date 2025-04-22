@@ -25,9 +25,9 @@ class PaymentSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          PaymentItem(title: LocaleKeys.CashOnDelivery.tr()),
+          PaymentItem(title: LocaleKeys.CashOnDelivery.tr(), index: 0),
           const SizedBox(height: 8),
-          PaymentItem(title: LocaleKeys.CreditCard.tr()),
+          PaymentItem(title: LocaleKeys.CreditCard.tr(), index: 1),
         ],
       ),
     );
