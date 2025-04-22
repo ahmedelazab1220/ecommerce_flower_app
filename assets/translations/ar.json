@@ -197,5 +197,11 @@
     "ClearFilters": "مسح الفلاتر",
     "ExploreCategories": "استكشاف الفئات",
     "OopsNoProductsFound": "عذرًا! لم يتم العثور على منتجات.",
-    "TryAdjustingYourFiltersOrExploreOtherCategories": "حاول ضبط الفلاتر الخاصة بك أو استكشاف فئات أخرى!"
+    "TryAdjustingYourFiltersOrExploreOtherCategories": "حاول ضبط الفلاتر الخاصة بك أو استكشاف فئات أخرى!",
+    "TermsAndConditionsForFloweryApp": "الشروط والأحكام لتطبيق فلاوري",
+    "LastUpdatedTermsAndConditions": "آخر تحديث: 18 أبريل 2025",
+    "NoTermsAvailable": "لا توجد شروط متاحة",
+    "ErrorParsingTermSectionAtIndex": "خطأ في تحليل قسم الشروط عند الفهرس",
+    "PleaseWait": "يرجى الانتظار",
+    "LoadingTerms": "جارٍ تحميل الشروط..."
 }
