@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/delivery_addresses_section.dart';
 import '../widgets/delivery_time_section.dart';
+import '../widgets/is_gift_section.dart';
+import '../widgets/payment_section.dart';
 import '../widgets/total_price_section.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -35,6 +37,10 @@ class CheckoutScreen extends StatelessWidget {
               DeliveryTimeSection(),
               SizedBox(height: 24),
               DeliveryAddressesSection(),
+              SizedBox(height: 24),
+              PaymentSection(),
+              SizedBox(height: 24),
+              IsGiftSection(),
               SizedBox(height: 24),
               TotalPriceSection(),
             ],
