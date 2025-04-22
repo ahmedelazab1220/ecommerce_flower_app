@@ -10,4 +10,13 @@ class AddressesEntity {
     required this.lat,
     required this.long,
   });
+
+  factory AddressesEntity.fake() {
+    return AddressesEntity(
+      street: 'Street Placeholder',
+      city: 'City Placeholder',
+      lat: '0.0',
+      long: '0.0',
+    );
+  }
 }

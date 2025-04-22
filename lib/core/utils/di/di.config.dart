@@ -99,6 +99,8 @@ import '../../../features/checkout/domain/usecase/get_addresses_use_case.dart'
     as _i217;
 import '../../../features/checkout/domain/usecase/get_cart_info_use_case.dart'
     as _i370;
+import '../../../features/checkout/presentation/view_model/checkout_cubit.dart'
+    as _i222;
 import '../../../features/edit_profile/data/api/edit_profile_retrofit_client.dart'
     as _i865;
 import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
@@ -399,6 +401,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()));
     gh.factory<_i280.ChangePasswordUseCase>(
         () => _i280.ChangePasswordUseCase(gh<_i472.ChangePasswordRepo>()));
+    gh.factory<_i222.CheckoutCubit>(() => _i222.CheckoutCubit(
+          gh<_i217.GetAddressesUseCase>(),
+          gh<_i1055.AddCacheOrderUseCase>(),
+          gh<_i211.AddCreditOrderUseCase>(),
+          gh<_i370.GetCartInfoUseCase>(),
+        ));
     gh.factory<_i190.BestSellerCubit>(
         () => _i190.BestSellerCubit(gh<_i109.GetBestSellersUsecase>()));
     gh.factory<_i744.ChangePasswordCubit>(() => _i744.ChangePasswordCubit(

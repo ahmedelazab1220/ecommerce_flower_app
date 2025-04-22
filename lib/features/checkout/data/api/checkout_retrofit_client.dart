@@ -17,7 +17,7 @@ abstract class CheckoutRetrofitClient {
   @factoryMethod
   factory CheckoutRetrofitClient(Dio dio) = _CheckoutRetrofitClient;
 
-  @POST(ApiConstants.addressesRoute)
+  @GET(ApiConstants.addressesRoute)
   Future<GetAddressesResponseDto> getAddresses();
 
   @POST(ApiConstants.addCacheOrderRoute)
@@ -30,6 +30,6 @@ abstract class CheckoutRetrofitClient {
     @Body() AddOrderRequestDto request,
   );
 
-  @POST(ApiConstants.cartRoute)
+  @GET(ApiConstants.cartRoute)
   Future<GetCartInfoResponseDto> getCartInfo();
 }

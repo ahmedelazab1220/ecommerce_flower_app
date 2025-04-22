@@ -30,7 +30,7 @@ class _CheckoutRetrofitClient implements CheckoutRetrofitClient {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetAddressesResponseDto>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
@@ -133,7 +133,7 @@ class _CheckoutRetrofitClient implements CheckoutRetrofitClient {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetCartInfoResponseDto>(Options(
-      method: 'POST',
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
