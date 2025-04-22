@@ -201,5 +201,6 @@ abstract class  LocaleKeys {
   static const ArriveBy = 'ArriveBy';
   static const AM = 'AM';
   static const PM = 'PM';
+  static const Name = 'Name';
 
 }
