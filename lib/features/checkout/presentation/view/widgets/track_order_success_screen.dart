@@ -34,7 +34,9 @@ class TrackOrderSuccessScreen extends StatelessWidget {
             ),
             const SizedBox(height: 60),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Text(
                 LocaleKeys.TrackOrder.tr(),
                 style: AppTheme.appTheme.textTheme.titleMedium?.copyWith(
