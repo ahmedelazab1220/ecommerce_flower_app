@@ -25,8 +25,7 @@ class DeliveryAddressesSection extends StatelessWidget {
     }
 
     return BlocBuilder<CheckoutCubit, CheckoutState>(
-      buildWhen:
-          (previous, current) => previous.addressState != current.addressState,
+      buildWhen: (prev, curr) => prev.addressState != curr.addressState,
       builder: (context, state) {
         final isLoading = state.addressState is BaseLoadingState;
         final addresses =
@@ -59,6 +58,12 @@ class DeliveryAddressesSection extends StatelessWidget {
                     final address = addresses[index];
                     return AddressItem(
                       index: index,
+                      groupValue: viewModel.selectedAddressIndex,
+                      onChanged: (val) {
+                        if (val != null) {
+                          viewModel.selectAddress(val);
+                        }
+                      },
                       title: '${address.street}',
                       subtitle: '${address.street}, ${address.city}',
                     );

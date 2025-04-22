@@ -23,8 +23,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   final int currentHours = DateTime.now().hour + 1;
   final int currentMinute = DateTime.now().minute;
+
   List<AddressesEntity>? addresses = [];
   CartEntity? cartData;
+
+  int selectedAddressIndex = 0;
 
   CheckoutCubit(
     this._getAddressesUseCase,
@@ -92,7 +95,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   Future<void> _addCreditOrder(AddOrderRequestDto request) async {
     emit(state.copyWith(orderState: BaseLoadingState()));
-
     final result = await _addCreditOrderUseCase(request);
     switch (result) {
       case SuccessResult<AddCreditOrderResponseDto>():
@@ -108,6 +110,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     }
   }
 
+  void selectAddress(int index) {
+    selectedAddressIndex = index;
+    emit(state.copyWith(addressState: BaseSuccessState(data: addresses)));
+  }
+
   void doIntent(CheckoutAction action) {
     switch (action) {
       case GetAddressesAction():
@@ -117,7 +124,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       case AddCreditOrderAction():
         _addCreditOrder(action.request);
       case AddPaymentAction():
-        // TODO: Handle this case.
         throw UnimplementedError();
       case GetOrderDetailsAction():
         _getOrderDetails();

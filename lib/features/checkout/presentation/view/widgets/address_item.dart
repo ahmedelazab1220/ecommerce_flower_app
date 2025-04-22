@@ -8,14 +8,18 @@ import '../../../../../core/theme/app_theme.dart';
 
 class AddressItem extends StatelessWidget {
   final int index;
+  final int groupValue;
   final String title;
   final String subtitle;
+  final ValueChanged<int?> onChanged;
 
   const AddressItem({
     super.key,
     required this.index,
     required this.title,
     required this.subtitle,
+    required this.groupValue,
+    required this.onChanged,
   });
 
   @override
@@ -37,10 +41,10 @@ class AddressItem extends StatelessWidget {
         children: [
           Radio<int>(
             value: index,
-            groupValue: 0,
+            groupValue: groupValue,
             activeColor: AppColors.pink,
             fillColor: WidgetStateProperty.all(AppColors.pink),
-            onChanged: (value) {},
+            onChanged: onChanged,
           ),
           const SizedBox(width: 8),
           Expanded(
