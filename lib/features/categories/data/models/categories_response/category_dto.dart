@@ -1,10 +1,11 @@
-import 'package:ecommerce_flower_app/features/categories/domain/entities/category_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'category.g.dart';
+import '../../../domain/entities/category_entity.dart';
+
+part 'category_dto.g.dart';
 
 @JsonSerializable()
-class Category {
+class CategoryDto {
   @JsonKey(name: '_id')
   final String? id;
   final String? name;
@@ -14,7 +15,7 @@ class Category {
   final DateTime? updatedAt;
   final int? productsCount;
 
-  const Category({
+  const CategoryDto({
     required this.id,
     required this.name,
     this.slug,
@@ -24,11 +25,11 @@ class Category {
     this.productsCount,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return _$CategoryFromJson(json);
+  factory CategoryDto.fromJson(Map<String, dynamic> json) {
+    return _$CategoryDtoFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryDtoToJson(this);
 
   CategoryEntity toEntity() {
     return CategoryEntity(id: id, name: name);
