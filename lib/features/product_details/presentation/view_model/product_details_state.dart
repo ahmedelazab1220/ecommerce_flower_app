@@ -17,7 +17,7 @@ class ProductDetailsState extends Equatable {
 
 sealed class ProductDetailsAction {}
 
-class AddProductToCartAction extends ProductDetailsAction {
+final class AddProductToCartAction extends ProductDetailsAction {
   final String productId;
 
   AddProductToCartAction(this.productId);

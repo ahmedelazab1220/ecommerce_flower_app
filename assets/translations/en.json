@@ -214,5 +214,9 @@
     "LastUpdatedAboutUs": "Last Updated: April 18, 2025",
     "NoAboutUsAvailable": "No about us available",
     "SheikhZayed": "2XVP+XC - Sheikh Zayed",
-    "NoSavedAddressesFound": "No saved addresses found"
+    "NoSavedAddressesFound": "No saved addresses found",
+    "AddedToCartSuccessfully": "Added to cart successfully",
+    "DoneTheItemIsNowInYourShoppingCart": "Done! The item is now in your shopping cart.",
+    "AddedToCartFailed": "Added to cart failed",
+    "TryAgain": "Try again"
 }
