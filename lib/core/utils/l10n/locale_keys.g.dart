@@ -207,6 +207,23 @@ abstract class LocaleKeys {
       'PleaseLoginToAccessAllFeatures';
   static const ProductAddedToCartSuccessfully =
       'ProductAddedToCartSuccessfully';
+  static const ClearFilters = 'ClearFilters';
+  static const ExploreCategories = 'ExploreCategories';
+  static const OopsNoProductsFound = 'OopsNoProductsFound';
+  static const TryAdjustingYourFiltersOrExploreOtherCategories =
+      'TryAdjustingYourFiltersOrExploreOtherCategories';
+  static const TermsAndConditionsForFloweryApp =
+      'TermsAndConditionsForFloweryApp';
+  static const LastUpdatedTermsAndConditions = 'LastUpdatedTermsAndConditions';
+  static const NoTermsAvailable = 'NoTermsAvailable';
+  static const ErrorParsingTermSectionAtIndex =
+      'ErrorParsingTermSectionAtIndex';
+  static const PleaseWait = 'PleaseWait';
+  static const LoadingTerms = 'LoadingTerms';
+  static const ErrorLoadingData = 'ErrorLoadingData';
+  static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
+  static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
+  static const NoAboutUsAvailable = 'NoAboutUsAvailable';
   static const ArriveBy = 'ArriveBy';
   static const AM = 'AM';
   static const PM = 'PM';

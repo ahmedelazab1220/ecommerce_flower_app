@@ -25,4 +25,5 @@ class AppIcons {
   static const String clockSvg = '${baseRoute}clock.svg';
   static const String editSvg = '${baseRoute}edit.svg';
   static const String addSvg = '${baseRoute}add.svg';
+  static const String filterSvg = '${baseRoute}filter.svg';
 }

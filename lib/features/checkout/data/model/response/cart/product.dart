@@ -9,7 +9,7 @@ class Product {
   @JsonKey(name: "rateCount")
   final int? rateCount;
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? productId;
   @JsonKey(name: "title")
   final String? title;
   @JsonKey(name: "slug")
@@ -46,7 +46,7 @@ class Product {
   Product({
     this.rateAvg,
     this.rateCount,
-    this.Id,
+    this.productId,
     this.title,
     this.slug,
     this.description,

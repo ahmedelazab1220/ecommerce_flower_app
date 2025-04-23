@@ -21,7 +21,7 @@ class Order {
   @JsonKey(name: "state")
   final String? state;
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "createdAt")
   final String? createdAt;
   @JsonKey(name: "updatedAt")
@@ -39,7 +39,7 @@ class Order {
     this.isPaid,
     this.isDelivered,
     this.state,
-    this.Id,
+    this.id,
     this.createdAt,
     this.updatedAt,
     this.orderNumber,

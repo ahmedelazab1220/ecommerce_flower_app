@@ -24,6 +24,7 @@ class PaymentWebViewScreen extends StatelessWidget {
           )
           ..loadRequest(Uri.parse(initialUrl));
 
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pop(false);

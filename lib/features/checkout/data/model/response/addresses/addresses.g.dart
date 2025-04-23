@@ -13,7 +13,7 @@ Addresses _$AddressesFromJson(Map<String, dynamic> json) => Addresses(
   lat: json['lat'] as String?,
   long: json['long'] as String?,
   username: json['username'] as String?,
-  Id: json['_id'] as String?,
+  id: json['_id'] as String?,
 );
 
 Map<String, dynamic> _$AddressesToJson(Addresses instance) => <String, dynamic>{
@@ -23,5 +23,5 @@ Map<String, dynamic> _$AddressesToJson(Addresses instance) => <String, dynamic>{
   'lat': instance.lat,
   'long': instance.long,
   'username': instance.username,
-  '_id': instance.Id,
+  '_id': instance.id,
 };

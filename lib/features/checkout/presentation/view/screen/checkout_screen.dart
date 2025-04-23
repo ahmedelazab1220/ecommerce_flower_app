@@ -55,11 +55,13 @@ class CheckoutScreen extends StatelessWidget {
             );
             if (result == true) {
               Navigator.pushReplacementNamed(
+                // ignore: use_build_context_synchronously
                 context,
                 AppRoutes.trackOrderSuccessRoute,
               );
             } else {
               await AppDialogs.showFailureDialog(
+                // ignore: use_build_context_synchronously
                 context,
                 message: LocaleKeys.PaymentFailedPleaseTryAgain.tr(),
               );

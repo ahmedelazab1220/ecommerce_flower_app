@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/routes.dart';
 import 'translation_bottom_sheet.dart';
 
 class TranslationAndAboutUsSection extends StatelessWidget {
@@ -49,7 +50,9 @@ class TranslationAndAboutUsSection extends StatelessWidget {
         ),
         ListTile(
           visualDensity: const VisualDensity(vertical: -2),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.aboutUsRoute);
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
@@ -62,7 +65,9 @@ class TranslationAndAboutUsSection extends StatelessWidget {
         ),
         ListTile(
           visualDensity: const VisualDensity(vertical: -2),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.termsAndConditionsRoute);
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),

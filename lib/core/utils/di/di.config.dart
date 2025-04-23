@@ -107,12 +107,8 @@ import '../../../features/edit_profile/data/api/upload_file_api_manager.dart'
     as _i891;
 import '../../../features/edit_profile/data/api/upload_file_api_manager_impl.dart'
     as _i562;
-import '../../../features/edit_profile/data/data_source/contract/edit_profile_local_data_source.dart'
-    as _i750;
 import '../../../features/edit_profile/data/data_source/contract/edit_profile_remote_data_source.dart'
     as _i592;
-import '../../../features/edit_profile/data/data_source/local/edit_profile_local_data_source_impl.dart'
-    as _i350;
 import '../../../features/edit_profile/data/data_source/remote/edit_profile_remote_data_source_impl.dart'
     as _i503;
 import '../../../features/edit_profile/data/repo_impl/edit_profile_repo_impl.dart'
@@ -247,11 +243,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i468.Validator>(() => _i468.Validator());
     gh.factory<_i493.HomeLocalDataSource>(
       () => _i640.HomeLocalDataSourceImpl(),
-    );
-    gh.factory<_i750.EditProfileLocalDataSource>(
-      () => _i350.EditProfileLocalDataSourceImpl(
-        gh<_i558.FlutterSecureStorage>(),
-      ),
     );
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
@@ -423,6 +414,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i28.ApiManager>(),
       ),
     );
+    gh.factory<_i1005.EditProfileRepo>(
+      () => _i192.EditProfileRepoImpl(
+        gh<_i592.EditProfileRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1033.CartRepo>(
       () => _i833.CartRepoImpl(
         gh<_i12.CartRemoteDataSource>(),
@@ -457,13 +454,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i197.LoginUseCase>(
       () => _i197.LoginUseCase(gh<_i913.AuthRepo>()),
-    );
-    gh.factory<_i1005.EditProfileRepo>(
-      () => _i192.EditProfileRepoImpl(
-        gh<_i592.EditProfileRemoteDataSource>(),
-        gh<_i750.EditProfileLocalDataSource>(),
-        gh<_i28.ApiManager>(),
-      ),
     );
     gh.factory<_i1065.GetHomeDataUseCase>(
       () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()),

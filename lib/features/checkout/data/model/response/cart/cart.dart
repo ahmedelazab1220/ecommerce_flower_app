@@ -8,7 +8,7 @@ part 'cart.g.dart';
 @JsonSerializable()
 class Cart {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "user")
   final String? user;
   @JsonKey(name: "cartItems")
@@ -27,7 +27,7 @@ class Cart {
   final int? V;
 
   Cart({
-    this.Id,
+    this.id,
     this.user,
     this.cartItems,
     this.discount,

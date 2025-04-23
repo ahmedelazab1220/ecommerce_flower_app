@@ -18,7 +18,7 @@ class Addresses {
   @JsonKey(name: "username")
   final String? username;
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
 
   Addresses({
     this.street,
@@ -27,7 +27,7 @@ class Addresses {
     this.lat,
     this.long,
     this.username,
-    this.Id,
+    this.id,
   });
 
   factory Addresses.fromJson(Map<String, dynamic> json) {

@@ -16,6 +16,7 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var viewModel = context.read<HomeCubit>();
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         List<BestSellerEntity>? bestSellers = [];
@@ -31,6 +32,7 @@ class HomeBody extends StatelessWidget {
           occasions = (state.occasions as BaseSuccessState).data;
         }
         return CustomScrollView(
+          controller: viewModel.scrollController,
           slivers: [
             const HomeAppBar(),
             CategoryListItems(categories: categories ?? []),
