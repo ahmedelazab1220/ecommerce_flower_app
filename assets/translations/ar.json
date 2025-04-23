@@ -203,5 +203,9 @@
     "NoTermsAvailable": "لا توجد شروط متاحة",
     "ErrorParsingTermSectionAtIndex": "خطأ في تحليل قسم الشروط عند الفهرس",
     "PleaseWait": "يرجى الانتظار",
-    "LoadingTerms": "جارٍ تحميل الشروط..."
+    "LoadingTerms": "جارٍ تحميل الشروط...",
+    "ErrorLoadingData": "خطأ في تحميل البيانات",
+    "AboutUsForFloweryApp": "معلومات عنا لتطبيق فلاوري",
+    "LastUpdatedAboutUs": "آخر تحديث: 18 أبريل 2025",
+    "NoAboutUsAvailable": "لا توجد معلومات متاحة"
 }

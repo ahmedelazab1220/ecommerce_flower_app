@@ -220,4 +220,8 @@ abstract class LocaleKeys {
       'ErrorParsingTermSectionAtIndex';
   static const PleaseWait = 'PleaseWait';
   static const LoadingTerms = 'LoadingTerms';
+  static const ErrorLoadingData = 'ErrorLoadingData';
+  static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
+  static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
+  static const NoAboutUsAvailable = 'NoAboutUsAvailable';
 }

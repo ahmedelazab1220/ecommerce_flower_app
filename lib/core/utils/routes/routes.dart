@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/about_us/presentation/view/about_us_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
@@ -28,6 +29,7 @@ class AppRoutes {
   static const String productDetailsRoute = '/product-details';
   static const String changePasswordRoute = '/change-password';
   static const String termsAndConditionsRoute = '/terms-and-conditions';
+  static const String aboutUsRoute = '/about-us';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -60,5 +62,6 @@ class AppRoutes {
     bestSellerRoute: (context) => const BestSellersScreen(),
     changePasswordRoute: (context) => const ChangePasswordScreen(),
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
+    aboutUsRoute: (context) => const AboutUsScreen(),
   };
 }

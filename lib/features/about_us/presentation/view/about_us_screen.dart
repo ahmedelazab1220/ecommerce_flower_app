@@ -10,47 +10,45 @@ import '../../../../core/utils/dialogs/app_toast.dart';
 import '../../../../core/utils/load_data_from_json_service/data_loader.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../core/utils/load_data_from_json_service/handle_failure_data_loader_state.dart';
-import '../../domain/entity/term_section.dart';
-import 'widgets/terms_and_conditions_body.dart';
+import '../../domain/entity/about_section.dart';
+import 'widgets/about_us_body.dart';
 
-class TermsAndConditionsScreen extends StatefulWidget {
-  const TermsAndConditionsScreen({super.key});
+class AboutUsScreen extends StatefulWidget {
+  const AboutUsScreen({super.key});
 
   @override
-  State<TermsAndConditionsScreen> createState() =>
-      _TermsAndConditionsScreenState();
+  State<AboutUsScreen> createState() => _AboutUsScreenState();
 }
 
-class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
-  List<TermSection> _terms = [];
+class _AboutUsScreenState extends State<AboutUsScreen> {
+  List<AboutSection> _terms = [];
 
   @override
   void initState() {
     super.initState();
-    _loadTerms();
+    _loadAbout();
   }
 
-  Future<void> _loadTerms() async {
+  Future<void> _loadAbout() async {
     try {
       // Load the JSON file from the assets
       final String response = await rootBundle.loadString(
-        Constants.termsAndConditionsJsonFilePath,
+        Constants.aboutUsJsonFilePath,
       );
       // Decode the JSON data
       final data = json.decode(response);
 
       // Check if the data contains the expected structure
-      bool isValid = DataLoader.checkTermsData(data);
+      bool isValid = DataLoader.checkAboutData(data);
       if (!isValid) {
         setState(() {});
         return;
       }
-      // Parse the data into a list of TermSection objects
-      _terms = DataLoader.parseTerms(data);
+      // Parse the data into a list of AboutSection objects
+      _terms = DataLoader.parseAbout(data);
 
       setState(() {});
     } catch (e) {
-      setState(() {});
       debugPrint('${LocaleKeys.ErrorLoadingData.tr()}: $e');
       showToast(title: LocaleKeys.ErrorLoadingData.tr(), color: AppColors.red);
     }
@@ -59,21 +57,18 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.TermsAndConditions.tr()),
-        titleSpacing: 0.0,
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.AboutUs.tr()), titleSpacing: 0.0),
       body:
           _terms.isEmpty
               ? HandleFailureDataLoaderState(
                 onPressed: () {
                   setState(() {});
-                  _loadTerms();
+                  _loadAbout();
                 },
-                title: LocaleKeys.NoTermsAvailable.tr(),
+                title: LocaleKeys.NoAboutUsAvailable.tr(),
                 message: LocaleKeys.ErrorLoadingData.tr(),
               )
-              : TermsAndConditionsBody(terms: _terms),
+              : AboutUsBody(terms: _terms),
     );
   }
 }
