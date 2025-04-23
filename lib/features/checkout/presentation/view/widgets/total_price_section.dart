@@ -7,11 +7,13 @@ import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../data/model/request/add_order_request_dto.dart';
+import '../../../data/model/request/shipping_address.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
 
 class TotalPriceSection extends StatelessWidget {
-  const TotalPriceSection({super.key});
+  const TotalPriceSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,37 @@ class TotalPriceSection extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final request = AddOrderRequestDto(
+                        shippingAddress: ShippingAddress(
+                          street:
+                              viewModel
+                                  .addresses?[viewModel.selectedAddressIndex]
+                                  .street,
+                          phone:
+                              viewModel
+                                  .addresses?[viewModel.selectedAddressIndex]
+                                  .phone,
+                          city:
+                              viewModel
+                                  .addresses?[viewModel.selectedAddressIndex]
+                                  .city,
+                          lat:
+                              viewModel
+                                  .addresses?[viewModel.selectedAddressIndex]
+                                  .lat,
+                          long:
+                              viewModel
+                                  .addresses?[viewModel.selectedAddressIndex]
+                                  .long,
+                        ),
+                      );
+                      if (viewModel.selectedPaymentIndex == 0) {
+                        viewModel.doIntent(AddCacheOrderAction(request));
+                      } else {
+                        viewModel.doIntent(AddCreditOrderAction(request));
+                      }
+                    },
                     child: Text(LocaleKeys.PlaceOrder.tr()),
                   ),
                 ),
