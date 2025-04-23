@@ -212,4 +212,12 @@ abstract class LocaleKeys {
   static const OopsNoProductsFound = 'OopsNoProductsFound';
   static const TryAdjustingYourFiltersOrExploreOtherCategories =
       'TryAdjustingYourFiltersOrExploreOtherCategories';
+  static const TermsAndConditionsForFloweryApp =
+      'TermsAndConditionsForFloweryApp';
+  static const LastUpdatedTermsAndConditions = 'LastUpdatedTermsAndConditions';
+  static const NoTermsAvailable = 'NoTermsAvailable';
+  static const ErrorParsingTermSectionAtIndex =
+      'ErrorParsingTermSectionAtIndex';
+  static const PleaseWait = 'PleaseWait';
+  static const LoadingTerms = 'LoadingTerms';
 }

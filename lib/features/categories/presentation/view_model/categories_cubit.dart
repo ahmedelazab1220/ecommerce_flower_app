@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
+import '../../../../core/utils/constants.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../core/utils/shared_models/product_entity.dart';
@@ -18,13 +19,15 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetProductsUseCase _getProductsUseCase;
 
-  final String all = LocaleKeys.all.tr();
+  RangeValues selectedRangeValues = const RangeValues(
+    Constants.minPriceRange,
+    Constants.maxPriceRange,
+  );
 
+  String selectedOption = LocaleKeys.HighestPrice.tr();
   late List<CategoryEntity> categories;
   late ScrollVisibilityController scrollVisibilityController;
   final scrollController = ScrollController();
-  RangeValues selectedRangeValues = const RangeValues(0, 450);
-  String selectedOption = LocaleKeys.HighestPrice.tr();
 
   CategoriesCubit(this._getCategoriesUseCase, this._getProductsUseCase)
     : super(
@@ -34,7 +37,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
           selectedTabIndex: 0,
         ),
       ) {
-    categories = [CategoryEntity(name: all)];
+    categories = [CategoryEntity(name: LocaleKeys.all.tr())];
   }
 
   void _changeCategory(int index) {
@@ -44,21 +47,30 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     doIntent(GetProductsAction(categoryId: selectedCategoryId));
   }
 
-  void doIntent(CategoriesAction intent) {
-    switch (intent) {
+  @override
+  Future<void> close() async {
+    scrollController.dispose();
+    super.close();
+  }
+
+  void doIntent(CategoriesAction action) {
+    switch (action) {
       case GetCategoriesAction():
-        _getCategories(intent.index);
-        break;
+        {
+          _getCategories(action.index);
+        }
       case GetProductsAction():
-        _getProducts(
-          categoryId: intent.categoryId,
-          price: intent.price,
-          sort: intent.sort,
-        );
-        break;
-      case ChangeCategoryAction(index: var index):
-        _changeCategory(index);
-        break;
+        {
+          _getProducts(
+            categoryId: action.categoryId,
+            price: action.price,
+            sort: action.sort,
+          );
+        }
+      case ChangeCategoryAction():
+        {
+          _changeCategory(action.index);
+        }
     }
   }
 
@@ -67,24 +79,28 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     final result = await _getCategoriesUseCase();
 
     switch (result) {
-      case SuccessResult<List<CategoryEntity>>(data: var result):
-        categories.addAll(result);
-        _changeCategory(index ?? 0);
-        emit(
-          state.copyWith(
-            getCategoriesState: BaseSuccessState<List<CategoryEntity>>(
-              data: categories,
+      case SuccessResult<List<CategoryEntity>>():
+        {
+          categories.addAll(result.data);
+          _changeCategory(index ?? 0);
+          emit(
+            state.copyWith(
+              getCategoriesState: BaseSuccessState<List<CategoryEntity>>(
+                data: categories,
+              ),
             ),
-          ),
-        );
-        break;
-      case FailureResult<List<CategoryEntity>>(exception: var result):
-        emit(
-          state.copyWith(
-            getCategoriesState: BaseErrorState(errorMessage: result.toString()),
-          ),
-        );
-        break;
+          );
+        }
+      case FailureResult<List<CategoryEntity>>():
+        {
+          emit(
+            state.copyWith(
+              getCategoriesState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
+        }
     }
   }
 
@@ -101,22 +117,26 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     );
 
     switch (result) {
-      case SuccessResult<List<ProductEntity>>(data: var result):
-        emit(
-          state.copyWith(
-            getProductsState: BaseSuccessState<List<ProductEntity>>(
-              data: result,
+      case SuccessResult<List<ProductEntity>>():
+        {
+          emit(
+            state.copyWith(
+              getProductsState: BaseSuccessState<List<ProductEntity>>(
+                data: result.data,
+              ),
             ),
-          ),
-        );
-        break;
-      case FailureResult<List<ProductEntity>>(exception: var result):
-        emit(
-          state.copyWith(
-            getProductsState: BaseErrorState(errorMessage: result.toString()),
-          ),
-        );
-        break;
+          );
+        }
+      case FailureResult<List<ProductEntity>>():
+        {
+          emit(
+            state.copyWith(
+              getProductsState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
+        }
     }
   }
 }

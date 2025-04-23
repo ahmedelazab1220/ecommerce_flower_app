@@ -11,4 +11,7 @@ class Constants {
   static const String selectedLanguageCode = 'selected_language_code';
   static const double maxPriceRange = 2049;
   static const double minPriceRange = 0;
+  static const String termsAndConditionsJsonFilePath =
+      'assets/terms_and_about/terms_and_conditions_json_file_en_ar.json';
+  static const String keyTermsAndConditions = 'terms_and_conditions';
 }
