@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/checkout/presentation/view/widgets/prices_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -26,7 +27,6 @@ class TotalPriceSection extends StatelessWidget {
               previous.orderDetailsState != current.orderDetailsState,
       builder: (context, state) {
         final isLoading = state.orderDetailsState is BaseLoadingState;
-        final cartData = viewModel.cartData;
 
         return Skeletonizer(
           enabled: isLoading,
@@ -40,50 +40,7 @@ class TotalPriceSection extends StatelessWidget {
             color: AppColors.white,
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Text(LocaleKeys.SubTotal.tr()),
-                    const Spacer(),
-                    Text("\$${cartData?.totalPrice ?? 0}"),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(LocaleKeys.DeliveryFee.tr()),
-                    const Spacer(),
-                    const Text("\$0"),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(LocaleKeys.Discount.tr()),
-                    const Spacer(),
-                    Text("${cartData?.discount ?? 0}%"),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                const Divider(),
-                Row(
-                  children: [
-                    Text(
-                      LocaleKeys.Total.tr(),
-                      style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "\$${cartData?.totalPriceAfterDiscount ?? 0}",
-                      style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
+                const PricesSection(),
                 const SizedBox(height: 48),
                 SizedBox(
                   width: double.infinity,

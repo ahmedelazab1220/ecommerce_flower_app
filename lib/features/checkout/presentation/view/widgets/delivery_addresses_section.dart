@@ -12,6 +12,7 @@ import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../domain/entity/addresses_entity.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
+import 'add_new_btn.dart';
 import 'address_item.dart';
 
 class DeliveryAddressesSection extends StatelessWidget {
@@ -71,37 +72,7 @@ class DeliveryAddressesSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ElevatedButton(
-                onPressed: () {},
-                style: AppTheme.appTheme.elevatedButtonTheme.style?.copyWith(
-                  backgroundColor: WidgetStateProperty.all(AppColors.white),
-                  foregroundColor: WidgetStateProperty.all(AppColors.pink),
-                  padding: WidgetStateProperty.all(
-                    const EdgeInsets.symmetric(vertical: 6),
-                  ),
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                      side: const BorderSide(color: AppColors.lightGray),
-                    ),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(AppIcons.addSvg, height: 14, width: 14),
-                    const SizedBox(width: 8),
-                    Text(
-                      LocaleKeys.AddNew.tr(),
-                      style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.pink,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const AddNewBtn(),
             ],
           ),
         );

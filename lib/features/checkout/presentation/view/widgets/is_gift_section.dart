@@ -7,6 +7,7 @@ import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/checkout_cubit.dart';
+import 'is_gift_form.dart';
 
 class IsGiftSection extends StatelessWidget {
   const IsGiftSection({super.key});
@@ -59,43 +60,7 @@ class IsGiftSection extends StatelessWidget {
               visible: isGift,
               enter: expandVertically(alignment: -1),
               exit: shrinkVertically(alignment: -1),
-              child: Form(
-                key: viewModel.formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      controller: viewModel.nameController,
-                      validator:
-                          (value) =>
-                              viewModel.validator.validateName(value ?? ""),
-                      decoration: InputDecoration(
-                        labelText: LocaleKeys.Name.tr(),
-                        hintText: LocaleKeys.EnterTheName.tr(),
-                      ),
-                      onTapOutside:
-                          (event) =>
-                              FocusManager.instance.primaryFocus?.unfocus(),
-                    ),
-                    const SizedBox(height: 24),
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      controller: viewModel.phoneController,
-                      validator:
-                          (value) => viewModel.validator.validatePhoneNumber(
-                            value ?? "",
-                          ),
-                      decoration: InputDecoration(
-                        labelText: LocaleKeys.PhoneNumber.tr(),
-                        hintText: LocaleKeys.EnterThePhoneNumber.tr(),
-                      ),
-                      onTapOutside:
-                          (event) =>
-                              FocusManager.instance.primaryFocus?.unfocus(),
-                    ),
-                  ],
-                ),
-              ),
+              child: const IsGiftForm(),
             ),
           ],
         ),
