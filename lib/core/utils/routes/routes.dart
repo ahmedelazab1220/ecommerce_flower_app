@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/auth/presentation/view/screens/login_screen.dart';
-import '../../../features/auth/presentation/view/screens/register_screen.dart';
+import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
+import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
 import '../../../features/change_password/presentation/view/screens/change_password_screen.dart';
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';

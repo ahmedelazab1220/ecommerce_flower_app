@@ -1,4 +1,4 @@
-import 'package:ecommerce_flower_app/features/auth/domain/entity/user_enttity.dart';
+import '../user_enttity.dart';
 
 class RegisterEntity {
   final String? message;
