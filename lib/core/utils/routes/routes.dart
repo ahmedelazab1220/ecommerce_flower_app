@@ -30,11 +30,11 @@ class AppRoutes {
   static const String resetPasswordRoute = '/reset-password';
   static const String productDetailsRoute = '/product-details';
   static const String changePasswordRoute = '/change-password';
+  static const String termsAndConditionsRoute = '/terms-and-conditions';
+  static const String aboutUsRoute = '/about-us';
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
-  static const String termsAndConditionsRoute = '/terms-and-conditions';
-  static const String aboutUsRoute = '/about-us';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
