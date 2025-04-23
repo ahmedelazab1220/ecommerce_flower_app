@@ -198,4 +198,15 @@
     "PM": "PM",
     "Name": "Name",
     "PaymentFailedPleaseTryAgain": "Payment failed, please try again"
+    "NoProductsAvailable": "No products available",
+    "ClearFilters": "Clear Filters",
+    "ExploreCategories": "Explore Categories",
+    "OopsNoProductsFound": "Oops! No products found.",
+    "TryAdjustingYourFiltersOrExploreOtherCategories": "Try adjusting your filters or explore other categories!",
+    "TermsAndConditionsForFloweryApp": "Terms and Conditions for Flowery App",
+    "LastUpdatedTermsAndConditions": "Last Updated: April 18, 2025",
+    "NoTermsAvailable": "No terms available",
+    "ErrorParsingTermSectionAtIndex": "Error parsing term section at index",
+    "PleaseWait": "Please wait",
+    "LoadingTerms": "Loading terms..."
 }

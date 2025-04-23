@@ -11,7 +11,7 @@ ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       products:
           (json['products'] as List<dynamic>?)
-              ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => ProductDto.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
 

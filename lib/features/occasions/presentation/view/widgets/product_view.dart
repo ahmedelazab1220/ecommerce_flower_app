@@ -60,7 +60,7 @@ class _ProductViewState extends State<ProductView> {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.productDetailsRoute,
-                          arguments: products[index],
+                          arguments: {'productEntity': products[index]},
                         );
                       },
                       child: ProductItem(product: products[index]),
