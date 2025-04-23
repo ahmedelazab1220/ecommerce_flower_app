@@ -10,6 +10,7 @@ import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
+import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
 import '../../../features/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
 import '../shared_models/product_entity.dart';
 
@@ -30,6 +31,8 @@ class AppRoutes {
   static const String changePasswordRoute = '/change-password';
   static const String termsAndConditionsRoute = '/terms-and-conditions';
   static const String aboutUsRoute = '/about-us';
+  static const String savedAddressRoute = '/saved-address';
+  static const String addressDetailsRoute = '/address-details';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -63,5 +66,6 @@ class AppRoutes {
     changePasswordRoute: (context) => const ChangePasswordScreen(),
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
+    savedAddressRoute: (context) => const SavedAddressScreen(),
   };
 }

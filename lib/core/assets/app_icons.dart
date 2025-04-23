@@ -23,4 +23,5 @@ class AppIcons {
   static const String logoutSvg = '${baseRoute}logout.svg';
   static const String trashSvg = '${baseRoute}trash.svg';
   static const String filterSvg = '${baseRoute}filter.svg';
+  static const String editSvg = '${baseRoute}edit.svg';
 }
