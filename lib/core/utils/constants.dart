@@ -13,5 +13,8 @@ class Constants {
   static const double minPriceRange = 0;
   static const String termsAndConditionsJsonFilePath =
       'assets/terms_and_about/terms_and_conditions_json_file_en_ar.json';
-  static const String keyTermsAndConditions = 'terms_and_conditions';
+  static const String termsAndConditionskey = 'terms_and_conditions';
+  static const String aboutUsJsonFilePath =
+      'assets/terms_and_about/about_us_json_file_en_ar.json';
+  static const String aboutAppKey = 'about_app';
 }
