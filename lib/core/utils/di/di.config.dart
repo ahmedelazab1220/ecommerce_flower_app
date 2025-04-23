@@ -17,16 +17,24 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../../features/address_details/data/api/address_details_retrofit_client.dart'
     as _i298;
-import '../../../features/address_details/data/data_sources/contract/address_details_data_source.dart'
-    as _i928;
-import '../../../features/address_details/data/data_sources/remote/address_details_remote_data_source.dart'
-    as _i517;
+import '../../../features/address_details/data/data_sources/contract/address_details_local_data_source.dart'
+    as _i31;
+import '../../../features/address_details/data/data_sources/contract/address_details_remote_data_source.dart'
+    as _i973;
+import '../../../features/address_details/data/data_sources/local/address_details_local_data_source_impl.dart'
+    as _i383;
+import '../../../features/address_details/data/data_sources/remote/address_details_remote_data_source_impl.dart'
+    as _i80;
 import '../../../features/address_details/data/repo_impl/address_details_repo_impl.dart'
     as _i31;
 import '../../../features/address_details/domain/repo/address_details_repo.dart'
     as _i349;
 import '../../../features/address_details/domain/use_cases/add_adderss_use_case.dart'
     as _i1016;
+import '../../../features/address_details/domain/use_cases/get_cities_use_case.dart'
+    as _i462;
+import '../../../features/address_details/domain/use_cases/get_states_use_case.dart'
+    as _i16;
 import '../../../features/address_details/domain/use_cases/update_address_use_case.dart'
     as _i622;
 import '../../../features/address_details/presentation/view_model/address_details_cubit.dart'
@@ -229,11 +237,11 @@ extension GetItInjectableX on _i174.GetIt {
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
-    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => sharedPreferenceModule.sharedPreferences,
       preResolve: true,
     );
+    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
@@ -247,6 +255,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i350.EditProfileLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.singleton<_i649.BlocObserverService>(
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
+    gh.lazySingleton<_i31.AddressDetailsLocalDataSource>(
+        () => _i383.AddressDetailsLocalDataSourceImpl());
     gh.factory<_i528.AddToCartLocalDataSource>(() =>
         _i719.AddToCartLocalDataSourceImpl(gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i687.RouteInitializer>(() => _i687.RouteInitializer(
@@ -264,12 +274,16 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i891.UploadFileApiManager>(
         () => _i562.UploadFileApiManagerImpl(gh<_i361.Dio>()));
-    gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
-        () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i298.AddressDetailsRetrofitClient>(
         () => _i298.AddressDetailsRetrofitClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
+        () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i918.AddToCartRetrofitClient>(
+        () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1048.AuthRetrofitClient>(
         () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()));
+    gh.singleton<_i675.CartRetrofitClient>(
+        () => _i675.CartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i619.CategoriesRetrofitClient>(
         () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i945.HomeRetrofitClient>(
@@ -278,10 +292,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i1061.OccasionRetrofitClient>(
         () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i918.AddToCartRetrofitClient>(
-        () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()));
-    gh.singleton<_i675.CartRetrofitClient>(
-        () => _i675.CartRetrofitClient(gh<_i361.Dio>()));
     gh.singleton<_i766.ProfileRetrofitClient>(
         () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i865.EditProfileRetrofitClient>(
@@ -295,20 +305,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i120.ChangePasswordRemoteDataSource>(() =>
         _i6.ChangePasswordDataSourceImpl(
             gh<_i436.ChangePasswordRetrofitClient>()));
+    gh.lazySingleton<_i973.AddressDetailsRemoteDataSource>(() =>
+        _i80.AddressDetailsRemoteDataSourceImpl(
+            gh<_i298.AddressDetailsRetrofitClient>()));
     gh.factory<_i452.OccasionRemoteDataSource>(() =>
         _i61.OccasionRemoteDataSourceImpl(gh<_i1061.OccasionRetrofitClient>()));
-    gh.lazySingleton<_i928.AddressDetailsDataSource>(() =>
-        _i517.AddressDetailsRemoteDataSource(
-            gh<_i298.AddressDetailsRetrofitClient>()));
     gh.singleton<_i1043.HomeRemoteDataSource>(
         () => _i859.HomeRemoteDataSourceImpl(gh<_i945.HomeRetrofitClient>()));
-    gh.factory<_i305.AuthRemoteDataSource>(
-        () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()));
     gh.lazySingleton<_i349.AddressDetailsRepo>(
         () => _i31.AddressDetailsRepoImpl(
-              gh<_i928.AddressDetailsDataSource>(),
+              gh<_i973.AddressDetailsRemoteDataSource>(),
               gh<_i28.ApiManager>(),
+              gh<_i31.AddressDetailsLocalDataSource>(),
             ));
+    gh.factory<_i305.AuthRemoteDataSource>(
+        () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()));
     gh.factory<_i488.BestSellerRemoteDataSource>(() =>
         _i461.BestSellerRemoteDataSourceImpl(
             gh<_i821.BestSellerRetrofitClient>()));
@@ -351,6 +362,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1016.AddAdderssUseCase(gh<_i349.AddressDetailsRepo>()));
     gh.factory<_i622.UpdateAddressUseCase>(
         () => _i622.UpdateAddressUseCase(gh<_i349.AddressDetailsRepo>()));
+    gh.lazySingleton<_i462.GetCitiesUseCase>(
+        () => _i462.GetCitiesUseCase(gh<_i349.AddressDetailsRepo>()));
+    gh.lazySingleton<_i16.GetStatesUseCase>(
+        () => _i16.GetStatesUseCase(gh<_i349.AddressDetailsRepo>()));
     gh.factory<_i1033.CartRepo>(() => _i833.CartRepoImpl(
           gh<_i12.CartRemoteDataSource>(),
           gh<_i28.ApiManager>(),
@@ -364,6 +379,12 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i305.AuthRemoteDataSource>(),
           gh<_i1015.AuthLocalDataSource>(),
           gh<_i28.ApiManager>(),
+        ));
+    gh.factory<_i832.AddressDetailsCubit>(() => _i832.AddressDetailsCubit(
+          gh<_i1016.AddAdderssUseCase>(),
+          gh<_i622.UpdateAddressUseCase>(),
+          gh<_i462.GetCitiesUseCase>(),
+          gh<_i16.GetStatesUseCase>(),
         ));
     gh.factory<_i1056.GetAllOccasionsUsecase>(
         () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()));
@@ -379,10 +400,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i592.EditProfileRemoteDataSource>(),
           gh<_i750.EditProfileLocalDataSource>(),
           gh<_i28.ApiManager>(),
-        ));
-    gh.factory<_i832.AddressDetailsCubit>(() => _i832.AddressDetailsCubit(
-          gh<_i1016.AddAdderssUseCase>(),
-          gh<_i622.UpdateAddressUseCase>(),
         ));
     gh.factory<_i1065.GetHomeDataUseCase>(
         () => _i1065.GetHomeDataUseCase(gh<_i242.HomeRepo>()));

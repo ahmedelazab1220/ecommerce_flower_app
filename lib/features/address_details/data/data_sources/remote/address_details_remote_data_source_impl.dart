@@ -2,12 +2,13 @@ import 'package:injectable/injectable.dart';
 import '../../api/address_details_retrofit_client.dart';
 import '../../models/request/address_details_request_dto.dart';
 import '../../models/response/address_details_response_dto.dart';
-import '../contract/address_details_data_source.dart';
+import '../contract/address_details_remote_data_source.dart';
 
-@LazySingleton(as: AddressDetailsDataSource)
-class AddressDetailsRemoteDataSource implements AddressDetailsDataSource {
+@LazySingleton(as: AddressDetailsRemoteDataSource)
+class AddressDetailsRemoteDataSourceImpl
+    implements AddressDetailsRemoteDataSource {
   final AddressDetailsRetrofitClient _retrofitClient;
-  AddressDetailsRemoteDataSource(this._retrofitClient);
+  AddressDetailsRemoteDataSourceImpl(this._retrofitClient);
 
   @override
   Future<AddressDetailsResponseDto> addAddressDetails(

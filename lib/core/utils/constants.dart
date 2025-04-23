@@ -9,4 +9,6 @@ class Constants {
   static const String isRememberMe = 'isRememberMe';
   static const String isGuestUser = 'isGuestUser';
   static const String selectedLanguageCode = 'selected_language_code';
+  static const String citiesRoute = 'assets/addresses/cities.json';
+  static const String statesRoute = 'assets/addresses/states.json';
 }
