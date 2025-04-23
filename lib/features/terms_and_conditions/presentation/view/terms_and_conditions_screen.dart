@@ -4,7 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../core/assets/app_colors.dart';
 import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/dialogs/app_toast.dart';
 import '../../../../core/utils/load_data_from_json_service/data_loader.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../core/utils/load_data_from_json_service/handle_failure_data_loader_state.dart';
@@ -49,7 +51,8 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
       setState(() {});
     } catch (e) {
       setState(() {});
-      throw Exception('${LocaleKeys.ErrorLoadingData.tr()}: $e');
+      debugPrint('${LocaleKeys.ErrorLoadingData.tr()}: $e');
+      showToast(title: LocaleKeys.ErrorLoadingData.tr(), color: AppColors.red);
     }
   }
 
