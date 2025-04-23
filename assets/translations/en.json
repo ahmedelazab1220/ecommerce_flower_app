@@ -196,5 +196,6 @@
     "ArriveBy": "Arrive by",
     "AM": "AM",
     "PM": "PM",
-    "Name": "Name"
+    "Name": "Name",
+    "PaymentFailedPleaseTryAgain": "Payment failed, please try again"
 }

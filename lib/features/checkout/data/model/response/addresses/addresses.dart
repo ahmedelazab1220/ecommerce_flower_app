@@ -39,6 +39,12 @@ class Addresses {
   }
 
   AddressesEntity toEntity() {
-    return AddressesEntity(street: street, city: city, lat: lat, long: long);
+    return AddressesEntity(
+      street: street,
+      city: city,
+      lat: lat,
+      long: long,
+      phone: phone,
+    );
   }
 }
