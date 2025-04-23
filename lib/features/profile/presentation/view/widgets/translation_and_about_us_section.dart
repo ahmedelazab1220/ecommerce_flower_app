@@ -50,7 +50,9 @@ class TranslationAndAboutUsSection extends StatelessWidget {
         ),
         ListTile(
           visualDensity: const VisualDensity(vertical: -2),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.aboutUsRoute);
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),

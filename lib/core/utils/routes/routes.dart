@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/about_us/presentation/view/about_us_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
@@ -30,6 +31,7 @@ class AppRoutes {
   static const String productDetailsRoute = '/product-details';
   static const String changePasswordRoute = '/change-password';
   static const String termsAndConditionsRoute = '/terms-and-conditions';
+  static const String aboutUsRoute = '/about-us';
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
@@ -67,5 +69,6 @@ class AppRoutes {
     checkoutRoute: (context) => const CheckoutScreen(),
     trackOrderSuccessRoute: (context) => const TrackOrderSuccessScreen(),
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
+    aboutUsRoute: (context) => const AboutUsScreen(),
   };
 }

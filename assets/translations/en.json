@@ -208,5 +208,9 @@
     "NoTermsAvailable": "No terms available",
     "ErrorParsingTermSectionAtIndex": "Error parsing term section at index",
     "PleaseWait": "Please wait",
-    "LoadingTerms": "Loading terms..."
+    "LoadingTerms": "Loading terms...",
+    "ErrorLoadingData": "Error loading data",
+    "AboutUsForFloweryApp": "About Us for Flowery App",
+    "LastUpdatedAboutUs": "Last Updated: April 18, 2025",
+    "NoAboutUsAvailable": "No about us available"
 }
