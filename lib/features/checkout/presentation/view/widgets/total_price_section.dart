@@ -6,7 +6,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/base/base_state.dart';
-import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../data/model/request/add_order_request_dto.dart';
 import '../../../data/model/request/shipping_address.dart';
@@ -14,7 +13,7 @@ import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
 
 class TotalPriceSection extends StatelessWidget {
-  const TotalPriceSection({Key? key}) : super(key: key);
+  const TotalPriceSection({super.key});
 
   @override
   Widget build(BuildContext context) {

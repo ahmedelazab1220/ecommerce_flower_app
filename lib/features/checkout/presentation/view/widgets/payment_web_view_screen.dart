@@ -6,8 +6,7 @@ import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class PaymentWebViewScreen extends StatelessWidget {
   final String initialUrl;
-  const PaymentWebViewScreen({Key? key, required this.initialUrl})
-    : super(key: key);
+  const PaymentWebViewScreen({super.key, required this.initialUrl});
 
   @override
   Widget build(BuildContext context) {
