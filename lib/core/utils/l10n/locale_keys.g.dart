@@ -224,4 +224,9 @@ abstract class LocaleKeys {
   static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
   static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
   static const NoAboutUsAvailable = 'NoAboutUsAvailable';
+  static const ArriveBy = 'ArriveBy';
+  static const AM = 'AM';
+  static const PM = 'PM';
+  static const Name = 'Name';
+  static const PaymentFailedPleaseTryAgain = 'PaymentFailedPleaseTryAgain';
 }

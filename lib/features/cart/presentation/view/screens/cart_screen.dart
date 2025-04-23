@@ -110,7 +110,22 @@ class CartScreen extends StatelessWidget {
                                     const EdgeInsets.symmetric(vertical: 14),
                                   ),
                                 ),
-                                onPressed: isLoading ? null : () {},
+                                onPressed:
+                                    isLoading
+                                        ? null
+                                        : () {
+                                          if (cart != null &&
+                                              cart.numOfCartItems > 0) {
+                                            Navigator.pushNamed(
+                                              context,
+                                              AppRoutes.checkoutRoute,
+                                            ).then((_) {
+                                              cartCubit.doIntent(
+                                                GetCartAction(),
+                                              );
+                                            });
+                                          }
+                                        },
                                 child: Text(LocaleKeys.Checkout.tr()),
                               ),
                             ],

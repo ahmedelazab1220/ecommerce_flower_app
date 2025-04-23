@@ -194,6 +194,11 @@
     "YouAreInGuestMode": "أنت في وضع الضيف",
     "PleaseLoginToAccessAllFeatures": "يرجى تسجيل الدخول للوصول إلى جميع الميزات",
     "ProductAddedToCartSuccessfully": "تمت اضافة المنتج بنجاح للسلة",
+    "ArriveBy": "الوصول بحلول",
+    "AM": "صباحًا",
+    "PM": "مساءً",
+    "Name": "الاسم",
+    "PaymentFailedPleaseTryAgain": "فشلت عملية الدفع، يرجى المحاولة مرة أخرى",
     "ClearFilters": "مسح الفلاتر",
     "ExploreCategories": "استكشاف الفئات",
     "OopsNoProductsFound": "عذرًا! لم يتم العثور على منتجات.",
@@ -208,4 +213,5 @@
     "AboutUsForFloweryApp": "معلومات عنا لتطبيق فلاوري",
     "LastUpdatedAboutUs": "آخر تحديث: 18 أبريل 2025",
     "NoAboutUsAvailable": "لا توجد معلومات متاحة"
+>>>>>>>>> Temporary merge branch 2
 }

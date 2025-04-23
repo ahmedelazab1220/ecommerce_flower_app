@@ -60,14 +60,14 @@ class AppDialogs {
   static void hideLoading(BuildContext context) => Navigator.of(context).pop();
 
   // Show a failure dialog
-  static void showFailureDialog(
+  static Future<void> showFailureDialog(
     BuildContext context, {
     required String message,
     String? buttonText,
     VoidCallback? nextAction,
     String? nextActionTitle,
     String? title,
-  }) {
+  }) async {
     showDialog(
       context: context,
       builder: (context) {
