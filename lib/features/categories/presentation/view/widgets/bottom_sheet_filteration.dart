@@ -1,13 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/categories_cubit.dart';
+import '../../view_model/categories_state.dart';
 
 class BottomSheetFilteration {
   static void showModelBottomSheet(BuildContext context) {
@@ -100,8 +101,8 @@ class BottomSheetFilteration {
                   ),
                   RangeSlider(
                     values: viewModel.selectedRangeValues,
-                    min: 0,
-                    max: 450,
+                    min: Constants.minPriceRange,
+                    max: Constants.maxPriceRange,
                     activeColor: AppColors.pink,
                     inactiveColor: AppColors.lightPink,
                     onChanged: (RangeValues newRange) {

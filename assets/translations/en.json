@@ -192,5 +192,10 @@
     "Change": "Change",
     "ProductAddedToCartSuccessfully": "Product added to cart successfully",
     "YouAreInGuestMode": "You are in guest mode",
-    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features",
+    "NoProductsAvailable": "No products available",
+    "ClearFilters": "Clear Filters",
+    "ExploreCategories": "Explore Categories",
+    "OopsNoProductsFound": "Oops! No products found.",
+    "TryAdjustingYourFiltersOrExploreOtherCategories": "Try adjusting your filters or explore other categories!"
 }

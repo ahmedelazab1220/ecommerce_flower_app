@@ -1,8 +1,9 @@
-import 'package:ecommerce_flower_app/features/categories/data/api/categories_retrofit_client.dart';
-import 'package:ecommerce_flower_app/features/categories/data/data_source/contract/categories_remote_data_source.dart';
-import 'package:ecommerce_flower_app/features/categories/data/models/categories_response/category.dart';
-import 'package:ecommerce_flower_app/features/categories/data/models/products_response/product.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../api/categories_retrofit_client.dart';
+import '../../models/categories_response/category_dto.dart';
+import '../../models/products_response/product_dto.dart';
+import '../contract/categories_remote_data_source.dart';
 
 @Singleton(as: CategoriesRemoteDataSource)
 class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
@@ -11,13 +12,13 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   CategoriesRemoteDataSourceImpl(this._categoriesRetrofitClient);
 
   @override
-  Future<List<Category>> getCategories() async {
+  Future<List<CategoryDto>> getCategories() async {
     final response = await _categoriesRetrofitClient.getCategories();
     return response.categories ?? [];
   }
 
   @override
-  Future<List<Product>> getProductsByCategory({
+  Future<List<ProductDto>> getProductsByCategory({
     String? categoryId,
     int? price,
     String? sort,
