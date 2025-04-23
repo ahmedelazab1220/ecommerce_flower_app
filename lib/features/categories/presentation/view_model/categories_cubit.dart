@@ -22,6 +22,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   late List<CategoryEntity> categories;
   late ScrollVisibilityController scrollVisibilityController;
   final scrollController = ScrollController();
+  RangeValues selectedRangeValues = const RangeValues(0, 450);
+  String selectedOption = LocaleKeys.HighestPrice.tr();
 
   CategoriesCubit(this._getCategoriesUseCase, this._getProductsUseCase)
     : super(
@@ -46,8 +48,12 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       case GetCategoriesAction():
         _getCategories(intent.index);
         break;
-      case GetProductsAction(categoryId: var categoryId):
-        _getProducts(categoryId: categoryId);
+      case GetProductsAction():
+        _getProducts(
+          categoryId: intent.categoryId,
+          price: intent.price,
+          sort: intent.sort,
+        );
         break;
       case ChangeCategoryAction(index: var index):
         _changeCategory(index);
@@ -81,9 +87,17 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     }
   }
 
-  Future<void> _getProducts({String? categoryId}) async {
+  Future<void> _getProducts({
+    String? categoryId,
+    int? price,
+    String? sort,
+  }) async {
     emit(state.copyWith(getProductsState: BaseLoadingState()));
-    final result = await _getProductsUseCase(categoryId: categoryId);
+    final result = await _getProductsUseCase(
+      categoryId: categoryId,
+      price: price,
+      sort: sort,
+    );
 
     switch (result) {
       case SuccessResult<List<ProductEntity>>(data: var result):
