@@ -110,8 +110,8 @@ abstract class  LocaleKeys {
   static const Cairo = 'Cairo';
   static const AddNewAddress = 'AddNewAddress';
   static const EnterTheAddress = 'EnterTheAddress';
-  static const RecipientsName = 'RecipientsName';
-  static const EnterRecipientsName = 'EnterRecipientsName';
+  static const RecipientName = 'RecipientName';
+  static const EnterRecipientName = 'EnterRecipientName';
   static const City = 'City';
   static const Area = 'Area';
   static const SavedAddresses = 'SavedAddresses';
@@ -198,5 +198,8 @@ abstract class  LocaleKeys {
   static const YouAreInGuestMode = 'YouAreInGuestMode';
   static const PleaseLoginToAccessAllFeatures = 'PleaseLoginToAccessAllFeatures';
   static const ProductAddedToCartSuccessfully = 'ProductAddedToCartSuccessfully';
+  static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
+  static const SelectArea = 'SelectArea';
+  static const SelectCity = 'SelectCity';
 
 }

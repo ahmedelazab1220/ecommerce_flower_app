@@ -4,9 +4,9 @@ import 'package:ecommerce_flower_app/features/address_details/domain/repo/addres
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddAdderssUseCase {
+class AddAddressUseCase {
   final AddressDetailsRepo _repo;
-  AddAdderssUseCase(this._repo);
+  AddAddressUseCase(this._repo);
 
   Future<Result<void>> call(AddressDetailsRequestEntity request) async {
     return await _repo.addAddressDetails(request);

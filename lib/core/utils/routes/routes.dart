@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/address_details/presentation/view/screens/address_details_screen.dart';
 import '../../../features/auth/presentation/view/screens/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const String resetPasswordRoute = '/reset-password';
   static const String productDetailsRoute = '/product-details';
   static const String changePasswordRoute = '/change-password';
+  static const String addressDetailsRoute = '/address-details';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -56,5 +58,6 @@ class AppRoutes {
     },
     bestSellerRoute: (context) => const BestSellersScreen(),
     changePasswordRoute: (context) => const ChangePasswordScreen(),
+    addressDetailsRoute: (context) => const AddressDetailsScreen(),
   };
 }

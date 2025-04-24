@@ -16,7 +16,7 @@
     "EnterFirstName": "Enter first name",
     "EnterLastName": "Enter last name",
     "ConfirmPassword": "Confirm password",
-    "PhoneNumber": "Enter phone number",
+    "PhoneNumber": "phone number",
     "Gender": "Gender",
     "Male": "Male",
     "Female": "Female",
@@ -192,5 +192,8 @@
     "Change": "Change",
     "ProductAddedToCartSuccessfully": "Product added to cart successfully",
     "YouAreInGuestMode": "You are in guest mode",
-    "PleaseLoginToAccessAllFeatures": "Please login to access all features"
+    "PleaseLoginToAccessAllFeatures": "Please login to access all features",
+    "AddressCannotBeEmpty": "Address cannot be empty",
+    "SelectArea": "Please select an area",
+    "SelectCity": "Please select a city"
 }

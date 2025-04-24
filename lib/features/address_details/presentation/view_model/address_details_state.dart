@@ -4,94 +4,99 @@ import 'package:ecommerce_flower_app/features/address_details/domain/entities/st
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../domain/entities/address_details_request_entity.dart';
+import '../../data/models/response/address.dart';
 
 class AddressDetailsState extends Equatable {
-  final BaseState? addAddressState;
-  final BaseState? updateAddressState;
+  final BaseState? addressDetailsState;
   final LatLng? selectedLocation;
   final List<CityEntity> cities;
   final List<StateEntity> areas;
-  final String? selectedGovernorateId;
+  final String? selectedAreaId;
   final String? selectedCityId;
+  final String? selectedCityName;
   final List<CityEntity> filteredCities;
+  final bool isFormValid;
+  final bool hasChanged;
 
   const AddressDetailsState({
-    this.addAddressState,
-    this.updateAddressState,
+    this.addressDetailsState,
     this.selectedLocation = const LatLng(30.0444, 31.2357),
     this.cities = const [],
     this.areas = const [],
-    this.selectedGovernorateId,
+    this.selectedAreaId,
     this.selectedCityId,
+    this.selectedCityName,
     this.filteredCities = const [],
+    this.isFormValid = false,
+    this.hasChanged = true,
   });
 
   AddressDetailsState copyWith({
-    BaseState? addAddressState,
-    BaseState? updateAddressState,
+    BaseState? addressDetailsState,
     LatLng? selectedLocation,
     List<CityEntity>? cities,
     List<StateEntity>? areas,
-    String? selectedGovernorateId,
+    String? selectedAreaId,
     String? selectedCityId,
+    String? selectedCityName,
     List<CityEntity>? filteredCities,
+    bool? isFormValid,
+    bool? hasChanged,
   }) {
     return AddressDetailsState(
-      addAddressState: addAddressState ?? this.addAddressState,
-      updateAddressState: updateAddressState ?? this.updateAddressState,
+      addressDetailsState: addressDetailsState ?? this.addressDetailsState,
       selectedLocation: selectedLocation ?? this.selectedLocation,
       cities: cities ?? this.cities,
       areas: areas ?? this.areas,
-      selectedGovernorateId:
-          selectedGovernorateId ?? this.selectedGovernorateId,
+      selectedAreaId: selectedAreaId ?? this.selectedAreaId,
       selectedCityId: selectedCityId ?? this.selectedCityId,
+      selectedCityName: selectedCityName ?? this.selectedCityName,
       filteredCities: filteredCities ?? this.filteredCities,
+      isFormValid: isFormValid ?? this.isFormValid,
+      hasChanged: hasChanged ?? this.hasChanged,
     );
   }
 
   @override
   List<Object?> get props => [
-    addAddressState,
-    updateAddressState,
+    addressDetailsState,
     selectedLocation,
     cities,
     areas,
-    selectedGovernorateId,
+    selectedAreaId,
     selectedCityId,
+    selectedCityName,
     filteredCities,
+    isFormValid,
+    hasChanged,
   ];
 }
 
 sealed class AddressDetailsAction {}
 
-final class AddAddressAction extends AddressDetailsAction {
-  final AddressDetailsRequestEntity request;
-
-  AddAddressAction(this.request);
-}
-
-final class UpdateAddressAction extends AddressDetailsAction {
-  final AddressDetailsRequestEntity request;
-  final String addressId;
-
-  UpdateAddressAction(this.request, this.addressId);
-}
-
-final class UpdateSelectedLocationAction extends AddressDetailsAction {
-  final LatLng selectedLocation;
-
-  UpdateSelectedLocationAction(this.selectedLocation);
-}
-
 final class LoadCitiesAndAreasAction extends AddressDetailsAction {}
 
-final class UpdateGovernorateIdAction extends AddressDetailsAction {
-  final String governorateId;
-  UpdateGovernorateIdAction(this.governorateId);
+final class SetInitialAddressAction extends AddressDetailsAction {
+  final Address address;
+  SetInitialAddressAction(this.address);
 }
 
-final class UpdateCityIdAction extends AddressDetailsAction {
+final class SelectAreaAction extends AddressDetailsAction {
+  final String areaId;
+  SelectAreaAction(this.areaId);
+}
+
+final class SelectCityAction extends AddressDetailsAction {
   final String cityId;
-  UpdateCityIdAction(this.cityId);
+  SelectCityAction(this.cityId);
+}
+
+final class FormChangedAction extends AddressDetailsAction {}
+
+final class ButtonPressedAction extends AddressDetailsAction {}
+
+final class CameraMovedAction extends AddressDetailsAction {
+  final LatLng position;
+  final bool hasGesture;
+  CameraMovedAction(this.position, this.hasGesture);
 }
