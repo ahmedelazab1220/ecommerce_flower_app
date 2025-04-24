@@ -1,18 +1,17 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-
-import '../../data/model/request/add_order_request_dto.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
 import '../../data/model/response/cash_order/add_cache_order_response_dto.dart';
 import '../../data/model/response/credit_order/add_credit_order_response_dto.dart';
-import '../entity/addresses_entity.dart';
+import '../entity/add_order_request_entity.dart';
 import '../entity/cart_entity.dart';
 
 abstract class CheckoutRepo {
-  Future<Result<List<AddressesEntity>>> getAddresses();
+  Future<Result<List<AddressEntity>>> getAddresses();
   Future<Result<AddCacheOrderResponseDto>> addCacheOrder(
-    AddOrderRequestDto request,
+    AddOrderRequestEntity request,
   );
   Future<Result<AddCreditOrderResponseDto>> addCreditOrder(
-    AddOrderRequestDto request,
+    AddOrderRequestEntity request,
   );
   Future<Result<CartEntity>> getCartInfo();
 }

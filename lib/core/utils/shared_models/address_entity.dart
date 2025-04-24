@@ -1,20 +1,24 @@
-class AddressesEntity {
+class AddressEntity {
+  final String? id;
   final String? street;
   final String? city;
   final String? lat;
   final String? long;
   final String? phone;
+  final String? username;
 
-  AddressesEntity({
-    required this.street,
-    required this.city,
-    required this.lat,
-    required this.long,
-    required this.phone,
+  AddressEntity({
+    this.id,
+    this.street,
+    this.city,
+    this.lat,
+    this.long,
+    this.phone,
+    this.username,
   });
 
-  factory AddressesEntity.fake() {
-    return AddressesEntity(
+  factory AddressEntity.fake() {
+    return AddressEntity(
       street: 'Street Placeholder',
       city: 'City Placeholder',
       lat: '0.0',

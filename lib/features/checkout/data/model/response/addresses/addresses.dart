@@ -1,5 +1,6 @@
-import 'package:ecommerce_flower_app/features/checkout/domain/entity/addresses_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../../../../core/utils/shared_models/address_entity.dart';
 
 part 'addresses.g.dart';
 
@@ -38,8 +39,8 @@ class Addresses {
     return _$AddressesToJson(this);
   }
 
-  AddressesEntity toEntity() {
-    return AddressesEntity(
+  AddressEntity toEntity() {
+    return AddressEntity(
       street: street,
       city: city,
       lat: lat,
