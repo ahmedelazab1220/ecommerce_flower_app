@@ -18,8 +18,6 @@ class TotalPriceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<CheckoutCubit>();
-    viewModel.doIntent(GetOrderDetailsAction());
-
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       buildWhen:
           (previous, current) =>
@@ -38,45 +36,43 @@ class TotalPriceSection extends StatelessWidget {
             ),
             color: AppColors.white,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const PricesSection(),
                 const SizedBox(height: 48),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final request = AddOrderRequestDto(
-                        shippingAddress: ShippingAddress(
-                          street:
-                              viewModel
-                                  .addresses?[viewModel.selectedAddressIndex]
-                                  .street,
-                          phone:
-                              viewModel
-                                  .addresses?[viewModel.selectedAddressIndex]
-                                  .phone,
-                          city:
-                              viewModel
-                                  .addresses?[viewModel.selectedAddressIndex]
-                                  .city,
-                          lat:
-                              viewModel
-                                  .addresses?[viewModel.selectedAddressIndex]
-                                  .lat,
-                          long:
-                              viewModel
-                                  .addresses?[viewModel.selectedAddressIndex]
-                                  .long,
-                        ),
-                      );
-                      if (viewModel.selectedPaymentIndex == 0) {
-                        viewModel.doIntent(AddCacheOrderAction(request));
-                      } else {
-                        viewModel.doIntent(AddCreditOrderAction(request));
-                      }
-                    },
-                    child: Text(LocaleKeys.PlaceOrder.tr()),
-                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    final request = AddOrderRequestDto(
+                      shippingAddress: ShippingAddress(
+                        street:
+                            viewModel
+                                .addresses?[viewModel.selectedAddressIndex]
+                                .street,
+                        phone:
+                            viewModel
+                                .addresses?[viewModel.selectedAddressIndex]
+                                .phone,
+                        city:
+                            viewModel
+                                .addresses?[viewModel.selectedAddressIndex]
+                                .city,
+                        lat:
+                            viewModel
+                                .addresses?[viewModel.selectedAddressIndex]
+                                .lat,
+                        long:
+                            viewModel
+                                .addresses?[viewModel.selectedAddressIndex]
+                                .long,
+                      ),
+                    );
+                    if (viewModel.selectedPaymentIndex == 0) {
+                      viewModel.doIntent(AddCacheOrderAction(request));
+                    } else {
+                      viewModel.doIntent(AddCreditOrderAction(request));
+                    }
+                  },
+                  child: Text(LocaleKeys.PlaceOrder.tr()),
                 ),
               ],
             ),
