@@ -30,10 +30,10 @@ class _RippleAnimationState extends State<RippleAnimation>
 
   @override
   Widget build(BuildContext context) {
-    const baseSize = 150 / 2;
+    const baseSize = 250 / 2;
     return SizedBox(
-      width: 150,
-      height: 150,
+      width: 300,
+      height: 300,
       child: AnimatedBuilder(
         animation: _controller,
         builder: (_, __) {
@@ -48,24 +48,10 @@ class _RippleAnimationState extends State<RippleAnimation>
                 height: diameter,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.green.withValues(alpha: opacity * 0.7),
+                  color: AppColors.green.withValues(alpha: opacity * 0.7),
                 ),
               );
-            })..add(
-              Container(
-                width: baseSize,
-                height: baseSize,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.green,
-                ),
-                child: const Icon(
-                  Icons.check,
-                  color: AppColors.white,
-                  size: 40,
-                ),
-              ),
-            ),
+            })..add(const Icon(Icons.check, color: AppColors.white, size: 40)),
           );
         },
       ),

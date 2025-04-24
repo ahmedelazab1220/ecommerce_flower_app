@@ -1,19 +1,20 @@
-import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
-import 'package:ecommerce_flower_app/features/checkout/data/model/request/add_order_request_dto.dart';
-import 'package:ecommerce_flower_app/features/checkout/domain/usecase/add_cache_order_use_case.dart';
-import 'package:ecommerce_flower_app/features/checkout/domain/usecase/add_credit_order_use_case.dart';
-import 'package:ecommerce_flower_app/features/checkout/domain/usecase/get_addresses_use_case.dart';
-import 'package:ecommerce_flower_app/features/checkout/domain/usecase/get_cart_info_use_case.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/validator/validator.dart';
+import '../../data/model/request/add_order_request_dto.dart';
 import '../../data/model/response/cash_order/add_cache_order_response_dto.dart';
 import '../../data/model/response/credit_order/add_credit_order_response_dto.dart';
 import '../../domain/entity/addresses_entity.dart';
 import '../../domain/entity/cart_entity.dart';
+import '../../domain/usecase/add_cache_order_use_case.dart';
+import '../../domain/usecase/add_credit_order_use_case.dart';
+import '../../domain/usecase/get_addresses_use_case.dart';
+import '../../domain/usecase/get_cart_info_use_case.dart';
 import 'checkout_state.dart';
 
 @injectable
@@ -28,9 +29,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final int currentHours = DateTime.now().hour + 1;
-  final int currentMinute = DateTime.now().minute;
 
   List<AddressesEntity>? addresses = [];
   CartEntity? cartData;
@@ -52,16 +50,22 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final result = await _getAddressesUseCase();
     switch (result) {
       case SuccessResult<List<AddressesEntity>>():
-        addresses = result.data;
-        emit(state.copyWith(addressState: BaseSuccessState(data: result.data)));
+        {
+          addresses = result.data;
+          emit(
+            state.copyWith(addressState: BaseSuccessState(data: result.data)),
+          );
+        }
       case FailureResult<List<AddressesEntity>>():
-        emit(
-          state.copyWith(
-            addressState: BaseErrorState(
-              errorMessage: result.exception.toString(),
+        {
+          emit(
+            state.copyWith(
+              addressState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
             ),
-          ),
-        );
+          );
+        }
     }
   }
 
@@ -70,20 +74,24 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final result = await _getCartInfoUseCase();
     switch (result) {
       case SuccessResult<CartEntity>():
-        cartData = result.data;
-        emit(
-          state.copyWith(
-            orderDetailsState: BaseSuccessState(data: result.data),
-          ),
-        );
-      case FailureResult<CartEntity>():
-        emit(
-          state.copyWith(
-            orderDetailsState: BaseErrorState(
-              errorMessage: result.exception.toString(),
+        {
+          cartData = result.data;
+          emit(
+            state.copyWith(
+              orderDetailsState: BaseSuccessState(data: result.data),
             ),
-          ),
-        );
+          );
+        }
+      case FailureResult<CartEntity>():
+        {
+          emit(
+            state.copyWith(
+              orderDetailsState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
+            ),
+          );
+        }
     }
   }
 
@@ -92,15 +100,19 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final result = await _addCacheOrderUseCase(request);
     switch (result) {
       case SuccessResult<AddCacheOrderResponseDto>():
-        emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
+        {
+          emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
+        }
       case FailureResult<AddCacheOrderResponseDto>():
-        emit(
-          state.copyWith(
-            orderState: BaseErrorState(
-              errorMessage: result.exception.toString(),
+        {
+          emit(
+            state.copyWith(
+              orderState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
             ),
-          ),
-        );
+          );
+        }
     }
   }
 
@@ -109,15 +121,19 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final result = await _addCreditOrderUseCase(request);
     switch (result) {
       case SuccessResult<AddCreditOrderResponseDto>():
-        emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
+        {
+          emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
+        }
       case FailureResult<AddCreditOrderResponseDto>():
-        emit(
-          state.copyWith(
-            orderState: BaseErrorState(
-              errorMessage: result.exception.toString(),
+        {
+          emit(
+            state.copyWith(
+              orderState: BaseErrorState(
+                errorMessage: result.exception.toString(),
+              ),
             ),
-          ),
-        );
+          );
+        }
     }
   }
 
@@ -127,16 +143,18 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   }
 
   void selectPayment(int index) {
-    selectedPaymentIndex = index;
-    if (index == 0) {
-      isGift = false;
+    if (selectedPaymentIndex != index) {
+      selectedPaymentIndex = index;
+      if (index == 0) {
+        isGift = false;
+      }
+      emit(
+        state.copyWith(
+          paymentState: BaseSuccessState(data: index),
+          isGift: isGift,
+        ),
+      );
     }
-    emit(
-      state.copyWith(
-        paymentState: BaseSuccessState(data: index),
-        isGift: isGift,
-      ),
-    );
   }
 
   void toggleGift(bool value) {
@@ -147,14 +165,33 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   void doIntent(CheckoutAction action) {
     switch (action) {
       case GetAddressesAction():
-        _getAddresses();
+        {
+          _getAddresses();
+        }
       case AddCacheOrderAction():
-        _addCacheOrder(action.request);
+        {
+          _addCacheOrder(action.request);
+        }
       case AddCreditOrderAction():
-        _addCreditOrder(action.request);
+        {
+          _addCreditOrder(action.request);
+        }
       case GetOrderDetailsAction():
-        _getOrderDetails();
+        {
+          _getOrderDetails();
+        }
     }
+  }
+
+  Stream<String> currentDateStream() {
+    return Stream.periodic(const Duration(seconds: 1), (_) {
+      final now = DateTime.now().add(const Duration(hours: 1));
+      final day = now.day.toString().padLeft(2, '0');
+      final month = DateFormat('MMM').format(now);
+      final year = now.year;
+      final time = DateFormat('hh:mm a').format(now);
+      return "$day $month $year, $time";
+    });
   }
 
   void dispose() {

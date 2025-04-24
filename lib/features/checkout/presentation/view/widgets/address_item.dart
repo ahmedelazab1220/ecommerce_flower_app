@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
-import '../../../../../core/theme/app_theme.dart';
 
 class AddressItem extends StatelessWidget {
   final int index;
@@ -29,48 +28,61 @@ class AddressItem extends StatelessWidget {
         color: AppColors.white,
         boxShadow: [
           BoxShadow(
-            color: AppColors.gray.withAlpha((0.2 * 255).toInt()),
+            color: AppColors.gray.withAlpha(75),
             blurRadius: 4,
-            offset: const Offset(0, 2),
+            offset: const Offset(0, 0),
           ),
         ],
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Radio<int>(
-            value: index,
-            groupValue: groupValue,
-            activeColor: AppColors.pink,
-            fillColor: WidgetStateProperty.all(AppColors.pink),
-            onChanged: onChanged,
-          ),
-          const SizedBox(width: 8),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+            child: InkWell(
+              onTap: () => onChanged(index),
+              child: Row(
+                children: [
+                  Radio<int>(
+                    value: index,
+                    groupValue: groupValue,
+                    activeColor: AppColors.pink,
+                    fillColor: WidgetStateProperty.all(AppColors.pink),
+                    onChanged: onChanged,
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
-                    fontSize: 13,
-                    color: AppColors.gray,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleMedium?.copyWith(fontSize: 18),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          subtitle,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.gray),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(AppIcons.editSvg, height: 24, width: 24),
+          Flexible(
+            child: IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(AppIcons.editSvg),
+            ),
           ),
         ],
       ),

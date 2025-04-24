@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../../../core/utils/datasource_excution/api_constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 
 class PaymentWebViewScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class PaymentWebViewScreen extends StatelessWidget {
           ..setNavigationDelegate(
             NavigationDelegate(
               onPageStarted: (String url) {
-                if (url.contains('localhost:3000/allOrders')) {
+                if (url.contains(ApiConstants.paymentRoute)) {
                   Navigator.of(context).pop(true);
                 }
               },
@@ -24,11 +25,12 @@ class PaymentWebViewScreen extends StatelessWidget {
           )
           ..loadRequest(Uri.parse(initialUrl));
 
-    // ignore: deprecated_member_use
-    return WillPopScope(
-      onWillPop: () async {
-        Navigator.of(context).pop(false);
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          Navigator.of(context).pop(false);
+        }
       },
       child: Scaffold(
         appBar: AppBar(
