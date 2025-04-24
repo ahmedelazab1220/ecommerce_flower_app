@@ -4,7 +4,6 @@ import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/hea
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/reset_password/reset_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/dialogs/app_dialogs.dart';

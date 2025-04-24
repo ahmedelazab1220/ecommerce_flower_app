@@ -7,14 +7,10 @@ import 'package:ecommerce_flower_app/features/auth/data/model/reset_password/res
 import 'package:ecommerce_flower_app/features/auth/data/model/verify_reset_code/verify_reset_code_request_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/utils/datasource_excution/api_manager.dart';
-import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../domain/entity/login/login_request.dart';
 import '../../domain/entity/register/register_request_entity.dart';
 import '../../domain/entity/user_enttity.dart';
-import '../../domain/repo/auth_repo.dart';
 import '../data_source/contract/auth_local_data_source.dart';
-import '../data_source/contract/auth_remote_data_source.dart';
 import '../model/login/request/login_request_dto.dart';
 import '../model/login/response/login_response_dto.dart';
 import '../model/register/register_request_dto/register_request_dto.dart';
@@ -69,8 +65,8 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Result<void>> forgetPassword(
-      ForgetPasswordRequestDto forgetPasswordRequestDto,
-      ) async {
+    ForgetPasswordRequestDto forgetPasswordRequestDto,
+  ) async {
     return await _apiManager.execute(() async {
       await _authRemoteDataSource.forgetPassword(forgetPasswordRequestDto);
     });
@@ -78,8 +74,8 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Result<void>> resetPassword(
-      ResetPasswordRequestDto resetPasswordRequestDto,
-      ) async {
+    ResetPasswordRequestDto resetPasswordRequestDto,
+  ) async {
     return await _apiManager.execute(() async {
       await _authRemoteDataSource.resetPassword(resetPasswordRequestDto);
     });
@@ -87,8 +83,8 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Result<void>> verifyResetCode(
-      VerifyResetCodeRequestDto verifyResetCodeRequestDto,
-      ) async {
+    VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  ) async {
     return await _apiManager.execute(() async {
       await _authRemoteDataSource.verifyResetCode(verifyResetCodeRequestDto);
     });

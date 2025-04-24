@@ -7,7 +7,6 @@ import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forge
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password/forget_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../widgets/forget_password/forget_password_form.dart';

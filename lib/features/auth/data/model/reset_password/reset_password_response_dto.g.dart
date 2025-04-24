@@ -7,15 +7,12 @@ part of 'reset_password_response_dto.dart';
 // **************************************************************************
 
 ResetPasswordResponseDto _$ResetPasswordResponseDtoFromJson(
-        Map<String, dynamic> json) =>
-    ResetPasswordResponseDto(
-      message: json['message'] as String?,
-      token: json['token'] as String?,
-    );
+  Map<String, dynamic> json,
+) => ResetPasswordResponseDto(
+  message: json['message'] as String?,
+  token: json['token'] as String?,
+);
 
 Map<String, dynamic> _$ResetPasswordResponseDtoToJson(
-        ResetPasswordResponseDto instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'token': instance.token,
-    };
+  ResetPasswordResponseDto instance,
+) => <String, dynamic>{'message': instance.message, 'token': instance.token};

@@ -7,13 +7,14 @@ part of 'order_items.dart';
 // **************************************************************************
 
 OrderItems _$OrderItemsFromJson(Map<String, dynamic> json) => OrderItems(
-      product: json['product'] == null
+  product:
+      json['product'] == null
           ? null
           : Product.fromJson(json['product'] as Map<String, dynamic>),
-      price: (json['price'] as num?)?.toInt(),
-      quantity: (json['quantity'] as num?)?.toInt(),
-      id: json['_id'] as String?,
-    );
+  price: (json['price'] as num?)?.toInt(),
+  quantity: (json['quantity'] as num?)?.toInt(),
+  id: json['_id'] as String?,
+);
 
 Map<String, dynamic> _$OrderItemsToJson(OrderItems instance) =>
     <String, dynamic>{
