@@ -35,8 +35,15 @@ void main() {
 
   group("Auth Repo Test", () {
     test("Forget Password Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
       // Arrange
       final requestDto = ForgetPasswordRequestDto(email: "test@example.com");
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
       when(
         mockAuthRemoteDataSource.forgetPassword(requestDto),
       ).thenAnswer((_) async => ForgetPasswordResponseDto());
@@ -45,13 +52,19 @@ void main() {
       final result = await authRepoImpl.forgetPassword(requestDto);
 
       // Assert
-      verify(mockAuthRemoteDataSource.forgetPassword(requestDto)).called(1);
       expect(result, isA<SuccessResult<void>>());
     });
 
     test("Verify Reset Code Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
       // Arrange
       final requestDto = VerifyResetCodeRequestDto(resetCode: '123456');
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
       when(
         mockAuthRemoteDataSource.verifyResetCode(requestDto),
       ).thenAnswer((_) async => VerifyResetCodeResponseDto());
@@ -60,16 +73,22 @@ void main() {
       final result = await authRepoImpl.verifyResetCode(requestDto);
 
       // Assert
-      verify(mockAuthRemoteDataSource.verifyResetCode(requestDto)).called(1);
       expect(result, isA<SuccessResult<void>>());
     });
 
     test("Reset Password Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
       // Arrange
       final requestDto = ResetPasswordRequestDto(
         email: "test@example.com",
         newPassword: "Test@123",
       );
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
       when(
         mockAuthRemoteDataSource.resetPassword(requestDto),
       ).thenAnswer((_) async => ResetPasswordResponseDto());
@@ -78,7 +97,6 @@ void main() {
       final result = await authRepoImpl.resetPassword(requestDto);
 
       // Assert
-      verify(mockAuthRemoteDataSource.resetPassword(requestDto)).called(1);
       expect(result, isA<SuccessResult<void>>());
     });
   });

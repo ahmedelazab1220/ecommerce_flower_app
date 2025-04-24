@@ -52,57 +52,32 @@ import 'package:mockito/src/dummies.dart' as _i10;
 
 class _FakeLoginResponseDto_0 extends _i1.SmartFake
     implements _i2.LoginResponseDto {
-  _FakeLoginResponseDto_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeLoginResponseDto_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeRegisterResponseDto_1 extends _i1.SmartFake
     implements _i3.RegisterResponseDto {
-  _FakeRegisterResponseDto_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeRegisterResponseDto_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeForgetPasswordResponseDto_2 extends _i1.SmartFake
     implements _i4.ForgetPasswordResponseDto {
-  _FakeForgetPasswordResponseDto_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeForgetPasswordResponseDto_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeResetPasswordResponseDto_3 extends _i1.SmartFake
     implements _i5.ResetPasswordResponseDto {
-  _FakeResetPasswordResponseDto_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeResetPasswordResponseDto_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVerifyResetCodeResponseDto_4 extends _i1.SmartFake
     implements _i6.VerifyResetCodeResponseDto {
-  _FakeVerifyResetCodeResponseDto_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeVerifyResetCodeResponseDto_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [ApiManager].
@@ -116,19 +91,15 @@ class MockApiManager extends _i1.Mock implements _i7.ApiManager {
   @override
   _i8.Future<_i9.Result<T>> execute<T>(_i8.Future<T> Function()? apiCall) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #execute,
-          [apiCall],
-        ),
-        returnValue:
-            _i8.Future<_i9.Result<T>>.value(_i10.dummyValue<_i9.Result<T>>(
-          this,
-          Invocation.method(
-            #execute,
-            [apiCall],
-          ),
-        )),
-      ) as _i8.Future<_i9.Result<T>>);
+            Invocation.method(#execute, [apiCall]),
+            returnValue: _i8.Future<_i9.Result<T>>.value(
+              _i10.dummyValue<_i9.Result<T>>(
+                this,
+                Invocation.method(#execute, [apiCall]),
+              ),
+            ),
+          )
+          as _i8.Future<_i9.Result<T>>);
 }
 
 /// A class which mocks [AuthRemoteDataSource].
@@ -143,91 +114,77 @@ class MockAuthRemoteDataSource extends _i1.Mock
   @override
   _i8.Future<_i2.LoginResponseDto> login(_i12.LoginRequestDto? request) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [request],
-        ),
-        returnValue:
-            _i8.Future<_i2.LoginResponseDto>.value(_FakeLoginResponseDto_0(
-          this,
-          Invocation.method(
-            #login,
-            [request],
-          ),
-        )),
-      ) as _i8.Future<_i2.LoginResponseDto>);
+            Invocation.method(#login, [request]),
+            returnValue: _i8.Future<_i2.LoginResponseDto>.value(
+              _FakeLoginResponseDto_0(
+                this,
+                Invocation.method(#login, [request]),
+              ),
+            ),
+          )
+          as _i8.Future<_i2.LoginResponseDto>);
 
   @override
   _i8.Future<_i3.RegisterResponseDto> signUp(
-          _i13.RegisterRequestDto? request) =>
+    _i13.RegisterRequestDto? request,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #signUp,
-          [request],
-        ),
-        returnValue: _i8.Future<_i3.RegisterResponseDto>.value(
-            _FakeRegisterResponseDto_1(
-          this,
-          Invocation.method(
-            #signUp,
-            [request],
-          ),
-        )),
-      ) as _i8.Future<_i3.RegisterResponseDto>);
+            Invocation.method(#signUp, [request]),
+            returnValue: _i8.Future<_i3.RegisterResponseDto>.value(
+              _FakeRegisterResponseDto_1(
+                this,
+                Invocation.method(#signUp, [request]),
+              ),
+            ),
+          )
+          as _i8.Future<_i3.RegisterResponseDto>);
 
   @override
   _i8.Future<_i4.ForgetPasswordResponseDto> forgetPassword(
-          _i14.ForgetPasswordRequestDto? forgetPasswordRequestDto) =>
+    _i14.ForgetPasswordRequestDto? forgetPasswordRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #forgetPassword,
-          [forgetPasswordRequestDto],
-        ),
-        returnValue: _i8.Future<_i4.ForgetPasswordResponseDto>.value(
-            _FakeForgetPasswordResponseDto_2(
-          this,
-          Invocation.method(
-            #forgetPassword,
-            [forgetPasswordRequestDto],
-          ),
-        )),
-      ) as _i8.Future<_i4.ForgetPasswordResponseDto>);
+            Invocation.method(#forgetPassword, [forgetPasswordRequestDto]),
+            returnValue: _i8.Future<_i4.ForgetPasswordResponseDto>.value(
+              _FakeForgetPasswordResponseDto_2(
+                this,
+                Invocation.method(#forgetPassword, [forgetPasswordRequestDto]),
+              ),
+            ),
+          )
+          as _i8.Future<_i4.ForgetPasswordResponseDto>);
 
   @override
   _i8.Future<_i5.ResetPasswordResponseDto> resetPassword(
-          _i15.ResetPasswordRequestDto? resetPasswordRequestDto) =>
+    _i15.ResetPasswordRequestDto? resetPasswordRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #resetPassword,
-          [resetPasswordRequestDto],
-        ),
-        returnValue: _i8.Future<_i5.ResetPasswordResponseDto>.value(
-            _FakeResetPasswordResponseDto_3(
-          this,
-          Invocation.method(
-            #resetPassword,
-            [resetPasswordRequestDto],
-          ),
-        )),
-      ) as _i8.Future<_i5.ResetPasswordResponseDto>);
+            Invocation.method(#resetPassword, [resetPasswordRequestDto]),
+            returnValue: _i8.Future<_i5.ResetPasswordResponseDto>.value(
+              _FakeResetPasswordResponseDto_3(
+                this,
+                Invocation.method(#resetPassword, [resetPasswordRequestDto]),
+              ),
+            ),
+          )
+          as _i8.Future<_i5.ResetPasswordResponseDto>);
 
   @override
   _i8.Future<_i6.VerifyResetCodeResponseDto> verifyResetCode(
-          _i16.VerifyResetCodeRequestDto? verifyResetCodeRequestDto) =>
+    _i16.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #verifyResetCode,
-          [verifyResetCodeRequestDto],
-        ),
-        returnValue: _i8.Future<_i6.VerifyResetCodeResponseDto>.value(
-            _FakeVerifyResetCodeResponseDto_4(
-          this,
-          Invocation.method(
-            #verifyResetCode,
-            [verifyResetCodeRequestDto],
-          ),
-        )),
-      ) as _i8.Future<_i6.VerifyResetCodeResponseDto>);
+            Invocation.method(#verifyResetCode, [verifyResetCodeRequestDto]),
+            returnValue: _i8.Future<_i6.VerifyResetCodeResponseDto>.value(
+              _FakeVerifyResetCodeResponseDto_4(
+                this,
+                Invocation.method(#verifyResetCode, [
+                  verifyResetCodeRequestDto,
+                ]),
+              ),
+            ),
+          )
+          as _i8.Future<_i6.VerifyResetCodeResponseDto>);
 }
 
 /// A class which mocks [AuthLocalDataSource].
@@ -240,96 +197,80 @@ class MockAuthLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i8.Future<void> saveToken(
-    String? key,
-    String? value,
-  ) =>
+  _i8.Future<void> saveToken(String? key, String? value) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #saveToken,
-          [
-            key,
-            value,
-          ],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+            Invocation.method(#saveToken, [key, value]),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<String?> getToken(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #getToken,
-          [key],
-        ),
-        returnValue: _i8.Future<String?>.value(),
-      ) as _i8.Future<String?>);
+  _i8.Future<String?> getToken(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getToken, [key]),
+            returnValue: _i8.Future<String?>.value(),
+          )
+          as _i8.Future<String?>);
 
   @override
-  _i8.Future<void> deleteToken(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteToken,
-          [key],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> deleteToken(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteToken, [key]),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<void> setRememberMe(bool? value) => (super.noSuchMethod(
-        Invocation.method(
-          #setRememberMe,
-          [value],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> setRememberMe(bool? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setRememberMe, [value]),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<bool> isRememberMe() => (super.noSuchMethod(
-        Invocation.method(
-          #isRememberMe,
-          [],
-        ),
-        returnValue: _i8.Future<bool>.value(false),
-      ) as _i8.Future<bool>);
+  _i8.Future<bool> isRememberMe() =>
+      (super.noSuchMethod(
+            Invocation.method(#isRememberMe, []),
+            returnValue: _i8.Future<bool>.value(false),
+          )
+          as _i8.Future<bool>);
 
   @override
-  _i8.Future<void> clearAll() => (super.noSuchMethod(
-        Invocation.method(
-          #clearAll,
-          [],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> clearAll() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearAll, []),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<void> enableGuestUser() => (super.noSuchMethod(
-        Invocation.method(
-          #enableGuestUser,
-          [],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> enableGuestUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#enableGuestUser, []),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<void> disableGuestUser() => (super.noSuchMethod(
-        Invocation.method(
-          #disableGuestUser,
-          [],
-        ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> disableGuestUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#disableGuestUser, []),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<bool> isGuestUser() => (super.noSuchMethod(
-        Invocation.method(
-          #isGuestUser,
-          [],
-        ),
-        returnValue: _i8.Future<bool>.value(false),
-      ) as _i8.Future<bool>);
+  _i8.Future<bool> isGuestUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#isGuestUser, []),
+            returnValue: _i8.Future<bool>.value(false),
+          )
+          as _i8.Future<bool>);
 }

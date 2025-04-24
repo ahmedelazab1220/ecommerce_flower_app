@@ -1,21 +1,21 @@
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/verify_reset_code/verify_reset_code_request_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/verify_reset_code_usecase.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/verify_reset_code_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'verify_reset_code_usecase_test.mocks.dart';
+import 'verify_reset_code_use_case_test.mocks.dart';
 
 @GenerateMocks([AuthRepo])
 void main() {
-  late VerifyResetCodeUsecase verifyResetCodeUsecase;
+  late VerifyResetCodeUseCase verifyResetCodeUseCase;
   late MockAuthRepo mockAuthRepo;
 
   setUp(() {
     mockAuthRepo = MockAuthRepo();
-    verifyResetCodeUsecase = VerifyResetCodeUsecase(mockAuthRepo);
+    verifyResetCodeUseCase = VerifyResetCodeUseCase(mockAuthRepo);
   });
 
   group('VerifyResetCodeUsecase', () {
@@ -29,7 +29,7 @@ void main() {
       ).thenAnswer((_) async => SuccessResult<void>(null));
 
       // Act
-      final result = await verifyResetCodeUsecase(requestDto);
+      final result = await verifyResetCodeUseCase(requestDto);
 
       // Assert
       verify(mockAuthRepo.verifyResetCode(requestDto)).called(1);
@@ -46,7 +46,7 @@ void main() {
       ).thenAnswer((_) async => FailureResult<void>(exception));
 
       // Act
-      final result = await verifyResetCodeUsecase(requestDto);
+      final result = await verifyResetCodeUseCase(requestDto);
 
       // Assert
       verify(mockAuthRepo.verifyResetCode(requestDto)).called(1);

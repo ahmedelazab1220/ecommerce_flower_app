@@ -2,7 +2,7 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/forget_password/forget_password_request_dto.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/forget_password_usecase.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/forget_password_use_case.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password/forget_password_cubit.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password/forget_password_state.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,18 +11,18 @@ import 'package:mockito/mockito.dart';
 
 import 'forget_password_cubit_test.mocks.dart';
 
-@GenerateMocks([ForgetPasswordUsecase, Validator])
+@GenerateMocks([ForgetPasswordUseCase, Validator])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late ForgetPasswordCubit forgetPasswordCubit;
-  late MockForgetPasswordUsecase mockForgetPasswordUsecase;
+  late MockForgetPasswordUseCase mockForgetPasswordUseCase;
   late MockValidator mockValidator;
 
   setUp(() {
-    mockForgetPasswordUsecase = MockForgetPasswordUsecase();
+    mockForgetPasswordUseCase = MockForgetPasswordUseCase();
     mockValidator = MockValidator();
     forgetPasswordCubit = ForgetPasswordCubit(
-      mockForgetPasswordUsecase,
+      mockForgetPasswordUseCase,
       mockValidator,
     );
   });
@@ -47,7 +47,7 @@ void main() {
         final requestDto = ForgetPasswordRequestDto(email: email);
         when(mockValidator.validateEmail(email)).thenReturn(null);
         when(
-          mockForgetPasswordUsecase.call(
+          mockForgetPasswordUseCase.call(
             argThat(
               isA<ForgetPasswordRequestDto>().having(
                 (dto) => dto.email,
@@ -86,7 +86,7 @@ void main() {
         final requestDto = ForgetPasswordRequestDto(email: email);
         when(mockValidator.validateEmail(email)).thenReturn("Invalid email");
         when(
-          mockForgetPasswordUsecase.call(
+          mockForgetPasswordUseCase.call(
             argThat(
               isA<ForgetPasswordRequestDto>().having(
                 (dto) => dto.email,
@@ -113,9 +113,14 @@ void main() {
 
     // when cubit is closed
     test('close should dispose emailController', () async {
+      // Arrange
+      const email = "test@example.com";
+      // Act
       await forgetPasswordCubit.close();
+
+      // Assert
       expect(
-        () => forgetPasswordCubit.emailController.text,
+        () => forgetPasswordCubit.emailController.text = email,
         throwsA(isA<AssertionError>()),
       );
     });

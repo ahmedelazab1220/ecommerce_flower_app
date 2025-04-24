@@ -11,7 +11,7 @@ import 'package:ecommerce_flower_app/core/utils/validator/validator.dart'
     as _i7;
 import 'package:ecommerce_flower_app/features/auth/data/model/forget_password/forget_password_request_dto.dart'
     as _i5;
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/forget_password_usecase.dart'
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/forget_password_use_case.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
@@ -30,12 +30,12 @@ import 'package:mockito/src/dummies.dart' as _i6;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [ForgetPasswordUsecase].
+/// A class which mocks [ForgetPasswordUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockForgetPasswordUsecase extends _i1.Mock
-    implements _i2.ForgetPasswordUsecase {
-  MockForgetPasswordUsecase() {
+class MockForgetPasswordUseCase extends _i1.Mock
+    implements _i2.ForgetPasswordUseCase {
+  MockForgetPasswordUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
