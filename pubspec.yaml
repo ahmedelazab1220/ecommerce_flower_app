@@ -60,6 +60,8 @@ dependencies:
   retrofit: ^4.4.2
   shared_preferences: ^2.5.2
   skeletonizer: ^1.4.3
+  flutter_map: ^8.1.1
+  latlong2: ^0.9.0
   webview_flutter: ^4.11.0
 
 dev_dependencies:
@@ -94,6 +96,7 @@ flutter:
     - assets/translations/
     - assets/lotties/
     - assets/terms_and_about/
+    - assets/addresses/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
