@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -22,7 +23,7 @@ class CartEmptyView extends StatelessWidget {
             const SizedBox(height: 32),
             Text(
               LocaleKeys.YourCartIsEmpty.tr(),
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              style: AppTheme.appTheme.textTheme.headlineSmall?.copyWith(
                 fontSize: 20,
                 color: AppColors.pink,
                 fontWeight: FontWeight.w600,
@@ -32,7 +33,7 @@ class CartEmptyView extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               LocaleKeys.ExploreItemsAndAddThemToYourCart.tr(),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
                 color: AppColors.pink,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,

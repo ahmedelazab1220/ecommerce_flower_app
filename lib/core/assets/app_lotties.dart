@@ -4,4 +4,5 @@ class AppLotties {
   static const String check = '${baseRoute}check.json';
   static const String error = '${baseRoute}error.json';
   static const String cartEmpty = '${baseRoute}cart_empty.json';
+  static const String errorScreen = '${baseRoute}error_screen.json';
 }

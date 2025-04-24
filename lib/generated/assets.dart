@@ -20,6 +20,7 @@ class Assets {
   static const String lottiesCartEmpty = 'assets/lotties/cart_empty.json';
   static const String lottiesCheck = 'assets/lotties/check.json';
   static const String lottiesError = 'assets/lotties/error.json';
+  static const String lottiesErrorScreen = 'assets/lotties/error_screen.json';
   static const String lottiesLoading = 'assets/lotties/loading.json';
   static const String svgsAdd = 'assets/svgs/add.svg';
   static const String svgsAlarmClock = 'assets/svgs/alarm_clock.svg';
