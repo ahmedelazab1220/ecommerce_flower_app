@@ -1,15 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/features/categories/domain/entities/category_entity.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/custom_tab_bar.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/products_grid.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view/widgets/search_filter_bar.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_cubit.dart';
-import 'package:ecommerce_flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
+
+import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../domain/entities/category_entity.dart';
+import '../../view_model/categories_cubit.dart';
+import '../../view_model/categories_state.dart';
+import 'custom_tab_bar.dart';
+import 'products_grid.dart';
+import 'search_filter_bar.dart';
 
 class CategoriesBody extends StatelessWidget {
   const CategoriesBody({super.key});
@@ -31,9 +32,7 @@ class CategoriesBody extends StatelessWidget {
                     ? categoriesState.data
                     : List.generate(
                       6,
-                      (i) => CategoryEntity(
-                        name: LocaleKeys.Flowers.tr(),
-                      ), //assign name to to increase the length of text in skeletonizer
+                      (i) => CategoryEntity(name: LocaleKeys.Flowers.tr()),
                     );
 
             return Column(

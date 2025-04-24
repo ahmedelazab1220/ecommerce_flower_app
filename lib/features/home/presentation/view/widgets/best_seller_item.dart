@@ -29,7 +29,7 @@ class BestSellerItem extends StatelessWidget {
           viewModel.doIntent(
             NavigateAction(
               routeName: AppRoutes.productDetailsRoute,
-              arguments: bestSellerEntity?.toProductEntity(),
+              arguments: {'productEntity': bestSellerEntity?.toProductEntity()},
             ),
           );
         },
