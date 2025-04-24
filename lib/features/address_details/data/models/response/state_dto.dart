@@ -1,21 +1,22 @@
 import 'package:ecommerce_flower_app/features/address_details/domain/entities/state_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'state.g.dart';
+part 'state_dto.g.dart';
 
 @JsonSerializable()
-class State {
+class StateDto {
   final String? id;
   @JsonKey(name: 'governorate_name_ar')
   final String? governorateNameAr;
   @JsonKey(name: 'governorate_name_en')
   final String? governorateNameEn;
 
-  const State({this.id, this.governorateNameAr, this.governorateNameEn});
+  const StateDto({this.id, this.governorateNameAr, this.governorateNameEn});
 
-  factory State.fromJson(Map<String, dynamic> json) => _$StateFromJson(json);
+  factory StateDto.fromJson(Map<String, dynamic> json) =>
+      _$StateDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$StateToJson(this);
+  Map<String, dynamic> toJson() => _$StateDtoToJson(this);
 
   StateEntity toEntity() {
     return StateEntity(id, governorateNameAr, governorateNameEn);

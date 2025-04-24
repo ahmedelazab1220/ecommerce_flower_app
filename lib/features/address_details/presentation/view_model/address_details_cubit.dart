@@ -9,7 +9,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
-import '../../data/models/response/address.dart';
 import '../../domain/entities/address_details_request_entity.dart';
 import '../../domain/use_cases/add_adderss_use_case.dart';
 import '../../domain/use_cases/get_states_use_case.dart';
@@ -215,7 +214,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
   }
 
   bool _compareFormValues() {
-    final current = Address(
+    final current = AddressEntity(
       id: addressId ?? '',
       street: addressController.text,
       phone: phoneNumberController.text,

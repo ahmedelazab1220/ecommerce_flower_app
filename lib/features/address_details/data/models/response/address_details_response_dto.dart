@@ -1,13 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'address.dart';
+import 'address_dto.dart';
 
 part 'address_details_response_dto.g.dart';
 
 @JsonSerializable()
 class AddressDetailsResponseDto {
   final String? message;
-  final List<Address>? addresses;
+  final List<AddressDto>? addresses;
 
   const AddressDetailsResponseDto({this.message, this.addresses});
 
