@@ -189,6 +189,22 @@ import '../../../features/profile/domain/usecase/guest_mode_use_case.dart'
 import '../../../features/profile/domain/usecase/logout_use_case.dart' as _i238;
 import '../../../features/profile/presentation/view_model/profile_cubit.dart'
     as _i782;
+import '../../../features/saved_addresses/data/api/saved_addresses_retrofit_client.dart'
+    as _i746;
+import '../../../features/saved_addresses/data/data_source/contract/saved_addresses_remote_data_source.dart'
+    as _i237;
+import '../../../features/saved_addresses/data/data_source/remote/saved_addresses_remote_data_source_impl.dart'
+    as _i637;
+import '../../../features/saved_addresses/data/repo_impl/saved_addresses_repo_impl.dart'
+    as _i950;
+import '../../../features/saved_addresses/domain/repo/saved_addresses_repo.dart'
+    as _i638;
+import '../../../features/saved_addresses/domain/use_case/delete_user_address_use_case.dart'
+    as _i610;
+import '../../../features/saved_addresses/domain/use_case/get_user_saved_addresses_use_case.dart'
+    as _i834;
+import '../../../features/saved_addresses/presentation/view_model/cubit/saved_address_cubit.dart'
+    as _i700;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -310,6 +326,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i865.EditProfileRetrofitClient>(
       () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i746.SavedAddressesRetrofitClient>(
+      () => _i746.SavedAddressesRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i691.CategoriesRemoteDataSource>(
       () => _i939.CategoriesRemoteDataSourceImpl(
         gh<_i619.CategoriesRetrofitClient>(),
@@ -402,6 +421,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i370.GetCartInfoUseCase>(
       () => _i370.GetCartInfoUseCase(gh<_i10.CheckoutRepo>()),
     );
+    gh.factory<_i237.SavedAddressesRemoteDataSource>(
+      () => _i637.SavedAddressesRemoteDataSourceImpl(
+        gh<_i746.SavedAddressesRetrofitClient>(),
+      ),
+    );
     gh.lazySingleton<_i472.ChangePasswordRepo>(
       () => _i723.ChangePasswordRepoImpl(
         gh<_i120.ChangePasswordRemoteDataSource>(),
@@ -466,6 +490,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i365.UploadProfileImageUseCase>(
       () => _i365.UploadProfileImageUseCase(gh<_i1005.EditProfileRepo>()),
+    );
+    gh.factory<_i638.SavedAddressesRepo>(
+      () => _i950.SavedAddressesRepoImpl(
+        gh<_i237.SavedAddressesRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
     );
     gh.factory<_i280.ChangePasswordUseCase>(
       () => _i280.ChangePasswordUseCase(gh<_i472.ChangePasswordRepo>()),
@@ -549,6 +579,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i468.Validator>(),
       ),
     );
+    gh.factory<_i610.DeleteUserAddressUseCase>(
+      () => _i610.DeleteUserAddressUseCase(gh<_i638.SavedAddressesRepo>()),
+    );
+    gh.factory<_i834.GetUserSavedAddressesUseCase>(
+      () => _i834.GetUserSavedAddressesUseCase(gh<_i638.SavedAddressesRepo>()),
+    );
     gh.factory<_i1008.CategoriesCubit>(
       () => _i1008.CategoriesCubit(
         gh<_i1027.GetCategoriesUseCase>(),
@@ -580,6 +616,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i637.UpdateProductInCartUsecase>(),
         gh<_i715.DeleteProductFromCartUsecase>(),
         gh<_i182.IsGuestUseCase>(),
+      ),
+    );
+    gh.factory<_i700.SavedAddressCubit>(
+      () => _i700.SavedAddressCubit(
+        gh<_i834.GetUserSavedAddressesUseCase>(),
+        gh<_i610.DeleteUserAddressUseCase>(),
       ),
     );
     return this;

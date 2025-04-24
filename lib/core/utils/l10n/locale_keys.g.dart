@@ -207,6 +207,11 @@ abstract class LocaleKeys {
       'PleaseLoginToAccessAllFeatures';
   static const ProductAddedToCartSuccessfully =
       'ProductAddedToCartSuccessfully';
+  static const ArriveBy = 'ArriveBy';
+  static const AM = 'AM';
+  static const PM = 'PM';
+  static const Name = 'Name';
+  static const PaymentFailedPleaseTryAgain = 'PaymentFailedPleaseTryAgain';
   static const ClearFilters = 'ClearFilters';
   static const ExploreCategories = 'ExploreCategories';
   static const OopsNoProductsFound = 'OopsNoProductsFound';
@@ -224,9 +229,14 @@ abstract class LocaleKeys {
   static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
   static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
   static const NoAboutUsAvailable = 'NoAboutUsAvailable';
-  static const ArriveBy = 'ArriveBy';
-  static const AM = 'AM';
-  static const PM = 'PM';
-  static const Name = 'Name';
-  static const PaymentFailedPleaseTryAgain = 'PaymentFailedPleaseTryAgain';
+  static const SheikhZayed = 'SheikhZayed';
+  static const NoSavedAddressesFound = 'NoSavedAddressesFound';
+  static const AddedToCartSuccessfully = 'AddedToCartSuccessfully';
+  static const DoneTheItemIsNowInYourShoppingCart =
+      'DoneTheItemIsNowInYourShoppingCart';
+  static const AddedToCartFailed = 'AddedToCartFailed';
+  static const TryAgain = 'TryAgain';
+  static const YourCartIsEmpty = 'YourCartIsEmpty';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
 }

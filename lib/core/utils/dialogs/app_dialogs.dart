@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../assets/app_colors.dart';
+import '../../assets/app_lotties.dart';
 import '../l10n/locale_keys.g.dart';
 
 class AppDialogs {
@@ -28,31 +31,93 @@ class AppDialogs {
   }
 
   // Show a success dialog
-  static void showSuccessDialog(
+  static Future<void> showSuccessDialog(
     BuildContext context, {
     required String message,
-    String? buttonText,
-    String? nextActionTitle,
-    VoidCallback? nextAction,
-  }) {
+    String? description,
+    String? firstButtonText,
+    String? secondButtonText,
+    VoidCallback? firstButtonAction,
+    VoidCallback? secondButtonAction,
+  }) async {
+    var size = MediaQuery.of(context).size;
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [const SizedBox(height: 16), Text(message)],
-          ),
-          actions: [
-            if (nextActionTitle != null)
-              TextButton(onPressed: nextAction, child: Text(nextActionTitle)),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(buttonText ?? LocaleKeys.Ok.tr()),
+      builder:
+          (context) => AlertDialog(
+            backgroundColor: AppColors.lightPink,
+            icon: Lottie.asset(
+              AppLotties.check,
+              height: size.aspectRatio * 350,
+              fit: BoxFit.scaleDown,
             ),
-          ],
-        );
-      },
+            titleTextStyle: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+            titlePadding: const EdgeInsets.symmetric(horizontal: 5.0),
+            content:
+                description != null
+                    ? Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    )
+                    : null,
+            contentPadding: const EdgeInsets.only(
+              left: 55,
+              right: 55,
+              top: 20,
+              bottom: 35,
+            ),
+            contentTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: AppColors.black[AppColors.colorCode40],
+              fontWeight: FontWeight.w500,
+            ),
+            actions: [
+              Row(
+                spacing: 8.0,
+                children: [
+                  if (secondButtonText != null)
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightPink,
+                          side: const BorderSide(color: AppColors.pink),
+                        ),
+                        onPressed:
+                            secondButtonAction ??
+                            () {
+                              Navigator.pop(context);
+                            },
+                        child: Text(
+                          secondButtonText,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(color: AppColors.pink),
+                        ),
+                      ),
+                    ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.pink,
+                      ),
+                      onPressed:
+                          firstButtonAction ??
+                          () {
+                            Navigator.pop(context);
+                          },
+                      child: Text(
+                        LocaleKeys.Ok.tr(),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(color: AppColors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+            title: Text(message),
+          ),
     );
   }
 
@@ -63,27 +128,90 @@ class AppDialogs {
   static Future<void> showFailureDialog(
     BuildContext context, {
     required String message,
-    String? buttonText,
-    VoidCallback? nextAction,
-    String? nextActionTitle,
-    String? title,
+    String? description,
+    String? firstButtonText,
+    String? secondButtonText,
+    VoidCallback? firstButtonAction,
+    VoidCallback? secondButtonAction,
   }) async {
+    var size = MediaQuery.of(context).size;
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(title ?? LocaleKeys.Error.tr()),
-          content: Text(message),
-          actions: [
-            if (nextAction != null && nextActionTitle != null)
-              TextButton(onPressed: nextAction, child: Text(nextActionTitle)),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(buttonText ?? LocaleKeys.Ok.tr()),
+      builder:
+          (context) => AlertDialog(
+            backgroundColor: AppColors.lightPink,
+            icon: Lottie.asset(
+              AppLotties.error,
+              height: size.aspectRatio * 350,
+              fit: BoxFit.scaleDown,
             ),
-          ],
-        );
-      },
+            titleTextStyle: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+            titlePadding: const EdgeInsets.symmetric(horizontal: 5.0),
+            content:
+                description != null
+                    ? Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    )
+                    : null,
+            contentPadding: const EdgeInsets.only(
+              left: 55,
+              right: 55,
+              top: 20,
+              bottom: 35,
+            ),
+            contentTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: AppColors.black[AppColors.colorCode40],
+              fontWeight: FontWeight.w500,
+            ),
+            actions: [
+              Row(
+                spacing: 8.0,
+                children: [
+                  if (secondButtonText != null)
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightPink,
+                          side: const BorderSide(color: AppColors.pink),
+                        ),
+                        onPressed:
+                            secondButtonAction ??
+                            () {
+                              Navigator.pop(context);
+                            },
+                        child: Text(
+                          secondButtonText,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(color: AppColors.pink),
+                        ),
+                      ),
+                    ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.pink,
+                      ),
+                      onPressed:
+                          firstButtonAction ??
+                          () {
+                            Navigator.pop(context);
+                          },
+                      child: Text(
+                        LocaleKeys.Ok.tr(),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(color: AppColors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+            title: Text(message),
+          ),
     );
   }
 }
