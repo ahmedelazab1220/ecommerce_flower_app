@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/assets/app_colors.dart';
-import '../../../../../core/theme/app_theme.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
 
@@ -15,7 +14,6 @@ class PaymentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<CheckoutCubit>();
-
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       buildWhen: (prev, curr) => prev.paymentState != curr.paymentState,
       builder: (context, state) {
@@ -27,7 +25,7 @@ class PaymentItem extends StatelessWidget {
               color: AppColors.white,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.gray.withValues(alpha: 0.2),
+                  color: AppColors.gray.withAlpha(75),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -39,7 +37,7 @@ class PaymentItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppTheme.appTheme.textTheme.bodyLarge?.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),

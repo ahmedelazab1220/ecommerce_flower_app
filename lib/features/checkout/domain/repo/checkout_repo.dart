@@ -6,7 +6,7 @@ import '../../data/model/response/credit_order/add_credit_order_response_dto.dar
 import '../entity/addresses_entity.dart';
 import '../entity/cart_entity.dart';
 
-abstract interface class CheckoutRepo {
+abstract class CheckoutRepo {
   Future<Result<List<AddressesEntity>>> getAddresses();
   Future<Result<AddCacheOrderResponseDto>> addCacheOrder(
     AddOrderRequestDto request,
