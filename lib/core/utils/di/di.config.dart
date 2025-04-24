@@ -308,6 +308,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i967.CheckoutRetrofitClient>(
+      () => _i967.CheckoutRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i945.HomeRetrofitClient>(
       () => _i945.HomeRetrofitClient(gh<_i361.Dio>()),
     );
@@ -406,11 +409,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i528.AddToCartLocalDataSource>(),
       ),
     );
-    gh.factory<_i237.SavedAddressesRemoteDataSource>(
-      () => _i637.SavedAddressesRemoteDataSourceImpl(
-        gh<_i746.SavedAddressesRetrofitClient>(),
-      ),
-    );
     gh.factory<_i1055.AddCacheOrderUseCase>(
       () => _i1055.AddCacheOrderUseCase(gh<_i10.CheckoutRepo>()),
     );
@@ -422,6 +420,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i370.GetCartInfoUseCase>(
       () => _i370.GetCartInfoUseCase(gh<_i10.CheckoutRepo>()),
+    );
+    gh.factory<_i237.SavedAddressesRemoteDataSource>(
+      () => _i637.SavedAddressesRemoteDataSourceImpl(
+        gh<_i746.SavedAddressesRetrofitClient>(),
+      ),
     );
     gh.lazySingleton<_i472.ChangePasswordRepo>(
       () => _i723.ChangePasswordRepoImpl(
@@ -576,11 +579,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i468.Validator>(),
       ),
     );
-    gh.factory<_i834.GetUserSavedAddressesUseCase>(
-      () => _i834.GetUserSavedAddressesUseCase(gh<_i638.SavedAddressesRepo>()),
-    );
     gh.factory<_i610.DeleteUserAddressUseCase>(
       () => _i610.DeleteUserAddressUseCase(gh<_i638.SavedAddressesRepo>()),
+    );
+    gh.factory<_i834.GetUserSavedAddressesUseCase>(
+      () => _i834.GetUserSavedAddressesUseCase(gh<_i638.SavedAddressesRepo>()),
     );
     gh.factory<_i1008.CategoriesCubit>(
       () => _i1008.CategoriesCubit(

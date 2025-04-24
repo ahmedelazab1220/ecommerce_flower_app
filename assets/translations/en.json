@@ -218,5 +218,7 @@
     "AddedToCartSuccessfully": "Added to cart successfully",
     "DoneTheItemIsNowInYourShoppingCart": "Done! The item is now in your shopping cart.",
     "AddedToCartFailed": "Added to cart failed",
-    "TryAgain": "Try again"
+    "TryAgain": "Try again",
+    "YourCartIsEmpty": "Your cart is empty",
+    "ExploreItemsAndAddThemToYourCart": "Explore items and add them to your cart"
 }

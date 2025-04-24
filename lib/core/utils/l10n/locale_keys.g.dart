@@ -236,4 +236,7 @@ abstract class LocaleKeys {
       'DoneTheItemIsNowInYourShoppingCart';
   static const AddedToCartFailed = 'AddedToCartFailed';
   static const TryAgain = 'TryAgain';
+  static const YourCartIsEmpty = 'YourCartIsEmpty';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
 }
