@@ -4,10 +4,10 @@ import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ForgetPasswordUsecase {
+class ForgetPasswordUseCase {
   final AuthRepo _authRepo;
 
-  ForgetPasswordUsecase(this._authRepo);
+  ForgetPasswordUseCase(this._authRepo);
 
   Future<Result<void>> call(
     ForgetPasswordRequestDto forgetPasswordRequest,
