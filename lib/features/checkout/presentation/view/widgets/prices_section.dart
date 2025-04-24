@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/checkout_cubit.dart';
 
@@ -44,7 +43,7 @@ class PricesSection extends StatelessWidget {
           children: [
             Text(
               LocaleKeys.Total.tr(),
-              style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
@@ -52,7 +51,7 @@ class PricesSection extends StatelessWidget {
             const Spacer(),
             Text(
               "\$${cartData?.totalPriceAfterDiscount ?? 0}",
-              style: AppTheme.appTheme.textTheme.bodyMedium?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
