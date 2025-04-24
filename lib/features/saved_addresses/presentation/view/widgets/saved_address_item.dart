@@ -91,7 +91,7 @@ class _SavedAddressItemState extends State<SavedAddressItem>
                         },
                         child: SvgPicture.asset(AppIcons.trashSvg),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 16),
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(

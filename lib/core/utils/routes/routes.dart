@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
@@ -75,6 +76,11 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
-    addressDetailsRoute: (context) => const AddressDetailsScreen(),
+    addressDetailsRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final addressEntity = args?['addressEntity'] as AddressEntity?;
+      return AddressDetailsScreen(address: addressEntity);
+    },
   };
 }

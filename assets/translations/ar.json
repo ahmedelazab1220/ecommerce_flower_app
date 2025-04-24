@@ -222,5 +222,7 @@
     "ExploreItemsAndAddThemToYourCart": "استكشف العناصر وأضفها إلى سلة التسوق الخاصة بك",
     "AddressCannotBeEmpty": "لا يمكن أن يكون العنوان فارغًا",
     "SelectArea": "يرجى اختيار المنطقة",
-    "SelectCity": "يرجى اختيار المدينة"
+    "SelectCity": "يرجى اختيار المدينة",
+    "AddressAddedSuccessfully": "تمت إضافة العنوان بنجاح",
+    "AddressUpdatedSuccessfully": "تم تحديث العنوان بنجاح"
 }

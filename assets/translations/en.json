@@ -223,5 +223,7 @@
     "PleaseLoginToAccessAllFeatures": "Please login to access all features",
     "AddressCannotBeEmpty": "Address cannot be empty",
     "SelectArea": "Please select an area",
-    "SelectCity": "Please select a city"
+    "SelectCity": "Please select a city",
+    "AddressAddedSuccessfully": "Address added successfully",
+    "AddressUpdatedSuccessfully": "Address updated successfully"
 }

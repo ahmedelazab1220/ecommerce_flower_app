@@ -241,4 +241,6 @@ abstract class LocaleKeys {
   static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
   static const SelectArea = 'SelectArea';
   static const SelectCity = 'SelectCity';
+  static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
+  static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
 }

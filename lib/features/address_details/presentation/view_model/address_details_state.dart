@@ -1,10 +1,9 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/features/address_details/domain/entities/city_entity.dart';
 import 'package:ecommerce_flower_app/features/address_details/domain/entities/state_entity.dart';
+import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
-
-import '../../data/models/response/address.dart';
 
 class AddressDetailsState extends Equatable {
   final BaseState? addressDetailsState;
@@ -77,7 +76,7 @@ sealed class AddressDetailsAction {}
 final class LoadCitiesAndAreasAction extends AddressDetailsAction {}
 
 final class SetInitialAddressAction extends AddressDetailsAction {
-  final Address address;
+  final AddressEntity address;
   SetInitialAddressAction(this.address);
 }
 

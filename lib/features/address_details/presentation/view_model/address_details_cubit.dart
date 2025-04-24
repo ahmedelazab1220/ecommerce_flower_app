@@ -2,6 +2,7 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/address_details/domain/use_cases/get_cities_use_case.dart';
+import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -39,7 +40,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
       TextEditingController();
   bool isUpdate = false;
   String? addressId;
-  Address? originalAddress;
+  AddressEntity? originalAddress;
 
   void doIntent(AddressDetailsAction action) {
     switch (action) {
@@ -47,7 +48,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
         _loadCities();
         _loadAreas();
 
-      case SetInitialAddressAction(address: Address address):
+      case SetInitialAddressAction(address: AddressEntity address):
         _setInitialAddress(address);
 
       case SelectAreaAction():
@@ -119,7 +120,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
     }
   }
 
-  void _setInitialAddress(Address address) {
+  void _setInitialAddress(AddressEntity address) {
     originalAddress = address;
 
     addressId = address.id;
@@ -149,13 +150,19 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
         selectedCityId: null,
       ),
     );
+
+    final areaName =
+        state.areas.firstWhere((a) => a.id == areaId).governorateNameAr;
+
+    if (areaName != null && areaName.isNotEmpty) {
+      _moveMapToLocationByName(areaName);
+    }
   }
 
   void _updateSelectedCityId(String cityId) {
     final selectedCity = state.filteredCities.firstWhere(
       (city) => city.id == cityId,
     );
-
     emit(
       state.copyWith(
         selectedCityId: cityId,
@@ -163,6 +170,20 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
         selectedAreaId: selectedCity.governorateId,
       ),
     );
+    _moveMapToLocationByName(selectedCity.cityNameAr ?? '');
+  }
+
+  Future<void> _moveMapToLocationByName(String locationName) async {
+    final locations = await locationFromAddress(locationName);
+    if (locations.isNotEmpty) {
+      final target = locations.first;
+      final latLng = LatLng(target.latitude, target.longitude);
+
+      mapController.move(latLng, 13);
+
+      await _getAddressFromLatLng(latLng.latitude, latLng.longitude);
+      emit(state.copyWith(selectedLocation: latLng));
+    }
   }
 
   void _onCameraMoved(LatLng position, bool hasGesture) {

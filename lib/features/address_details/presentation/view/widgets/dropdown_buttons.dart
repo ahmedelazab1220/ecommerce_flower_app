@@ -50,6 +50,7 @@ class DropdownButtons extends StatelessWidget {
                 onChanged: (value) {
                   if (value != null) {
                     viewModel.doIntent(SelectCityAction(value));
+                    viewModel.doIntent(FormChangedAction());
                   }
                 },
               ),
@@ -89,6 +90,7 @@ class DropdownButtons extends StatelessWidget {
                 onChanged: (value) {
                   if (value != null) {
                     viewModel.doIntent(SelectAreaAction(value));
+                    viewModel.doIntent(FormChangedAction());
                   }
                 },
               ),
