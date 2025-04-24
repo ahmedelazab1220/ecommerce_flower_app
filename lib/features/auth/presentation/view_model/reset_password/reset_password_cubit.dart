@@ -1,5 +1,5 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/reset_password_usecase.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/reset_password_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -10,10 +10,10 @@ import 'reset_password_state.dart';
 
 @injectable
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
-  final ResetPasswordUsecase _resetPasswordUsecase;
+  final ResetPasswordUseCase _resetPasswordUseCase;
   final Validator validator;
 
-  ResetPasswordCubit(this._resetPasswordUsecase, this.validator)
+  ResetPasswordCubit(this._resetPasswordUseCase, this.validator)
     : super(ResetPasswordState(baseState: BaseInitialState()));
 
   final TextEditingController passwordController = TextEditingController();
@@ -31,7 +31,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   Future<void> _resetPassword(String email) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _resetPasswordUsecase(
+    final result = await _resetPasswordUseCase(
       ResetPasswordRequestDto(
         email: email,
         newPassword: passwordController.text,

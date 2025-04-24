@@ -4,10 +4,10 @@ import 'package:ecommerce_flower_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ResetPasswordUsecase {
+class ResetPasswordUseCase {
   final AuthRepo _authRepo;
 
-  ResetPasswordUsecase(this._authRepo);
+  ResetPasswordUseCase(this._authRepo);
 
   Future<Result<void>> call(
     ResetPasswordRequestDto resetPasswordRequest,

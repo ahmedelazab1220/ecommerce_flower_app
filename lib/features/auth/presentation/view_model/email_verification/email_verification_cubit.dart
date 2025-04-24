@@ -3,8 +3,8 @@ import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/verify_reset_code/verify_reset_code_request_dto.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/forget_password_usecase.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/verify_reset_code_usecase.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/forget_password_use_case.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/verify_reset_code_use_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -14,13 +14,13 @@ import 'email_verification_state.dart';
 
 @injectable
 class EmailVerificationCubit extends Cubit<EmailVerificationState> {
-  final VerifyResetCodeUsecase _verifyResetCodeUsecase;
-  final ForgetPasswordUsecase _forgetPasswordUsecase;
+  final VerifyResetCodeUseCase _verifyResetCodeUseCase;
+  final ForgetPasswordUseCase _forgetPasswordUseCase;
   final Validator validator;
 
   EmailVerificationCubit(
-    this._verifyResetCodeUsecase,
-    this._forgetPasswordUsecase,
+    this._verifyResetCodeUseCase,
+    this._forgetPasswordUseCase,
     this.validator,
   ) : super(EmailVerificationState(baseState: BaseInitialState()));
 
@@ -40,7 +40,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
 
   Future<void> _verifyResetCode() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _verifyResetCodeUsecase(
+    final result = await _verifyResetCodeUseCase(
       VerifyResetCodeRequestDto(resetCode: pinController.text),
     );
     switch (result) {
@@ -65,7 +65,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       ),
     );
     pinController.clear();
-    final result = await _forgetPasswordUsecase(
+    final result = await _forgetPasswordUseCase(
       ForgetPasswordRequestDto(email: email),
     );
     switch (result) {

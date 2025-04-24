@@ -1,7 +1,7 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/forget_password/forget_password_request_dto.dart';
-import 'package:ecommerce_flower_app/features/auth/domain/usecase/forget_password_usecase.dart';
+import 'package:ecommerce_flower_app/features/auth/domain/use_case/forget_password_use_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -11,10 +11,10 @@ import 'forget_password_state.dart';
 
 @injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
-  final ForgetPasswordUsecase _forgetPasswordUsecase;
+  final ForgetPasswordUseCase _forgetPasswordUseCase;
   final Validator validator;
 
-  ForgetPasswordCubit(this._forgetPasswordUsecase, this.validator)
+  ForgetPasswordCubit(this._forgetPasswordUseCase, this.validator)
     : super(ForgetPasswordState(baseState: BaseInitialState()));
 
   void doIntent(ForgetPasswordAction action) {
@@ -31,7 +31,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> _forgetPassword() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _forgetPasswordUsecase(
+    final result = await _forgetPasswordUseCase(
       ForgetPasswordRequestDto(email: emailController.text),
     );
     switch (result) {
