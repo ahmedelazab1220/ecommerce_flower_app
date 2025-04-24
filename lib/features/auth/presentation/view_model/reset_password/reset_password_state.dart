@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/base/base_state.dart';
+import '../../../../../core/base/base_state.dart';
 
 class ResetPasswordState extends Equatable {
   final BaseState? baseState;

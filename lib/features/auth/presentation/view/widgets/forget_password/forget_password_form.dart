@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password_state.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password/forget_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/forget_password_cubit.dart';
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../view_model/forget_password/forget_password_cubit.dart';
 
 class ForgetPasswordForm extends StatelessWidget {
   const ForgetPasswordForm({super.key});
@@ -36,7 +36,10 @@ class ForgetPasswordForm extends StatelessWidget {
             height: 48.h,
             child: ElevatedButton(
               onPressed: () {
-                forgetPasswordCubit.doIntent(ForgetPasswordRequestAction());
+                if (forgetPasswordCubit.formKey.currentState?.validate() ??
+                    false) {
+                  forgetPasswordCubit.doIntent(ForgetPasswordRequestAction());
+                }
               },
               child: Text(LocaleKeys.Confirm.tr()),
             ),

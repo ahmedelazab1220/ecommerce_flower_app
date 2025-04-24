@@ -7,11 +7,13 @@ part of 'update_product_quantity_request_dto.dart';
 // **************************************************************************
 
 UpdateProductQuantityRequestDto _$UpdateProductQuantityRequestDtoFromJson(
-  Map<String, dynamic> json,
-) => UpdateProductQuantityRequestDto(
-  quantity: (json['quantity'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    UpdateProductQuantityRequestDto(
+      quantity: (json['quantity'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$UpdateProductQuantityRequestDtoToJson(
-  UpdateProductQuantityRequestDto instance,
-) => <String, dynamic>{'quantity': instance.quantity};
+        UpdateProductQuantityRequestDto instance) =>
+    <String, dynamic>{
+      'quantity': instance.quantity,
+    };

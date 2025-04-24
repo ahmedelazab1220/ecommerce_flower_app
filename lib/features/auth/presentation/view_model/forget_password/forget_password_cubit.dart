@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/utils/validator/validator.dart';
+import '../../../../../core/utils/validator/validator.dart';
 import 'forget_password_state.dart';
 
 @injectable
@@ -15,7 +15,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final Validator validator;
 
   ForgetPasswordCubit(this._forgetPasswordUsecase, this.validator)
-      : super(ForgetPasswordState(baseState: BaseInitialState()));
+    : super(ForgetPasswordState(baseState: BaseInitialState()));
 
   void doIntent(ForgetPasswordAction action) {
     switch (action) {
@@ -30,23 +30,21 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> _forgetPassword() async {
-    if (formKey.currentState!.validate()) {
-      emit(state.copyWith(baseState: BaseLoadingState()));
-      final result = await _forgetPasswordUsecase(
-        ForgetPasswordRequestDto(email: emailController.text),
-      );
-      switch (result) {
-        case SuccessResult<void>():
-          emit(state.copyWith(baseState: BaseSuccessState()));
-        case FailureResult<void>():
-          emit(
-            state.copyWith(
-              baseState: BaseErrorState(
-                errorMessage: result.exception.toString(),
-              ),
+    emit(state.copyWith(baseState: BaseLoadingState()));
+    final result = await _forgetPasswordUsecase(
+      ForgetPasswordRequestDto(email: emailController.text),
+    );
+    switch (result) {
+      case SuccessResult<void>():
+        emit(state.copyWith(baseState: BaseSuccessState()));
+      case FailureResult<void>():
+        emit(
+          state.copyWith(
+            baseState: BaseErrorState(
+              errorMessage: result.exception.toString(),
             ),
-          );
-      }
+          ),
+        );
     }
   }
 

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/reset_password_cubit.dart';
-import '../../view_model/reset_password_state.dart';
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../view_model/reset_password/reset_password_cubit.dart';
+import '../../../view_model/reset_password/reset_password_state.dart';
 
 class ResetPasswordForm extends StatelessWidget {
   final String email;
@@ -55,9 +55,12 @@ class ResetPasswordForm extends StatelessWidget {
                 height: 48.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    resetPasswordCubit.doIntent(
-                      ResetPasswordRequestAction(email),
-                    );
+                    if (resetPasswordCubit.formKey.currentState?.validate() ??
+                        false) {
+                      resetPasswordCubit.doIntent(
+                        ResetPasswordRequestAction(email),
+                      );
+                    }
                   },
                   child: Text(LocaleKeys.Confirm.tr()),
                 ),

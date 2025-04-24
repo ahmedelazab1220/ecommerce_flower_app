@@ -1,5 +1,5 @@
-import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/email_verification.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/reset_password.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/email_verification/email_verification_screen.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
@@ -10,7 +10,7 @@ import '../../../features/change_password/presentation/view/screens/change_passw
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';
 import '../../../features/checkout/presentation/view/widgets/track_order_success_screen.dart';
 import '../../../features/edit_profile/presentation/view/edit_profile_screen.dart';
-import '../../../features/auth/presentation/view/screens/forget_password.dart';
+import '../../../features/auth/presentation/view/screens/forget_password/forget_password_screen.dart';
 
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
@@ -22,6 +22,7 @@ import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
+
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -42,7 +43,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
-  static const String emailVerification = '/email-verification';
+  static const String emailVerificationRoute = '/email-verification';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -79,8 +80,8 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
-    forgetPasswordRoute: (context) => ForgetPassword(),
-    resetPasswordRoute: (context) => ResetPassword(),
-    emailVerificationRoute: (context) => EmailVerification(),
+    forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
+    resetPasswordRoute: (context) => const ResetPasswordScreen(),
+    emailVerificationRoute: (context) => const EmailVerificationScreen(),
   };
 }

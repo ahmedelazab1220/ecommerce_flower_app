@@ -2,21 +2,28 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/header.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification_state.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification/email_verification_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/base/base_state.dart';
-import '../../../../../core/utils/di/di.dart';
-import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/email_verification_cubit.dart';
-import '../widgets/resend_code.dart';
-import '../widgets/verification_code_input.dart';
+import '../../../../../../core/base/base_state.dart';
+import '../../../../../../core/utils/di/di.dart';
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../view_model/email_verification/email_verification_cubit.dart';
+import '../../widgets/email_verification/resend_code.dart';
+import '../../widgets/email_verification/verification_code_input.dart';
 
-class EmailVerification extends StatelessWidget {
-  EmailVerification({super.key});
+class EmailVerificationScreen extends StatefulWidget {
+  const EmailVerificationScreen({super.key});
 
-  final emailVerificationCubit = getIt<EmailVerificationCubit>();
+  @override
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
+}
+
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final EmailVerificationCubit emailVerificationCubit =
+      getIt<EmailVerificationCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class EmailVerification extends StatelessWidget {
               AppDialogs.hideLoading(context);
               Navigator.of(
                 context,
-              ).pushNamed(AppRoutes.resetPassword, arguments: email);
+              ).pushNamed(AppRoutes.resetPasswordRoute, arguments: email);
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(

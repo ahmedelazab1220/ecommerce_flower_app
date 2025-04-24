@@ -1,4 +1,3 @@
-import 'package:ecommerce_flower_app/features/auth/data/api/auth_retorfit_client.dart';
 import 'package:ecommerce_flower_app/features/auth/data/data_source/contract/auth_remote_data_source.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/forget_password/forget_password_request_dto.dart';
 import 'package:ecommerce_flower_app/features/auth/data/model/forget_password/forget_password_response_dto.dart';
@@ -12,7 +11,6 @@ import '../../model/login/request/login_request_dto.dart';
 import '../../model/login/response/login_response_dto.dart';
 import '../../model/register/register_request_dto/register_request_dto.dart';
 import '../../model/register/register_response_dto/register_response_dto.dart';
-import '../contract/auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -34,22 +32,22 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<ForgetPasswordResponseDto> forgetPassword(
-      ForgetPasswordRequestDto forgetPasswordRequestDto,
-      ) async {
+    ForgetPasswordRequestDto forgetPasswordRequestDto,
+  ) async {
     return await _authRetrofitClient.forgetPassword(forgetPasswordRequestDto);
   }
 
   @override
   Future<ResetPasswordResponseDto> resetPassword(
-      ResetPasswordRequestDto resetPasswordRequestDto,
-      ) async {
+    ResetPasswordRequestDto resetPasswordRequestDto,
+  ) async {
     return await _authRetrofitClient.resetPassword(resetPasswordRequestDto);
   }
 
   @override
   Future<VerifyResetCodeResponseDto> verifyResetCode(
-      VerifyResetCodeRequestDto verifyResetCodeRequestDto,
-      ) async {
+    VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  ) async {
     return await _authRetrofitClient.verifyResetCode(verifyResetCodeRequestDto);
   }
 }

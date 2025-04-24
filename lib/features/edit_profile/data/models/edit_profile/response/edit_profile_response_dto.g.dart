@@ -7,18 +7,17 @@ part of 'edit_profile_response_dto.dart';
 // **************************************************************************
 
 EditProfileResponseDto _$EditProfileResponseDtoFromJson(
-  Map<String, dynamic> json,
-) => EditProfileResponseDto(
-  message: json['message'] as String?,
-  userDto:
-      json['userDto'] == null
+        Map<String, dynamic> json) =>
+    EditProfileResponseDto(
+      message: json['message'] as String?,
+      userDto: json['userDto'] == null
           ? null
           : UserDto.fromJson(json['userDto'] as Map<String, dynamic>),
-);
+    );
 
 Map<String, dynamic> _$EditProfileResponseDtoToJson(
-  EditProfileResponseDto instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'userDto': instance.userDto,
-};
+        EditProfileResponseDto instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'userDto': instance.userDto,
+    };

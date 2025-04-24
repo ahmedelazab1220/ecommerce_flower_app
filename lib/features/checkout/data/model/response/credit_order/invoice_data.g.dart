@@ -7,17 +7,16 @@ part of 'invoice_data.dart';
 // **************************************************************************
 
 InvoiceData _$InvoiceDataFromJson(Map<String, dynamic> json) => InvoiceData(
-  accountTaxIds: json['account_tax_ids'],
-  customFields: json['custom_fields'],
-  description: json['description'],
-  footer: json['footer'],
-  issuer: json['issuer'],
-  metadata:
-      json['metadata'] == null
+      accountTaxIds: json['account_tax_ids'],
+      customFields: json['custom_fields'],
+      description: json['description'],
+      footer: json['footer'],
+      issuer: json['issuer'],
+      metadata: json['metadata'] == null
           ? null
           : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
-  renderingOptions: json['rendering_options'],
-);
+      renderingOptions: json['rendering_options'],
+    );
 
 Map<String, dynamic> _$InvoiceDataToJson(InvoiceData instance) =>
     <String, dynamic>{

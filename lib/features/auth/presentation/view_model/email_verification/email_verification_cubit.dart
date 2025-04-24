@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/model/forget_password/forget_password_request_dto.dart';
+import '../../../data/model/forget_password/forget_password_request_dto.dart';
 import 'email_verification_state.dart';
 
 @injectable

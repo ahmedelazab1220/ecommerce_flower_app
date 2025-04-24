@@ -9,12 +9,9 @@ part of 'best_seller_products.dart';
 BestSellerProducts _$BestSellerProductsFromJson(Map<String, dynamic> json) =>
     BestSellerProducts(
       message: json['message'] as String?,
-      bestSeller:
-          (json['bestSeller'] as List<dynamic>?)
-              ?.map(
-                (e) => BestSellerProduct.fromJson(e as Map<String, dynamic>),
-              )
-              .toList(),
+      bestSeller: (json['bestSeller'] as List<dynamic>?)
+          ?.map((e) => BestSellerProduct.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$BestSellerProductsToJson(BestSellerProducts instance) =>
