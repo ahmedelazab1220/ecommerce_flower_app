@@ -1,6 +1,8 @@
+import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
+import '../../../features/address_details/presentation/view/screens/address_details_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
@@ -19,7 +21,6 @@ import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
-
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -77,6 +78,12 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
+    addressDetailsRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final addressEntity = args?['addressEntity'] as AddressEntity?;
+      return AddressDetailsScreen(address: addressEntity);
+    },
     searchRoute: (context) => const SearchScreen(),
   };
 }
