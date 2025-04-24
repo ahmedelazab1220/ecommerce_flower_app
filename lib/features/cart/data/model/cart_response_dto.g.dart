@@ -10,10 +10,9 @@ CartResponseDto _$CartResponseDtoFromJson(Map<String, dynamic> json) =>
     CartResponseDto(
       message: json['message'] as String?,
       numOfCartItems: (json['numOfCartItems'] as num?)?.toInt(),
-      cart:
-          json['cart'] == null
-              ? null
-              : Cart.fromJson(json['cart'] as Map<String, dynamic>),
+      cart: json['cart'] == null
+          ? null
+          : Cart.fromJson(json['cart'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CartResponseDtoToJson(CartResponseDto instance) =>

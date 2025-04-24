@@ -13,11 +13,13 @@ import '../../../features/occasions/presentation/view/screen/occasion_screen.dar
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
+import '../../../features/search/presentation/view/screens/search_screen.dart';
 import '../../../features/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
 import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
+
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -38,6 +40,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
+  static const String searchRoute = '/search';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -45,25 +48,37 @@ class AppRoutes {
     mainLayoutRoute: (context) => const MainLayout(),
     editProfileRoute: (context) {
       final args =
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      ModalRoute
+          .of(context)!
+          .settings
+          .arguments as Map<String, dynamic>;
       final userEntity = args['userEntity'];
       return EditProfileScreen(userEntity: userEntity);
     },
     categoriesRoute: (context) {
       final args =
-          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      ModalRoute
+          .of(context)
+          ?.settings
+          .arguments as Map<String, dynamic>;
       final categoryIndex = args['categoryIndex'] as int;
       return CategoriesScreen(categoryIndex: categoryIndex);
     },
     occasionRoute: (context) {
       final args =
-          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      ModalRoute
+          .of(context)
+          ?.settings
+          .arguments as Map<String, dynamic>?;
       final occasionIndex = args?['occasionIndex'] as int?;
       return OccasionScreen(occasionIndex: occasionIndex);
     },
     productDetailsRoute: (context) {
       final args =
-          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      ModalRoute
+          .of(context)
+          ?.settings
+          .arguments as Map<String, dynamic>?;
       final productEntity = args?['productEntity'] as ProductEntity;
       return ProductDetailsScreen(productEntity: productEntity);
     },
@@ -74,5 +89,6 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
+    searchRoute: (context) => const SearchScreen(),
   };
 }

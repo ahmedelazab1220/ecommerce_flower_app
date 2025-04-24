@@ -7,9 +7,13 @@ part of 'clear_cart_response_dto.dart';
 // **************************************************************************
 
 ClearCartResponseDto _$ClearCartResponseDtoFromJson(
-  Map<String, dynamic> json,
-) => ClearCartResponseDto(message: json['message'] as String?);
+        Map<String, dynamic> json) =>
+    ClearCartResponseDto(
+      message: json['message'] as String?,
+    );
 
 Map<String, dynamic> _$ClearCartResponseDtoToJson(
-  ClearCartResponseDto instance,
-) => <String, dynamic>{'message': instance.message};
+        ClearCartResponseDto instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+    };
