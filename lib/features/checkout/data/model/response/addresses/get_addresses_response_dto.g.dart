@@ -7,18 +7,17 @@ part of 'get_addresses_response_dto.dart';
 // **************************************************************************
 
 GetAddressesResponseDto _$GetAddressesResponseDtoFromJson(
-  Map<String, dynamic> json,
-) => GetAddressesResponseDto(
-  message: json['message'] as String?,
-  addresses:
-      (json['addresses'] as List<dynamic>?)
+        Map<String, dynamic> json) =>
+    GetAddressesResponseDto(
+      message: json['message'] as String?,
+      addresses: (json['addresses'] as List<dynamic>?)
           ?.map((e) => Addresses.fromJson(e as Map<String, dynamic>))
           .toList(),
-);
+    );
 
 Map<String, dynamic> _$GetAddressesResponseDtoToJson(
-  GetAddressesResponseDto instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'addresses': instance.addresses,
-};
+        GetAddressesResponseDto instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'addresses': instance.addresses,
+    };

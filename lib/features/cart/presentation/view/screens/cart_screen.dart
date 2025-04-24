@@ -10,7 +10,7 @@ import '../widgets/cart_app_bar.dart';
 import '../widgets/cart_content_view.dart';
 import '../widgets/cart_empty_view.dart';
 import '../widgets/cart_error_view.dart';
-import '../widgets/cart_view.dart';
+import '../widgets/cart_loading_view.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                       error: (state.baseState as BaseErrorState).errorMessage,
                     )
                     : isLoading
-                    ? const CartView()
+                    ? const CartLoadingView()
                     : (cart == null || cart.numOfCartItems == 0)
                     ? const CartEmptyView()
                     : CartContentView(cart: cart, cartCubit: cartCubit),
