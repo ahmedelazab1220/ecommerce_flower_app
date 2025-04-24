@@ -218,5 +218,7 @@
     "AddedToCartSuccessfully": "تمت الإضافة إلى السلة بنجاح",
     "DoneTheItemIsNowInYourShoppingCart": "تمت الإضافة، العنصر الآن في سلة التسوق الخاصة بك",
     "AddedToCartFailed": "فشلت الإضافة إلى السلة",
-    "TryAgain": "حاول مرة أخرى"
+    "TryAgain": "حاول مرة أخرى",
+    "YourCartIsEmpty": "عربة التسوق فارغة",
+    "ExploreItemsAndAddThemToYourCart": "استكشف العناصر وأضفها إلى سلة التسوق الخاصة بك"
 }
