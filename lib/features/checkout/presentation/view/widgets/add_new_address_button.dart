@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,7 +13,9 @@ class AddNewAddressButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, AppRoutes.savedAddressRoute);
+      },
       style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
         backgroundColor: WidgetStateProperty.all(AppColors.white),
         side: WidgetStateProperty.all(

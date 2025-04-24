@@ -116,8 +116,8 @@ abstract class LocaleKeys {
   static const Cairo = 'Cairo';
   static const AddNewAddress = 'AddNewAddress';
   static const EnterTheAddress = 'EnterTheAddress';
-  static const RecipientsName = 'RecipientsName';
-  static const EnterRecipientsName = 'EnterRecipientsName';
+  static const RecipientName = 'RecipientName';
+  static const EnterRecipientName = 'EnterRecipientName';
   static const City = 'City';
   static const Area = 'Area';
   static const SavedAddresses = 'SavedAddresses';
@@ -231,7 +231,6 @@ abstract class LocaleKeys {
   static const NoAboutUsAvailable = 'NoAboutUsAvailable';
   static const SheikhZayed = 'SheikhZayed';
   static const NoSavedAddressesFound = 'NoSavedAddressesFound';
-  static const AddedToCartSuccessfully = 'AddedToCartSuccessfully';
   static const DoneTheItemIsNowInYourShoppingCart =
       'DoneTheItemIsNowInYourShoppingCart';
   static const AddedToCartFailed = 'AddedToCartFailed';
@@ -239,4 +238,9 @@ abstract class LocaleKeys {
   static const YourCartIsEmpty = 'YourCartIsEmpty';
   static const ExploreItemsAndAddThemToYourCart =
       'ExploreItemsAndAddThemToYourCart';
+  static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
+  static const SelectArea = 'SelectArea';
+  static const SelectCity = 'SelectCity';
+  static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
+  static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
 }
