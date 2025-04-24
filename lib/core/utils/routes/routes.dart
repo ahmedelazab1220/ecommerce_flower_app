@@ -48,37 +48,25 @@ class AppRoutes {
     mainLayoutRoute: (context) => const MainLayout(),
     editProfileRoute: (context) {
       final args =
-      ModalRoute
-          .of(context)!
-          .settings
-          .arguments as Map<String, dynamic>;
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       final userEntity = args['userEntity'];
       return EditProfileScreen(userEntity: userEntity);
     },
     categoriesRoute: (context) {
       final args =
-      ModalRoute
-          .of(context)
-          ?.settings
-          .arguments as Map<String, dynamic>;
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
       final categoryIndex = args['categoryIndex'] as int;
       return CategoriesScreen(categoryIndex: categoryIndex);
     },
     occasionRoute: (context) {
       final args =
-      ModalRoute
-          .of(context)
-          ?.settings
-          .arguments as Map<String, dynamic>?;
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
       final occasionIndex = args?['occasionIndex'] as int?;
       return OccasionScreen(occasionIndex: occasionIndex);
     },
     productDetailsRoute: (context) {
       final args =
-      ModalRoute
-          .of(context)
-          ?.settings
-          .arguments as Map<String, dynamic>?;
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
       final productEntity = args?['productEntity'] as ProductEntity;
       return ProductDetailsScreen(productEntity: productEntity);
     },

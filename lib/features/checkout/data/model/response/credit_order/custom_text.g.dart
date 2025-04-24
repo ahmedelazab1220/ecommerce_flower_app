@@ -7,11 +7,11 @@ part of 'custom_text.dart';
 // **************************************************************************
 
 CustomText _$CustomTextFromJson(Map<String, dynamic> json) => CustomText(
-      afterSubmit: json['after_submit'],
-      shippingAddress: json['shipping_address'],
-      submit: json['submit'],
-      termsOfServiceAcceptance: json['terms_of_service_acceptance'],
-    );
+  afterSubmit: json['after_submit'],
+  shippingAddress: json['shipping_address'],
+  submit: json['submit'],
+  termsOfServiceAcceptance: json['terms_of_service_acceptance'],
+);
 
 Map<String, dynamic> _$CustomTextToJson(CustomText instance) =>
     <String, dynamic>{

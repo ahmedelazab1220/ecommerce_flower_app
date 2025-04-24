@@ -13,10 +13,10 @@ class SearchScreen extends StatelessWidget {
     final SearchCubit searchCubit = getIt<SearchCubit>();
     return BlocProvider(
       create: (context) => searchCubit,
-      child: Scaffold(
+      child: const Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               children: [
                 SearchField(),

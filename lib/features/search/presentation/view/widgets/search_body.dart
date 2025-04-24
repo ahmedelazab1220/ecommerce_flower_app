@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/search/presentation/view/widgets/search_field.dart';
 import 'package:ecommerce_flower_app/features/search/presentation/view_model/search_cubit.dart';
 import 'package:ecommerce_flower_app/features/search/presentation/view_model/search_state.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/base/base_state.dart';
-import '../../../../../core/utils/di/di.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../../../core/utils/shared_models/product_entity.dart';
@@ -43,9 +41,7 @@ class SearchBody extends StatelessWidget {
                   : List.generate(
                     6,
                     (_) => ProductEntity(
-                      title:
-                          LocaleKeys
-                              .NoProductsAvailable.tr(), //assign title to to increase the length of text in skeletonizer
+                      title: LocaleKeys.NoProductsAvailable.tr(),
                     ),
                   );
           return products!.isEmpty
