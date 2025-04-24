@@ -20,37 +20,55 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final _ = context.locale;
+
     return BlocProvider(
       create: (context) => viewModel,
       child: BlocBuilder<MainLayoutCubit, MainLayoutState>(
         builder: (context, state) {
           return Scaffold(
-            body: viewModel.tabs[viewModel.currentTab],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: viewModel.currentTab.index,
-              onTap: (value) {
-                viewModel.doIntent(
-                  ChangeSelectedTab(MainLayoutTabs.values[value]),
+            body: viewModel.tabs[viewModel.currentTab]?.call(),
+            bottomNavigationBar: ValueListenableBuilder<bool>(
+              valueListenable: viewModel.scrollVisibilityController.isVisible,
+              builder: (_, visible, child) {
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  height: visible ? kBottomNavigationBarHeight : 0,
+                  child: Wrap(
+                    children: [
+                      Offstage(
+                        offstage: !visible,
+                        child: BottomNavigationBar(
+                          currentIndex: viewModel.currentTab.index,
+                          onTap: (value) {
+                            viewModel.doIntent(
+                              ChangeSelectedTab(MainLayoutTabs.values[value]),
+                            );
+                          },
+                          items: [
+                            BottomNavigationBarItem(
+                              icon: SvgPicture.asset(AppIcons.homeSvg),
+                              label: LocaleKeys.Home.tr(),
+                            ),
+                            BottomNavigationBarItem(
+                              icon: SvgPicture.asset(AppIcons.categoriesSvg),
+                              label: LocaleKeys.Categories.tr(),
+                            ),
+                            BottomNavigationBarItem(
+                              icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
+                              label: LocaleKeys.Cart.tr(),
+                            ),
+                            BottomNavigationBarItem(
+                              icon: SvgPicture.asset(AppIcons.personSvg),
+                              label: LocaleKeys.Profile.tr(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
-              items: [
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.homeSvg),
-                  label: LocaleKeys.Home.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.categoriesSvg),
-                  label: LocaleKeys.Categories.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.shoppingCartSvg),
-                  label: LocaleKeys.Cart.tr(),
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(AppIcons.personSvg),
-                  label: LocaleKeys.Profile.tr(),
-                ),
-              ],
             ),
           );
         },

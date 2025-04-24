@@ -7,7 +7,7 @@ class ApiConstants {
   static const String signupRoute = "auth/signup";
   static const String loginRoute = "auth/signin";
   static const String changePasswordRoute = "auth/change-password";
-  static const String uploadProfileRoute = "auth/upload-photo";
+  static const String uploadProfilePhotoRoute = "auth/upload-photo";
   static const String profileDataRoute = "auth/profile-data";
   static const String logoutRoute = "auth/logout";
   static const String forgetPasswordRoute = "auth/forgotPassword";
@@ -24,6 +24,7 @@ class ApiConstants {
   static const String cartRoute = "cart";
   //////////////////////////// Orders Routes ////////////////////////////
   static const String addCacheOrderRoute = "orders";
+  static const String addCreditOrderRoute = "orders/checkout";
   //////////////////////////// Addresses Routes ////////////////////////////
   static const String addressesRoute = "addresses";
 }

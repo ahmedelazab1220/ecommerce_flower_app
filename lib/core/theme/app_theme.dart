@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../assets/app_colors.dart';
 
@@ -41,10 +42,11 @@ class AppTheme {
             color: AppColors.white,
           ),
         ),
-        padding: WidgetStateProperty.all(const EdgeInsets.all(8)),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(14)),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       errorStyle: const TextStyle(color: AppColors.red, fontSize: 12),
       contentPadding: const EdgeInsets.all(16),
       iconColor: AppColors.pink,
@@ -59,25 +61,34 @@ class AppTheme {
         color: AppColors.black[AppColors.colorCode40],
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.black),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.black),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.red),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(width: 1, color: AppColors.red),
+        borderRadius: BorderRadius.circular(4.r),
+        borderSide: BorderSide(width: 1.w, color: AppColors.red),
       ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+        if (states.contains(WidgetState.error)) {
+          return const TextStyle(color: AppColors.red);
+        } else if (states.contains(WidgetState.focused)) {
+          return const TextStyle(color: Colors.black);
+        } else {
+          return const TextStyle(color: AppColors.gray);
+        }
+      }),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.white,
@@ -97,7 +108,7 @@ class AppTheme {
         textStyle: WidgetStateProperty.all(
           const TextStyle(
             decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             color: AppColors.pink,
           ),
