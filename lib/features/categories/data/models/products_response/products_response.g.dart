@@ -9,10 +9,9 @@ part of 'products_response.dart';
 ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
     ProductsResponse(
       message: json['message'] as String?,
-      products:
-          (json['products'] as List<dynamic>?)
-              ?.map((e) => ProductDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      products: (json['products'] as List<dynamic>?)
+          ?.map((e) => ProductDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ProductsResponseToJson(ProductsResponse instance) =>

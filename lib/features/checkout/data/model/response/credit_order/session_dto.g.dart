@@ -7,118 +7,98 @@ part of 'session_dto.dart';
 // **************************************************************************
 
 SessionDto _$SessionDtoFromJson(Map<String, dynamic> json) => SessionDto(
-  id: json['id'] as String?,
-  object: json['object'] as String?,
-  adaptivePricing:
-      json['adaptive_pricing'] == null
+      id: json['id'] as String?,
+      object: json['object'] as String?,
+      adaptivePricing: json['adaptive_pricing'] == null
           ? null
           : AdaptivePricingDto.fromJson(
-            json['adaptive_pricing'] as Map<String, dynamic>,
-          ),
-  afterExpiration: json['after_expiration'],
-  allowPromotionCodes: json['allow_promotion_codes'],
-  amountSubtotal: (json['amount_subtotal'] as num?)?.toInt(),
-  amountTotal: (json['amount_total'] as num?)?.toInt(),
-  automaticTax:
-      json['automatic_tax'] == null
+              json['adaptive_pricing'] as Map<String, dynamic>),
+      afterExpiration: json['after_expiration'],
+      allowPromotionCodes: json['allow_promotion_codes'],
+      amountSubtotal: (json['amount_subtotal'] as num?)?.toInt(),
+      amountTotal: (json['amount_total'] as num?)?.toInt(),
+      automaticTax: json['automatic_tax'] == null
           ? null
           : AutomaticTaxDto.fromJson(
-            json['automatic_tax'] as Map<String, dynamic>,
-          ),
-  billingAddressCollection: json['billing_address_collection'],
-  cancelUrl: json['cancel_url'] as String?,
-  clientReferenceId: json['client_reference_id'] as String?,
-  clientSecret: json['client_secret'],
-  collectedInformation:
-      json['collected_information'] == null
+              json['automatic_tax'] as Map<String, dynamic>),
+      billingAddressCollection: json['billing_address_collection'],
+      cancelUrl: json['cancel_url'] as String?,
+      clientReferenceId: json['client_reference_id'] as String?,
+      clientSecret: json['client_secret'],
+      collectedInformation: json['collected_information'] == null
           ? null
           : CollectedInformationDto.fromJson(
-            json['collected_information'] as Map<String, dynamic>,
-          ),
-  consent: json['consent'],
-  consentCollection: json['consent_collection'],
-  created: (json['created'] as num?)?.toInt(),
-  currency: json['currency'] as String?,
-  currencyConversion: json['currency_conversion'],
-  customFields: json['custom_fields'] as List<dynamic>?,
-  customText:
-      json['custom_text'] == null
+              json['collected_information'] as Map<String, dynamic>),
+      consent: json['consent'],
+      consentCollection: json['consent_collection'],
+      created: (json['created'] as num?)?.toInt(),
+      currency: json['currency'] as String?,
+      currencyConversion: json['currency_conversion'],
+      customFields: json['custom_fields'] as List<dynamic>?,
+      customText: json['custom_text'] == null
           ? null
           : CustomTextDto.fromJson(json['custom_text'] as Map<String, dynamic>),
-  customer: json['customer'],
-  customerCreation: json['customer_creation'] as String?,
-  customerDetails:
-      json['customer_details'] == null
+      customer: json['customer'],
+      customerCreation: json['customer_creation'] as String?,
+      customerDetails: json['customer_details'] == null
           ? null
           : CustomerDetailsDto.fromJson(
-            json['customer_details'] as Map<String, dynamic>,
-          ),
-  customerEmail: json['customer_email'] as String?,
-  discounts: json['discounts'] as List<dynamic>?,
-  expiresAt: (json['expires_at'] as num?)?.toInt(),
-  invoice: json['invoice'],
-  invoiceCreation:
-      json['invoice_creation'] == null
+              json['customer_details'] as Map<String, dynamic>),
+      customerEmail: json['customer_email'] as String?,
+      discounts: json['discounts'] as List<dynamic>?,
+      expiresAt: (json['expires_at'] as num?)?.toInt(),
+      invoice: json['invoice'],
+      invoiceCreation: json['invoice_creation'] == null
           ? null
           : InvoiceCreationDto.fromJson(
-            json['invoice_creation'] as Map<String, dynamic>,
-          ),
-  livemode: json['livemode'] as bool?,
-  locale: json['locale'],
-  metadata:
-      json['metadata'] == null
+              json['invoice_creation'] as Map<String, dynamic>),
+      livemode: json['livemode'] as bool?,
+      locale: json['locale'],
+      metadata: json['metadata'] == null
           ? null
           : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
-  mode: json['mode'] as String?,
-  paymentIntent: json['payment_intent'],
-  paymentLink: json['payment_link'],
-  paymentMethodCollection: json['payment_method_collection'] as String?,
-  paymentMethodConfigurationDetails:
-      json['payment_method_configuration_details'] == null
-          ? null
-          : PaymentMethodConfigurationDetailsDto.fromJson(
-            json['payment_method_configuration_details']
-                as Map<String, dynamic>,
-          ),
-  paymentMethodOptions:
-      json['payment_method_options'] == null
+      mode: json['mode'] as String?,
+      paymentIntent: json['payment_intent'],
+      paymentLink: json['payment_link'],
+      paymentMethodCollection: json['payment_method_collection'] as String?,
+      paymentMethodConfigurationDetails:
+          json['payment_method_configuration_details'] == null
+              ? null
+              : PaymentMethodConfigurationDetailsDto.fromJson(
+                  json['payment_method_configuration_details']
+                      as Map<String, dynamic>),
+      paymentMethodOptions: json['payment_method_options'] == null
           ? null
           : PaymentMethodOptionsDto.fromJson(
-            json['payment_method_options'] as Map<String, dynamic>,
-          ),
-  paymentMethodTypes:
-      (json['payment_method_types'] as List<dynamic>?)
+              json['payment_method_options'] as Map<String, dynamic>),
+      paymentMethodTypes: (json['payment_method_types'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-  paymentStatus: json['payment_status'] as String?,
-  permissions: json['permissions'],
-  phoneNumberCollection:
-      json['phone_number_collection'] == null
+      paymentStatus: json['payment_status'] as String?,
+      permissions: json['permissions'],
+      phoneNumberCollection: json['phone_number_collection'] == null
           ? null
           : PhoneNumberCollectionDto.fromJson(
-            json['phone_number_collection'] as Map<String, dynamic>,
-          ),
-  recoveredFrom: json['recovered_from'],
-  savedPaymentMethodOptions: json['saved_payment_method_options'],
-  setupIntent: json['setup_intent'],
-  shippingAddressCollection: json['shipping_address_collection'],
-  shippingCost: json['shipping_cost'],
-  shippingDetails: json['shipping_details'],
-  shippingOptions: json['shipping_options'] as List<dynamic>?,
-  status: json['status'] as String?,
-  submitType: json['submit_type'],
-  subscription: json['subscription'],
-  successUrl: json['success_url'] as String?,
-  totalDetails:
-      json['total_details'] == null
+              json['phone_number_collection'] as Map<String, dynamic>),
+      recoveredFrom: json['recovered_from'],
+      savedPaymentMethodOptions: json['saved_payment_method_options'],
+      setupIntent: json['setup_intent'],
+      shippingAddressCollection: json['shipping_address_collection'],
+      shippingCost: json['shipping_cost'],
+      shippingDetails: json['shipping_details'],
+      shippingOptions: json['shipping_options'] as List<dynamic>?,
+      status: json['status'] as String?,
+      submitType: json['submit_type'],
+      subscription: json['subscription'],
+      successUrl: json['success_url'] as String?,
+      totalDetails: json['total_details'] == null
           ? null
           : TotalDetailsDto.fromJson(
-            json['total_details'] as Map<String, dynamic>,
-          ),
-  uiMode: json['ui_mode'] as String?,
-  url: json['url'] as String?,
-  walletOptions: json['wallet_options'],
-);
+              json['total_details'] as Map<String, dynamic>),
+      uiMode: json['ui_mode'] as String?,
+      url: json['url'] as String?,
+      walletOptions: json['wallet_options'],
+    );
 
 Map<String, dynamic> _$SessionDtoToJson(SessionDto instance) =>
     <String, dynamic>{

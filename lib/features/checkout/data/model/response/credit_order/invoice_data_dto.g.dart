@@ -13,10 +13,9 @@ InvoiceDataDto _$InvoiceDataDtoFromJson(Map<String, dynamic> json) =>
       description: json['description'],
       footer: json['footer'],
       issuer: json['issuer'],
-      metadata:
-          json['metadata'] == null
-              ? null
-              : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
+      metadata: json['metadata'] == null
+          ? null
+          : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
       renderingOptions: json['rendering_options'],
     );
 
