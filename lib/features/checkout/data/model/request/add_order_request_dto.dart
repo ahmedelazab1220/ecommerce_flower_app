@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/entity/add_order_request_entity.dart';
-import 'shipping_address.dart';
+import 'shipping_address_dto.dart';
 
 part 'add_order_request_dto.g.dart';
 
 @JsonSerializable()
 class AddOrderRequestDto {
   @JsonKey(name: "shippingAddress")
-  final ShippingAddress? shippingAddress;
+  final ShippingAddressDto? shippingAddress;
 
   AddOrderRequestDto({required this.shippingAddress});
 
@@ -22,7 +22,7 @@ class AddOrderRequestDto {
 
   factory AddOrderRequestDto.fromDomain(AddOrderRequestEntity entity) {
     return AddOrderRequestDto(
-      shippingAddress: ShippingAddress.fromDomain(entity.addressEntity),
+      shippingAddress: ShippingAddressDto.fromDomain(entity.addressEntity),
     );
   }
 }

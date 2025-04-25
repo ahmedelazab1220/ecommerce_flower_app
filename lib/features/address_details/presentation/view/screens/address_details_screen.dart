@@ -5,7 +5,6 @@ import 'package:ecommerce_flower_app/core/utils/di/di.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_toast.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/features/address_details/presentation/view/widgets/address_details_body.dart';
 import 'package:ecommerce_flower_app/features/address_details/presentation/view_model/address_details_cubit.dart';
 import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
@@ -53,10 +52,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                         : LocaleKeys.AddressAddedSuccessfully.tr(),
                 color: AppColors.successGreen,
               );
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.savedAddressRoute,
-              );
+              Navigator.pop(context);
             } else if (addressDetailsState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
