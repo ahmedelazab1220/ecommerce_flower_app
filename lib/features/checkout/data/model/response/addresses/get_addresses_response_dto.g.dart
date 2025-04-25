@@ -12,7 +12,7 @@ GetAddressesResponseDto _$GetAddressesResponseDtoFromJson(
   message: json['message'] as String?,
   addresses:
       (json['addresses'] as List<dynamic>?)
-          ?.map((e) => Addresses.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AddressDto.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
 

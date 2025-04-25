@@ -13,7 +13,7 @@ AddCreditOrderResponseDto _$AddCreditOrderResponseDtoFromJson(
   session:
       json['session'] == null
           ? null
-          : Session.fromJson(json['session'] as Map<String, dynamic>),
+          : SessionDto.fromJson(json['session'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AddCreditOrderResponseDtoToJson(

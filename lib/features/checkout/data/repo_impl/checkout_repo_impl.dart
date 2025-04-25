@@ -5,11 +5,11 @@ import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/shared_models/address_entity.dart';
 import '../../domain/entity/add_order_request_entity.dart';
 import '../../domain/entity/cart_entity.dart';
+import '../../domain/entity/cash_order_entity/order_entity.dart';
+import '../../domain/entity/credit_order_entity/add_credit_order_response_entity.dart';
 import '../../domain/repo/checkout_repo.dart';
 import '../data_source/contract/checkout_remote_data_source.dart';
 import '../model/request/add_order_request_dto.dart';
-import '../model/response/cash_order/add_cache_order_response_dto.dart';
-import '../model/response/credit_order/add_credit_order_response_dto.dart';
 
 @Injectable(as: CheckoutRepo)
 class CheckoutRepoImpl implements CheckoutRepo {
@@ -28,27 +28,31 @@ class CheckoutRepoImpl implements CheckoutRepo {
   }
 
   @override
-  Future<Result<AddCacheOrderResponseDto>> addCacheOrder(
+  Future<Result<OrderEntity?>> addCacheOrder(
     AddOrderRequestEntity request,
   ) async {
-    return await _apiManager.execute<AddCacheOrderResponseDto>(() async {
+    var response = await _apiManager.execute<OrderEntity?>(() async {
       final response = await _checkoutRemoteDataSource.addCacheOrder(
         AddOrderRequestDto.fromDomain(request),
       );
-      return response;
+      return response.order?.toEntity();
     });
+    return response;
   }
 
   @override
-  Future<Result<AddCreditOrderResponseDto>> addCreditOrder(
+  Future<Result<AddCreditOrderResponseEntity>> addCreditOrder(
     AddOrderRequestEntity request,
   ) async {
-    return await _apiManager.execute<AddCreditOrderResponseDto>(() async {
-      final response = await _checkoutRemoteDataSource.addCreditOrder(
-        AddOrderRequestDto.fromDomain(request),
-      );
-      return response;
-    });
+    var response = await _apiManager.execute<AddCreditOrderResponseEntity>(
+      () async {
+        final response = await _checkoutRemoteDataSource.addCreditOrder(
+          AddOrderRequestDto.fromDomain(request),
+        );
+        return response.toEntity();
+      },
+    );
+    return response;
   }
 
   @override

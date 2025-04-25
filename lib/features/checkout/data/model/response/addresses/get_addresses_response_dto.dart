@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'addresses.dart';
+import 'address_dto.dart';
 
 part 'get_addresses_response_dto.g.dart';
 
@@ -9,7 +9,7 @@ class GetAddressesResponseDto {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "addresses")
-  final List<Addresses>? addresses;
+  final List<AddressDto>? addresses;
 
   GetAddressesResponseDto({this.message, this.addresses});
 
