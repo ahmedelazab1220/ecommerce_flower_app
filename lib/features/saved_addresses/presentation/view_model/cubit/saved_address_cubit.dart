@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/datasource_excution/api_result.dart';
-import '../../../domain/entity/address_entity.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import '../../../domain/use_case/delete_user_address_use_case.dart';
 import '../../../domain/use_case/get_user_saved_addresses_use_case.dart';
 

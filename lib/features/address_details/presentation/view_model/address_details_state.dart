@@ -1,9 +1,10 @@
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/features/address_details/domain/entities/city_entity.dart';
 import 'package:ecommerce_flower_app/features/address_details/domain/entities/state_entity.dart';
-import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
+
+import '../../../../core/utils/shared_models/address_entity.dart';
 
 class AddressDetailsState extends Equatable {
   final BaseState? addressDetailsState;
