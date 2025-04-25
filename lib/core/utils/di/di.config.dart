@@ -178,10 +178,22 @@ import '../../../features/most_selling_products/presentation/view_model/best_sel
     as _i190;
 import '../../../features/notifications/data/api/notification_retrofit_client.dart'
     as _i59;
+import '../../../features/notifications/data/data_source/contract/notification_local_data_source.dart'
+    as _i637;
 import '../../../features/notifications/data/data_source/contract/notification_remote_data_source.dart'
     as _i422;
 import '../../../features/notifications/data/data_source/remote/notification_remote_data_source_impl.dart'
     as _i72;
+import '../../../features/notifications/data/repo_impl/notification_repo_impl.dart'
+    as _i487;
+import '../../../features/notifications/domain/repo/notification_repo.dart'
+    as _i94;
+import '../../../features/notifications/domain/usecase/delete_notification_by_id_use_case.dart'
+    as _i973;
+import '../../../features/notifications/domain/usecase/get_all_notifications_use_case.dart'
+    as _i326;
+import '../../../features/notifications/domain/usecase/get_notification_by_id_use_case.dart'
+    as _i868;
 import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
     as _i1061;
 import '../../../features/occasions/data/data_source/contract/occasion_remote_data_source.dart'
@@ -405,6 +417,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i664.AddToCartRemoteDataSource>(),
           gh<_i528.AddToCartLocalDataSource>(),
         ));
+    gh.factory<_i94.NotificationRepo>(() => _i487.NotificationRepoImpl(
+          gh<_i422.NotificationRemoteDataSource>(),
+          gh<_i637.NotificationLocalDataSource>(),
+          gh<_i28.ApiManager>(),
+        ));
     gh.factory<_i1055.AddCacheOrderUseCase>(
         () => _i1055.AddCacheOrderUseCase(gh<_i10.CheckoutRepo>()));
     gh.factory<_i211.AddCreditOrderUseCase>(
@@ -425,6 +442,12 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i691.CategoriesRemoteDataSource>(),
           gh<_i28.ApiManager>(),
         ));
+    gh.factory<_i973.DeleteNotificationByIdUseCase>(
+        () => _i973.DeleteNotificationByIdUseCase(gh<_i94.NotificationRepo>()));
+    gh.factory<_i326.GetAllNotificationsUseCase>(
+        () => _i326.GetAllNotificationsUseCase(gh<_i94.NotificationRepo>()));
+    gh.factory<_i868.GetNotificationByIdUseCase>(
+        () => _i868.GetNotificationByIdUseCase(gh<_i94.NotificationRepo>()));
     gh.factory<_i1005.EditProfileRepo>(() => _i192.EditProfileRepoImpl(
           gh<_i592.EditProfileRemoteDataSource>(),
           gh<_i28.ApiManager>(),

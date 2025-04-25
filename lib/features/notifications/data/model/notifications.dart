@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/notifications/domain/entity/notifications_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'notifications.g.dart';
@@ -32,5 +33,9 @@ class Notifications {
 
   Map<String, dynamic> toJson() {
     return _$NotificationsToJson(this);
+  }
+
+  NotificationsEntity toEntity() {
+    return NotificationsEntity(id: Id, title: title, body: body);
   }
 }
