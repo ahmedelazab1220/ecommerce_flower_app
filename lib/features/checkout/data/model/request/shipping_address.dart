@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../../core/utils/shared_models/address_entity.dart';
+
 part 'shipping_address.g.dart';
 
 @JsonSerializable()
@@ -29,5 +31,15 @@ class ShippingAddress {
 
   Map<String, dynamic> toJson() {
     return _$ShippingAddressToJson(this);
+  }
+
+  factory ShippingAddress.fromDomain(AddressEntity? entity) {
+    return ShippingAddress(
+      street: entity?.street,
+      phone: entity?.phone,
+      city: entity?.city,
+      lat: entity?.lat,
+      long: entity?.long,
+    );
   }
 }

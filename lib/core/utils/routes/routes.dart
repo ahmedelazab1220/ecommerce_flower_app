@@ -5,6 +5,7 @@ import '../../../features/about_us/presentation/view/about_us_screen.dart';
 import '../../../features/address_details/presentation/view/screens/address_details_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
+import '../../../features/cart/presentation/view/screens/cart_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
 import '../../../features/change_password/presentation/view/screens/change_password_screen.dart';
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';
@@ -40,6 +41,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
+  static const String cartScreenRoute = '/cart-screen';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -76,6 +78,7 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
+    cartScreenRoute: (context) => const CartScreen(),
     addressDetailsRoute: (context) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;

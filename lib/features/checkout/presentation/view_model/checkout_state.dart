@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/base/base_state.dart';
-import '../../data/model/request/add_order_request_dto.dart';
+import '../../domain/entity/add_order_request_entity.dart';
 
 class CheckoutState extends Equatable {
   final BaseState? baseState;
@@ -54,13 +54,13 @@ sealed class CheckoutAction {}
 class GetAddressesAction extends CheckoutAction {}
 
 class AddCacheOrderAction extends CheckoutAction {
-  final AddOrderRequestDto request;
+  final AddOrderRequestEntity request;
 
   AddCacheOrderAction(this.request);
 }
 
 class AddCreditOrderAction extends CheckoutAction {
-  final AddOrderRequestDto request;
+  final AddOrderRequestEntity request;
 
   AddCreditOrderAction(this.request);
 }

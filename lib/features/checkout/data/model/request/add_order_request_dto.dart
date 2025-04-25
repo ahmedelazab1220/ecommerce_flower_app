@@ -1,5 +1,7 @@
-import 'package:ecommerce_flower_app/features/checkout/data/model/request/shipping_address.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../domain/entity/add_order_request_entity.dart';
+import 'shipping_address.dart';
 
 part 'add_order_request_dto.g.dart';
 
@@ -16,5 +18,11 @@ class AddOrderRequestDto {
 
   Map<String, dynamic> toJson() {
     return _$AddOrderRequestDtoToJson(this);
+  }
+
+  factory AddOrderRequestDto.fromDomain(AddOrderRequestEntity entity) {
+    return AddOrderRequestDto(
+      shippingAddress: ShippingAddress.fromDomain(entity.addressEntity),
+    );
   }
 }
