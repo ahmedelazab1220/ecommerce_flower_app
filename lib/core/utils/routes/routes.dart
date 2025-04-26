@@ -1,10 +1,10 @@
-import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
 import '../../../features/address_details/presentation/view/screens/address_details_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
+import '../../../features/cart/presentation/view/screens/cart_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
 import '../../../features/change_password/presentation/view/screens/change_password_screen.dart';
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';
@@ -16,6 +16,7 @@ import '../../../features/product_details/presentation/view/screens/product_deta
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
 import '../../../features/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
+import '../shared_models/address_entity.dart';
 import '../shared_models/product_entity.dart';
 
 class AppRoutes {
@@ -40,6 +41,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
+  static const String cartScreenRoute = '/cart-screen';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -76,6 +78,7 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
+    cartScreenRoute: (context) => const CartScreen(),
     addressDetailsRoute: (context) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;

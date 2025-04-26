@@ -1,8 +1,8 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/checkout/domain/repo/checkout_repo.dart';
 import 'package:injectable/injectable.dart';
 
-import '../entity/addresses_entity.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
+import '../repo/checkout_repo.dart';
 
 @injectable
 class GetAddressesUseCase {
@@ -10,7 +10,7 @@ class GetAddressesUseCase {
 
   GetAddressesUseCase(this._checkoutRepo);
 
-  Future<Result<List<AddressesEntity>>> call() async {
+  Future<Result<List<AddressEntity>>> call() async {
     return await _checkoutRepo.getAddresses();
   }
 }

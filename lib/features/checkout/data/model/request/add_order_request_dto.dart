@@ -1,12 +1,14 @@
-import 'package:ecommerce_flower_app/features/checkout/data/model/request/shipping_address.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../domain/entity/add_order_request_entity.dart';
+import 'shipping_address_dto.dart';
 
 part 'add_order_request_dto.g.dart';
 
 @JsonSerializable()
 class AddOrderRequestDto {
   @JsonKey(name: "shippingAddress")
-  final ShippingAddress? shippingAddress;
+  final ShippingAddressDto? shippingAddress;
 
   AddOrderRequestDto({required this.shippingAddress});
 
@@ -16,5 +18,11 @@ class AddOrderRequestDto {
 
   Map<String, dynamic> toJson() {
     return _$AddOrderRequestDtoToJson(this);
+  }
+
+  factory AddOrderRequestDto.fromDomain(AddOrderRequestEntity entity) {
+    return AddOrderRequestDto(
+      shippingAddress: ShippingAddressDto.fromDomain(entity.addressEntity),
+    );
   }
 }
