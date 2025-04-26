@@ -12,6 +12,7 @@ import '../../../features/checkout/presentation/view/widgets/track_order_success
 import '../../../features/edit_profile/presentation/view/edit_profile_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
+import '../../../features/orders/presentation/view/screens/orders_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
@@ -20,6 +21,7 @@ import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
+
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -40,6 +42,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
+  static const String ordersRoute = '/orders';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -82,5 +85,6 @@ class AppRoutes {
       final addressEntity = args?['addressEntity'] as AddressEntity?;
       return AddressDetailsScreen(address: addressEntity);
     },
+    ordersRoute: (context) => const OrdersScreen(),
   };
 }

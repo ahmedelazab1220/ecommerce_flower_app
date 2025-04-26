@@ -200,6 +200,8 @@ import '../../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i417;
 import '../../../features/orders/domain/repo/orders_repo.dart' as _i36;
 import '../../../features/orders/domain/usecase/get_orders_usecase.dart'
     as _i550;
+import '../../../features/orders/presentation/view_model/orders_cubit.dart'
+    as _i170;
 import '../../../features/product_details/presentation/view_model/product_details_cubit.dart'
     as _i834;
 import '../../../features/profile/data/api/profile_retrofit_client.dart'
@@ -548,6 +550,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i834.GetUserSavedAddressesUseCase(gh<_i638.SavedAddressesRepo>()));
     gh.factory<_i550.GetOrdersUsecase>(
         () => _i550.GetOrdersUsecase(gh<_i36.OrdersRepo>()));
+    gh.factory<_i170.OrdersCubit>(
+        () => _i170.OrdersCubit(gh<_i550.GetOrdersUsecase>()));
     gh.factory<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
           gh<_i1027.GetCategoriesUseCase>(),
           gh<_i752.GetProductsUseCase>(),
