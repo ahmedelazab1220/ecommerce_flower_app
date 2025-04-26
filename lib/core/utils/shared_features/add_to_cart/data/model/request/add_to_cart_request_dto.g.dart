@@ -13,8 +13,8 @@ AddToCartRequestDto _$AddToCartRequestDtoFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$AddToCartRequestDtoToJson(
-  AddToCartRequestDto instance,
-) => <String, dynamic>{
-  'product': instance.product,
-  'quantity': instance.quantity,
-};
+        AddToCartRequestDto instance) =>
+    <String, dynamic>{
+      'product': instance.product,
+      'quantity': instance.quantity,
+    };

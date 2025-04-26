@@ -7,18 +7,17 @@ part of 'delete_addresses_response_dto.dart';
 // **************************************************************************
 
 DeleteAddressesResponseDto _$DeleteAddressesResponseDtoFromJson(
-  Map<String, dynamic> json,
-) => DeleteAddressesResponseDto(
-  message: json['message'] as String?,
-  addresses:
-      (json['address'] as List<dynamic>?)
+        Map<String, dynamic> json) =>
+    DeleteAddressesResponseDto(
+      message: json['message'] as String?,
+      addresses: (json['address'] as List<dynamic>?)
           ?.map((e) => AddressDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-);
+    );
 
 Map<String, dynamic> _$DeleteAddressesResponseDtoToJson(
-  DeleteAddressesResponseDto instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'address': instance.addresses,
-};
+        DeleteAddressesResponseDto instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'address': instance.addresses,
+    };
