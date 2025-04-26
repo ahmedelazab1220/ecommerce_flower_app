@@ -1,6 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +6,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
-import '../../../domain/entity/address_entity.dart';
+import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/routes.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import '../../view_model/cubit/saved_address_cubit.dart';
 
 class SavedAddressItem extends StatefulWidget {
