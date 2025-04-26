@@ -7,11 +7,7 @@ part of 'adaptive_pricing_dto.dart';
 // **************************************************************************
 
 AdaptivePricingDto _$AdaptivePricingDtoFromJson(Map<String, dynamic> json) =>
-    AdaptivePricingDto(
-      enabled: json['enabled'] as bool?,
-    );
+    AdaptivePricingDto(enabled: json['enabled'] as bool?);
 
 Map<String, dynamic> _$AdaptivePricingDtoToJson(AdaptivePricingDto instance) =>
-    <String, dynamic>{
-      'enabled': instance.enabled,
-    };
+    <String, dynamic>{'enabled': instance.enabled};

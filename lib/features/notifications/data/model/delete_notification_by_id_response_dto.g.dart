@@ -7,17 +7,18 @@ part of 'delete_notification_by_id_response_dto.dart';
 // **************************************************************************
 
 DeleteNotificationByIdResponseDto _$DeleteNotificationByIdResponseDtoFromJson(
-        Map<String, dynamic> json) =>
-    DeleteNotificationByIdResponseDto(
-      message: json['message'] as String?,
-      document: json['document'] == null
+  Map<String, dynamic> json,
+) => DeleteNotificationByIdResponseDto(
+  message: json['message'] as String?,
+  document:
+      json['document'] == null
           ? null
           : Notifications.fromJson(json['document'] as Map<String, dynamic>),
-    );
+);
 
 Map<String, dynamic> _$DeleteNotificationByIdResponseDtoToJson(
-        DeleteNotificationByIdResponseDto instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'document': instance.document,
-    };
+  DeleteNotificationByIdResponseDto instance,
+) => <String, dynamic>{
+  'message': instance.message,
+  'document': instance.document,
+};

@@ -7,13 +7,9 @@ part of 'phone_number_collection_dto.dart';
 // **************************************************************************
 
 PhoneNumberCollectionDto _$PhoneNumberCollectionDtoFromJson(
-        Map<String, dynamic> json) =>
-    PhoneNumberCollectionDto(
-      enabled: json['enabled'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => PhoneNumberCollectionDto(enabled: json['enabled'] as bool?);
 
 Map<String, dynamic> _$PhoneNumberCollectionDtoToJson(
-        PhoneNumberCollectionDto instance) =>
-    <String, dynamic>{
-      'enabled': instance.enabled,
-    };
+  PhoneNumberCollectionDto instance,
+) => <String, dynamic>{'enabled': instance.enabled};
