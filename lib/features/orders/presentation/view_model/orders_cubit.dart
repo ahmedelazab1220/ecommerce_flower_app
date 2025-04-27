@@ -1,15 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
+import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
+import 'package:ecommerce_flower_app/core/utils/shared_features/add_to_cart/domain/usecase/add_to_cart_use_case.dart';
 import 'package:ecommerce_flower_app/features/orders/domain/entity/order_entity.dart';
 import 'package:ecommerce_flower_app/features/orders/domain/usecase/get_orders_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/base_state.dart';
+import '../../../../core/utils/shared_features/add_to_cart/data/model/request/add_to_cart_request_dto.dart';
+import '../../../../core/utils/shared_features/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
 import 'orders_state.dart';
 
 @injectable
 class OrdersCubit extends Cubit<OrdersState> {
   final GetOrdersUsecase _getOrdersUsecase;
+  final AddToCartUseCase _addToCartUseCase;
 
   final List<OrderEntity> orders = [];
   final List<OrderEntity> ordersInProgress = [];
@@ -18,10 +24,10 @@ class OrdersCubit extends Cubit<OrdersState> {
   final List<OrderEntity> ordersCancelled = [];
 
   final List<String> tabLabels = [
-    'Active',
-    'Completed',
-    'Pending',
-    'Cancelled',
+    LocaleKeys.Active.tr(),
+    LocaleKeys.Completed.tr(),
+    LocaleKeys.Pending.tr(),
+    LocaleKeys.Cancelled.tr(),
   ];
   final List<String> statuses = [
     'inProgress',
@@ -30,13 +36,38 @@ class OrdersCubit extends Cubit<OrdersState> {
     'cancelled',
   ];
 
-  OrdersCubit(this._getOrdersUsecase)
+  List<OrderEntity> get currentOrders {
+    switch (state.selectedTabIndex) {
+      case 0:
+        return ordersInProgress;
+      case 1:
+        return ordersCompleted;
+      case 2:
+        return ordersPending;
+      case 3:
+        return ordersCancelled;
+      default:
+        return [];
+    }
+  }
+
+  List<MapEntry<OrderEntity, OrderItemEntity>> get flattenedOrderItems {
+    return currentOrders
+        .expand(
+          (order) => order.orderItems.map((item) => MapEntry(order, item)),
+        )
+        .toList();
+  }
+
+  OrdersCubit(this._getOrdersUsecase, this._addToCartUseCase)
     : super(OrdersState(baseState: BaseInitialState()));
 
   void doIntent(OrdersAction action) {
     switch (action) {
       case GetOrdersAction():
         _getOrders();
+      case AddToCartAction():
+        _addToCart(action.productId);
       case ChangeTabAction():
         _changeTab(action.index);
     }
@@ -48,7 +79,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     switch (result) {
       case SuccessResult<List<OrderEntity>>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
-        orders.addAll(result.data.toList());
+        orders.addAll(result.data);
         print('Orders: $orders');
         ordersInProgress.addAll(
           result.data.where((order) => order.state == 'inProgress'),
@@ -67,6 +98,25 @@ class OrdersCubit extends Cubit<OrdersState> {
         );
         print('Orders Cancelled: $ordersCancelled');
       case FailureResult<List<OrderEntity>>():
+        emit(
+          state.copyWith(
+            baseState: BaseErrorState(
+              errorMessage: result.exception.toString(),
+            ),
+          ),
+        );
+    }
+  }
+
+  Future<void> _addToCart(String productId) async {
+    emit(state.copyWith(cartState: BaseLoadingState()));
+    final result = await _addToCartUseCase(
+      AddToCartRequestDto(product: productId, quantity: 1),
+    );
+    switch (result) {
+      case SuccessResult<AddToCartResponseDto>():
+        emit(state.copyWith(cartState: BaseSuccessState(data: result.data)));
+      case FailureResult<AddToCartResponseDto>():
         emit(
           state.copyWith(
             baseState: BaseErrorState(

@@ -3,24 +3,40 @@ import 'package:equatable/equatable.dart';
 
 class OrdersState extends Equatable {
   final BaseState? baseState;
+  final BaseState? cartState;
   final int selectedTabIndex;
 
-  const OrdersState({this.baseState, this.selectedTabIndex = 0});
+  const OrdersState({
+    this.baseState,
+    this.cartState,
+    this.selectedTabIndex = 0,
+  });
 
-  OrdersState copyWith({BaseState? baseState, int? selectedTabIndex}) {
+  OrdersState copyWith({
+    BaseState? baseState,
+    BaseState? cartState,
+    int? selectedTabIndex,
+  }) {
     return OrdersState(
       baseState: baseState ?? this.baseState,
+      cartState: cartState ?? this.cartState,
       selectedTabIndex: selectedTabIndex ?? this.selectedTabIndex,
     );
   }
 
   @override
-  List<Object?> get props => [baseState, selectedTabIndex];
+  List<Object?> get props => [baseState, cartState, selectedTabIndex];
 }
 
 sealed class OrdersAction {}
 
 class GetOrdersAction extends OrdersAction {}
+
+class AddToCartAction extends OrdersAction {
+  final String productId;
+
+  AddToCartAction(this.productId);
+}
 
 class ChangeTabAction extends OrdersAction {
   final int index;

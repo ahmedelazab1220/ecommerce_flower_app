@@ -1,68 +1,61 @@
-import 'package:ecommerce_flower_app/features/orders/presentation/view_model/orders_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/assets/app_colors.dart';
+import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
+import '../../view_model/orders_cubit.dart';
 import '../../view_model/orders_state.dart';
 
 class CustomOrdersTabBar extends StatelessWidget {
-  final List<Tab> tabs;
-
-  const CustomOrdersTabBar({super.key, required this.tabs});
+  const CustomOrdersTabBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var viewModel = context.read<OrdersCubit>();
+    final cubit = context.read<OrdersCubit>();
+    final tabs = cubit.tabLabels;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final tabWidth = screenWidth / 2;
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
         final selectedIndex = state.selectedTabIndex;
-        return SizedBox(
-          height: 50,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: tabs.length,
-            itemBuilder: (context, index) {
-              final isSelected = selectedIndex == index;
-              return GestureDetector(
-                onTap: () {
-                  if (!isSelected) {
-                    viewModel.doIntent(ChangeTabAction(index));
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: IntrinsicWidth(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          tabs[index].text ?? '',
-                          style: TextStyle(
-                            color:
-                                isSelected
-                                    ? AppColors.pink
-                                    : AppColors.white[AppColors.colorCode70],
-                            fontSize: 16,
-                          ),
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: List.generate(tabs.length, (index) {
+              final isSelected = index == selectedIndex;
+              return SizedBox(
+                width: tabWidth,
+                child: InkWell(
+                  onTap: () {
+                    if (!isSelected) cubit.doIntent(ChangeTabAction(index));
+                  },
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 12),
+                      Text(
+                        tabs[index],
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color:
+                              isSelected
+                                  ? AppColors.pink
+                                  : AppColors.white[AppColors.colorCode70],
                         ),
-                        const SizedBox(height: 4),
-                        Container(
-                          height: 4,
-                          width: 67,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color:
-                                isSelected
-                                    ? AppColors.pink
-                                    : AppColors.white[AppColors.colorCode70],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        height: 3,
+                        width: double.infinity,
+                        color:
+                            isSelected
+                                ? AppColors.pink
+                                : AppColors.white[AppColors.colorCode70],
+                      ),
+                    ],
                   ),
                 ),
               );
-            },
+            }),
           ),
         );
       },
