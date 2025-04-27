@@ -550,8 +550,6 @@ extension GetItInjectableX on _i174.GetIt {
         _i834.GetUserSavedAddressesUseCase(gh<_i638.SavedAddressesRepo>()));
     gh.factory<_i550.GetOrdersUsecase>(
         () => _i550.GetOrdersUsecase(gh<_i36.OrdersRepo>()));
-    gh.factory<_i170.OrdersCubit>(
-        () => _i170.OrdersCubit(gh<_i550.GetOrdersUsecase>()));
     gh.factory<_i1008.CategoriesCubit>(() => _i1008.CategoriesCubit(
           gh<_i1027.GetCategoriesUseCase>(),
           gh<_i752.GetProductsUseCase>(),
@@ -563,6 +561,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i834.ProductDetailsCubit>(
         () => _i834.ProductDetailsCubit(gh<_i393.AddToCartUseCase>()));
+    gh.factory<_i170.OrdersCubit>(() => _i170.OrdersCubit(
+          gh<_i550.GetOrdersUsecase>(),
+          gh<_i393.AddToCartUseCase>(),
+        ));
     gh.factory<_i204.LoginCubit>(() => _i204.LoginCubit(
           gh<_i197.LoginUseCase>(),
           gh<_i124.GuestUseCase>(),
