@@ -6,7 +6,7 @@ part 'notifications.g.dart';
 @JsonSerializable()
 class Notifications {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "title")
   final String? title;
   @JsonKey(name: "body")
@@ -19,7 +19,7 @@ class Notifications {
   final int? V;
 
   Notifications({
-    this.Id,
+    this.id,
     this.title,
     this.body,
     this.createdAt,
@@ -36,6 +36,6 @@ class Notifications {
   }
 
   NotificationsEntity toEntity() {
-    return NotificationsEntity(id: Id, title: title, body: body);
+    return NotificationsEntity(id: id, title: title, body: body);
   }
 }
