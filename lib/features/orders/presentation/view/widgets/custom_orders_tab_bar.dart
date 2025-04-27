@@ -6,7 +6,7 @@ import '../../view_model/orders_cubit.dart';
 import '../../view_model/orders_state.dart';
 
 class CustomOrdersTabBar extends StatelessWidget {
-  const CustomOrdersTabBar({Key? key}) : super(key: key);
+  const CustomOrdersTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {

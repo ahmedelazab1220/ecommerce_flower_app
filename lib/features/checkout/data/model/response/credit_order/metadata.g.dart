@@ -7,17 +7,17 @@ part of 'metadata.dart';
 // **************************************************************************
 
 Metadata _$MetadataFromJson(Map<String, dynamic> json) => Metadata(
-      city: json['city'] as String?,
-      lat: json['lat'] as String?,
-      long: json['long'] as String?,
-      phone: json['phone'] as String?,
-      street: json['street'] as String?,
-    );
+  city: json['city'] as String?,
+  lat: json['lat'] as String?,
+  long: json['long'] as String?,
+  phone: json['phone'] as String?,
+  street: json['street'] as String?,
+);
 
 Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
-      'city': instance.city,
-      'lat': instance.lat,
-      'long': instance.long,
-      'phone': instance.phone,
-      'street': instance.street,
-    };
+  'city': instance.city,
+  'lat': instance.lat,
+  'long': instance.long,
+  'phone': instance.phone,
+  'street': instance.street,
+};

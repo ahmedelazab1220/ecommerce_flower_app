@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const Login = 'Login';
   static const Email = 'Email';
   static const Password = 'Password';
@@ -24,15 +24,19 @@ abstract class  LocaleKeys {
   static const Gender = 'Gender';
   static const Male = 'Male';
   static const Female = 'Female';
-  static const CreatingAnAccountYouAgreeToOur = 'CreatingAnAccountYouAgreeToOur';
+  static const CreatingAnAccountYouAgreeToOur =
+      'CreatingAnAccountYouAgreeToOur';
   static const TermsAndConditions = 'TermsAndConditions';
   static const AlreadyHaveAnAccount = 'AlreadyHaveAnAccount';
-  static const ConfirmPasswordDoesNotMatchWithPassword = 'ConfirmPasswordDoesNotMatchWithPassword';
+  static const ConfirmPasswordDoesNotMatchWithPassword =
+      'ConfirmPasswordDoesNotMatchWithPassword';
   static const ForgetPassword = 'ForgetPassword';
-  static const PleaseEnterYourEmailAssociatedWithToYourAccount = 'PleaseEnterYourEmailAssociatedWithToYourAccount';
+  static const PleaseEnterYourEmailAssociatedWithToYourAccount =
+      'PleaseEnterYourEmailAssociatedWithToYourAccount';
   static const Confirm = 'Confirm';
   static const EmailVerification = 'EmailVerification';
-  static const PleaseEnterYourCodeThatSendToYourEmailAddress = 'PleaseEnterYourCodeThatSendToYourEmailAddress';
+  static const PleaseEnterYourCodeThatSendToYourEmailAddress =
+      'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const Resend = 'Resend';
   static const DidNotReceiveTheCode = 'DidNotReceiveTheCode';
   static const InvalidCode = 'InvalidCode';
@@ -53,13 +57,15 @@ abstract class  LocaleKeys {
   static const Occasion = 'Occasion';
   static const Wedding = 'Wedding';
   static const Birthday = 'Birthday';
-  static const BloomWithOurExquisiteBestSellers = 'BloomWithOurExquisiteBestSellers';
+  static const BloomWithOurExquisiteBestSellers =
+      'BloomWithOurExquisiteBestSellers';
   static const EGP = 'EGP';
   static const AddToCart = 'AddToCart';
   static const Status = 'Status';
   static const InStock = 'InStock';
   static const AllPricesIncludeTax = 'AllPricesIncludeTax';
-  static const LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa = 'LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa';
+  static const LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa =
+      'LoremIpsumDolorSitAmetConsecteturIdSitMorbiOrnareMorbiDuisRhoncusOrciMassa';
   static const Description = 'Description';
   static const BouquetInclude = 'BouquetInclude';
   static const WhiteWrap = 'WhiteWrap';
@@ -121,7 +127,8 @@ abstract class  LocaleKeys {
   static const Active = 'Active';
   static const NewOffer = 'NewOffer';
   static const Remember = 'Remember';
-  static const LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum = 'LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum';
+  static const LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum =
+      'LoremIpsumDolorSitAmetConsecteturTristiqueEtMaurisSemCongueInFelisIdNecAmetSedMorbiBibendumVestibulum';
   static const Cancel = 'Cancel';
   static const ConfirmLogout = 'ConfirmLogout';
   static const LOGOUT = 'LOGOUT';
@@ -198,8 +205,10 @@ abstract class  LocaleKeys {
   static const Arabic = 'Arabic';
   static const English = 'English';
   static const YouAreInGuestMode = 'YouAreInGuestMode';
-  static const PleaseLoginToAccessAllFeatures = 'PleaseLoginToAccessAllFeatures';
-  static const ProductAddedToCartSuccessfully = 'ProductAddedToCartSuccessfully';
+  static const PleaseLoginToAccessAllFeatures =
+      'PleaseLoginToAccessAllFeatures';
+  static const ProductAddedToCartSuccessfully =
+      'ProductAddedToCartSuccessfully';
   static const ArriveBy = 'ArriveBy';
   static const AM = 'AM';
   static const PM = 'PM';
@@ -208,11 +217,14 @@ abstract class  LocaleKeys {
   static const ClearFilters = 'ClearFilters';
   static const ExploreCategories = 'ExploreCategories';
   static const OopsNoProductsFound = 'OopsNoProductsFound';
-  static const TryAdjustingYourFiltersOrExploreOtherCategories = 'TryAdjustingYourFiltersOrExploreOtherCategories';
-  static const TermsAndConditionsForFloweryApp = 'TermsAndConditionsForFloweryApp';
+  static const TryAdjustingYourFiltersOrExploreOtherCategories =
+      'TryAdjustingYourFiltersOrExploreOtherCategories';
+  static const TermsAndConditionsForFloweryApp =
+      'TermsAndConditionsForFloweryApp';
   static const LastUpdatedTermsAndConditions = 'LastUpdatedTermsAndConditions';
   static const NoTermsAvailable = 'NoTermsAvailable';
-  static const ErrorParsingTermSectionAtIndex = 'ErrorParsingTermSectionAtIndex';
+  static const ErrorParsingTermSectionAtIndex =
+      'ErrorParsingTermSectionAtIndex';
   static const PleaseWait = 'PleaseWait';
   static const LoadingTerms = 'LoadingTerms';
   static const ErrorLoadingData = 'ErrorLoadingData';
@@ -221,15 +233,16 @@ abstract class  LocaleKeys {
   static const NoAboutUsAvailable = 'NoAboutUsAvailable';
   static const SheikhZayed = 'SheikhZayed';
   static const NoSavedAddressesFound = 'NoSavedAddressesFound';
-  static const DoneTheItemIsNowInYourShoppingCart = 'DoneTheItemIsNowInYourShoppingCart';
+  static const DoneTheItemIsNowInYourShoppingCart =
+      'DoneTheItemIsNowInYourShoppingCart';
   static const AddedToCartFailed = 'AddedToCartFailed';
   static const TryAgain = 'TryAgain';
   static const YourCartIsEmpty = 'YourCartIsEmpty';
-  static const ExploreItemsAndAddThemToYourCart = 'ExploreItemsAndAddThemToYourCart';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
   static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
   static const SelectArea = 'SelectArea';
   static const SelectCity = 'SelectCity';
   static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
   static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
-
 }

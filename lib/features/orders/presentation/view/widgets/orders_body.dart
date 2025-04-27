@@ -23,7 +23,7 @@ class OrdersBody extends StatelessWidget {
           return OrdersErrorView(error: base.errorMessage);
         }
         if (base is BaseLoadingState) {
-          return OrdersLoadingView();
+          return const OrdersLoadingView();
         }
         final flatItems = cubit.flattenedOrderItems;
         if (flatItems.isEmpty) {

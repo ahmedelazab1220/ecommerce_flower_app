@@ -80,23 +80,18 @@ class OrdersCubit extends Cubit<OrdersState> {
       case SuccessResult<List<OrderEntity>>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
         orders.addAll(result.data);
-        print('Orders: $orders');
         ordersInProgress.addAll(
           result.data.where((order) => order.state == 'inProgress'),
         );
-        print('Orders In Progress: $ordersInProgress');
         ordersCompleted.addAll(
           result.data.where((order) => order.state == 'completed'),
         );
-        print('Orders Completed: $ordersCompleted');
         ordersPending.addAll(
           result.data.where((order) => order.state == 'pending'),
         );
-        print('Orders Pending: $ordersPending');
         ordersCancelled.addAll(
           result.data.where((order) => order.state == 'cancelled'),
         );
-        print('Orders Cancelled: $ordersCancelled');
       case FailureResult<List<OrderEntity>>():
         emit(
           state.copyWith(

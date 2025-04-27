@@ -1,6 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/orders/data/model/order_response_dto.dart';
-import 'package:ecommerce_flower_app/features/orders/data/model/order_response_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +44,7 @@ class OrdersScreen extends StatelessWidget {
               );
             }
           },
-          child: Column(
+          child: const Column(
             children: [CustomOrdersTabBar(), Expanded(child: OrdersBody())],
           ),
         ),
