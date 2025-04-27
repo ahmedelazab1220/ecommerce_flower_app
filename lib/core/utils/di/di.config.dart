@@ -209,11 +209,11 @@ extension GetItInjectableX on _i174.GetIt {
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
-    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => sharedPreferenceModule.sharedPreferences,
       preResolve: true,
     );
+    gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
@@ -263,8 +263,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i436.ChangePasswordRetrofitClient>(
       () => _i436.ChangePasswordRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i918.AddToCartRetrofitClient>(
+      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1048.AuthRetrofitClient>(
       () => _i1048.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i675.CartRetrofitClient>(
+      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i619.CategoriesRetrofitClient>(
       () => _i619.CategoriesRetrofitClient(gh<_i361.Dio>()),
@@ -280,12 +286,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i766.ProfileRetrofitClient>(
       () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i918.AddToCartRetrofitClient>(
-      () => _i918.AddToCartRetrofitClient(gh<_i361.Dio>()),
-    );
-    gh.singleton<_i675.CartRetrofitClient>(
-      () => _i675.CartRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i865.EditProfileRetrofitClient>(
       () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
