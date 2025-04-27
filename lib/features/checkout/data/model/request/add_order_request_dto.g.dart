@@ -11,7 +11,7 @@ AddOrderRequestDto _$AddOrderRequestDtoFromJson(Map<String, dynamic> json) =>
       shippingAddress:
           json['shippingAddress'] == null
               ? null
-              : ShippingAddress.fromJson(
+              : ShippingAddressDto.fromJson(
                 json['shippingAddress'] as Map<String, dynamic>,
               ),
     );

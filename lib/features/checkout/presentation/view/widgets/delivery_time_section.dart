@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
@@ -53,10 +54,9 @@ class DeliveryTimeSection extends StatelessWidget {
                 child: StreamBuilder<String>(
                   stream: viewModel.currentDateStream(),
                   builder: (context, snapshot) {
-                    final timeText =
-                        snapshot.hasData
-                            ? snapshot.data!
-                            : viewModel.currentDateStream();
+                    final isLoading =
+                        !snapshot.hasData ||
+                        snapshot.connectionState == ConnectionState.waiting;
 
                     return RichText(
                       text: TextSpan(
@@ -66,14 +66,24 @@ class DeliveryTimeSection extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                         children: [
-                          TextSpan(
-                            text: "${LocaleKeys.ArriveBy.tr()} $timeText",
-                            style: Theme.of(
-                              context,
-                            ).textTheme.titleLarge?.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.successGreen,
+                          WidgetSpan(
+                            child: Skeletonizer(
+                              enabled: isLoading,
+                              child: Text(
+                                snapshot.hasData
+                                    ? "${LocaleKeys.ArriveBy.tr()} ${snapshot.data!}"
+                                    : "${LocaleKeys.ArriveBy.tr()} --:--",
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge?.copyWith(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      snapshot.hasData
+                                          ? AppColors.successGreen
+                                          : Colors.grey[400],
+                                ),
+                              ),
                             ),
                           ),
                         ],

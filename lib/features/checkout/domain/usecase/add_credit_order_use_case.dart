@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../../data/model/request/add_order_request_dto.dart';
-import '../../data/model/response/credit_order/add_credit_order_response_dto.dart';
+import '../entity/add_order_request_entity.dart';
+import '../entity/credit_order_entity/add_credit_order_response_entity.dart';
 import '../repo/checkout_repo.dart';
 
 @injectable
@@ -11,8 +11,8 @@ class AddCreditOrderUseCase {
 
   AddCreditOrderUseCase(this._checkoutRepo);
 
-  Future<Result<AddCreditOrderResponseDto>> call(
-    AddOrderRequestDto request,
+  Future<Result<AddCreditOrderResponseEntity>> call(
+    AddOrderRequestEntity request,
   ) async {
     return await _checkoutRepo.addCreditOrder(request);
   }
