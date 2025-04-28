@@ -20,7 +20,7 @@ class NotificationService {
       showToast(
         title:
             "Notification clicked: ${message.notification?.title ?? "Unknown"}",
-        color: AppColors.white, // Use appropriate color
+        color: AppColors.white,
       );
     });
   }
