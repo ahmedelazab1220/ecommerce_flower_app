@@ -1,4 +1,3 @@
-import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:ecommerce_flower_app/features/orders/domain/entity/order_item_entity.dart';
 
 class OrderEntity {

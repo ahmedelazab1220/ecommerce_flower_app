@@ -1,10 +1,8 @@
-import 'package:ecommerce_flower_app/core/utils/shared_models/product_entity.dart';
 import 'package:ecommerce_flower_app/features/orders/data/model/orders_dto.dart';
 import 'package:ecommerce_flower_app/features/orders/data/model/metadata_dto.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entity/order_entity.dart';
 
 part 'order_response_dto.g.dart';
 
