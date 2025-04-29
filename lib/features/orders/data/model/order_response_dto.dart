@@ -3,7 +3,6 @@ import 'package:ecommerce_flower_app/features/orders/data/model/metadata_dto.dar
 
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'order_response_dto.g.dart';
 
 @JsonSerializable()

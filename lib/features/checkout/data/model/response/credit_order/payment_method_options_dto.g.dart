@@ -7,15 +7,14 @@ part of 'payment_method_options_dto.dart';
 // **************************************************************************
 
 PaymentMethodOptionsDto _$PaymentMethodOptionsDtoFromJson(
-        Map<String, dynamic> json) =>
-    PaymentMethodOptionsDto(
-      card: json['card'] == null
+  Map<String, dynamic> json,
+) => PaymentMethodOptionsDto(
+  card:
+      json['card'] == null
           ? null
           : CardDto.fromJson(json['card'] as Map<String, dynamic>),
-    );
+);
 
 Map<String, dynamic> _$PaymentMethodOptionsDtoToJson(
-        PaymentMethodOptionsDto instance) =>
-    <String, dynamic>{
-      'card': instance.card,
-    };
+  PaymentMethodOptionsDto instance,
+) => <String, dynamic>{'card': instance.card};

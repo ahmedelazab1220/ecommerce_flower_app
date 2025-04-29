@@ -11,13 +11,26 @@ import '../../view_model/orders_state.dart';
 import '../widgets/custom_orders_tab_bar.dart';
 import '../widgets/orders_body.dart';
 
-class OrdersScreen extends StatelessWidget {
+class OrdersScreen extends StatefulWidget {
   const OrdersScreen({super.key});
+
+  @override
+  State<OrdersScreen> createState() => _OrdersScreenState();
+}
+
+class _OrdersScreenState extends State<OrdersScreen> {
+  final OrdersCubit ordersCubit = getIt<OrdersCubit>();
+
+  @override
+  void initState() {
+    ordersCubit.doIntent(GetOrdersAction());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<OrdersCubit>(
-      create: (_) => getIt<OrdersCubit>()..doIntent(GetOrdersAction()),
+      create: (_) => ordersCubit,
       child: Scaffold(
         appBar: AppBar(title: Text(LocaleKeys.MyOrders.tr())),
         body: BlocListener<OrdersCubit, OrdersState>(

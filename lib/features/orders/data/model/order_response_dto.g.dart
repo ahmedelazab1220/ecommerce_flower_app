@@ -9,12 +9,14 @@ part of 'order_response_dto.dart';
 OrderResponseDto _$OrderResponseDtoFromJson(Map<String, dynamic> json) =>
     OrderResponseDto(
       message: json['message'] as String?,
-      metadata: json['metadata'] == null
-          ? null
-          : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
-      orders: (json['orders'] as List<dynamic>?)
-          ?.map((e) => OrdersDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      metadata:
+          json['metadata'] == null
+              ? null
+              : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
+      orders:
+          (json['orders'] as List<dynamic>?)
+              ?.map((e) => OrdersDto.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$OrderResponseDtoToJson(OrderResponseDto instance) =>

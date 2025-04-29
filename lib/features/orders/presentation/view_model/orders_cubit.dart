@@ -27,14 +27,14 @@ class OrdersCubit extends Cubit<OrdersState> {
   final List<String> tabLabels = [
     LocaleKeys.Active.tr(),
     LocaleKeys.Completed.tr(),
-    // LocaleKeys.Pending.tr(),
-    // LocaleKeys.Cancelled.tr(),
+    LocaleKeys.Pending.tr(),
+    LocaleKeys.Cancelled.tr(),
   ];
   final List<String> statuses = [
     'inProgress',
     'completed',
-    // 'pending',
-    // 'cancelled',
+    'pending',
+    'cancelled',
   ];
 
   List<OrderEntity> get currentOrders {
@@ -43,10 +43,10 @@ class OrdersCubit extends Cubit<OrdersState> {
         return ordersInProgress;
       case 1:
         return ordersCompleted;
-      // case 2:
-      //   return ordersPending;
-      // case 3:
-      //   return ordersCancelled;
+      case 2:
+        return ordersPending;
+      case 3:
+        return ordersCancelled;
       default:
         return [];
     }
