@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../../checkout/data/model/response/cart/cart.dart';
+import 'cart_dto.dart';
 
 part 'get_cart_info_response_dto.g.dart';
 
@@ -11,7 +11,7 @@ class GetCartInfoResponseDto {
   @JsonKey(name: "numOfCartItems")
   final int? numOfCartItems;
   @JsonKey(name: "cart")
-  final Cart? cart;
+  final CartDto? cart;
 
   GetCartInfoResponseDto({this.message, this.numOfCartItems, this.cart});
 

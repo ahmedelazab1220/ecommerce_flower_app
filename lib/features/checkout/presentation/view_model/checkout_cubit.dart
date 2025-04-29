@@ -5,12 +5,12 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
 import '../../../../core/utils/validator/validator.dart';
-import '../../data/model/request/add_order_request_dto.dart';
-import '../../data/model/response/cash_order/add_cache_order_response_dto.dart';
-import '../../data/model/response/credit_order/add_credit_order_response_dto.dart';
-import '../../domain/entity/addresses_entity.dart';
+import '../../domain/entity/add_order_request_entity.dart';
 import '../../domain/entity/cart_entity.dart';
+import '../../domain/entity/cash_order_entity/order_entity.dart';
+import '../../domain/entity/credit_order_entity/add_credit_order_response_entity.dart';
 import '../../domain/usecase/add_cache_order_use_case.dart';
 import '../../domain/usecase/add_credit_order_use_case.dart';
 import '../../domain/usecase/get_addresses_use_case.dart';
@@ -30,7 +30,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   final TextEditingController phoneController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  List<AddressesEntity>? addresses = [];
+  List<AddressEntity>? addresses = [];
   CartEntity? cartData;
 
   bool isGift = false;
@@ -49,14 +49,14 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(addressState: BaseLoadingState()));
     final result = await _getAddressesUseCase();
     switch (result) {
-      case SuccessResult<List<AddressesEntity>>():
+      case SuccessResult<List<AddressEntity>>():
         {
           addresses = result.data;
           emit(
             state.copyWith(addressState: BaseSuccessState(data: result.data)),
           );
         }
-      case FailureResult<List<AddressesEntity>>():
+      case FailureResult<List<AddressEntity>>():
         {
           emit(
             state.copyWith(
@@ -95,15 +95,15 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     }
   }
 
-  Future<void> _addCacheOrder(AddOrderRequestDto request) async {
+  Future<void> _addCacheOrder(AddOrderRequestEntity request) async {
     emit(state.copyWith(orderState: BaseLoadingState()));
     final result = await _addCacheOrderUseCase(request);
     switch (result) {
-      case SuccessResult<AddCacheOrderResponseDto>():
+      case SuccessResult<OrderEntity?>():
         {
           emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
         }
-      case FailureResult<AddCacheOrderResponseDto>():
+      case FailureResult<OrderEntity?>():
         {
           emit(
             state.copyWith(
@@ -116,15 +116,15 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     }
   }
 
-  Future<void> _addCreditOrder(AddOrderRequestDto request) async {
+  Future<void> _addCreditOrder(AddOrderRequestEntity request) async {
     emit(state.copyWith(orderState: BaseLoadingState()));
     final result = await _addCreditOrderUseCase(request);
     switch (result) {
-      case SuccessResult<AddCreditOrderResponseDto>():
+      case SuccessResult<AddCreditOrderResponseEntity>():
         {
           emit(state.copyWith(orderState: BaseSuccessState(data: result.data)));
         }
-      case FailureResult<AddCreditOrderResponseDto>():
+      case FailureResult<AddCreditOrderResponseEntity>():
         {
           emit(
             state.copyWith(
@@ -162,7 +162,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(state.copyWith(isGift: isGift));
   }
 
-  void doIntent(CheckoutAction action) {
+  Future<void> doIntent(CheckoutAction action) async {
     switch (action) {
       case GetAddressesAction():
         {

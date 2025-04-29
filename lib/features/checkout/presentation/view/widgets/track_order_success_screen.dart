@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/assets/app_colors.dart';
@@ -30,7 +31,11 @@ class TrackOrderSuccessScreen extends StatelessWidget {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.mainLayoutRoute,
+                  (route) => false,
+                );
               },
               child: Text(
                 LocaleKeys.TrackOrder.tr(),

@@ -15,6 +15,7 @@ import 'core/utils/routes/routes.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStrater.init();
+
   Bloc.observer = BlocObserverService(getIt<Logger>());
   runApp(
     EasyLocalization(

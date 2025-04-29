@@ -6,7 +6,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../domain/entity/addresses_entity.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
 import 'add_new_address_button.dart';
@@ -24,7 +24,7 @@ class DeliveryAddressesSection extends StatelessWidget {
         final isLoading = state.addressState is BaseLoadingState;
         final addresses =
             isLoading
-                ? List.generate(3, (_) => AddressesEntity.fake())
+                ? List.generate(3, (_) => AddressEntity.fake())
                 : viewModel.addresses ?? [];
 
         return Container(
