@@ -5,12 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/search_body.dart';
 import '../widgets/search_field.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
   @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final SearchCubit searchCubit = getIt<SearchCubit>();
+
+  @override
   Widget build(BuildContext context) {
-    final SearchCubit searchCubit = getIt<SearchCubit>();
     return BlocProvider(
       create: (context) => searchCubit,
       child: const Scaffold(

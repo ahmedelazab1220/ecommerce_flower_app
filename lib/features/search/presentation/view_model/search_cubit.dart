@@ -39,4 +39,10 @@ class SearchCubit extends Cubit<SearchState> {
         );
     }
   }
+
+  @override
+  Future<void> close() async {
+    searchController.dispose();
+    await super.close();
+  }
 }
