@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +24,7 @@ class NotificationList extends StatelessWidget {
         }
 
         if (notifications.isEmpty) {
-          return Center(child: Text(""));
+          return const Center(child: Text(""));
         }
 
         return ListView.builder(
