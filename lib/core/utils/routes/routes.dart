@@ -12,6 +12,7 @@ import '../../../features/checkout/presentation/view/screen/checkout_screen.dart
 import '../../../features/checkout/presentation/view/widgets/track_order_success_screen.dart';
 import '../../../features/edit_profile/presentation/view/edit_profile_screen.dart';
 import '../../../features/main_layout/presentation/view/main_layout.dart';
+import '../../../features/notifications/presentation/view/screen/notification_details.dart';
 import '../../../features/notifications/presentation/view/screen/notification_screen.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
@@ -44,6 +45,7 @@ class AppRoutes {
   static const String paymentWebViewRoute = '/payment-web-view';
   static const String cartScreenRoute = '/cart-screen';
   static const String notificationScreenRoute = '/notification-screen';
+  static const String notificationDetailsRoute = '/notification-details';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -88,5 +90,6 @@ class AppRoutes {
       return AddressDetailsScreen(address: addressEntity);
     },
     notificationScreenRoute: (context) => NotificationScreen(),
+    notificationDetailsRoute: (context) => const NotificationDetails(),
   };
 }
