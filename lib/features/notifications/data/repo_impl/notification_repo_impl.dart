@@ -4,19 +4,13 @@ import 'package:ecommerce_flower_app/features/notifications/domain/entity/notifi
 import 'package:ecommerce_flower_app/features/notifications/domain/repo/notification_repo.dart';
 import 'package:injectable/injectable.dart';
 
-import '../data_source/contract/notification_local_data_source.dart';
 import '../data_source/contract/notification_remote_data_source.dart';
 
 @Injectable(as: NotificationRepo)
-class NotificationRepoImpl extends NotificationRepo {
+class NotificationRepoImpl implements NotificationRepo {
   final NotificationRemoteDataSource _notificationRemoteDataSource;
-  final NotificationLocalDataSource _notificationLocalDataSource;
   final ApiManager _apiManager;
-  NotificationRepoImpl(
-    this._notificationRemoteDataSource,
-    this._notificationLocalDataSource,
-    this._apiManager,
-  );
+  NotificationRepoImpl(this._notificationRemoteDataSource, this._apiManager);
   @override
   Future<Result<List<NotificationsEntity>>> getAllNotifications() async {
     return await _apiManager.execute<List<NotificationsEntity>>(() async {

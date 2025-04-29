@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 import '../../api/notification_retrofit_client.dart';
 
 @Injectable(as: NotificationRemoteDataSource)
-class NotificationRemoteDataSourceImpl extends NotificationRemoteDataSource {
+class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
   final NotificationRetrofitClient _notificationRetrofitClient;
   NotificationRemoteDataSourceImpl(this._notificationRetrofitClient);
   @override

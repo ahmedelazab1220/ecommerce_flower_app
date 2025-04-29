@@ -8,7 +8,7 @@ part of 'notifications.dart';
 
 Notifications _$NotificationsFromJson(Map<String, dynamic> json) =>
     Notifications(
-      Id: json['_id'] as String?,
+      id: json['_id'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
       createdAt: json['createdAt'] as String?,
@@ -18,7 +18,7 @@ Notifications _$NotificationsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$NotificationsToJson(Notifications instance) =>
     <String, dynamic>{
-      '_id': instance.Id,
+      '_id': instance.id,
       'title': instance.title,
       'body': instance.body,
       'createdAt': instance.createdAt,
