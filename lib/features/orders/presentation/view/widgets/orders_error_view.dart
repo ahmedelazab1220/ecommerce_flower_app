@@ -18,7 +18,7 @@ class OrdersErrorView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(AppLotties.errorScreen, width: 300, height: 300),
+            Lottie.asset(AppLotties.errorScreen),
             const SizedBox(height: 32),
             Text(
               error,

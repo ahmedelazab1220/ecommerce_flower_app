@@ -7,12 +7,15 @@ part of 'payment_method_configuration_details_dto.dart';
 // **************************************************************************
 
 PaymentMethodConfigurationDetailsDto
-_$PaymentMethodConfigurationDetailsDtoFromJson(Map<String, dynamic> json) =>
-    PaymentMethodConfigurationDetailsDto(
-      id: json['id'] as String?,
-      parent: json['parent'],
-    );
+    _$PaymentMethodConfigurationDetailsDtoFromJson(Map<String, dynamic> json) =>
+        PaymentMethodConfigurationDetailsDto(
+          id: json['id'] as String?,
+          parent: json['parent'],
+        );
 
 Map<String, dynamic> _$PaymentMethodConfigurationDetailsDtoToJson(
-  PaymentMethodConfigurationDetailsDto instance,
-) => <String, dynamic>{'id': instance.id, 'parent': instance.parent};
+        PaymentMethodConfigurationDetailsDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'parent': instance.parent,
+    };

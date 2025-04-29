@@ -7,14 +7,14 @@ part of 'occasion_dto.dart';
 // **************************************************************************
 
 OccasionDto _$OccasionDtoFromJson(Map<String, dynamic> json) => OccasionDto(
-  id: json['_id'] as String?,
-  name: json['name'] as String?,
-  slug: json['slug'] as String?,
-  image: json['image'] as String?,
-  createdAt: json['createdAt'] as String?,
-  updatedAt: json['updatedAt'] as String?,
-  productsCount: (json['productsCount'] as num?)?.toInt(),
-);
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+      slug: json['slug'] as String?,
+      image: json['image'] as String?,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+      productsCount: (json['productsCount'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$OccasionDtoToJson(OccasionDto instance) =>
     <String, dynamic>{

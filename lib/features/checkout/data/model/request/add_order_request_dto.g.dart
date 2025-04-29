@@ -8,13 +8,13 @@ part of 'add_order_request_dto.dart';
 
 AddOrderRequestDto _$AddOrderRequestDtoFromJson(Map<String, dynamic> json) =>
     AddOrderRequestDto(
-      shippingAddress:
-          json['shippingAddress'] == null
-              ? null
-              : ShippingAddressDto.fromJson(
-                json['shippingAddress'] as Map<String, dynamic>,
-              ),
+      shippingAddress: json['shippingAddress'] == null
+          ? null
+          : ShippingAddressDto.fromJson(
+              json['shippingAddress'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AddOrderRequestDtoToJson(AddOrderRequestDto instance) =>
-    <String, dynamic>{'shippingAddress': instance.shippingAddress};
+    <String, dynamic>{
+      'shippingAddress': instance.shippingAddress,
+    };

@@ -7,7 +7,7 @@ import '../../../../core/utils/datasource_excution/api_constants.dart';
 
 part 'orders_retrofit_client.g.dart';
 
-@singleton
+@injectable
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class OrdersRetrofitClient {
   @factoryMethod

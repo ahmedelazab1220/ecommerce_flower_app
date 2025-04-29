@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'order_dto.dart';
+part of 'orders_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => OrderDto(
+OrdersDto _$OrdersDtoFromJson(Map<String, dynamic> json) => OrdersDto(
+      id: json['_id'] as String?,
       user: json['user'] as String?,
       orderItems: (json['orderItems'] as List<dynamic>?)
           ?.map((e) => OrderItemsDto.fromJson(e as Map<String, dynamic>))
@@ -16,14 +17,14 @@ OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => OrderDto(
       isPaid: json['isPaid'] as bool?,
       isDelivered: json['isDelivered'] as bool?,
       state: json['state'] as String?,
-      id: json['_id'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
       orderNumber: json['orderNumber'] as String?,
-      V: (json['__v'] as num?)?.toInt(),
+      v: (json['__v'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
+Map<String, dynamic> _$OrdersDtoToJson(OrdersDto instance) => <String, dynamic>{
+      '_id': instance.id,
       'user': instance.user,
       'orderItems': instance.orderItems,
       'totalPrice': instance.totalPrice,
@@ -31,9 +32,8 @@ Map<String, dynamic> _$OrderDtoToJson(OrderDto instance) => <String, dynamic>{
       'isPaid': instance.isPaid,
       'isDelivered': instance.isDelivered,
       'state': instance.state,
-      '_id': instance.id,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'orderNumber': instance.orderNumber,
-      '__v': instance.V,
+      '__v': instance.v,
     };

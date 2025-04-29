@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/shared_features/add_to_cart/data/model/request/add_to_cart_request_dto.dart';
 import '../../../../core/utils/shared_features/add_to_cart/data/model/response/add_to_cart_response_dto.dart';
+import '../../domain/entity/order_item_entity.dart';
 import 'orders_state.dart';
 
 @injectable
@@ -26,14 +27,14 @@ class OrdersCubit extends Cubit<OrdersState> {
   final List<String> tabLabels = [
     LocaleKeys.Active.tr(),
     LocaleKeys.Completed.tr(),
-    LocaleKeys.Pending.tr(),
-    LocaleKeys.Cancelled.tr(),
+    // LocaleKeys.Pending.tr(),
+    // LocaleKeys.Cancelled.tr(),
   ];
   final List<String> statuses = [
     'inProgress',
     'completed',
-    'pending',
-    'cancelled',
+    // 'pending',
+    // 'cancelled',
   ];
 
   List<OrderEntity> get currentOrders {
@@ -42,10 +43,10 @@ class OrdersCubit extends Cubit<OrdersState> {
         return ordersInProgress;
       case 1:
         return ordersCompleted;
-      case 2:
-        return ordersPending;
-      case 3:
-        return ordersCancelled;
+      // case 2:
+      //   return ordersPending;
+      // case 3:
+      //   return ordersCancelled;
       default:
         return [];
     }

@@ -7,9 +7,13 @@ part of 'collected_information_dto.dart';
 // **************************************************************************
 
 CollectedInformationDto _$CollectedInformationDtoFromJson(
-  Map<String, dynamic> json,
-) => CollectedInformationDto(shippingDetails: json['shipping_details']);
+        Map<String, dynamic> json) =>
+    CollectedInformationDto(
+      shippingDetails: json['shipping_details'],
+    );
 
 Map<String, dynamic> _$CollectedInformationDtoToJson(
-  CollectedInformationDto instance,
-) => <String, dynamic>{'shipping_details': instance.shippingDetails};
+        CollectedInformationDto instance) =>
+    <String, dynamic>{
+      'shipping_details': instance.shippingDetails,
+    };

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product.dart';
+part of 'product_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Product _$ProductFromJson(Map<String, dynamic> json) => Product(
-      id: json['_id'] as String?,
+ProductDto _$ProductDtoFromJson(Map<String, dynamic> json) => ProductDto(
+      productId: json['_id'] as String?,
       title: json['title'] as String?,
       slug: json['slug'] as String?,
       description: json['description'] as String?,
@@ -21,15 +21,17 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       occasion: json['occasion'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
-      V: (json['__v'] as num?)?.toInt(),
+      v: (json['__v'] as num?)?.toInt(),
       discount: (json['discount'] as num?)?.toInt(),
       sold: (json['sold'] as num?)?.toInt(),
       rateAvg: (json['rateAvg'] as num?)?.toDouble(),
       rateCount: (json['rateCount'] as num?)?.toInt(),
+      id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
-      '_id': instance.id,
+Map<String, dynamic> _$ProductDtoToJson(ProductDto instance) =>
+    <String, dynamic>{
+      '_id': instance.productId,
       'title': instance.title,
       'slug': instance.slug,
       'description': instance.description,
@@ -42,9 +44,10 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'occasion': instance.occasion,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
-      '__v': instance.V,
+      '__v': instance.v,
       'discount': instance.discount,
       'sold': instance.sold,
       'rateAvg': instance.rateAvg,
       'rateCount': instance.rateCount,
+      'id': instance.id,
     };
