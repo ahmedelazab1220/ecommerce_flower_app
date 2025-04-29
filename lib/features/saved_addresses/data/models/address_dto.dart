@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entity/address_entity.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
 
 part 'address_dto.g.dart';
 

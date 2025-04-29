@@ -7,9 +7,9 @@ import 'package:ecommerce_flower_app/core/utils/dialogs/app_toast.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/features/address_details/presentation/view/widgets/address_details_body.dart';
 import 'package:ecommerce_flower_app/features/address_details/presentation/view_model/address_details_cubit.dart';
-import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import '../../view_model/address_details_state.dart';
 
 class AddressDetailsScreen extends StatefulWidget {

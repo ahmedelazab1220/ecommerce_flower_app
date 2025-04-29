@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entity/address_entity.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import 'handle_empty_address_state.dart';
 import 'saved_address_item.dart';
 

@@ -1,5 +1,5 @@
 import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../entity/address_entity.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
 
 abstract class SavedAddressesRepo {
   Future<Result<List<AddressEntity>?>> getUserSavedAddresses();
