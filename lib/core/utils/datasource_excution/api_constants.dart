@@ -24,6 +24,9 @@ class ApiConstants {
   static const String cartRoute = "cart";
   //////////////////////////// Orders Routes ////////////////////////////
   static const String addCacheOrderRoute = "orders";
+  static const String addCreditOrderRoute = "orders/checkout";
   //////////////////////////// Addresses Routes ////////////////////////////
   static const String addressesRoute = "addresses";
+  /////////////////////////// Payment Routes ////////////////////////////
+  static const String paymentRoute = "localhost:3000/allOrders";
 }

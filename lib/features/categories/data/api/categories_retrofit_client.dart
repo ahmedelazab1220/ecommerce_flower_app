@@ -19,5 +19,7 @@ abstract class CategoriesRetrofitClient {
   @GET(ApiConstants.allProductsRoute)
   Future<ProductsResponse> getProductsByCategory({
     @Query('category') String? categoryId,
+    @Query('price') int? price,
+    @Query('sort') String? sort,
   });
 }

@@ -116,8 +116,8 @@ abstract class LocaleKeys {
   static const Cairo = 'Cairo';
   static const AddNewAddress = 'AddNewAddress';
   static const EnterTheAddress = 'EnterTheAddress';
-  static const RecipientsName = 'RecipientsName';
-  static const EnterRecipientsName = 'EnterRecipientsName';
+  static const RecipientName = 'RecipientName';
+  static const EnterRecipientName = 'EnterRecipientName';
   static const City = 'City';
   static const Area = 'Area';
   static const SavedAddresses = 'SavedAddresses';
@@ -207,4 +207,40 @@ abstract class LocaleKeys {
       'PleaseLoginToAccessAllFeatures';
   static const ProductAddedToCartSuccessfully =
       'ProductAddedToCartSuccessfully';
+  static const ArriveBy = 'ArriveBy';
+  static const AM = 'AM';
+  static const PM = 'PM';
+  static const Name = 'Name';
+  static const PaymentFailedPleaseTryAgain = 'PaymentFailedPleaseTryAgain';
+  static const ClearFilters = 'ClearFilters';
+  static const ExploreCategories = 'ExploreCategories';
+  static const OopsNoProductsFound = 'OopsNoProductsFound';
+  static const TryAdjustingYourFiltersOrExploreOtherCategories =
+      'TryAdjustingYourFiltersOrExploreOtherCategories';
+  static const TermsAndConditionsForFloweryApp =
+      'TermsAndConditionsForFloweryApp';
+  static const LastUpdatedTermsAndConditions = 'LastUpdatedTermsAndConditions';
+  static const NoTermsAvailable = 'NoTermsAvailable';
+  static const ErrorParsingTermSectionAtIndex =
+      'ErrorParsingTermSectionAtIndex';
+  static const PleaseWait = 'PleaseWait';
+  static const LoadingTerms = 'LoadingTerms';
+  static const ErrorLoadingData = 'ErrorLoadingData';
+  static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
+  static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
+  static const NoAboutUsAvailable = 'NoAboutUsAvailable';
+  static const SheikhZayed = 'SheikhZayed';
+  static const NoSavedAddressesFound = 'NoSavedAddressesFound';
+  static const DoneTheItemIsNowInYourShoppingCart =
+      'DoneTheItemIsNowInYourShoppingCart';
+  static const AddedToCartFailed = 'AddedToCartFailed';
+  static const TryAgain = 'TryAgain';
+  static const YourCartIsEmpty = 'YourCartIsEmpty';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
+  static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
+  static const SelectArea = 'SelectArea';
+  static const SelectCity = 'SelectCity';
+  static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
+  static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
 }

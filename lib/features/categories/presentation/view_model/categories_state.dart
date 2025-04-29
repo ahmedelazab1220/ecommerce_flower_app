@@ -34,18 +34,19 @@ class CategoriesState extends Equatable {
 
 sealed class CategoriesAction {}
 
-class GetCategoriesAction extends CategoriesAction {
+final class GetCategoriesAction extends CategoriesAction {
   final int? index;
   GetCategoriesAction({this.index});
 }
 
-class GetProductsAction extends CategoriesAction {
+final class GetProductsAction extends CategoriesAction {
   final String? categoryId;
-
-  GetProductsAction({this.categoryId});
+  final int? price;
+  final String? sort;
+  GetProductsAction({this.categoryId, this.price, this.sort});
 }
 
-class ChangeCategoryAction extends CategoriesAction {
+final class ChangeCategoryAction extends CategoriesAction {
   final int index;
 
   ChangeCategoryAction(this.index);
