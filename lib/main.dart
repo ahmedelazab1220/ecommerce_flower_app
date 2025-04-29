@@ -29,6 +29,7 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   await AppStrater.init();
+
   Bloc.observer = BlocObserverService(getIt<Logger>());
   runApp(
     EasyLocalization(
