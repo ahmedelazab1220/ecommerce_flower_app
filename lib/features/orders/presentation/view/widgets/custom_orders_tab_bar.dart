@@ -12,25 +12,27 @@ class CustomOrdersTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<OrdersCubit>();
     final tabs = cubit.tabLabels;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final tabWidth = screenWidth / 2;
     return BlocBuilder<OrdersCubit, OrdersState>(
       builder: (context, state) {
         final selectedIndex = state.selectedTabIndex;
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(tabs.length, (index) {
+        return SizedBox(
+          height: 60,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: tabs.length,
+            itemBuilder: (context, index) {
               final isSelected = index == selectedIndex;
-              return SizedBox(
-                width: tabWidth,
-                child: InkWell(
-                  onTap: () {
-                    if (!isSelected) cubit.doIntent(ChangeTabAction(index));
-                  },
+              return GestureDetector(
+                onTap: () {
+                  if (!isSelected) cubit.doIntent(ChangeTabAction(index));
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  alignment: Alignment.center,
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(height: 12),
                       Text(
                         tabs[index],
                         style: TextStyle(
@@ -45,7 +47,6 @@ class CustomOrdersTabBar extends StatelessWidget {
                       const SizedBox(height: 8),
                       Container(
                         height: 3,
-                        width: double.infinity,
                         color:
                             isSelected
                                 ? AppColors.pink
@@ -55,7 +56,7 @@ class CustomOrdersTabBar extends StatelessWidget {
                   ),
                 ),
               );
-            }),
+            },
           ),
         );
       },
