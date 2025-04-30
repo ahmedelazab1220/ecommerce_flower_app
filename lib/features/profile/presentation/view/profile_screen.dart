@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/assets/app_icons.dart';
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/bottom_nav_bar_visibility/scroll_visibility_controller.dart';
+import '../../../../core/utils/routes/routes.dart';
 import '../view_model/profile_cubit.dart';
 import '../view_model/profile_state.dart';
 import 'widgets/guest_mode_section.dart';
@@ -43,7 +44,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         actions: [
           IconButton(
             icon: SvgPicture.asset(AppIcons.notificationSvg),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.notificationScreenRoute);
+            },
           ),
         ],
       ),

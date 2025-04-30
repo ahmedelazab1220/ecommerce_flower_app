@@ -29,4 +29,6 @@ class ApiConstants {
   static const String addressesRoute = "addresses";
   /////////////////////////// Payment Routes ////////////////////////////
   static const String paymentRoute = "localhost:3000/allOrders";
+  /////////////////////////// Notifications Routes ////////////////////////////
+  static const String notificationsRoute = "notifications";
 }
