@@ -95,6 +95,8 @@ abstract class LocaleKeys {
   static const Address = 'Address';
   static const Payment = 'Payment';
   static const TrackOrder = 'TrackOrder';
+  static const OrderNumber = 'OrderNumber';
+  static const NoOrdersYet = 'NoOrdersYet';
   static const Next = 'Next';
   static const AddNew = 'AddNew';
   static const PaymentMethod = 'PaymentMethod';

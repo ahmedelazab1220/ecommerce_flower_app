@@ -15,6 +15,7 @@ import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/notifications/presentation/view/screen/notification_details.dart';
 import '../../../features/notifications/presentation/view/screen/notification_screen.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
+import '../../../features/orders/presentation/view/screens/orders_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
@@ -45,6 +46,7 @@ class AppRoutes {
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
   static const String cartScreenRoute = '/cart-screen';
+  static const String ordersRoute = '/orders';
   static const String notificationScreenRoute = '/notification-screen';
   static const String notificationDetailsRoute = '/notification-details';
 
@@ -98,5 +100,6 @@ class AppRoutes {
           args?['notificationEntity'] as NotificationEntity?;
       return NotificationDetails(notificationEntity: notificationEntity!);
     },
+    ordersRoute: (context) => const OrdersScreen(),
   };
 }

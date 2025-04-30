@@ -85,6 +85,8 @@
     "Address": "Address",
     "Payment": "Payment",
     "TrackOrder": "Track order",
+    "OrderNumber": "Order number",
+    "NoOrdersYet": "No orders yet",
     "Next": "Next",
     "AddNew": "Add new",
     "PaymentMethod": "Payment method",

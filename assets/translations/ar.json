@@ -85,6 +85,8 @@
     "Address": "العنوان",
     "Payment": "الدفع",
     "TrackOrder": "تتبع الطلب",
+    "OrderNumber": "رقم الطلب",
+    "NoOrdersYet": "لا توجد طلبات حتى الان",
     "Next": "التالي",
     "AddNew": "أضف جديد",
     "PaymentMethod": "طريقة الدفع",
