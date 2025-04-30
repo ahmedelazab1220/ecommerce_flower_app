@@ -3,15 +3,15 @@ import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/entity/notifications_entity.dart';
+import '../../../domain/entity/notification_entity.dart';
 
 class NotificationDetails extends StatelessWidget {
-  const NotificationDetails({super.key});
+  const NotificationDetails({super.key, required this.notificationEntity});
+
+  final NotificationEntity notificationEntity;
 
   @override
   Widget build(BuildContext context) {
-    final NotificationsEntity args =
-        ModalRoute.of(context)?.settings.arguments as NotificationsEntity;
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Notification.tr())),
       body: Column(
@@ -21,7 +21,7 @@ class NotificationDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              args.title ?? "",
+              notificationEntity.title ?? "",
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: 24,
@@ -33,7 +33,7 @@ class NotificationDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              args.body ?? "",
+              notificationEntity.body ?? "",
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w400,
                 fontSize: 16,

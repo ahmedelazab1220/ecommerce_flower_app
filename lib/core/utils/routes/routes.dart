@@ -1,3 +1,4 @@
+import 'package:ecommerce_flower_app/features/notifications/domain/entity/notification_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
@@ -91,8 +92,14 @@ class AppRoutes {
       final addressEntity = args?['addressEntity'] as AddressEntity?;
       return AddressDetailsScreen(address: addressEntity);
     },
+    notificationScreenRoute: (context) => const NotificationScreen(),
+    notificationDetailsRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final notificationEntity =
+          args?['notificationEntity'] as NotificationEntity?;
+      return NotificationDetails(notificationEntity: notificationEntity!);
+    },
     searchRoute: (context) => const SearchScreen(),
-    notificationScreenRoute: (context) => NotificationScreen(),
-    notificationDetailsRoute: (context) => const NotificationDetails(),
   };
 }

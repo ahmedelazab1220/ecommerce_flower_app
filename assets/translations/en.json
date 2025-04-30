@@ -232,5 +232,6 @@
     "TheNotificationDeletedFailed": "The notification deleted failed",
     "TheNotificationWillBeDeletedAfter": "The notification will be deleted after",
     "Seconds": "seconds",
-    "NotificationDeletionCancelled": "Notification deletion cancelled"
+    "NotificationDeletionCancelled": "Notification deletion cancelled",
+    "NoNotificationsFound": "No Notifications found!"
 }

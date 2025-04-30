@@ -254,4 +254,5 @@ abstract class LocaleKeys {
       'TheNotificationWillBeDeletedAfter';
   static const Seconds = 'Seconds';
   static const NotificationDeletionCancelled = 'NotificationDeletionCancelled';
+  static const NoNotificationsFound = 'NoNotificationsFound';
 }
