@@ -55,5 +55,5 @@ jobs:
         with:
           appId: ${{secrets.ECOMMERCE_FLOWER_APP_ID}} 
           serviceCredentialsFileContent: ${{secrets.ECOMMERCE_GOOGLE_APPLICATION_CREDENTIALS}}
-          groups: sprint masters
+          groups: sprint-masters            
           file: build/app/outputs/flutter-apk/app-release.apk
