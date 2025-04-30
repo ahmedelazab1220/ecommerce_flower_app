@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_result.dart';
-import '../entity/notifications_entity.dart';
+import '../entity/notification_entity.dart';
 import '../repo/notification_repo.dart';
 
 @injectable
@@ -10,7 +10,7 @@ class GetNotificationByIdUseCase {
 
   GetNotificationByIdUseCase(this._notificationRepo);
 
-  Future<Result<NotificationsEntity>> call(String id) async {
+  Future<Result<NotificationEntity>> call(String id) async {
     return await _notificationRepo.getNotificationById(id);
   }
 }

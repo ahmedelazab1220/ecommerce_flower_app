@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'metadata.dart';
-import 'notifications.dart';
+import 'metadata_dto.dart';
+import 'notification_dto.dart';
 
 part 'get_all_notification_response_dto.g.dart';
 
@@ -10,9 +10,9 @@ class GetAllNotificationResponseDto {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "metadata")
-  final Metadata? metadata;
+  final MetadataDto? metadata;
   @JsonKey(name: "notifications")
-  final List<Notifications>? notifications;
+  final List<NotificationDto>? notifications;
 
   GetAllNotificationResponseDto({
     this.message,

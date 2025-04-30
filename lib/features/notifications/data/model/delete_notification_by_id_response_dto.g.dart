@@ -13,7 +13,7 @@ DeleteNotificationByIdResponseDto _$DeleteNotificationByIdResponseDtoFromJson(
   document:
       json['document'] == null
           ? null
-          : Notifications.fromJson(json['document'] as Map<String, dynamic>),
+          : NotificationDto.fromJson(json['document'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$DeleteNotificationByIdResponseDtoToJson(

@@ -1,10 +1,11 @@
-import 'package:ecommerce_flower_app/features/notifications/domain/entity/notifications_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'notifications.g.dart';
+import '../../domain/entity/notification_entity.dart';
+
+part 'notification_dto.g.dart';
 
 @JsonSerializable()
-class Notifications {
+class NotificationDto {
   @JsonKey(name: "_id")
   final String? id;
   @JsonKey(name: "title")
@@ -18,7 +19,7 @@ class Notifications {
   @JsonKey(name: "__v")
   final int? V;
 
-  Notifications({
+  NotificationDto({
     this.id,
     this.title,
     this.body,
@@ -27,15 +28,15 @@ class Notifications {
     this.V,
   });
 
-  factory Notifications.fromJson(Map<String, dynamic> json) {
-    return _$NotificationsFromJson(json);
+  factory NotificationDto.fromJson(Map<String, dynamic> json) {
+    return _$NotificationDtoFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$NotificationsToJson(this);
+    return _$NotificationDtoToJson(this);
   }
 
-  NotificationsEntity toEntity() {
-    return NotificationsEntity(id: id, title: title, body: body);
+  NotificationEntity toEntity() {
+    return NotificationEntity(id: id, title: title, body: body);
   }
 }
