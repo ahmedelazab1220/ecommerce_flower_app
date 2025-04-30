@@ -1,14 +1,19 @@
 name: Flutter CI/CD
 
 on:
-  push:
-    branches:
-      - main
-      - developement
-     
   pull_request:
     types:
       - labeled
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      - review_requested
+      - unlabeled
+      - closed
+      - reopened
+      - unlocked
 
 jobs:
   build:
