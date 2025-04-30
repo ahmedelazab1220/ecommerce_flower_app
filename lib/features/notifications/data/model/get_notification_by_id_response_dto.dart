@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'notifications.dart';
+import 'notification_dto.dart';
 
 part 'get_notification_by_id_response_dto.g.dart';
 
@@ -9,7 +9,7 @@ class GetNotificationByIdResponseDto {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "notification")
-  final Notifications? notification;
+  final NotificationDto? notification;
 
   GetNotificationByIdResponseDto({this.message, this.notification});
 

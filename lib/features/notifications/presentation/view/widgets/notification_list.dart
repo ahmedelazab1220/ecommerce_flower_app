@@ -7,9 +7,7 @@ import '../../view_model/notification_state.dart';
 import 'notification_slidable_item.dart';
 
 class NotificationList extends StatelessWidget {
-  final void Function(String notificationId) onDeletePressed;
-
-  const NotificationList({super.key, required this.onDeletePressed});
+  const NotificationList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +25,12 @@ class NotificationList extends StatelessWidget {
           return const Center(child: Text(""));
         }
 
-        return ListView.builder(
+        return ListView.separated(
+          separatorBuilder: (context, index) => const SizedBox.shrink(),
           itemCount: notifications.length,
           itemBuilder: (context, index) {
             final notification = notifications[index];
-            return NotificationSlidableItem(
-              notification: notification,
-              onDeletePressed: onDeletePressed,
-            );
+            return NotificationSlidableItem(notification: notification);
           },
         );
       },

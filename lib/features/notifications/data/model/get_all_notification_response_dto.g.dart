@@ -13,10 +13,10 @@ GetAllNotificationResponseDto _$GetAllNotificationResponseDtoFromJson(
   metadata:
       json['metadata'] == null
           ? null
-          : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
+          : MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
   notifications:
       (json['notifications'] as List<dynamic>?)
-          ?.map((e) => Notifications.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => NotificationDto.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
 

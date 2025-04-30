@@ -1,9 +1,9 @@
-class NotificationsEntity {
+class NotificationEntity {
   final String? id;
   final String? title;
   final String? body;
 
-  NotificationsEntity({
+  NotificationEntity({
     required this.id,
     required this.title,
     required this.body,

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:ecommerce_flower_app/features/notifications/data/model/get_notification_by_id_response_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/utils/datasource_excution/api_constants.dart';
 import '../model/delete_notification_by_id_response_dto.dart';
 import '../model/get_all_notification_response_dto.dart';
+import '../model/get_notification_by_id_response_dto.dart';
 
 part 'notification_retrofit_client.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'notifications.dart';
+import 'notification_dto.dart';
 
 part 'delete_notification_by_id_response_dto.g.dart';
 
@@ -9,7 +9,7 @@ class DeleteNotificationByIdResponseDto {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "document")
-  final Notifications? document;
+  final NotificationDto? document;
 
   DeleteNotificationByIdResponseDto({this.message, this.document});
 
