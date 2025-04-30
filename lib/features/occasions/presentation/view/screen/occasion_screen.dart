@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/utils/di/di.dart';
@@ -12,6 +12,7 @@ import '../widgets/product_view.dart';
 
 class OccasionScreen extends StatefulWidget {
   final int? occasionIndex;
+
   const OccasionScreen({super.key, this.occasionIndex});
 
   @override
