@@ -224,5 +224,12 @@
     "SelectArea": "يرجى اختيار المنطقة",
     "SelectCity": "يرجى اختيار المدينة",
     "AddressAddedSuccessfully": "تمت إضافة العنوان بنجاح",
-    "AddressUpdatedSuccessfully": "تم تحديث العنوان بنجاح"
+    "AddressUpdatedSuccessfully": "تم تحديث العنوان بنجاح",
+    "Delete": "حذف",
+    "AreYouSureYouWantToDeleteThisNotification": "هل أنت متأكد أنك تريد حذف هذا الإشعار؟",
+    "TheNotificationDeletedSuccessfully": "تم حذف الإشعار بنجاح",
+    "TheNotificationDeletedFailed": "فشل حذف الإشعار",
+    "TheNotificationWillBeDeletedAfter": "سيتم حذف الإشعار بعد",
+    "Seconds": "ثواني",
+    "NotificationDeletionCancelled": "تم إلغاء حذف الإشعار"
 }
