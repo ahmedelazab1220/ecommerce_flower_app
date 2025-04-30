@@ -7,10 +7,8 @@ on:
       - developement
      
   pull_request:
-    branches:
-      - main
-      - developement
-    types: [labeled]
+    types:
+      - labeled
 
 jobs:
   build:
