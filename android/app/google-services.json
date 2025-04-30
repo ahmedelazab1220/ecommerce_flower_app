@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "538744395100",
+    "project_id": "ecommerce-flower-sprint-master",
+    "storage_bucket": "ecommerce-flower-sprint-master.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538744395100:android:7235ccd9f49449e22d9d99",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_flower_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO2qPogrIkM5392QerNWSTflEatdzsnrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

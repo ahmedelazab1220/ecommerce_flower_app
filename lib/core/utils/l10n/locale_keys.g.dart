@@ -95,6 +95,8 @@ abstract class LocaleKeys {
   static const Address = 'Address';
   static const Payment = 'Payment';
   static const TrackOrder = 'TrackOrder';
+  static const OrderNumber = 'OrderNumber';
+  static const NoOrdersYet = 'NoOrdersYet';
   static const Next = 'Next';
   static const AddNew = 'AddNew';
   static const PaymentMethod = 'PaymentMethod';
@@ -116,8 +118,8 @@ abstract class LocaleKeys {
   static const Cairo = 'Cairo';
   static const AddNewAddress = 'AddNewAddress';
   static const EnterTheAddress = 'EnterTheAddress';
-  static const RecipientsName = 'RecipientsName';
-  static const EnterRecipientsName = 'EnterRecipientsName';
+  static const RecipientName = 'RecipientName';
+  static const EnterRecipientName = 'EnterRecipientName';
   static const City = 'City';
   static const Area = 'Area';
   static const SavedAddresses = 'SavedAddresses';
@@ -176,4 +178,83 @@ abstract class LocaleKeys {
   static const Processing = 'Processing';
   static const Cancelled = 'Cancelled';
   static const Error = 'Error';
+  static const EnterAValidEmail = 'EnterAValidEmail';
+  static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
+  static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const ConfirmPasswordMustMatch = 'ConfirmPasswordMustMatch';
+  static const NameCannotBeEmpty = 'NameCannotBeEmpty';
+  static const InvalidName = 'InvalidName';
+  static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
+  static const InvalidPhoneNumber = 'InvalidPhoneNumber';
+  static const Egp = 'Egp';
+  static const all = 'all';
+  static const FetchingYourLocation = 'FetchingYourLocation';
+  static const RequestingPermission = 'RequestingPermission';
+  static const PleaseEnableLocation = 'PleaseEnableLocation';
+  static const LocationTurnOff = 'LocationTurnOff';
+  static const GettingYourCurrentAddress = 'GettingYourCurrentAddress';
+  static const UnableToGetLocation = 'UnableToGetLocation';
+  static const Long = 'Long';
+  static const Lat = 'Lat';
+  static const NoProductsAvailable = 'NoProductsAvailable';
+  static const EditProfile = 'EditProfile';
+  static const TakeAPhoto = 'TakeAPhoto';
+  static const ChooseFromGallery = 'ChooseFromGallery';
+  static const Change = 'Change';
+  static const ChangeLanguage = 'ChangeLanguage';
+  static const Arabic = 'Arabic';
+  static const English = 'English';
+  static const YouAreInGuestMode = 'YouAreInGuestMode';
+  static const PleaseLoginToAccessAllFeatures =
+      'PleaseLoginToAccessAllFeatures';
+  static const ProductAddedToCartSuccessfully =
+      'ProductAddedToCartSuccessfully';
+  static const ArriveBy = 'ArriveBy';
+  static const AM = 'AM';
+  static const PM = 'PM';
+  static const Name = 'Name';
+  static const PaymentFailedPleaseTryAgain = 'PaymentFailedPleaseTryAgain';
+  static const ClearFilters = 'ClearFilters';
+  static const ExploreCategories = 'ExploreCategories';
+  static const OopsNoProductsFound = 'OopsNoProductsFound';
+  static const TryAdjustingYourFiltersOrExploreOtherCategories =
+      'TryAdjustingYourFiltersOrExploreOtherCategories';
+  static const TermsAndConditionsForFloweryApp =
+      'TermsAndConditionsForFloweryApp';
+  static const LastUpdatedTermsAndConditions = 'LastUpdatedTermsAndConditions';
+  static const NoTermsAvailable = 'NoTermsAvailable';
+  static const ErrorParsingTermSectionAtIndex =
+      'ErrorParsingTermSectionAtIndex';
+  static const PleaseWait = 'PleaseWait';
+  static const LoadingTerms = 'LoadingTerms';
+  static const ErrorLoadingData = 'ErrorLoadingData';
+  static const AboutUsForFloweryApp = 'AboutUsForFloweryApp';
+  static const LastUpdatedAboutUs = 'LastUpdatedAboutUs';
+  static const NoAboutUsAvailable = 'NoAboutUsAvailable';
+  static const SheikhZayed = 'SheikhZayed';
+  static const NoSavedAddressesFound = 'NoSavedAddressesFound';
+  static const DoneTheItemIsNowInYourShoppingCart =
+      'DoneTheItemIsNowInYourShoppingCart';
+  static const AddedToCartFailed = 'AddedToCartFailed';
+  static const TryAgain = 'TryAgain';
+  static const YourCartIsEmpty = 'YourCartIsEmpty';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
+  static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
+  static const SelectArea = 'SelectArea';
+  static const SelectCity = 'SelectCity';
+  static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
+  static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
+  static const SearchForAnyProductYouWant = 'SearchForAnyProductYouWant';
+  static const Delete = 'Delete';
+  static const AreYouSureYouWantToDeleteThisNotification =
+      'AreYouSureYouWantToDeleteThisNotification';
+  static const TheNotificationDeletedSuccessfully =
+      'TheNotificationDeletedSuccessfully';
+  static const TheNotificationDeletedFailed = 'TheNotificationDeletedFailed';
+  static const TheNotificationWillBeDeletedAfter =
+      'TheNotificationWillBeDeletedAfter';
+  static const Seconds = 'Seconds';
+  static const NotificationDeletionCancelled = 'NotificationDeletionCancelled';
+  static const NoNotificationsFound = 'NoNotificationsFound';
 }
