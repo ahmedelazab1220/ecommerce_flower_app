@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../domain/entity/product_entity.dart';
+import '../../../../../core/utils/shared_models/product_entity.dart';
 
 part 'product_dto.g.dart';
 

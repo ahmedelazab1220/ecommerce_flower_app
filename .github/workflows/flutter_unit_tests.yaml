@@ -2,10 +2,20 @@ name: Flutter Unit Tests
 
 on:
   pull_request:
-    branches:
-      - main
-      - development
-  workflow_dispatch:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+      - labeled
+      - unlabeled
+      - closed
+      - reopened
+      - unlocked
+      
 
 jobs:
   test:

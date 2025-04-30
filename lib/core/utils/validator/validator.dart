@@ -9,10 +9,7 @@ class Validator {
     if (input.isEmpty) {
       return LocaleKeys.EmailCannotBeEmpty.tr();
     } else if (!RegExp(
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+"
-      r"@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?)*$",
+      r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(input)) {
       return LocaleKeys.EnterAValidEmail.tr();
     }
@@ -25,7 +22,7 @@ class Validator {
     } else if (!RegExp(
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
     ).hasMatch(input)) {
-      return LocaleKeys.PasswordRequirements.tr();
+      return LocaleKeys.InvalidPassword.tr();
     }
     return null;
   }
@@ -50,8 +47,34 @@ class Validator {
   String? validatePhoneNumber(String phoneNumber) {
     if (phoneNumber.isEmpty) {
       return LocaleKeys.PhoneNumberCannotBeEmpty.tr();
-    } else if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(phoneNumber)) {
+    }
+
+    final egyptianPattern = RegExp(r'^\+201[0125][0-9]{8}$');
+
+    if (!egyptianPattern.hasMatch(phoneNumber)) {
       return LocaleKeys.InvalidPhoneNumber.tr();
+    }
+
+    return null;
+  }
+
+  String? validateAddress(String address) {
+    if (address.trim().isEmpty) {
+      return LocaleKeys.AddressCannotBeEmpty.tr();
+    }
+    return null;
+  }
+
+  String? validateAreaName(String? areaName) {
+    if (areaName == null || areaName.trim().isEmpty) {
+      return LocaleKeys.SelectArea.tr();
+    }
+    return null;
+  }
+
+  String? validateCityName(String? cityName) {
+    if (cityName == null || cityName.trim().isEmpty) {
+      return LocaleKeys.SelectCity.tr();
     }
     return null;
   }
