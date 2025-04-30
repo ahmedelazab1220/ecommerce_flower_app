@@ -1,0 +1,64 @@
+name: Flutter CI/CD
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      - review_requested
+      - unlabeled
+      - closed
+      - reopened
+      - unlocked
+
+jobs:
+  build:
+    # Only run this job if the label is "ready for testing" or it's a push event
+    if: |
+      github.event_name == 'push' || 
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ready for testing'))
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Java (for Android builds)
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: 🛠 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: 📦 Install Dependencies
+        run: flutter pub get
+
+      - name: ✅ Verify Flutter Installation
+        run: flutter --version
+
+      - name: 🔄 Run Build Runner (if necessary)
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 🚀 Run Flutter Unit Tests
+        run: flutter test  
+
+      - name: Build APK
+        run: flutter build apk --release
+      - run: ls build/app/outputs/flutter-apk
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.ECOMMERCE_FLOWER_APP_ID}} 
+          serviceCredentialsFileContent: ${{secrets.ECOMMERCE_GOOGLE_APPLICATION_CREDENTIALS}}
+          groups: testers            
+          file: build/app/outputs/flutter-apk/app-release.apk
