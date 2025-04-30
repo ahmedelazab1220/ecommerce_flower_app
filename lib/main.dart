@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           title: 'Ecommerce Flower App',
           routes: AppRoutes.routes,
           theme: AppTheme.appTheme,
-          initialRoute: routeInitializer.computeInitialRoute(),
+          initialRoute: AppRoutes.notificationScreenRoute,
         );
       },
     );
