@@ -44,7 +44,6 @@ abstract class LocaleKeys {
   static const ResetPassword = 'ResetPassword';
   static const PasswordRequirements = 'PasswordRequirements';
   static const Search = 'Search';
-  static const SearchForAnyProductYouWant = 'SearchForAnyProductYouWant';
   static const Home = 'Home';
   static const Categories = 'Categories';
   static const Cart = 'Cart';
@@ -244,6 +243,7 @@ abstract class LocaleKeys {
   static const SelectCity = 'SelectCity';
   static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
   static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
+  static const SearchForAnyProductYouWant = 'SearchForAnyProductYouWant';
   static const Delete = 'Delete';
   static const AreYouSureYouWantToDeleteThisNotification =
       'AreYouSureYouWantToDeleteThisNotification';
