@@ -19,4 +19,5 @@ class Constants {
   static const String aboutAppKey = 'about_app';
   static const String citiesRoute = 'assets/addresses/cities.json';
   static const String statesRoute = 'assets/addresses/states.json';
+  static const String productEntity = 'productEntity';
 }

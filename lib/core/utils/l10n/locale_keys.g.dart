@@ -245,6 +245,7 @@ abstract class LocaleKeys {
   static const SelectCity = 'SelectCity';
   static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
   static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
+  static const SearchForAnyProductYouWant = 'SearchForAnyProductYouWant';
   static const Delete = 'Delete';
   static const AreYouSureYouWantToDeleteThisNotification =
       'AreYouSureYouWantToDeleteThisNotification';

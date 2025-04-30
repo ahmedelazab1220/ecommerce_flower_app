@@ -258,6 +258,17 @@ import '../../../features/saved_addresses/domain/use_case/get_user_saved_address
     as _i834;
 import '../../../features/saved_addresses/presentation/view_model/cubit/saved_address_cubit.dart'
     as _i700;
+import '../../../features/search/data/api/search_retrofit_client.dart' as _i156;
+import '../../../features/search/data/data_source/contract/search_remote_data_source.dart'
+    as _i424;
+import '../../../features/search/data/data_source/remote/search_remote_data_source_impl.dart'
+    as _i88;
+import '../../../features/search/data/repo_impl/search_repo_impl.dart'
+    as _i1058;
+import '../../../features/search/domain/repo/search_repo.dart' as _i884;
+import '../../../features/search/domain/usecase/search_usecase.dart' as _i567;
+import '../../../features/search/presentation/view_model/search_cubit.dart'
+    as _i541;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
@@ -385,6 +396,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i766.ProfileRetrofitClient>(
       () => _i766.ProfileRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i156.SearchRetrofitClient>(
+      () => _i156.SearchRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i865.EditProfileRetrofitClient>(
       () => _i865.EditProfileRetrofitClient(gh<_i361.Dio>()),
     );
@@ -478,6 +492,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i12.CartRemoteDataSource>(
       () => _i616.CartRemoteDatasourceImpl(gh<_i675.CartRetrofitClient>()),
     );
+    gh.factory<_i424.SearchRemoteDataSource>(
+      () => _i88.SearchRemoteDataSourceImpl(gh<_i156.SearchRetrofitClient>()),
+    );
     gh.factory<_i592.EditProfileRemoteDataSource>(
       () => _i503.EditProfileRemoteDataSourceImpl(
         gh<_i865.EditProfileRetrofitClient>(),
@@ -570,6 +587,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i468.Validator>(),
       ),
     );
+    gh.factory<_i884.SearchRepo>(
+      () => _i1058.SearchRepoImpl(
+        gh<_i424.SearchRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1056.GetAllOccasionsUsecase>(
       () => _i1056.GetAllOccasionsUsecase(gh<_i72.OccasionRepo>()),
     );
@@ -608,6 +631,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i237.SavedAddressesRemoteDataSource>(),
         gh<_i28.ApiManager>(),
       ),
+    );
+    gh.factory<_i567.SearchUsecase>(
+      () => _i567.SearchUsecase(gh<_i884.SearchRepo>()),
     );
     gh.factory<_i280.ChangePasswordUseCase>(
       () => _i280.ChangePasswordUseCase(gh<_i472.ChangePasswordRepo>()),
@@ -727,6 +753,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i238.LogoutUseCase>(),
         gh<_i405.GuestModeUseCase>(),
       ),
+    );
+    gh.factory<_i541.SearchCubit>(
+      () => _i541.SearchCubit(gh<_i567.SearchUsecase>()),
     );
     gh.factory<_i834.ProductDetailsCubit>(
       () => _i834.ProductDetailsCubit(gh<_i393.AddToCartUseCase>()),
