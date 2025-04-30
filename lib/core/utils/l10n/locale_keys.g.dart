@@ -244,4 +244,14 @@ abstract class LocaleKeys {
   static const SelectCity = 'SelectCity';
   static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
   static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
+  static const Delete = 'Delete';
+  static const AreYouSureYouWantToDeleteThisNotification =
+      'AreYouSureYouWantToDeleteThisNotification';
+  static const TheNotificationDeletedSuccessfully =
+      'TheNotificationDeletedSuccessfully';
+  static const TheNotificationDeletedFailed = 'TheNotificationDeletedFailed';
+  static const TheNotificationWillBeDeletedAfter =
+      'TheNotificationWillBeDeletedAfter';
+  static const Seconds = 'Seconds';
+  static const NotificationDeletionCancelled = 'NotificationDeletionCancelled';
 }

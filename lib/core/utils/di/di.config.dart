@@ -176,6 +176,24 @@ import '../../../features/most_selling_products/domain/usecase/get_best_sellers_
     as _i109;
 import '../../../features/most_selling_products/presentation/view_model/best_seller_cubit.dart'
     as _i190;
+import '../../../features/notifications/data/api/notification_retrofit_client.dart'
+    as _i59;
+import '../../../features/notifications/data/data_source/contract/notification_remote_data_source.dart'
+    as _i422;
+import '../../../features/notifications/data/data_source/remote/notification_remote_data_source_impl.dart'
+    as _i72;
+import '../../../features/notifications/data/repo_impl/notification_repo_impl.dart'
+    as _i487;
+import '../../../features/notifications/domain/repo/notification_repo.dart'
+    as _i94;
+import '../../../features/notifications/domain/usecase/delete_notification_by_id_use_case.dart'
+    as _i973;
+import '../../../features/notifications/domain/usecase/get_all_notifications_use_case.dart'
+    as _i326;
+import '../../../features/notifications/domain/usecase/get_notification_by_id_use_case.dart'
+    as _i868;
+import '../../../features/notifications/presentation/view_model/notification_cubit.dart'
+    as _i749;
 import '../../../features/occasions/data/api/occasion_retrofit_client.dart'
     as _i1061;
 import '../../../features/occasions/data/data_source/contract/occasion_remote_data_source.dart'
@@ -358,6 +376,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i821.BestSellerRetrofitClient>(
       () => _i821.BestSellerRetrofitClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i59.NotificationRetrofitClient>(
+      () => _i59.NotificationRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i1061.OccasionRetrofitClient>(
       () => _i1061.OccasionRetrofitClient(gh<_i361.Dio>()),
     );
@@ -415,6 +436,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i305.AuthRemoteDataSource>(
       () => _i212.AuthRemoteDataSourceImpl(gh<_i1048.AuthRetrofitClient>()),
+    );
+    gh.factory<_i422.NotificationRemoteDataSource>(
+      () => _i72.NotificationRemoteDataSourceImpl(
+        gh<_i59.NotificationRetrofitClient>(),
+      ),
     );
     gh.factory<_i488.BestSellerRemoteDataSource>(
       () => _i461.BestSellerRemoteDataSourceImpl(
@@ -571,6 +597,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i109.GetBestSellersUsecase>(
       () => _i109.GetBestSellersUsecase(gh<_i58.BestSellerRepo>()),
     );
+    gh.factory<_i94.NotificationRepo>(
+      () => _i487.NotificationRepoImpl(
+        gh<_i422.NotificationRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
     gh.factory<_i1071.EditProfileUseCase>(
       () => _i1071.EditProfileUseCase(gh<_i1005.EditProfileRepo>()),
     );
@@ -662,6 +694,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i336.RegisterUseCase>(
       () => _i336.RegisterUseCase(gh<_i913.AuthRepo>()),
     );
+    gh.factory<_i973.DeleteNotificationByIdUseCase>(
+      () => _i973.DeleteNotificationByIdUseCase(gh<_i94.NotificationRepo>()),
+    );
+    gh.factory<_i326.GetAllNotificationsUseCase>(
+      () => _i326.GetAllNotificationsUseCase(gh<_i94.NotificationRepo>()),
+    );
+    gh.factory<_i868.GetNotificationByIdUseCase>(
+      () => _i868.GetNotificationByIdUseCase(gh<_i94.NotificationRepo>()),
+    );
     gh.factory<_i316.RegisterCubit>(
       () => _i316.RegisterCubit(
         gh<_i336.RegisterUseCase>(),
@@ -698,6 +739,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i197.LoginUseCase>(),
         gh<_i124.GuestUseCase>(),
         gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i749.NotificationCubit>(
+      () => _i749.NotificationCubit(
+        gh<_i326.GetAllNotificationsUseCase>(),
+        gh<_i973.DeleteNotificationByIdUseCase>(),
       ),
     );
     gh.factory<_i99.CartCubit>(
