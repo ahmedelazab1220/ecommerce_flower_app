@@ -5,12 +5,11 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/base/base_state.dart';
-import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../domain/entity/addresses_entity.dart';
+import '../../../../../core/utils/shared_models/address_entity.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../view_model/checkout_state.dart';
-import 'add_new_btn.dart';
+import 'add_new_address_button.dart';
 import 'address_item.dart';
 
 class DeliveryAddressesSection extends StatelessWidget {
@@ -19,28 +18,24 @@ class DeliveryAddressesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<CheckoutCubit>();
-    if (viewModel.addresses?.isEmpty ?? true) {
-      viewModel.doIntent(GetAddressesAction());
-    }
-
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       buildWhen: (prev, curr) => prev.addressState != curr.addressState,
       builder: (context, state) {
         final isLoading = state.addressState is BaseLoadingState;
         final addresses =
             isLoading
-                ? List.generate(3, (_) => AddressesEntity.fake())
+                ? List.generate(3, (_) => AddressEntity.fake())
                 : viewModel.addresses ?? [];
 
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
           color: AppColors.white,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 LocaleKeys.DeliveryAddress.tr(),
-                style: AppTheme.appTheme.textTheme.titleLarge?.copyWith(
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -69,8 +64,8 @@ class DeliveryAddressesSection extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 8),
-              const AddNewBtn(),
+              const SizedBox(height: 16),
+              const AddNewAddressButton(),
             ],
           ),
         );

@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/checkout/presentation/view/widgets/payment_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/assets/app_colors.dart';
-import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import 'payment_item.dart';
 
 class PaymentSection extends StatelessWidget {
   const PaymentSection({super.key});
@@ -19,7 +18,7 @@ class PaymentSection extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.PaymentMethod.tr(),
-            style: AppTheme.appTheme.textTheme.titleLarge?.copyWith(
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

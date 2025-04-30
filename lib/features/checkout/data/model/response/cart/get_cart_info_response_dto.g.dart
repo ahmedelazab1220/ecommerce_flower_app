@@ -14,7 +14,7 @@ GetCartInfoResponseDto _$GetCartInfoResponseDtoFromJson(
   cart:
       json['cart'] == null
           ? null
-          : Cart.fromJson(json['cart'] as Map<String, dynamic>),
+          : CartDto.fromJson(json['cart'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$GetCartInfoResponseDtoToJson(

@@ -21,7 +21,7 @@ class BottomButton extends StatelessWidget {
         if (state.baseState is BaseSuccessState) {
           AppDialogs.showSuccessDialog(
             context,
-            message: LocaleKeys.AddedToCartSuccessfully.tr(),
+            message: LocaleKeys.ProductAddedToCartSuccessfully.tr(),
             description: LocaleKeys.DoneTheItemIsNowInYourShoppingCart.tr(),
             firstButtonText: LocaleKeys.Ok.tr(),
           );

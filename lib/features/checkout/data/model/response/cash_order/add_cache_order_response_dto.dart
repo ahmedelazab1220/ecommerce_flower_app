@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'order.dart';
+import '../../../../domain/entity/cash_order_entity/add_cache_order_response_entity.dart';
+import 'order_dto.dart';
 
 part 'add_cache_order_response_dto.g.dart';
 
@@ -9,7 +10,7 @@ class AddCacheOrderResponseDto {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "order")
-  final Order? order;
+  final OrderDto? order;
 
   AddCacheOrderResponseDto({this.message, this.order});
 
@@ -20,4 +21,7 @@ class AddCacheOrderResponseDto {
   Map<String, dynamic> toJson() {
     return _$AddCacheOrderResponseDtoToJson(this);
   }
+
+  AddCacheOrderResponseEntity toEntity() =>
+      AddCacheOrderResponseEntity(message: message, order: order?.toEntity());
 }

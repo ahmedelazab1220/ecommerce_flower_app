@@ -97,6 +97,8 @@ abstract class LocaleKeys {
   static const Address = 'Address';
   static const Payment = 'Payment';
   static const TrackOrder = 'TrackOrder';
+  static const OrderNumber = 'OrderNumber';
+  static const NoOrdersYet = 'NoOrdersYet';
   static const Next = 'Next';
   static const AddNew = 'AddNew';
   static const PaymentMethod = 'PaymentMethod';
@@ -118,8 +120,8 @@ abstract class LocaleKeys {
   static const Cairo = 'Cairo';
   static const AddNewAddress = 'AddNewAddress';
   static const EnterTheAddress = 'EnterTheAddress';
-  static const RecipientsName = 'RecipientsName';
-  static const EnterRecipientsName = 'EnterRecipientsName';
+  static const RecipientName = 'RecipientName';
+  static const EnterRecipientName = 'EnterRecipientName';
   static const City = 'City';
   static const Area = 'Area';
   static const SavedAddresses = 'SavedAddresses';
@@ -233,9 +235,28 @@ abstract class LocaleKeys {
   static const NoAboutUsAvailable = 'NoAboutUsAvailable';
   static const SheikhZayed = 'SheikhZayed';
   static const NoSavedAddressesFound = 'NoSavedAddressesFound';
-  static const AddedToCartSuccessfully = 'AddedToCartSuccessfully';
   static const DoneTheItemIsNowInYourShoppingCart =
       'DoneTheItemIsNowInYourShoppingCart';
   static const AddedToCartFailed = 'AddedToCartFailed';
   static const TryAgain = 'TryAgain';
+  static const YourCartIsEmpty = 'YourCartIsEmpty';
+  static const ExploreItemsAndAddThemToYourCart =
+      'ExploreItemsAndAddThemToYourCart';
+  static const AddressCannotBeEmpty = 'AddressCannotBeEmpty';
+  static const SelectArea = 'SelectArea';
+  static const SelectCity = 'SelectCity';
+  static const AddressAddedSuccessfully = 'AddressAddedSuccessfully';
+  static const AddressUpdatedSuccessfully = 'AddressUpdatedSuccessfully';
+  static const SearchForAnyProductYouWant = 'SearchForAnyProductYouWant';
+  static const Delete = 'Delete';
+  static const AreYouSureYouWantToDeleteThisNotification =
+      'AreYouSureYouWantToDeleteThisNotification';
+  static const TheNotificationDeletedSuccessfully =
+      'TheNotificationDeletedSuccessfully';
+  static const TheNotificationDeletedFailed = 'TheNotificationDeletedFailed';
+  static const TheNotificationWillBeDeletedAfter =
+      'TheNotificationWillBeDeletedAfter';
+  static const Seconds = 'Seconds';
+  static const NotificationDeletionCancelled = 'NotificationDeletionCancelled';
+  static const NoNotificationsFound = 'NoNotificationsFound';
 }

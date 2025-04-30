@@ -13,7 +13,7 @@ AddCacheOrderResponseDto _$AddCacheOrderResponseDtoFromJson(
   order:
       json['order'] == null
           ? null
-          : Order.fromJson(json['order'] as Map<String, dynamic>),
+          : OrderDto.fromJson(json['order'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AddCacheOrderResponseDtoToJson(

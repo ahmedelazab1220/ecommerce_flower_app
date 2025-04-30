@@ -57,4 +57,25 @@ class Validator {
 
     return null;
   }
+
+  String? validateAddress(String address) {
+    if (address.trim().isEmpty) {
+      return LocaleKeys.AddressCannotBeEmpty.tr();
+    }
+    return null;
+  }
+
+  String? validateAreaName(String? areaName) {
+    if (areaName == null || areaName.trim().isEmpty) {
+      return LocaleKeys.SelectArea.tr();
+    }
+    return null;
+  }
+
+  String? validateCityName(String? cityName) {
+    if (cityName == null || cityName.trim().isEmpty) {
+      return LocaleKeys.SelectCity.tr();
+    }
+    return null;
+  }
 }

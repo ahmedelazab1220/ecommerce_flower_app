@@ -1,8 +1,8 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/saved_addresses/domain/entity/address_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/datasource_excution/api_manager.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
 import '../../domain/repo/saved_addresses_repo.dart';
 import '../data_source/contract/saved_addresses_remote_data_source.dart';
 

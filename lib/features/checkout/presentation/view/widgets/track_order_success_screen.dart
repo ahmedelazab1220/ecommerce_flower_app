@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/features/checkout/presentation/view/widgets/ripple_animation.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/assets/app_colors.dart';
-import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import 'ripple_animation.dart';
 
 class TrackOrderSuccessScreen extends StatelessWidget {
   const TrackOrderSuccessScreen({super.key});
@@ -25,23 +25,22 @@ class TrackOrderSuccessScreen extends StatelessWidget {
               child: Text(
                 LocaleKeys.YourOrderPlacedSuccessfully.tr(),
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.black,
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.mainLayoutRoute,
+                  (route) => false,
+                );
               },
               child: Text(
                 LocaleKeys.TrackOrder.tr(),
-                style: AppTheme.appTheme.textTheme.titleMedium?.copyWith(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppColors.white,
-                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),

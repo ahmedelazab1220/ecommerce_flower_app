@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:ecommerce_flower_app/features/checkout/data/model/response/credit_order/add_credit_order_response_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -8,6 +7,7 @@ import '../model/request/add_order_request_dto.dart';
 import '../model/response/addresses/get_addresses_response_dto.dart';
 import '../model/response/cart/get_cart_info_response_dto.dart';
 import '../model/response/cash_order/add_cache_order_response_dto.dart';
+import '../model/response/credit_order/add_credit_order_response_dto.dart';
 
 part 'checkout_retrofit_client.g.dart';
 

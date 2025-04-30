@@ -17,4 +17,7 @@ class Constants {
   static const String aboutUsJsonFilePath =
       'assets/terms_and_about/about_us_json_file_en_ar.json';
   static const String aboutAppKey = 'about_app';
+  static const String citiesRoute = 'assets/addresses/cities.json';
+  static const String statesRoute = 'assets/addresses/states.json';
+  static const String productEntity = 'productEntity';
 }

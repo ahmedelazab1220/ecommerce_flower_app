@@ -1,10 +1,13 @@
+import 'package:ecommerce_flower_app/features/notifications/domain/entity/notification_entity.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/email_verification/email_verification_screen.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
+import '../../../features/address_details/presentation/view/screens/address_details_screen.dart';
 import '../../../features/auth/presentation/view/screens/login/login_screen.dart';
 import '../../../features/auth/presentation/view/screens/register/register_screen.dart';
+import '../../../features/cart/presentation/view/screens/cart_screen.dart';
 import '../../../features/categories/presentation/view/screens/categories_screen.dart';
 import '../../../features/change_password/presentation/view/screens/change_password_screen.dart';
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';
@@ -13,16 +16,20 @@ import '../../../features/edit_profile/presentation/view/edit_profile_screen.dar
 import '../../../features/auth/presentation/view/screens/forget_password/forget_password_screen.dart';
 
 import '../../../features/main_layout/presentation/view/main_layout.dart';
+import '../../../features/notifications/presentation/view/screen/notification_details.dart';
+import '../../../features/notifications/presentation/view/screen/notification_screen.dart';
 import '../../../features/occasions/presentation/view/screen/occasion_screen.dart';
+import '../../../features/orders/presentation/view/screens/orders_screen.dart';
 import '../../../features/product_details/presentation/view/screens/product_details_screen.dart';
 import '../../../features/most_selling_products/presentation/view/screens/best_sellers_screen.dart';
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
+import '../../../features/search/presentation/view/screens/search_screen.dart';
 import '../../../features/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
+import '../shared_models/address_entity.dart';
 import '../shared_models/product_entity.dart';
 
 class AppRoutes {
   AppRoutes._();
-
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
@@ -44,6 +51,11 @@ class AppRoutes {
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
   static const String emailVerificationRoute = '/email-verification';
+  static const String cartScreenRoute = '/cart-screen';
+  static const String searchRoute = '/search';
+  static const String ordersRoute = '/orders';
+  static const String notificationScreenRoute = '/notification-screen';
+  static const String notificationDetailsRoute = '/notification-details';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -83,5 +95,22 @@ class AppRoutes {
     forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
     resetPasswordRoute: (context) => const ResetPasswordScreen(),
     emailVerificationRoute: (context) => const EmailVerificationScreen(),
+    cartScreenRoute: (context) => const CartScreen(),
+    addressDetailsRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final addressEntity = args?['addressEntity'] as AddressEntity?;
+      return AddressDetailsScreen(address: addressEntity);
+    },
+    notificationScreenRoute: (context) => const NotificationScreen(),
+    notificationDetailsRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final notificationEntity =
+          args?['notificationEntity'] as NotificationEntity?;
+      return NotificationDetails(notificationEntity: notificationEntity!);
+    },
+    ordersRoute: (context) => const OrdersScreen(),
+    searchRoute: (context) => const SearchScreen(),
   };
 }

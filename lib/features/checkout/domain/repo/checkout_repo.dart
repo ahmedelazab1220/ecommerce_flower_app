@@ -1,18 +1,15 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-
-import '../../data/model/request/add_order_request_dto.dart';
-import '../../data/model/response/cash_order/add_cache_order_response_dto.dart';
-import '../../data/model/response/credit_order/add_credit_order_response_dto.dart';
-import '../entity/addresses_entity.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../core/utils/shared_models/address_entity.dart';
+import '../entity/add_order_request_entity.dart';
 import '../entity/cart_entity.dart';
+import '../entity/cash_order_entity/order_entity.dart';
+import '../entity/credit_order_entity/add_credit_order_response_entity.dart';
 
-abstract interface class CheckoutRepo {
-  Future<Result<List<AddressesEntity>>> getAddresses();
-  Future<Result<AddCacheOrderResponseDto>> addCacheOrder(
-    AddOrderRequestDto request,
-  );
-  Future<Result<AddCreditOrderResponseDto>> addCreditOrder(
-    AddOrderRequestDto request,
+abstract class CheckoutRepo {
+  Future<Result<List<AddressEntity>>> getAddresses();
+  Future<Result<OrderEntity?>> addCacheOrder(AddOrderRequestEntity request);
+  Future<Result<AddCreditOrderResponseEntity>> addCreditOrder(
+    AddOrderRequestEntity request,
   );
   Future<Result<CartEntity>> getCartInfo();
 }
