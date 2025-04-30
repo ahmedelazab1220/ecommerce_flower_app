@@ -4,20 +4,11 @@ import 'package:equatable/equatable.dart';
 class NotificationState extends Equatable {
   final BaseState? getNotificationsState;
   final BaseState? deleteNotificationState;
-  final int countdownSeconds;
 
   const NotificationState({
     this.getNotificationsState,
     this.deleteNotificationState,
-    this.countdownSeconds = 0,
   });
-
-  @override
-  List<Object?> get props => [
-    getNotificationsState,
-    deleteNotificationState,
-    countdownSeconds,
-  ];
 
   NotificationState copyWith({
     BaseState? getNotificationsState,
@@ -29,17 +20,25 @@ class NotificationState extends Equatable {
           getNotificationsState ?? this.getNotificationsState,
       deleteNotificationState:
           deleteNotificationState ?? this.deleteNotificationState,
-      countdownSeconds: countdownSeconds ?? this.countdownSeconds,
     );
   }
+
+  @override
+  List<Object?> get props => [getNotificationsState, deleteNotificationState];
 }
 
 sealed class NotificationAction {}
 
-class GetNotificationsAction extends NotificationAction {}
+final class GetNotificationsAction extends NotificationAction {}
 
-class DeleteNotificationAction extends NotificationAction {
+final class DeleteNotificationAction extends NotificationAction {
   final String notificationId;
 
   DeleteNotificationAction(this.notificationId);
+}
+
+final class CuttingProcessNotificationManager extends NotificationAction {
+  final String notificationId;
+
+  CuttingProcessNotificationManager(this.notificationId);
 }

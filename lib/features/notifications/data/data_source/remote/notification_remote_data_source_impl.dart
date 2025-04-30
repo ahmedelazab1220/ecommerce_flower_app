@@ -1,10 +1,10 @@
-import 'package:ecommerce_flower_app/features/notifications/data/data_source/contract/notification_remote_data_source.dart';
-import 'package:ecommerce_flower_app/features/notifications/data/model/delete_notification_by_id_response_dto.dart';
-import 'package:ecommerce_flower_app/features/notifications/data/model/get_all_notification_response_dto.dart';
-import 'package:ecommerce_flower_app/features/notifications/data/model/get_notification_by_id_response_dto.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../api/notification_retrofit_client.dart';
+import '../../model/delete_notification_by_id_response_dto.dart';
+import '../../model/get_all_notification_response_dto.dart';
+import '../../model/get_notification_by_id_response_dto.dart';
+import '../contract/notification_remote_data_source.dart';
 
 @Injectable(as: NotificationRemoteDataSource)
 class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notifications.dart';
+part of 'notification_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Notifications _$NotificationsFromJson(Map<String, dynamic> json) =>
-    Notifications(
+NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) =>
+    NotificationDto(
       id: json['_id'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
@@ -16,7 +16,7 @@ Notifications _$NotificationsFromJson(Map<String, dynamic> json) =>
       V: (json['__v'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$NotificationsToJson(Notifications instance) =>
+Map<String, dynamic> _$NotificationDtoToJson(NotificationDto instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'title': instance.title,

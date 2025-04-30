@@ -233,5 +233,6 @@
     "TheNotificationDeletedFailed": "فشل حذف الإشعار",
     "TheNotificationWillBeDeletedAfter": "سيتم حذف الإشعار بعد",
     "Seconds": "ثواني",
-    "NotificationDeletionCancelled": "تم إلغاء حذف الإشعار"
+    "NotificationDeletionCancelled": "تم إلغاء حذف الإشعار",
+    "NoNotificationsFound": "لم يتم العثور على اشعارات"
 }

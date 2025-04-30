@@ -1,9 +1,9 @@
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_manager.dart';
-import 'package:ecommerce_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:ecommerce_flower_app/features/notifications/domain/entity/notifications_entity.dart';
-import 'package:ecommerce_flower_app/features/notifications/domain/repo/notification_repo.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/utils/datasource_excution/api_manager.dart';
+import '../../../../core/utils/datasource_excution/api_result.dart';
+import '../../domain/entity/notification_entity.dart';
+import '../../domain/repo/notification_repo.dart';
 import '../data_source/contract/notification_remote_data_source.dart';
 
 @Injectable(as: NotificationRepo)
@@ -12,8 +12,8 @@ class NotificationRepoImpl implements NotificationRepo {
   final ApiManager _apiManager;
   NotificationRepoImpl(this._notificationRemoteDataSource, this._apiManager);
   @override
-  Future<Result<List<NotificationsEntity>>> getAllNotifications() async {
-    return await _apiManager.execute<List<NotificationsEntity>>(() async {
+  Future<Result<List<NotificationEntity>>> getAllNotifications() async {
+    return await _apiManager.execute<List<NotificationEntity>>(() async {
       final response =
           await _notificationRemoteDataSource.getAllNotifications();
       return response.notifications!.map((notification) {
@@ -23,8 +23,8 @@ class NotificationRepoImpl implements NotificationRepo {
   }
 
   @override
-  Future<Result<NotificationsEntity>> getNotificationById(String id) async {
-    return await _apiManager.execute<NotificationsEntity>(() async {
+  Future<Result<NotificationEntity>> getNotificationById(String id) async {
+    return await _apiManager.execute<NotificationEntity>(() async {
       final response = await _notificationRemoteDataSource.getNotificationById(
         id,
       );

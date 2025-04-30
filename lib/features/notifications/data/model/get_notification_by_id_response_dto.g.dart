@@ -13,7 +13,7 @@ GetNotificationByIdResponseDto _$GetNotificationByIdResponseDtoFromJson(
   notification:
       json['notification'] == null
           ? null
-          : Notifications.fromJson(
+          : NotificationDto.fromJson(
             json['notification'] as Map<String, dynamic>,
           ),
 );
