@@ -28,7 +28,7 @@ void main() {
       'should return success Result<HomeResponseEntity> when data is fetched and mapped correctly',
       () async {
         // Arrange
-        final dto = HomeModelTest.success();
+        final dto = HomeModelFactory.success();
 
         var actualresult = SuccessResult<HomeResponseEntity>(dto.toEntity());
         provideDummy<Result<HomeResponseEntity>>(actualresult);
@@ -51,7 +51,10 @@ void main() {
 
         // Assert
         expect(result, isA<SuccessResult<HomeResponseEntity>>());
-        expect(actualresult.data.message, equals(ConstantsTest.successMessage));
+        expect(
+          actualresult.data.message,
+          equals(ConstantsFactory.successMessage),
+        );
         verify(mockHomeRemoteDataSource.getHomeData()).called(1);
         verify(mockApiManager.execute<HomeResponseEntity>(any)).called(1);
       },
@@ -60,7 +63,7 @@ void main() {
     test('should return FailureResult when API manager throws error', () async {
       // Arrange
       var actualresult = FailureResult<HomeResponseEntity>(
-        Exception(ConstantsTest.apiError),
+        Exception(ConstantsFactory.apiError),
       );
       provideDummy<Result<HomeResponseEntity>>(actualresult);
 
@@ -82,14 +85,14 @@ void main() {
       () async {
         // Arrange
         var actualresult = FailureResult<HomeResponseEntity>(
-          Exception(ConstantsTest.networkError),
+          Exception(ConstantsFactory.networkError),
         );
 
         provideDummy<Result<HomeResponseEntity>>(actualresult);
 
         when(
           mockHomeRemoteDataSource.getHomeData(),
-        ).thenThrow(Exception(ConstantsTest.networkError));
+        ).thenThrow(Exception(ConstantsFactory.networkError));
 
         when(mockApiManager.execute<HomeResponseEntity>(any)).thenAnswer((
           invocation,
@@ -114,7 +117,9 @@ void main() {
         final failure = result as FailureResult<HomeResponseEntity>;
         expect(
           failure.exception.toString(),
-          equals('${ConstantsTest.exception}: ${ConstantsTest.networkError}'),
+          equals(
+            '${ConstantsFactory.exception}: ${ConstantsFactory.networkError}',
+          ),
         );
 
         // Verify interactions

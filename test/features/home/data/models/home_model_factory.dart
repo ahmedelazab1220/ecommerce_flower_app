@@ -8,8 +8,8 @@ import 'package:ecommerce_flower_app/features/home/data/models/response/product_
 
 import '../../../../constants_factory.dart';
 
-class HomeModelTest {
-  HomeModelTest._();
+class HomeModelFactory {
+  HomeModelFactory._();
   static const imageUrl =
       "https://gratisography.com/wp-content/uploads/2025/03/gratisography-funny-dog-1036x780.jpg";
   static DateTime datetime = DateTime.parse("2024-11-18T12:36:18.366Z");
@@ -18,7 +18,7 @@ class HomeModelTest {
   ///
   /// This is useful for testing success cases where the API returns a valid response.
   static HomeResponseDto success() => HomeResponseDto(
-    message: ConstantsTest.successMessage,
+    message: ConstantsFactory.successMessage,
     products: [product()],
     categories: [category()],
     bestSeller: [bestSeller()],

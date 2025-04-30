@@ -1,5 +1,5 @@
-class ConstantsTest {
-  ConstantsTest._();
+class ConstantsFactory {
+  ConstantsFactory._();
   static const int unauthorizedStatusCode = 401;
   static const int forbiddenStatusCode = 403;
   static const int clientErrorStatusCode = 404;
