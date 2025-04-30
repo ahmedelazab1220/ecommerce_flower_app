@@ -220,10 +220,16 @@
     "TryAgain": "Try again",
     "YourCartIsEmpty": "Your cart is empty",
     "ExploreItemsAndAddThemToYourCart": "Explore items and add them to your cart",
-    "PleaseLoginToAccessAllFeatures": "Please login to access all features",
     "AddressCannotBeEmpty": "Address cannot be empty",
     "SelectArea": "Please select an area",
     "SelectCity": "Please select a city",
     "AddressAddedSuccessfully": "Address added successfully",
-    "AddressUpdatedSuccessfully": "Address updated successfully"
+    "AddressUpdatedSuccessfully": "Address updated successfully",
+    "Delete": "Delete",
+    "AreYouSureYouWantToDeleteThisNotification": "Are you sure you want to delete this notification?",
+    "TheNotificationDeletedSuccessfully": "The notification deleted successfully",
+    "TheNotificationDeletedFailed": "The notification deleted failed",
+    "TheNotificationWillBeDeletedAfter": "The notification will be deleted after",
+    "Seconds": "seconds",
+    "NotificationDeletionCancelled": "Notification deletion cancelled"
 }
