@@ -83,7 +83,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> _addProductToCart(String productId) async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _addProductToCartUsecase(
       AddProductToCartRequestDto(product: productId),
     );
@@ -102,7 +101,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> _updateProductInCart(String productId, int quantity) async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _updateProductInCartUsecase(
       productId,
       UpdateProductQuantityRequestDto(quantity: quantity),
@@ -122,7 +120,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> _deleteProductFromCart(String productId) async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _deleteProductFromCartUsecase(productId);
     switch (result) {
       case SuccessResult<CartEntity>():
@@ -139,7 +136,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> _clearCart() async {
-    emit(state.copyWith(baseState: BaseLoadingState()));
     final result = await _clearCartUsecase();
     switch (result) {
       case SuccessResult<void>():

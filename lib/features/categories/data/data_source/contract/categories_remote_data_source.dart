@@ -1,7 +1,11 @@
-import 'package:ecommerce_flower_app/features/categories/data/models/categories_response/category.dart';
-import 'package:ecommerce_flower_app/features/categories/data/models/products_response/product.dart';
+import '../../models/categories_response/category_dto.dart';
+import '../../models/products_response/product_dto.dart';
 
 abstract class CategoriesRemoteDataSource {
-  Future<List<Category>> getCategories();
-  Future<List<Product>> getProductsByCategory({String? categoryId});
+  Future<List<CategoryDto>> getCategories();
+  Future<List<ProductDto>> getProductsByCategory({
+    String? categoryId,
+    int? price,
+    String? sort,
+  });
 }
