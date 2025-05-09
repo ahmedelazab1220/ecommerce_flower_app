@@ -1,4 +1,6 @@
 import 'package:ecommerce_flower_app/features/notifications/domain/entity/notification_entity.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/email_verification/email_verification_screen.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/screens/reset_password/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../features/about_us/presentation/view/about_us_screen.dart';
@@ -11,6 +13,8 @@ import '../../../features/change_password/presentation/view/screens/change_passw
 import '../../../features/checkout/presentation/view/screen/checkout_screen.dart';
 import '../../../features/checkout/presentation/view/widgets/track_order_success_screen.dart';
 import '../../../features/edit_profile/presentation/view/edit_profile_screen.dart';
+import '../../../features/auth/presentation/view/screens/forget_password/forget_password_screen.dart';
+
 import '../../../features/main_layout/presentation/view/main_layout.dart';
 import '../../../features/notifications/presentation/view/screen/notification_details.dart';
 import '../../../features/notifications/presentation/view/screen/notification_screen.dart';
@@ -29,7 +33,7 @@ class AppRoutes {
   static const String initialRoute = '/';
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
-  static const String forgetPasswordRoute = "/forgetPassword";
+  static const String forgetPasswordRoute = "/forget-password";
   static const String home = "/home";
   static const String mainLayoutRoute = '/main-layout';
   static const String bestSellerRoute = '/best-seller';
@@ -46,6 +50,7 @@ class AppRoutes {
   static const String checkoutRoute = '/checkout';
   static const String trackOrderSuccessRoute = '/track-order-success';
   static const String paymentWebViewRoute = '/payment-web-view';
+  static const String emailVerificationRoute = '/email-verification';
   static const String cartScreenRoute = '/cart-screen';
   static const String searchRoute = '/search';
   static const String ordersRoute = '/orders';
@@ -87,6 +92,9 @@ class AppRoutes {
     termsAndConditionsRoute: (context) => const TermsAndConditionsScreen(),
     aboutUsRoute: (context) => const AboutUsScreen(),
     savedAddressRoute: (context) => const SavedAddressScreen(),
+    forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
+    resetPasswordRoute: (context) => const ResetPasswordScreen(),
+    emailVerificationRoute: (context) => const EmailVerificationScreen(),
     cartScreenRoute: (context) => const CartScreen(),
     addressDetailsRoute: (context) {
       final args =
