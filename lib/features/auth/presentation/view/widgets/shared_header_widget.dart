@@ -1,12 +1,15 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Header extends StatelessWidget {
+class SharedHeaderWidget extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const Header({super.key, required this.title, required this.subtitle});
+  const SharedHeaderWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,9 @@ class Header extends StatelessWidget {
           title,
           style: Theme.of(
             context,
-          ).textTheme.titleMedium?.copyWith(fontSize: 18.sp),
+          ).textTheme.titleMedium?.copyWith(fontSize: 18),
         ),
-        SizedBox(height: 16.h),
+        const SizedBox(height: 16),
         Text(
           subtitle,
           textAlign: TextAlign.center,
@@ -26,7 +29,7 @@ class Header extends StatelessWidget {
             context,
           ).textTheme.bodyMedium?.copyWith(color: AppColors.gray),
         ),
-        SizedBox(height: 32.h),
+        const SizedBox(height: 32),
       ],
     );
   }

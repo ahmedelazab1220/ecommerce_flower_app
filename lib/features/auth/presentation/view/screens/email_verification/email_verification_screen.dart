@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/dialogs/app_dialogs.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/header.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/shared_header_widget.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email_verification/email_verification_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,8 +22,7 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
-  final EmailVerificationCubit emailVerificationCubit =
-      getIt<EmailVerificationCubit>();
+  final EmailVerificationCubit viewModel = getIt<EmailVerificationCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
-        create: (context) => emailVerificationCubit,
+        create: (context) => viewModel,
         child: BlocListener<EmailVerificationCubit, EmailVerificationState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
@@ -55,7 +54,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Header(
+                SharedHeaderWidget(
                   title: LocaleKeys.EmailVerification.tr(),
                   subtitle:
                       LocaleKeys

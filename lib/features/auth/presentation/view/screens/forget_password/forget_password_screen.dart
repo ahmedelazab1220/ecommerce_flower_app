@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../widgets/forget_password/forget_password_form.dart';
-import '../../widgets/header.dart';
+import '../../widgets/shared_header_widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -20,14 +20,14 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  final ForgetPasswordCubit forgetPasswordCubit = getIt<ForgetPasswordCubit>();
+  final ForgetPasswordCubit viewModel = getIt<ForgetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
-        create: (context) => forgetPasswordCubit,
+        create: (context) => viewModel,
         child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
@@ -37,7 +37,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               Navigator.pushNamed(
                 context,
                 AppRoutes.emailVerificationRoute,
-                arguments: forgetPasswordCubit.emailController.text,
+                arguments: viewModel.emailController.text,
               );
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
@@ -51,7 +51,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Header(
+                SharedHeaderWidget(
                   title: LocaleKeys.ForgetPassword.tr(),
                   subtitle:
                       LocaleKeys

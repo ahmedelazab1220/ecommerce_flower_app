@@ -12,23 +12,21 @@ class ForgetPasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ForgetPasswordCubit forgetPasswordCubit =
-        context.read<ForgetPasswordCubit>();
+    final ForgetPasswordCubit viewModel = context.read<ForgetPasswordCubit>();
     return Form(
-      key: forgetPasswordCubit.formKey,
+      key: viewModel.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextFormField(
-            controller: forgetPasswordCubit.emailController,
+            controller: viewModel.emailController,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               hintText: LocaleKeys.Email.tr(),
               prefixIcon: const Icon(Icons.email),
             ),
             validator:
-                (value) =>
-                    forgetPasswordCubit.validator.validateEmail(value ?? ''),
+                (value) => viewModel.validator.validateEmail(value ?? ''),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
           const SizedBox(height: 48),
@@ -36,9 +34,8 @@ class ForgetPasswordForm extends StatelessWidget {
             height: 48.h,
             child: ElevatedButton(
               onPressed: () {
-                if (forgetPasswordCubit.formKey.currentState?.validate() ??
-                    false) {
-                  forgetPasswordCubit.doIntent(ForgetPasswordRequestAction());
+                if (viewModel.formKey.currentState?.validate() ?? false) {
+                  viewModel.doIntent(ForgetPasswordRequestAction());
                 }
               },
               child: Text(LocaleKeys.Confirm.tr()),

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/di/di.dart';
-import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/header.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view/widgets/shared_header_widget.dart';
 import 'package:ecommerce_flower_app/features/auth/presentation/view_model/reset_password/reset_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +20,7 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  final ResetPasswordCubit resetPasswordCubit = getIt<ResetPasswordCubit>();
+  final ResetPasswordCubit viewModel = getIt<ResetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
-        create: (context) => resetPasswordCubit,
+        create: (context) => viewModel,
         child: BlocListener<ResetPasswordCubit, ResetPasswordState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
@@ -53,7 +53,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Header(
+                SharedHeaderWidget(
                   title: LocaleKeys.ResetPassword.tr(),
                   subtitle: LocaleKeys.PasswordRequirements.tr(),
                 ),

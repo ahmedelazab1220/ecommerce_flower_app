@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
                 context,
-                message: (state as BaseErrorState).errorMessage,
+                message: (state.registerState as BaseErrorState).errorMessage,
               );
             }
             if (state.registerState is BaseNavigationState) {

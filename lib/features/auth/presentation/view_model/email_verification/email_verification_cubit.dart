@@ -17,6 +17,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   final VerifyResetCodeUseCase _verifyResetCodeUseCase;
   final ForgetPasswordUseCase _forgetPasswordUseCase;
   final Validator validator;
+  Timer? _timer;
 
   EmailVerificationCubit(
     this._verifyResetCodeUseCase,
@@ -30,11 +31,13 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   void doIntent(EmailVerificationAction action) {
     switch (action) {
       case EmailVerificationRequestAction():
-        _verifyResetCode();
-        break;
+        {
+          _verifyResetCode();
+        }
       case ResendEmailVerificationRequestAction():
-        _resendEmailVerification(action.email);
-        break;
+        {
+          _resendEmailVerification(action.email);
+        }
     }
   }
 
@@ -62,6 +65,8 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
       state.copyWith(
         baseState: BaseInitialState(),
         resendState: BaseLoadingState(),
+        canResend: false,
+        countdown: 30,
       ),
     );
     pinController.clear();
@@ -71,19 +76,36 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
     switch (result) {
       case SuccessResult<void>():
         emit(state.copyWith(resendState: BaseSuccessState()));
+        _startCountdown();
       case FailureResult<void>():
         emit(
           state.copyWith(
             resendState: BaseErrorState(
               errorMessage: result.exception.toString(),
             ),
+            canResend: true,
+            countdown: 0,
           ),
         );
     }
   }
 
+  void _startCountdown() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      final newCountdown = state.countdown - 1;
+      if (newCountdown <= 0) {
+        emit(state.copyWith(canResend: true, countdown: 0));
+        timer.cancel();
+      } else {
+        emit(state.copyWith(countdown: newCountdown));
+      }
+    });
+  }
+
   @override
   Future<void> close() {
+    _timer?.cancel();
     pinController.dispose();
     return super.close();
   }

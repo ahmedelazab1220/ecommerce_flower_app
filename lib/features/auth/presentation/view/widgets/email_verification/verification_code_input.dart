@@ -4,7 +4,6 @@ import 'package:ecommerce_flower_app/features/auth/presentation/view_model/email
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'dart:ui' as ui;
 
@@ -17,7 +16,7 @@ class VerificationCodeInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EmailVerificationCubit emailVerificationCubit =
+    final EmailVerificationCubit viewModel =
         context.read<EmailVerificationCubit>();
 
     return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
@@ -28,43 +27,41 @@ class VerificationCodeInput extends StatelessWidget {
               textDirection: ui.TextDirection.ltr,
               child: Pinput(
                 keyboardType: TextInputType.number,
-                controller: emailVerificationCubit.pinController,
-                key: emailVerificationCubit.formKey,
+                controller: viewModel.pinController,
+                key: viewModel.formKey,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
-                separatorBuilder: (index) => SizedBox(width: 4.w),
+                separatorBuilder: (index) => const SizedBox(width: 4),
                 length: 6,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 onCompleted: (pin) {
-                  emailVerificationCubit.doIntent(
-                    EmailVerificationRequestAction(),
-                  );
+                  viewModel.doIntent(EmailVerificationRequestAction());
                 },
                 forceErrorState: (state.baseState is BaseErrorState),
                 errorText: LocaleKeys.InvalidCode.tr(),
                 defaultPinTheme: PinTheme(
-                  width: 74.w,
-                  height: 68.h,
+                  width: 74,
+                  height: 68,
                   textStyle: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.white[AppColors.colorCode60],
-                    borderRadius: BorderRadius.circular(10).r,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 errorPinTheme: PinTheme(
-                  width: 74.w,
-                  height: 68.h,
+                  width: 74,
+                  height: 68,
                   textStyle: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppColors.red),
-                    borderRadius: BorderRadius.circular(10).r,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 errorBuilder: (errorText, pin) {
