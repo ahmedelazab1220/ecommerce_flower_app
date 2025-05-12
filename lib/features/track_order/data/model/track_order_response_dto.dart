@@ -2,7 +2,7 @@ import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart';
 
 class TrackOrderResponseDto {
   final String orderId;
-  final String status;
+  final int status;
   final String estimatedDeliveryDate;
   final String driverName;
   final String driverPhoneNumber;
