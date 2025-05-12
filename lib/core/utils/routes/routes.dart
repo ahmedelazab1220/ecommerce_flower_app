@@ -21,6 +21,7 @@ import '../../../features/most_selling_products/presentation/view/screens/best_s
 import '../../../features/saved_addresses/presentation/view/saved_address_screen.dart';
 import '../../../features/search/presentation/view/screens/search_screen.dart';
 import '../../../features/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
+import '../../../features/track_order/presentation/view/screen/track_order_screen.dart';
 import '../shared_models/address_entity.dart';
 import '../shared_models/product_entity.dart';
 
@@ -51,6 +52,7 @@ class AppRoutes {
   static const String ordersRoute = '/orders';
   static const String notificationScreenRoute = '/notification-screen';
   static const String notificationDetailsRoute = '/notification-details';
+  static const String trackOrderRoute = '/track-order';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     loginRoute: (context) => const LoginScreen(),
@@ -104,5 +106,11 @@ class AppRoutes {
     },
     ordersRoute: (context) => const OrdersScreen(),
     searchRoute: (context) => const SearchScreen(),
+    trackOrderRoute: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final orderId = args?['orderId'] as String?;
+      return TrackOrderScreen(orderId: orderId!);
+    },
   };
 }

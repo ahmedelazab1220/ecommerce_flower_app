@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
+import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/features/orders/presentation/view_model/orders_cubit.dart';
 import 'package:ecommerce_flower_app/features/orders/presentation/view_model/orders_state.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,13 @@ class OrderItem extends StatelessWidget {
                         if (actionText == LocaleKeys.Reorder.tr()) {
                           context.read<OrdersCubit>().doIntent(
                             AddToCartAction(productEntity.id!),
+                          );
+                        }
+                        if (actionText == LocaleKeys.TrackOrder.tr()) {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.trackOrderRoute,
+                            arguments: {"orderId": orderId},
                           );
                         }
                       },

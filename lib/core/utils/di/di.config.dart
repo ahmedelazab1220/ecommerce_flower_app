@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart'
+    as _i217;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -269,10 +271,23 @@ import '../../../features/search/domain/repo/search_repo.dart' as _i884;
 import '../../../features/search/domain/usecase/search_usecase.dart' as _i567;
 import '../../../features/search/presentation/view_model/search_cubit.dart'
     as _i541;
+import '../../../features/track_order/data/data_source/contract/track_order_remote_data_source.dart'
+    as _i928;
+import '../../../features/track_order/data/data_source/remote/track_order_remote_data_source_impl.dart'
+    as _i959;
+import '../../../features/track_order/data/repo_impl/track_order_repo_impl.dart'
+    as _i22;
+import '../../../features/track_order/domain/repo/track_order_repo.dart'
+    as _i366;
+import '../../../features/track_order/domain/usecase/track_order_use_case.dart'
+    as _i504;
+import '../../../features/track_order/presentation/view_model/track_order_cubit.dart'
+    as _i368;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
+import '../firebase_module.dart' as _i1007;
 import '../flutter_secure_storage_module.dart' as _i712;
 import '../location_service/location_service.dart' as _i533;
 import '../logging/logger_module.dart' as _i470;
@@ -305,6 +320,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final sharedPreferenceModule = _$SharedPreferenceModule();
+    final firebaseModule = _$FirebaseModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
@@ -315,6 +331,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i393.MainLayoutCubit>(() => _i393.MainLayoutCubit());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.singleton<_i533.LocationService>(() => _i533.LocationService());
+    gh.lazySingleton<_i217.FirebaseFirestore>(() => firebaseModule.firestore);
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => secureStorageModule.storage,
     );
@@ -348,8 +365,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.factory<_i928.TrackOrderRemoteDataSource>(
+      () => _i959.TrackOrderRemoteDataSourceImpl(gh<_i217.FirebaseFirestore>()),
+    );
     gh.lazySingleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i366.TrackOrderRepo>(
+      () => _i22.TrackOrderRepoImpl(gh<_i928.TrackOrderRemoteDataSource>()),
     );
     gh.factory<_i1015.AuthLocalDataSource>(
       () => _i241.AuthLocalDataSourceImpl(
@@ -412,6 +435,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i939.CategoriesRemoteDataSourceImpl(
         gh<_i619.CategoriesRetrofitClient>(),
       ),
+    );
+    gh.factory<_i504.TrackOrderUseCase>(
+      () => _i504.TrackOrderUseCase(gh<_i366.TrackOrderRepo>()),
     );
     gh.factory<_i664.AddToCartRemoteDataSource>(
       () => _i338.AddToCartRemoteDataSourceImpl(
@@ -494,6 +520,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i424.SearchRemoteDataSource>(
       () => _i88.SearchRemoteDataSourceImpl(gh<_i156.SearchRetrofitClient>()),
+    );
+    gh.factory<_i368.TrackOrderCubit>(
+      () => _i368.TrackOrderCubit(gh<_i504.TrackOrderUseCase>()),
     );
     gh.factory<_i592.EditProfileRemoteDataSource>(
       () => _i503.EditProfileRemoteDataSourceImpl(
@@ -800,6 +829,8 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$SharedPreferenceModule extends _i60.SharedPreferenceModule {}
+
+class _$FirebaseModule extends _i1007.FirebaseModule {}
 
 class _$SecureStorageModule extends _i712.SecureStorageModule {}
 
