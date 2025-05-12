@@ -9,19 +9,15 @@ class TrackOrderRemoteDataSourceImpl implements TrackOrderRemoteDataSource {
   final FirebaseFirestore _firebaseFirestore;
   TrackOrderRemoteDataSourceImpl(this._firebaseFirestore);
   @override
-  Future<TrackOrderResponseDto> getOrderStatus(
-    TrackOrderRequestDto request,
-  ) async {
+  Stream<TrackOrderResponseDto> getOrderStatus(TrackOrderRequestDto request) {
     final docSnapshot =
-        await _firebaseFirestore
-            .collection('orders')
-            .doc(request.orderId)
-            .get();
-
-    if (docSnapshot.exists) {
-      return TrackOrderResponseDto.fromFirestore(docSnapshot);
-    } else {
-      throw Exception('Order not found');
-    }
+        _firebaseFirestore.collection('orders').doc(request.orderId).get();
+    return docSnapshot.asStream().map((docSnapshot) {
+      if (docSnapshot.exists) {
+        return TrackOrderResponseDto.fromFirestore(docSnapshot);
+      } else {
+        throw Exception('Order not found');
+      }
+    });
   }
 }
