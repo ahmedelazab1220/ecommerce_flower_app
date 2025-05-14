@@ -49,8 +49,7 @@ class MyApp extends StatelessWidget {
           title: 'Ecommerce Flower App',
           routes: AppRoutes.routes,
           theme: AppTheme.appTheme,
-          // initialRoute: routeInitializer.computeInitialRoute(),
-          home: TrackOrderScreen(orderId: "123456789"),
+          initialRoute: routeInitializer.computeInitialRoute(),
         );
       },
     );
