@@ -7,7 +7,7 @@ import '../../data/model/track_order_response_dto.dart';
 
 @injectable
 class TrackOrderUseCase {
-  TrackOrderRepo _trackOrderRepo;
+  final TrackOrderRepo _trackOrderRepo;
   TrackOrderUseCase(this._trackOrderRepo);
 
   Stream<Result<TrackOrderResponseDto>> trackOrder(
