@@ -235,5 +235,8 @@
     "TheNotificationWillBeDeletedAfter": "سيتم حذف الإشعار بعد",
     "Seconds": "ثواني",
     "NotificationDeletionCancelled": "تم إلغاء حذف الإشعار",
-    "NoNotificationsFound": "لم يتم العثور على اشعارات"
+    "NoNotificationsFound": "لم يتم العثور على اشعارات",
+    "YourOrderHasBeenPlaced": "تم تقديم طلبك",
+    "YourOrderIsBeingPrepared": "يتم تحضير طلبك",
+    "OurDeliveryExecutiveIsOnTheWayToDeliverYourItem": "موظف التوصيل لدينا في الطريق لتسليم طلبك"
 }

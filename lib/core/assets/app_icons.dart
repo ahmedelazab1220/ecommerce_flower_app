@@ -28,5 +28,5 @@ class AppIcons {
   static const String filterSvg = '${baseRoute}filter.svg';
   static const String whatsappSvg = '${baseRoute}whatsapp.svg';
   static const String deliveryBoySvg = '${baseRoute}deliveryBoy.svg';
-  static const String carSvg = '${baseRoute}car.svg';
+  static const String carSvg = '${baseRoute}Car.svg';
 }

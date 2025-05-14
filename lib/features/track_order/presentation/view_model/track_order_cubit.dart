@@ -11,12 +11,12 @@ import 'track_order_state.dart';
 class TrackOrderCubit extends Cubit<TrackOrderState> {
   final TrackOrderUseCase _trackOrderUseCase;
 
-  int currentState = 0;
+  int currentState = 1;
 
   TrackOrderCubit(this._trackOrderUseCase)
     : super(TrackOrderState(baseState: BaseInitialState()));
 
-  void trackOrder(String orderId) {
+  void _trackOrder(String orderId) {
     emit(state.copyWith(baseState: BaseLoadingState()));
     final request = TrackOrderRequestDto(orderId: orderId);
     _trackOrderUseCase.trackOrder(request).listen((result) {
@@ -35,5 +35,12 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
           );
       }
     });
+  }
+
+  void doIntent(TrackOrderAction action) {
+    switch (action) {
+      case TrackOrderRequestAction():
+        _trackOrder(action.orderId);
+    }
   }
 }

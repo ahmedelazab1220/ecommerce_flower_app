@@ -235,5 +235,8 @@
     "TheNotificationWillBeDeletedAfter": "The notification will be deleted after",
     "Seconds": "seconds",
     "NotificationDeletionCancelled": "Notification deletion cancelled",
-    "NoNotificationsFound": "No Notifications found!"
+    "NoNotificationsFound": "No Notifications found!",
+    "YourOrderHasBeenPlaced": "Your order has been placed",
+    "YourOrderIsBeingPrepared": "Your order is being prepared",
+    "OurDeliveryExecutiveIsOnTheWayToDeliverYourItem": "Our delivery executive is on the way to deliver your item"
 }
