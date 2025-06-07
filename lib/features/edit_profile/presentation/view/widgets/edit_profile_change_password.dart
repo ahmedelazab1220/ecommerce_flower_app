@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _EditProfileChangePasswordState extends State<EditProfileChangePassword> {
       readOnly: true,
       decoration: InputDecoration(
         labelText: LocaleKeys.Password.tr(),
-        hintText: '********',
+        hintText: Constants.hiddenPassword,
         hintStyle: const TextStyle(color: AppColors.black),
         suffixIcon: Row(
           mainAxisSize: MainAxisSize.min,

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/assets/app_colors.dart';
@@ -11,7 +12,7 @@ class EditProfileGender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFemale = gender.toLowerCase() == 'female';
+    final isFemale = gender.toLowerCase() == Constants.female;
     return Row(
       children: [
         Expanded(

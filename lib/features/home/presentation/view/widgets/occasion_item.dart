@@ -7,6 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_lotties.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/font_responsive/font_responsive.dart';
 import '../../../../../core/utils/responsive_util/responsive_util.dart';
 import '../../../../../core/utils/routes/routes.dart';
@@ -31,7 +32,7 @@ class OccasionItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             AppRoutes.occasionRoute,
-            arguments: {'occasionIndex': occasionIndex},
+            arguments: {Constants.occasionIndex: occasionIndex},
           );
         },
         child: Column(

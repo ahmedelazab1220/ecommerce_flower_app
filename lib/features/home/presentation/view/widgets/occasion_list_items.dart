@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../domain/entity/occasion_entity.dart';
@@ -28,7 +29,7 @@ class OccasionListItems extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     AppRoutes.occasionRoute,
-                    arguments: {'occasionIndex': 1},
+                    arguments: {Constants.occasionIndex: 1},
                   );
                 },
               ),

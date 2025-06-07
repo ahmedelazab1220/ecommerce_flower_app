@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../domain/entity/notification_entity.dart';
 
@@ -25,7 +26,7 @@ class NotificationItem extends StatelessWidget {
           context,
           AppRoutes.notificationDetailsRoute,
           arguments: {
-            "notificationEntity": NotificationEntity(
+            Constants.notificationEntity: NotificationEntity(
               title: title,
               body: message,
               id: "",

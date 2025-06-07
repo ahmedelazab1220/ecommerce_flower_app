@@ -235,5 +235,7 @@
     "TheNotificationWillBeDeletedAfter": "سيتم حذف الإشعار بعد",
     "Seconds": "ثواني",
     "NotificationDeletionCancelled": "تم إلغاء حذف الإشعار",
-    "NoNotificationsFound": "لم يتم العثور على اشعارات"
+    "NoNotificationsFound": "لم يتم العثور على اشعارات",
+    "SuccessEditProfile": "تم تعديل الملف الشخصي بنجاح",
+    "SuccessUploadProfileImage": "تم رفع صورة الملف الشخصي بنجاح"
 }

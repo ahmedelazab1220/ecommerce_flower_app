@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_flower_app/core/utils/font_responsive/font_responsive.dart';
-import 'package:ecommerce_flower_app/features/most_selling_products/presentation/view/widgets/best_sellers_body.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/utils/font_responsive/font_responsive.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../widgets/best_sellers_body.dart';
 
 class BestSellersScreen extends StatelessWidget {
   const BestSellersScreen({super.key});

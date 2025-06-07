@@ -7,6 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_lotties.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/font_responsive/font_responsive.dart';
 import '../../../../../core/utils/responsive_util/responsive_util.dart';
 import '../../../../../core/utils/routes/routes.dart';
@@ -26,7 +27,9 @@ class BestSellerItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             AppRoutes.productDetailsRoute,
-            arguments: {'productEntity': bestSellerEntity?.toProductEntity()},
+            arguments: {
+              Constants.productEntity: bestSellerEntity?.toProductEntity(),
+            },
           );
         },
         child: Column(

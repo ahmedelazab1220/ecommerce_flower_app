@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     LoginForm(),
                     RememberMeAndForgotPassword(),
                     LoginButtons(),
-                    DonotHaveAccount(),
+                    DoNotHaveAccount(),
                   ],
                 ),
               ),

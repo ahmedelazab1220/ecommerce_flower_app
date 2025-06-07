@@ -6,8 +6,8 @@ import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../../core/utils/routes/routes.dart';
 
-class DonotHaveAccount extends StatelessWidget {
-  const DonotHaveAccount({super.key});
+class DoNotHaveAccount extends StatelessWidget {
+  const DoNotHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {

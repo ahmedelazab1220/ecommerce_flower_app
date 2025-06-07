@@ -6,6 +6,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../../../core/utils/shared_models/address_entity.dart';
@@ -97,7 +98,9 @@ class _SavedAddressItemState extends State<SavedAddressItem>
                           Navigator.pushNamed(
                             context,
                             AppRoutes.addressDetailsRoute,
-                            arguments: {'addressEntity': widget.addressEntity},
+                            arguments: {
+                              Constants.addressEntity: widget.addressEntity,
+                            },
                           );
                         },
                         child: SvgPicture.asset(AppIcons.editSvg),
