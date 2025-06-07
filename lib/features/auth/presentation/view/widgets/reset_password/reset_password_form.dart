@@ -49,16 +49,13 @@ class ResetPasswordForm extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(height: 48),
-              SizedBox(
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (viewModel.formKey.currentState?.validate() ?? false) {
-                      viewModel.doIntent(ResetPasswordRequestAction(email));
-                    }
-                  },
-                  child: Text(LocaleKeys.Confirm.tr()),
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  if (viewModel.formKey.currentState?.validate() ?? false) {
+                    viewModel.doIntent(ResetPasswordRequestAction(email));
+                  }
+                },
+                child: Text(LocaleKeys.Confirm.tr()),
               ),
             ],
           ),
