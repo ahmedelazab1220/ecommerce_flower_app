@@ -44,21 +44,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 message: (state as BaseErrorState).errorMessage,
               );
             }
-            if (state.registerState is BaseNavigationState) {
-              final navState = state.registerState as BaseNavigationState;
-
-              switch (navState.type) {
-                case NavigationType.pop:
-                  Navigator.pop(context);
-                  break;
-                case NavigationType.push:
-                  Navigator.pushNamed(context, navState.routeName);
-                  break;
-                case NavigationType.pushReplacement:
-                  Navigator.pushReplacementNamed(context, navState.routeName);
-                  break;
-              }
-            }
           },
           child: const RegisterForm(),
         ),

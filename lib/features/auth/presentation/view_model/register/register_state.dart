@@ -26,10 +26,3 @@ class GenderChangedAction extends RegisterAction {
 }
 
 class UserRegistrationAction extends RegisterAction {}
-
-final class NavigationAction extends RegisterAction {
-  final String routeName;
-  final NavigationType type;
-
-  NavigationAction({required this.routeName, this.type = NavigationType.push});
-}

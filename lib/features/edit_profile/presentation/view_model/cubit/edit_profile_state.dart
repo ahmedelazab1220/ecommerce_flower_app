@@ -40,11 +40,4 @@ final class UploadProfileImageRequestAction extends EditProfileAction {
   UploadProfileImageRequestAction({required this.image});
 }
 
-final class NavigationAction extends EditProfileAction {
-  final String routeName;
-  final NavigationType type;
-
-  NavigationAction({required this.routeName, required this.type});
-}
-
 enum EditProfileActionType { editProfile, uploadImage, none }

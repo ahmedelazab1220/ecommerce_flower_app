@@ -40,22 +40,6 @@ class EditProfileBlocListener extends StatelessWidget {
 
           showToast(title: errorState.errorMessage, color: AppColors.red);
         }
-
-        if (state.editProfileState is BaseNavigationState) {
-          final navState = state.editProfileState as BaseNavigationState;
-
-          switch (navState.type) {
-            case NavigationType.pop:
-              Navigator.pop(context);
-              break;
-            case NavigationType.push:
-              Navigator.pushNamed(context, navState.routeName);
-              break;
-            case NavigationType.pushReplacement:
-              Navigator.pushReplacementNamed(context, navState.routeName);
-              break;
-          }
-        }
       },
       child: child,
     );

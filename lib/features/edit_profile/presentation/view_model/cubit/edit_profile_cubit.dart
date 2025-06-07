@@ -65,10 +65,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         {
           _uploadProfileImage(image: action.image);
         }
-      case NavigationAction():
-        {
-          _naviagtionToScreen(routeName: action.routeName, type: action.type);
-        }
     }
   }
 
@@ -125,18 +121,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           ),
         );
     }
-  }
-
-  void _naviagtionToScreen({
-    required String routeName,
-    required NavigationType type,
-  }) {
-    emit(
-      state.copyWith(
-        editProfileState: BaseNavigationState(routeName: routeName, type: type),
-        lastActionType: EditProfileActionType.editProfile,
-      ),
-    );
   }
 
   void _formDataChanged() {

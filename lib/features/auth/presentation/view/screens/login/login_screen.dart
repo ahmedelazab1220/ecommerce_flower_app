@@ -52,21 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 message: (state.baseState as BaseErrorState).errorMessage,
               );
             }
-            if (state.baseState is BaseNavigationState) {
-              final navState = state.baseState as BaseNavigationState;
-
-              switch (navState.type) {
-                case NavigationType.pop:
-                  Navigator.pop(context);
-                  break;
-                case NavigationType.push:
-                  Navigator.pushNamed(context, navState.routeName);
-                  break;
-                case NavigationType.pushReplacement:
-                  Navigator.pushReplacementNamed(context, navState.routeName);
-                  break;
-              }
-            }
           },
           child: SingleChildScrollView(
             child: Form(

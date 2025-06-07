@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../../../core/utils/routes/routes.dart';
 import '../../../../../core/utils/validator/validator.dart';
 import '../../../domain/entity/register/register_request_entity.dart';
 import '../../../domain/entity/user_enttity.dart';
@@ -50,10 +49,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         {
           _registerButtonPressed();
         }
-      case NavigationAction():
-        {
-          _navigationToScreen(routeName: action.routeName, type: action.type);
-        }
     }
   }
 
@@ -77,20 +72,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (state.selectedGender == gender) return;
 
     emit(state.copyWith(selectedGender: gender));
-  }
-
-  void _navigationToScreen({
-    required String routeName,
-    required NavigationType type,
-  }) {
-    emit(
-      state.copyWith(
-        registerState: BaseNavigationState(
-          routeName: AppRoutes.loginRoute,
-          type: type,
-        ),
-      ),
-    );
   }
 
   Future<void> _userRegistration(RegisterRequestEntity request) async {
