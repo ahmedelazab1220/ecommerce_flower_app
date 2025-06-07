@@ -8,7 +8,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.white,
     primaryColor: AppColors.pink,
     secondaryHeaderColor: AppColors.black,
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: AppColors.white,
     ),

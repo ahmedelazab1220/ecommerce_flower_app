@@ -65,7 +65,7 @@ dependencies:
   provider: ^6.1.2
   retrofit: ^4.4.2
   shared_preferences: ^2.5.2
-  skeletonizer: ^1.4.3
+  skeletonizer: ^2.0.1
   webview_flutter: ^4.11.0
   flutter_slidable: ^4.0.0
 
