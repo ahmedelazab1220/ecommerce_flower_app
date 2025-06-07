@@ -59,7 +59,7 @@ class RememberMeAndForgotPassword extends StatelessWidget {
                 foregroundColor: AppColors.black,
                 padding: EdgeInsets.zero,
               ),
-              child: Text(LocaleKeys.Forget_Password.tr()),
+              child: Text(LocaleKeys.ForgetPassword.tr()),
             ),
           ],
         ),

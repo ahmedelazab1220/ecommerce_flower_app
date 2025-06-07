@@ -47,10 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 message: (state.baseState as BaseErrorState).errorMessage,
               );
-              AppDialogs.showFailureDialog(
-                context,
-                message: (state.baseState as BaseErrorState).errorMessage,
-              );
             }
             if (state.baseState is BaseNavigationState) {
               final navState = state.baseState as BaseNavigationState;
