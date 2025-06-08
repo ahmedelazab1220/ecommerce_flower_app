@@ -156,6 +156,8 @@ The application communicates with backend services through a structured network 
 
 ![Network-Layer](https://github.com/user-attachments/assets/72e992f9-ce25-45e4-ab78-8f28c1be340d)
 
+Sources:
+
 - [`lib/core/utils/di/di.config.dart`](https://github.com/ahmedelazab1220/ecommerce_flower_app/blob/c08d0e33/lib/core/utils/di/di.config.dart#L351-L353)
 
 - [`lib/core/utils/di/di.config.dart`](https://github.com/ahmedelazab1220/ecommerce_flower_app/blob/c08d0e33/lib/core/utils/di/di.config.dart#L363-L407)
