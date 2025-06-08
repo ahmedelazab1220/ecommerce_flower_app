@@ -13,51 +13,46 @@ class RememberMeAndForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = context.read<LoginCubit>();
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BlocBuilder<LoginCubit, LoginState>(
-              buildWhen:
-                  (previous, current) =>
-                      previous.isRememberMe != current.isRememberMe,
-              builder: (context, state) {
-                return GestureDetector(
-                  onTap: () {
-                    viewModel.rememberMe(!viewModel.isRememberMe);
-                  },
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        value: viewModel.isRememberMe,
-                        onChanged: (value) {
-                          viewModel.rememberMe(value!);
-                        },
-                        activeColor: AppColors.pink,
-                      ),
-                      Text(
-                        LocaleKeys.RememberMe.tr(),
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ],
+        BlocBuilder<LoginCubit, LoginState>(
+          buildWhen:
+              (previous, current) =>
+                  previous.isRememberMe != current.isRememberMe,
+          builder: (context, state) {
+            return GestureDetector(
+              onTap: () {
+                viewModel.rememberMe(!viewModel.isRememberMe);
+              },
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: viewModel.isRememberMe,
+                    onChanged: (value) {
+                      viewModel.rememberMe(value!);
+                    },
+                    activeColor: AppColors.pink,
                   ),
-                );
-              },
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.forgetPasswordRoute);
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: AppColors.black,
-                padding: EdgeInsets.zero,
+                  Text(
+                    LocaleKeys.RememberMe.tr(),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
               ),
-              child: Text(LocaleKeys.Forget_Password.tr()),
-            ),
-          ],
+            );
+          },
         ),
-        const SizedBox(height: 48),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, AppRoutes.forgetPasswordRoute);
+          },
+          style: TextButton.styleFrom(
+            foregroundColor: AppColors.black,
+            padding: EdgeInsets.zero,
+          ),
+          child: Text(LocaleKeys.Forget_Password.tr()),
+        ),
       ],
     );
   }
