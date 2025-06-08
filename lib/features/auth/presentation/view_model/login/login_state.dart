@@ -22,10 +22,3 @@ sealed class LoginAction {}
 final class LoginRequestAction extends LoginAction {}
 
 final class GuestRequestAction extends LoginAction {}
-
-final class NavigationAction extends LoginAction {
-  final String routeName;
-  final NavigationType type;
-
-  NavigationAction({required this.routeName, this.type = NavigationType.push});
-}

@@ -2,17 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_lotties.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/font_responsive/font_responsive.dart';
 import '../../../../../core/utils/responsive_util/responsive_util.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../domain/entity/best_seller_entity.dart';
-import '../../view_model/home_cubit.dart';
 
 class BestSellerItem extends StatelessWidget {
   const BestSellerItem({super.key, required this.bestSellerEntity});
@@ -21,16 +20,16 @@ class BestSellerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var viewModel = BlocProvider.of<HomeCubit>(context);
     return Skeletonizer(
       enabled: bestSellerEntity == null,
       child: GestureDetector(
         onTap: () {
-          viewModel.doIntent(
-            NavigateAction(
-              routeName: AppRoutes.productDetailsRoute,
-              arguments: {'productEntity': bestSellerEntity?.toProductEntity()},
-            ),
+          Navigator.pushNamed(
+            context,
+            AppRoutes.productDetailsRoute,
+            arguments: {
+              Constants.productEntity: bestSellerEntity?.toProductEntity(),
+            },
           );
         },
         child: Column(

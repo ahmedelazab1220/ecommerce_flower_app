@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          title: 'Ecommerce Flower App',
+          title: Constants.appName,
           routes: AppRoutes.routes,
           theme: AppTheme.appTheme,
           initialRoute: routeInitializer.computeInitialRoute(),

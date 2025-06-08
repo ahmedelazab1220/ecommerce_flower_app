@@ -1,4 +1,3 @@
-import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
 import 'package:ecommerce_flower_app/core/utils/validator/validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -35,8 +34,6 @@ class LoginCubit extends Cubit<LoginState> {
         _login();
       case GuestRequestAction():
         _guestLogin();
-      case NavigationAction():
-        _naviagtionToScreen(routeName: action.routeName, type: action.type);
     }
   }
 
@@ -67,28 +64,11 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> _guestLogin() async {
     await _guestUseCase.call();
-    doIntent(
-      NavigationAction(
-        routeName: AppRoutes.mainLayoutRoute,
-        type: NavigationType.pushReplacement,
-      ),
-    );
   }
 
   void rememberMe(bool value) {
     isRememberMe = value;
     emit(state.copyWith(isRememberMe: isRememberMe));
-  }
-
-  void _naviagtionToScreen({
-    required String routeName,
-    required NavigationType type,
-  }) {
-    emit(
-      state.copyWith(
-        baseState: BaseNavigationState(routeName: routeName, type: type),
-      ),
-    );
   }
 
   void dispose() {

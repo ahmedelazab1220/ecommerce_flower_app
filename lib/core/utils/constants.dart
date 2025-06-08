@@ -20,4 +20,19 @@ class Constants {
   static const String citiesRoute = 'assets/addresses/cities.json';
   static const String statesRoute = 'assets/addresses/states.json';
   static const String productEntity = 'productEntity';
+  static const String occasionIndex = 'occasionIndex';
+  static const String sheikhZayed = '2XVP+XC - Sheikh Zayed';
+  static const String downtownDubai = 'ABC+YZ - Downtown Dubai';
+  static const String appName = 'Ecommerce Flower App';
+  static const String addressEntity = 'addressEntity';
+  static const String userEntity = 'userEntity';
+  static const String yourName = 'Your Name';
+  static const String yourEmail = 'your.email@example.com';
+  static const String inProgress = 'inProgress';
+  static const String notificationEntity = 'notificationEntity';
+  static const String hiddenPassword = '********';
+  static const String female = 'female';
+  static const String agentPackageName = 'com.example.app';
+  static const String googleMapUrlTemplate =
+      'http://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}';
 }

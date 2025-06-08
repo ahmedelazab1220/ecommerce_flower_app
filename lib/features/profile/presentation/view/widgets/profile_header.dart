@@ -7,6 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/widgets/default_avatar.dart';
 import '../../view_model/profile_cubit.dart';
 import '../../view_model/profile_state.dart';
@@ -36,7 +37,7 @@ class ProfileHeader extends StatelessWidget {
                     child: Text(
                       firstName?.trim().isNotEmpty == true
                           ? firstName!
-                          : 'Your Name',
+                          : Constants.yourName,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -48,8 +49,10 @@ class ProfileHeader extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.editProfileRoute,
-                          arguments: {'userEntity': viewModel.userData},
-                        );
+                          arguments: {Constants.userEntity: viewModel.userData},
+                        ).then((value) {
+                          viewModel.doIntent(ProfileRequestAction());
+                        });
                       },
                     ),
                   ),
@@ -57,9 +60,7 @@ class ProfileHeader extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                email?.trim().isNotEmpty == true
-                    ? email!
-                    : 'your.email@example.com',
+                email?.trim().isNotEmpty == true ? email! : Constants.yourEmail,
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(color: AppColors.gray),

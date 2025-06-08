@@ -235,5 +235,7 @@
     "TheNotificationWillBeDeletedAfter": "The notification will be deleted after",
     "Seconds": "seconds",
     "NotificationDeletionCancelled": "Notification deletion cancelled",
-    "NoNotificationsFound": "No Notifications found!"
+    "NoNotificationsFound": "No Notifications found!",
+    "SuccessEditProfile": "Success Edit profile",
+    "SuccessUploadProfileImage": "Success upload profile image"
 }

@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/responsive_util/responsive_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../domain/entity/occasion_entity.dart';
-import '../../view_model/home_cubit.dart';
 import 'home_shared_title_widget.dart';
 import 'occasion_item.dart';
 
@@ -17,7 +16,6 @@ class OccasionListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var viewModel = BlocProvider.of<HomeCubit>(context);
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -28,11 +26,10 @@ class OccasionListItems extends StatelessWidget {
               HomeSharedTitleWidget(
                 title: LocaleKeys.Occasion.tr(),
                 onPressed: () {
-                  viewModel.doIntent(
-                    NavigateAction(
-                      routeName: AppRoutes.occasionRoute,
-                      arguments: {'occasionIndex': 1},
-                    ),
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.occasionRoute,
+                    arguments: {Constants.occasionIndex: 1},
                   );
                 },
               ),

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,13 +18,16 @@ class EditProfileBlocListener extends StatelessWidget {
       listener: (context, state) {
         if (state.editProfileState is BaseSuccessState &&
             state.lastActionType == EditProfileActionType.editProfile) {
-          showToast(title: 'Edit Profile Success', color: AppColors.pink);
+          showToast(
+            title: LocaleKeys.SuccessEditProfile.tr(),
+            color: AppColors.pink,
+          );
         }
 
         if (state.uploadProfileImageState is BaseSuccessState &&
             state.lastActionType == EditProfileActionType.uploadImage) {
           showToast(
-            title: 'Upload Profile Image Success',
+            title: LocaleKeys.SuccessUploadProfileImage.tr(),
             color: AppColors.pink,
           );
         }
@@ -39,22 +44,6 @@ class EditProfileBlocListener extends StatelessWidget {
           final errorState = state.uploadProfileImageState as BaseErrorState;
 
           showToast(title: errorState.errorMessage, color: AppColors.red);
-        }
-
-        if (state.editProfileState is BaseNavigationState) {
-          final navState = state.editProfileState as BaseNavigationState;
-
-          switch (navState.type) {
-            case NavigationType.pop:
-              Navigator.pop(context);
-              break;
-            case NavigationType.push:
-              Navigator.pushNamed(context, navState.routeName);
-              break;
-            case NavigationType.pushReplacement:
-              Navigator.pushReplacementNamed(context, navState.routeName);
-              break;
-          }
         }
       },
       child: child,

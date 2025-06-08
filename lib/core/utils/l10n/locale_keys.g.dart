@@ -257,4 +257,6 @@ abstract class LocaleKeys {
   static const Seconds = 'Seconds';
   static const NotificationDeletionCancelled = 'NotificationDeletionCancelled';
   static const NoNotificationsFound = 'NoNotificationsFound';
+  static const SuccessEditProfile = 'SuccessEditProfile';
+  static const SuccessUploadProfileImage = 'SuccessUploadProfileImage';
 }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../view_model/occasion_cubit.dart';
@@ -37,9 +38,7 @@ class _ProductViewState extends State<ProductView> {
                   : List.generate(
                     6,
                     (_) => ProductEntity(
-                      title:
-                          LocaleKeys
-                              .NoProductsAvailable.tr(), //assign title to to increase the length of text in skeletonizer
+                      title: LocaleKeys.NoProductsAvailable.tr(),
                     ),
                   );
           return products!.isEmpty
@@ -60,7 +59,7 @@ class _ProductViewState extends State<ProductView> {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.productDetailsRoute,
-                          arguments: {'productEntity': products[index]},
+                          arguments: {Constants.productEntity: products[index]},
                         );
                       },
                       child: ProductItem(product: products[index]),
