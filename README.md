@@ -20,7 +20,7 @@ This overview covers the fundamental structure of the application, its architect
 
 The application follows a clean architecture approach with clear separation of concerns across multiple layers. This ensures maintainability, testability, and scalability of the codebase.
 
-![Application-Architecture](https://github.com/user-attachments/assets/dd6136ad-8864-43e4-8f7c-8a111b8a45db)
+![Application-Architecture](https://github.com/user-attachments/assets/4aa940f7-d8ed-40ba-9ee2-f22070c42542)
 
 Sources:
 
@@ -61,7 +61,7 @@ Sources:
 
 The application follows a structured initialization process to ensure all required components are properly set up before presenting the UI to the user.
 
-![App-Initialization-Flow](https://github.com/user-attachments/assets/4dd9f1e0-0394-41fa-927a-655b4b67c932)
+![App-Initialization-Flow](https://github.com/user-attachments/assets/30397d53-ab1f-4e79-b89e-c3ef64194c57)
 
 Sources:
 
@@ -75,13 +75,13 @@ Sources:
 
 🌸 E-commerce Flower App Demo | Flutter Clean Architecture | Arabic & English Support
 
-[![Demo Video](https://github.com/user-attachments/assets/667013c1-8c3d-4747-9eab-5238c3f7eeb2)](https://www.youtube.com/watch?v=kt7Kp878Crs)
+[![Demo Video](https://github.com/user-attachments/assets/57d0c7dc-4360-409a-bf8c-c1aa3d475e81)](https://www.youtube.com/watch?v=kt7Kp878Crs)
 
 # Key Features and Modules
 
 The application is organized into feature modules, each responsible for a specific functionality. The diagram below shows the main features and their relationships.
 
-![Key-Features-and-Modules](https://github.com/user-attachments/assets/da3010f0-f968-4ffc-94ec-072be487b216)
+![Key-Features-and-Modules](https://github.com/user-attachments/assets/f7ea6e21-fb11-4063-9d87-2a3ad9a00e2b)
 
 Sources:
 
@@ -96,7 +96,7 @@ Sources:
 
 The application uses the BLoC/Cubit pattern for state management, providing a unidirectional data flow that makes the app's state predictable and maintainable.
 
-![State-Management-Pattern](https://github.com/user-attachments/assets/29023607-62ca-4181-b087-2670d1886c49)
+![State-Management-Pattern](https://github.com/user-attachments/assets/e61f95a6-ba31-4614-8a03-908900947a0d)
 
 Sources:
 
@@ -109,7 +109,7 @@ Sources:
 
 The application uses GetIt and the Injectable package for dependency injection, allowing for loose coupling between components and easier testing.
 
-![Dependency-Injection-System](https://github.com/user-attachments/assets/4982296f-4740-4d03-9fc3-d20d2b742c7d)
+![Dependency-Injection-System](https://github.com/user-attachments/assets/f07ecadf-64b9-41c6-ac66-9dd45a0515f0)
 
 Sources:
 
@@ -123,7 +123,7 @@ Sources:
 
 The application supports multiple languages (English and Arabic) through easy_localization, allowing for seamless language switching.
 
-![Localization-System](https://github.com/user-attachments/assets/1e693706-3bf1-4a3b-8b80-221a7b5da7a1)
+![Localization-System](https://github.com/user-attachments/assets/ce8eada4-6ca4-47b4-8b08-fd9f2271bed1)
 
 Sources:
 
@@ -137,24 +137,11 @@ Sources:
 
 - [`lib/core/utils/app_strater.dart`](https://github.com/ahmedelazab1220/ecommerce_flower_app/blob/c08d0e33/lib/core/utils/app_strater.dart#L37-L38)
 
-# Navigation System
-
-The application uses Flutter's navigation system with named routes, providing a structured way to navigate between screens.
-
-![Navigation-System](https://github.com/user-attachments/assets/b0c40b98-bd6e-415a-a179-10a91151e8e3)
-
-Sources:
-
-- [`lib/core/utils/routes/routes.dart`](https://github.com/ahmedelazab1220/ecommerce_flower_app/blob/c08d0e33/lib/core/utils/routes/routes.dart#L27-L107)
-
-- [`lib/main.dart`](https://github.com/ahmedelazab1220/ecommerce_flower_app/blob/c08d0e33/lib/main.dart#L32-L56)
-
-
 # Network Layer
 
 The application communicates with backend services through a structured network layer using Dio and Retrofit.
 
-![Network-Layer](https://github.com/user-attachments/assets/72e992f9-ce25-45e4-ab78-8f28c1be340d)
+![Network-Layer](https://github.com/user-attachments/assets/93ca4204-ab22-48dc-865d-d2c6f58c8bf4)
 
 Sources:
 
