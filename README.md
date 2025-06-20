@@ -75,7 +75,7 @@ Sources:
 
 🌸 E-commerce Flower App Demo | Flutter Clean Architecture | Arabic & English Support
 
-[![Demo Video](https://github.com/user-attachments/assets/667013c1-8c3d-4747-9eab-5238c3f7eeb2)](https://www.youtube.com/watch?v=d5HR1Vd2XqQ)
+[![Demo Video](https://github.com/user-attachments/assets/667013c1-8c3d-4747-9eab-5238c3f7eeb2)](https://www.youtube.com/watch?v=kt7Kp878Crs)
 
 # Key Features and Modules
 
