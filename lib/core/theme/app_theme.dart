@@ -12,6 +12,7 @@ class AppTheme {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       backgroundColor: AppColors.white,
     ),
+
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: AppColors.black),
       titleMedium: TextStyle(color: AppColors.black),

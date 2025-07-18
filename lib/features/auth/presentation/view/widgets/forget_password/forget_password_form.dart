@@ -1,0 +1,44 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/features/auth/presentation/view_model/forget_password/forget_password_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../view_model/forget_password/forget_password_cubit.dart';
+
+class ForgetPasswordForm extends StatelessWidget {
+  const ForgetPasswordForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ForgetPasswordCubit viewModel = context.read<ForgetPasswordCubit>();
+    return Form(
+      key: viewModel.formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextFormField(
+            controller: viewModel.emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              hintText: LocaleKeys.Email.tr(),
+              prefixIcon: const Icon(Icons.email),
+            ),
+            validator:
+                (value) => viewModel.validator.validateEmail(value ?? ''),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+          const SizedBox(height: 48),
+          ElevatedButton(
+            onPressed: () {
+              if (viewModel.formKey.currentState?.validate() ?? false) {
+                viewModel.doIntent(ForgetPasswordRequestAction());
+              }
+            },
+            child: Text(LocaleKeys.Confirm.tr()),
+          ),
+        ],
+      ),
+    );
+  }
+}
