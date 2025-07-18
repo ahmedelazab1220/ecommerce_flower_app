@@ -8,10 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../view_model/login/login_cubit.dart';
-import '../../widgets/login/do_not_have_account.dart';
-import '../../widgets/login/login_buttons.dart';
 import '../../widgets/login/login_form.dart';
-import '../../widgets/login/remember_me_and_forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -48,35 +45,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 message: (state.baseState as BaseErrorState).errorMessage,
               );
             }
-            if (state.baseState is BaseNavigationState) {
-              final navState = state.baseState as BaseNavigationState;
-
-              switch (navState.type) {
-                case NavigationType.pop:
-                  Navigator.pop(context);
-                  break;
-                case NavigationType.push:
-                  Navigator.pushNamed(context, navState.routeName);
-                  break;
-                case NavigationType.pushReplacement:
-                  Navigator.pushReplacementNamed(context, navState.routeName);
-                  break;
-              }
-            }
           },
           child: SingleChildScrollView(
             child: Form(
               key: viewModel.formKey,
               child: const Padding(
                 padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    LoginForm(),
-                    RememberMeAndForgotPassword(),
-                    LoginButtons(),
-                    DonotHaveAccount(),
-                  ],
-                ),
+                child: LoginForm(),
               ),
             ),
           ),

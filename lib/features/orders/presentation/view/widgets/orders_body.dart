@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:ecommerce_flower_app/features/orders/presentation/view/widgets/orders_error_view.dart';
 import 'package:ecommerce_flower_app/features/orders/presentation/view/widgets/orders_loading_view.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class OrdersBody extends StatelessWidget {
                 orderId: entry.key.orderId,
                 orderNumber: entry.key.orderNumber,
                 actionText:
-                    entry.key.state == 'inProgress'
+                    entry.key.state == Constants.inProgress
                         ? LocaleKeys.TrackOrder.tr()
                         : LocaleKeys.Reorder.tr(),
               );

@@ -26,7 +26,7 @@ class ResetPasswordForm extends StatelessWidget {
                 controller: viewModel.passwordController,
                 decoration: InputDecoration(
                   labelText: LocaleKeys.NewPassword.tr(),
-                  hintText: LocaleKeys.EnterYourNewPassword.tr(),
+                  hintText: LocaleKeys.EnterYourPassword.tr(),
                 ),
                 validator:
                     (value) => viewModel.validator.validatePassword(

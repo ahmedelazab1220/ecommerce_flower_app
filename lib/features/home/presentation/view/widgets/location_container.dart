@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 import '../../../../../core/assets/app_icons.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../view_model/home_cubit.dart';
 
 class LocationContainer extends StatefulWidget {
@@ -125,8 +126,8 @@ class _LocationContainerState extends State<LocationContainer>
                         ),
                         itemBuilder: (BuildContext context) {
                           final List<String> addresses = [
-                            '2XVP+XC - Sheikh Zayed',
-                            'ABC+YZ - Downtown Dubai',
+                            Constants.sheikhZayed,
+                            Constants.downtownDubai,
                           ];
                           return addresses.map((String address) {
                             return PopupMenuItem<String>(

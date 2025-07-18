@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
+import 'package:ecommerce_flower_app/core/utils/constants.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:ecommerce_flower_app/features/address_details/presentation/view_model/address_details_state.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +41,8 @@ class LocationMapView extends StatelessWidget {
                       ),
                       children: [
                         TileLayer(
-                          urlTemplate:
-                              'http://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-                          userAgentPackageName: 'com.example.app',
+                          urlTemplate: Constants.googleMapUrlTemplate,
+                          userAgentPackageName: Constants.agentPackageName,
                         ),
                       ],
                     ),

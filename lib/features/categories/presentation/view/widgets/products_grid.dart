@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/utils/routes/routes.dart';
 import '../../../../../core/utils/shared_models/product_entity.dart';
@@ -57,7 +58,7 @@ class ProductsGrid extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           AppRoutes.productDetailsRoute,
-                          arguments: {'productEntity': products[index]},
+                          arguments: {Constants.productEntity: products[index]},
                         );
                       },
                       child: ProductItem(product: products[index]),

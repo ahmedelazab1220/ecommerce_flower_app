@@ -43,13 +43,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   void doIntent(HomeAction action) {
     switch (action) {
-      case NavigateAction():
-        {
-          _navigateToScreen(
-            routeName: action.routeName,
-            arguments: action.arguments,
-          );
-        }
       case GetLocation():
         {
           locationService.getLocation();
@@ -101,17 +94,6 @@ class HomeCubit extends Cubit<HomeState> {
           );
         }
     }
-  }
-
-  void _navigateToScreen({required String routeName, dynamic arguments}) {
-    emit(
-      state.copyWith(
-        navigationState: BaseNavigationState(
-          routeName: routeName,
-          arguments: arguments,
-        ),
-      ),
-    );
   }
 
   void doAnimation({required TickerProvider vsync}) {

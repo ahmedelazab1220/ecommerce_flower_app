@@ -1,5 +1,4 @@
 import 'package:ecommerce_flower_app/core/assets/app_colors.dart';
-import 'package:ecommerce_flower_app/core/base/base_state.dart';
 import 'package:ecommerce_flower_app/core/utils/l10n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_flower_app/core/utils/routes/routes.dart';
@@ -70,6 +69,14 @@ class RegisterForm extends StatelessWidget {
                         decoration: TextDecoration.underline,
                         decorationColor: AppColors.black,
                       ),
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.termsAndConditionsRoute,
+                              );
+                            },
                     ),
                   ],
                 ),
@@ -99,11 +106,9 @@ class RegisterForm extends StatelessWidget {
                       recognizer:
                           TapGestureRecognizer()
                             ..onTap = () {
-                              viewModel.doIntent(
-                                NavigationAction(
-                                  routeName: AppRoutes.loginRoute,
-                                  type: NavigationType.pushReplacement,
-                                ),
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoutes.loginRoute,
                               );
                             },
                     ),

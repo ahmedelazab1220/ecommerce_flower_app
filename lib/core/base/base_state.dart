@@ -12,17 +12,6 @@ class BaseLoadingState extends BaseState {}
 
 class BaseHideLoadingState extends BaseState {}
 
-class BaseNavigationState extends BaseState {
-  final dynamic arguments;
-  final String routeName;
-  final NavigationType type;
-  BaseNavigationState({
-    required this.routeName,
-    this.arguments,
-    this.type = NavigationType.push,
-  });
-}
-
 class BaseErrorState extends BaseState {
   String errorMessage;
   Exception? exception;

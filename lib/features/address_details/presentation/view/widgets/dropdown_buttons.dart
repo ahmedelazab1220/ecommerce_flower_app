@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/assets/app_colors.dart';
+import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/address_details_cubit.dart';
 import '../../view_model/address_details_state.dart';
@@ -13,7 +14,7 @@ class DropdownButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<AddressDetailsCubit>();
-    final isEn = context.locale == const Locale('en');
+    final isEn = context.locale == const Locale(Constants.en);
     return BlocBuilder<AddressDetailsCubit, AddressDetailsState>(
       builder: (context, state) {
         return Row(

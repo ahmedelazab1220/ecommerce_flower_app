@@ -3,6 +3,7 @@
   "Email": "Email",
   "Password": "Password",
   "RememberMe": "Remember me",
+  "Forget_Password": "Forget password?",
   "ContinueAsGuest": "Continue as guest",
   "Signup": "Sign up",
   "DonotHaveAnAccount": "Don't have an account?",
@@ -15,7 +16,7 @@
   "EnterFirstName": "Enter first name",
   "EnterLastName": "Enter last name",
   "ConfirmPassword": "Confirm password",
-  "PhoneNumber": "Enter phone number",
+  "PhoneNumber": "phone number",
   "Gender": "Gender",
   "Male": "Male",
   "Female": "Female",
@@ -33,7 +34,6 @@
   "DidNotReceiveTheCode": "Didn't receive the code?",
   "InvalidCode": "Invalid code",
   "NewPassword": "New password",
-  "EnterYourNewPassword": "Enter your new password",
   "ResetPassword": "Reset password",
   "PasswordRequirements": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
   "Search": "Search",
@@ -236,5 +236,7 @@
   "TheNotificationWillBeDeletedAfter": "The notification will be deleted after",
   "Seconds": "seconds",
   "NotificationDeletionCancelled": "Notification deletion cancelled",
-  "NoNotificationsFound": "No Notifications found!"
+  "NoNotificationsFound": "No Notifications found!",
+  "SuccessEditProfile": "Success Edit profile",
+  "SuccessUploadProfileImage": "Success upload profile image"
 }
